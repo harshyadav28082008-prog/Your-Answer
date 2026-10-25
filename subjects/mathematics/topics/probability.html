@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Learn the foundations of probability, events, sample spaces, and simple probability experiments."
+  >
+
+  <title>Probability — Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .probability-page {
+      --lesson-accent: #3d8b73;
+      --lesson-soft: #eaf5f1;
+      padding-bottom: 64px;
+    }
+
+    html[data-theme="dark"] .probability-page {
+      --lesson-soft: #20332f;
+    }
+
+    .probability-page .lesson-hero {
+      padding: 48px 0 30px;
+    }
+
+    .probability-page .lesson-eyebrow {
+      color: var(--lesson-accent);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .probability-page .lesson-title {
+      font-size: clamp(2.2rem, 5vw, 3.7rem);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+      margin: 0 0 16px;
+    }
+
+    .probability-page .lesson-intro {
+      max-width: 680px;
+      color: var(--color-text-muted);
+      font-size: 1.06rem;
+      line-height: 1.8;
+    }
+
+    .probability-page .lesson-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .probability-page .meta-chip {
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: var(--color-text-muted);
+      font-size: .82rem;
+    }
+
+    .probability-page .lesson-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 0;
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      scrollbar-width: none;
+    }
+
+    .probability-page .lesson-nav a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: .85rem;
+    }
+
+    .probability-page .lesson-nav a:hover {
+      color: var(--lesson-accent);
+      border-color: var(--lesson-accent);
+    }
+
+    .probability-page .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 28px;
+      margin-top: 30px;
+      align-items: start;
+    }
+
+    .probability-page .lesson-content {
+      min-width: 0;
+    }
+
+    .probability-page .lesson-section {
+      margin-bottom: 34px;
+      scroll-margin-top: 85px;
+    }
+
+    .probability-page .section-heading {
+      font-size: 1.55rem;
+      letter-spacing: -.025em;
+      margin: 0 0 12px;
+    }
+
+    .probability-page .lesson-section p {
+      line-height: 1.8;
+      color: var(--color-text-muted);
+    }
+
+    .probability-page .lesson-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      padding: 22px;
+      margin: 18px 0;
+    }
+
+    .probability-page .formula {
+      background: var(--lesson-soft);
+      border-radius: 12px;
+      padding: 18px;
+      margin: 16px 0;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .probability-page .example-step {
+      margin: 14px 0;
+      line-height: 1.75;
+    }
+
+    .probability-page .step-number {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--lesson-soft);
+      color: var(--lesson-accent);
+      font-size: .85rem;
+      font-weight: 800;
+      margin-right: 8px;
+    }
+
+    .probability-page .experiment {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .probability-page .experiment-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .probability-page .control-label {
+      font-size: .88rem;
+      font-weight: 650;
+    }
+
+    .probability-page .control-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+    }
+
+    .probability-page .experiment-button {
+      border: 0;
+      border-radius: 10px;
+      padding: 11px 14px;
+      background: var(--lesson-accent);
+      color: white;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .probability-page .experiment-button:hover {
+      opacity: .9;
+    }
+
+    .probability-page .coin {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--lesson-soft);
+      border: 4px solid var(--lesson-accent);
+      color: var(--lesson-accent);
+      font-size: 1.1rem;
+      font-weight: 800;
+      transition: transform .35s ease;
+    }
+
+    .probability-page .coin.flip {
+      transform: rotateY(360deg);
+    }
+
+    .probability-page .experiment-result {
+      text-align: center;
+    }
+
+    .probability-page .experiment-result h3 {
+      margin-bottom: 8px;
+    }
+
+    .probability-page .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .probability-page .result-box {
+      background: var(--lesson-soft);
+      border-radius: 12px;
+      padding: 13px;
+      text-align: center;
+    }
+
+    .probability-page .result-label {
+      display: block;
+      color: var(--color-text-muted);
+      font-size: .76rem;
+      margin-bottom: 5px;
+    }
+
+    .probability-page .result-value {
+      font-size: 1.1rem;
+      font-weight: 750;
+    }
+
+    .probability-page .lesson-aside {
+      position: sticky;
+      top: 72px;
+    }
+
+    .probability-page .aside-card {
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+      background: var(--color-surface);
+    }
+
+    .probability-page .aside-card h3 {
+      font-size: 1rem;
+      margin: 0 0 12px;
+    }
+
+    .probability-page .aside-card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .probability-page .aside-card li {
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin: 8px 0;
+      font-size: .9rem;
+    }
+
+    .probability-page .practice-question {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .probability-page .practice-question:last-child {
+      border-bottom: 0;
+    }
+
+    .probability-page .practice-question p {
+      color: var(--color-text);
+      font-weight: 650;
+    }
+
+    .probability-page .answer-input {
+      max-width: 230px;
+    }
+
+    .probability-page .check-button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 15px;
+      background: var(--lesson-accent);
+      color: white;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .probability-page .feedback {
+      font-size: .9rem;
+      margin-top: 9px;
+      min-height: 1.3em;
+    }
+
+    .probability-page .topic-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .probability-page .topic-link {
+      text-decoration: none;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 10px 13px;
+      color: var(--color-text);
+      font-size: .9rem;
+    }
+
+    .probability-page .topic-link:hover {
+      border-color: var(--lesson-accent);
+      color: var(--lesson-accent);
+    }
+
+    @media (max-width: 800px) {
+      .probability-page .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .probability-page .lesson-aside {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .probability-page .aside-card {
+        margin-bottom: 0;
+      }
+
+      .probability-page .experiment {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .probability-page .lesson-hero {
+        padding-top: 32px;
+      }
+
+      .probability-page .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .probability-page .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .probability-page .lesson-card {
+        padding: 17px;
+      }
+    }
+  </style>
+
+  <!-- MathJax for mathematical notation -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../../index.html" aria-label="Your Answer home">
+        <span class="brand-mark">Y</span>
+        <span>Your Answer</span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+        <a href="../../../coding/index.html">Coding</a>
+      </nav>
+
+      <div class="header-actions">
+        <button
+          type="button"
+          data-theme-toggle
+          aria-label="Toggle light and dark theme">
+          ◐
+        </button>
+
+        <button
+          type="button"
+          data-menu-toggle
+          aria-label="Open navigation menu"
+          aria-expanded="false">
+          ☰
+        </button>
+      </div>
+
+    </div>
+
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+      <a href="../../../coding/index.html">Coding</a>
+    </nav>
+  </header>
+
+
+  <main class="probability-page">
+
+    <!-- HERO -->
+    <section class="lesson-hero container">
+
+      <div class="lesson-eyebrow">
+        Mathematics / Probability
+      </div>
+
+      <h1 class="lesson-title">
+        Probability: Understanding Uncertainty.
+      </h1>
+
+      <p class="lesson-intro">
+        Probability gives us a mathematical way to describe uncertainty.
+        From tossing a coin to predicting complex events, probability helps
+        us measure how likely something is to happen.
+      </p>
+
+      <div class="lesson-meta">
+        <span class="meta-chip">Beginner foundations</span>
+        <span class="meta-chip">Interactive experiment</span>
+        <span class="meta-chip">Approx. 15 minutes</span>
+      </div>
+
+    </section>
+
+
+    <!-- PAGE NAVIGATION -->
+    <nav class="lesson-nav container" aria-label="On this page">
+      <a href="#overview">Overview</a>
+      <a href="#events">Events</a>
+      <a href="#formula">Formula</a>
+      <a href="#experiment">Experiment</a>
+      <a href="#practice">Practice</a>
+    </nav>
+
+
+    <div class="lesson-layout container">
+
+      <article class="lesson-content">
+
+        <!-- OVERVIEW -->
+        <section class="lesson-section" id="overview">
+
+          <h2 class="section-heading">
+            1. What is probability?
+          </h2>
+
+          <p>
+            Probability measures how likely an event is to occur.
+            Its value ranges from 0 to 1.
+          </p>
+
+          <div class="lesson-card">
+
+            <h3>The probability scale</h3>
+
+            <div class="formula">
+              \(0 \leq P(A) \leq 1\)
+            </div>
+
+            <p>
+              A probability of 0 means an event is impossible.
+              A probability of 1 means the event is certain.
+            </p>
+
+            <p>
+              Values between them describe different levels of likelihood.
+            </p>
+
+          </div>
+
+          <p>
+            For example, when a fair coin is tossed, there are two equally
+            likely outcomes: heads and tails.
+          </p>
+
+        </section>
+
+
+        <!-- EVENTS -->
+        <section class="lesson-section" id="events">
+
+          <h2 class="section-heading">
+            2. Outcomes, sample spaces and events
+          </h2>
+
+          <p>
+            Before calculating probability, we need to understand what
+            outcomes are possible.
+          </p>
+
+          <div class="lesson-card">
+
+            <h3>Sample space</h3>
+
+            <p>
+              The <strong>sample space</strong> is the complete set of
+              possible outcomes.
+            </p>
+
+            <div class="formula">
+              \(S=\{H,T\}\)
+            </div>
+
+            <p>
+              For a single coin toss, the sample space contains two outcomes:
+              heads and tails.
+            </p>
+
+          </div>
+
+          <div class="lesson-card">
+
+            <h3>Event</h3>
+
+            <p>
+              An <strong>event</strong> is an outcome, or collection of
+              outcomes, that we are interested in.
+            </p>
+
+            <p>
+              For example, getting heads can be represented by:
+            </p>
+
+            <div class="formula">
+              \(A=\{H\}\)
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- FORMULA -->
+        <section class="lesson-section" id="formula">
+
+          <h2 class="section-heading">
+            3. The basic probability formula
+          </h2>
+
+          <p>
+            When all outcomes are equally likely, probability can be found
+            by comparing the number of favourable outcomes with the total
+            number of possible outcomes.
+          </p>
+
+          <div class="formula">
+            \[
+            P(A)=
+            \frac{\text{number of favourable outcomes}}
+            {\text{total number of outcomes}}
+            \]
+          </div>
+
+          <div class="lesson-card">
+
+            <h3>Example: rolling a die</h3>
+
+            <p>
+              A standard die has six possible outcomes:
+            </p>
+
+            <div class="formula">
+              \(S=\{1,2,3,4,5,6\}\)
+            </div>
+
+            <p>
+              Suppose we want the probability of rolling a 4.
+              There is one favourable outcome and six possible outcomes.
+            </p>
+
+            <div class="example-step">
+              <span class="step-number">1</span>
+              Favourable outcomes = 1
+            </div>
+
+            <div class="example-step">
+              <span class="step-number">2</span>
+              Total outcomes = 6
+            </div>
+
+            <div class="example-step">
+              <span class="step-number">3</span>
+              Therefore:
+            </div>
+
+            <div class="formula">
+              \[
+              P(4)=\frac{1}{6}
+              \]
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- INTERACTIVE EXPERIMENT -->
+        <section class="lesson-section" id="experiment">
+
+          <h2 class="section-heading">
+            4. Try a probability experiment
+          </h2>
+
+          <p>
+            Toss a virtual coin repeatedly and compare the experimental
+            result with the theoretical probability.
+          </p>
+
+          <div class="lesson-card">
+
+            <div class="experiment">
+
+              <div class="experiment-controls">
+
+                <label class="control-label" for="flip-count">
+                  Number of tosses
+                </label>
+
+                <input
+                  class="control-input"
+                  id="flip-count"
+                  type="number"
+                  min="1"
+                  max="1000"
+                  value="10"
+                >
+
+                <button
+                  class="experiment-button"
+                  id="run-experiment"
+                  type="button">
+                  Run experiment
+                </button>
+
+              </div>
+
+
+              <div class="experiment-result">
+
+                <div class="coin" id="coin">
+                  HEADS
+                </div>
+
+                <h3 id="experiment-message">
+                  Ready to experiment
+                </h3>
+
+                <p>
+                  The theoretical probability of heads is
+                  \(\frac{1}{2}\).
+                </p>
+
+                <div class="result-grid">
+
+                  <div class="result-box">
+                    <span class="result-label">
+                      Heads
+                    </span>
+
+                    <span
+                      class="result-value"
+                      id="heads-result">
+                      0
+                    </span>
+                  </div>
+
+                  <div class="result-box">
+                    <span class="result-label">
+                      Tails
+                    </span>
+
+                    <span
+                      class="result-value"
+                      id="tails-result">
+                      0
+                    </span>
+                  </div>
+
+                  <div class="result-box">
+                    <span class="result-label">
+                      Heads %
+                    </span>
+
+                    <span
+                      class="result-value"
+                      id="heads-percent">
+                      0%
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- PRACTICE -->
+        <section class="lesson-section" id="practice">
+
+          <h2 class="section-heading">
+            5. Test your understanding
+          </h2>
+
+          <p>
+            Try each question before checking your answer.
+          </p>
+
+          <div class="lesson-card">
+
+
+            <div class="practice-question">
+
+              <p>
+                Question 1: A fair coin is tossed once.
+                What is the probability of getting heads?
+              </p>
+
+              <input
+                class="control-input answer-input"
+                id="answer-1"
+                type="text"
+                placeholder="Your answer"
+              >
+
+              <br>
+
+              <button
+                class="check-button"
+                type="button"
+                data-check="1">
+                Check answer
+              </button>
+
+              <div
+                class="feedback"
+                id="feedback-1"
+                aria-live="polite">
+              </div>
+
+            </div>
+
+
+            <div class="practice-question">
+
+              <p>
+                Question 2: A standard die is rolled.
+                What is the probability of rolling a 6?
+              </p>
+
+              <input
+                class="control-input answer-input"
+                id="answer-2"
+                type="text"
+                placeholder="Your answer"
+              >
+
+              <br>
+
+              <button
+                class="check-button"
+                type="button"
+                data-check="2">
+                Check answer
+              </button>
+
+              <div
+                class="feedback"
+                id="feedback-2"
+                aria-live="polite">
+              </div>
+
+            </div>
+
+
+            <div class="practice-question">
+
+              <p>
+                Question 3: What is the probability of an impossible event?
+              </p>
+
+              <input
+                class="control-input answer-input"
+                id="answer-3"
+                type="text"
+                placeholder="Your answer"
+              >
+
+              <br>
+
+              <button
+                class="check-button"
+                type="button"
+                data-check="3">
+                Check answer
+              </button>
+
+              <div
+                class="feedback"
+                id="feedback-3"
+                aria-live="polite">
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- CONTINUE -->
+        <section class="lesson-section">
+
+          <h2 class="section-heading">
+            Continue learning
+          </h2>
+
+          <p>
+            Probability connects naturally with mathematics, statistics,
+            data science, and eventually more advanced mathematical models.
+          </p>
+
+          <div class="topic-links">
+
+            <a
+              class="topic-link"
+              href="calculus.html">
+              ← Calculus
+            </a>
+
+            <a
+              class="topic-link"
+              href="algebra.html">
+              Algebra
+            </a>
+
+            <a
+              class="topic-link"
+              href="geometry.html">
+              Geometry
+            </a>
+
+            <a
+              class="topic-link"
+              href="../index.html">
+              All Mathematics
+            </a>
+
+          </div>
+
+        </section>
+
+      </article>
+
+
+      <!-- SIDEBAR -->
+      <aside class="lesson-aside">
+
+        <div class="aside-card">
+
+          <h3>
+            In this lesson
+          </h3>
+
+          <ul>
+            <li>Understand probability</li>
+            <li>Learn about sample spaces</li>
+            <li>Understand events</li>
+            <li>Calculate simple probabilities</li>
+            <li>Run a probability experiment</li>
+          </ul>
+
+        </div>
+
+
+        <div class="aside-card">
+
+          <h3>
+            Remember
+          </h3>
+
+          <ul>
+            <li>Probability is between 0 and 1.</li>
+            <li>0 means impossible.</li>
+            <li>1 means certain.</li>
+            <li>Equal outcomes can use the basic probability formula.</li>
+          </ul>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../../assets/js/main.js"></script>
+
+  <script>
+    (() => {
+
+      const flipButton =
+        document.getElementById("run-experiment");
+
+      const flipCount =
+        document.getElementById("flip-count");
+
+      const coin =
+        document.getElementById("coin");
+
+      const message =
+        document.getElementById("experiment-message");
+
+      const headsResult =
+        document.getElementById("heads-result");
+
+      const tailsResult =
+        document.getElementById("tails-result");
+
+      const headsPercent =
+        document.getElementById("heads-percent");
+
+
+      flipButton.addEventListener("click", () => {
+
+        let count = Number(flipCount.value);
+
+        if (!Number.isFinite(count)) {
+          count = 10;
+        }
+
+        count = Math.max(1, Math.min(1000, Math.floor(count)));
+
+        flipCount.value = count;
+
+        let heads = 0;
+        let tails = 0;
+
+        for (let i = 0; i < count; i++) {
+
+          if (Math.random() < 0.5) {
+            heads++;
+          } else {
+            tails++;
+          }
+
+        }
+
+        const percentage =
+          (heads / count) * 100;
+
+        headsResult.textContent = heads;
+        tailsResult.textContent = tails;
+        headsPercent.textContent =
+          percentage.toFixed(1) + "%";
+
+
+        const finalResult =
+          Math.random() < heads / count;
+
+        coin.classList.remove("flip");
+
+        void coin.offsetWidth;
+
+        coin.classList.add("flip");
+
+        coin.textContent =
+          finalResult ? "HEADS" : "TAILS";
+
+
+        message.textContent =
+          `${count} toss${count === 1 ? "" : "es"} completed.`;
+      });
+
+
+      const answers = {
+
+        1: [
+          "1/2",
+          "0.5",
+          "50%",
+          "50"
+        ],
+
+        2: [
+          "1/6"
+        ],
+
+        3: [
+          "0"
+        ]
+
+      };
+
+
+      document
+        .querySelectorAll("[data-check]")
+        .forEach(button => {
+
+          button.addEventListener("click", () => {
+
+            const id =
+              button.dataset.check;
+
+            const input =
+              document.getElementById(
+                "answer-" + id
+              );
+
+            const feedback =
+              document.getElementById(
+                "feedback-" + id
+              );
+
+            const answer =
+              input.value
+                .toLowerCase()
+                .replace(/\s+/g, "")
+                .replace(/−/g, "-");
+
+
+            if (!answer) {
+
+              feedback.textContent =
+                "Enter an answer first.";
+
+              return;
+            }
+
+
+            if (answers[id].includes(answer)) {
+
+              feedback.textContent =
+                "Correct! Well done.";
+
+            } else {
+
+              const hints = {
+
+                1:
+                  "A fair coin has two equally likely outcomes.",
+
+                2:
+                  "There is one 6 among six possible outcomes.",
+
+                3:
+                  "An impossible event has no favourable outcomes."
+
+              };
+
+              feedback.textContent =
+                "Not quite. " + hints[id];
+
+            }
+
+          });
+
+        });
+
+    })();
+  </script>
+
+</body>
+</html>

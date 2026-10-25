@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn arrays, linked lists, stacks, queues, trees, graphs, hash tables, and basic data structure operations.">
+  <title>Data Structures | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <style>
+    .lesson {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+      color: var(--color-text);
+    }
+
+    .lesson-hero,
+    .lesson section {
+      padding: 25px;
+      margin-bottom: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lesson h1 {
+      margin: 10px 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .lesson h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .lesson h3 {
+      margin-top: 22px;
+    }
+
+    .lesson p,
+    .lesson li {
+      line-height: 1.75;
+    }
+
+    .lesson li {
+      margin-bottom: 7px;
+    }
+
+    .note {
+      padding: 15px 17px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      background: var(--color-border);
+      margin: 18px 0;
+      line-height: 1.7;
+    }
+
+    .example {
+      padding: 16px;
+      border: 1px dashed var(--color-border);
+      border-radius: 12px;
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+
+    .example pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-family: monospace;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .structure-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 13px;
+      margin-top: 16px;
+    }
+
+    .structure-card {
+      padding: 17px;
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+    }
+
+    .structure-card strong {
+      display: block;
+      color: var(--color-brand);
+      margin-bottom: 8px;
+    }
+
+    .lesson table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    .lesson th,
+    .lesson td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid var(--color-border);
+      line-height: 1.6;
+    }
+
+    .lesson th {
+      background: var(--color-border);
+    }
+
+    .answer-button {
+      margin-top: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 9px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 9px;
+      background: var(--color-border);
+      line-height: 1.7;
+    }
+
+    .answer.visible {
+      display: block;
+    }
+
+    .lesson-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .lesson-nav a {
+      color: var(--color-brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .lesson {
+        padding: 22px 14px 45px;
+      }
+
+      .lesson-hero,
+      .lesson section {
+        padding: 19px;
+      }
+
+      .lesson table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="lesson">
+    <div class="lesson-hero">
+      <div class="eyebrow">Computer Science · Topic 05</div>
+      <h1>Data Structures</h1>
+      <p>
+        Discover how computers organize information so programs can store,
+        retrieve, update, and process data efficiently.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. What Is a Data Structure?</h2>
+      <p>
+        A <strong>data structure</strong> is a way of organizing and storing
+        data so that operations on it can be performed effectively.
+      </p>
+      <p>Imagine a library. Books could be stored randomly, or they could be arranged by category, author, and title. A good arrangement makes finding a particular book easier.</p>
+      <p>Programs face a similar problem: choosing an appropriate way to organize information.</p>
+
+      <h3>Common operations</h3>
+      <ul>
+        <li><strong>Access:</strong> Read a particular item.</li>
+        <li><strong>Search:</strong> Find an item with a given value.</li>
+        <li><strong>Insertion:</strong> Add a new item.</li>
+        <li><strong>Deletion:</strong> Remove an item.</li>
+        <li><strong>Update:</strong> Change an existing value.</li>
+        <li><strong>Traversal:</strong> Visit items systematically.</li>
+      </ul>
+
+      <div class="note">
+        No single data structure is best for every task. The right choice
+        depends on how the data will be used.
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Linear and Non-Linear Structures</h2>
+      <p>
+        Data structures are often grouped by how their elements relate to one another.
+      </p>
+
+      <div class="structure-grid">
+        <div class="structure-card">
+          <strong>Linear structures</strong>
+          Elements are arranged in a sequence. Examples include arrays,
+          linked lists, stacks, and queues.
+        </div>
+        <div class="structure-card">
+          <strong>Non-linear structures</strong>
+          Elements can form hierarchical or network-like relationships.
+          Examples include trees and graphs.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Arrays</h2>
+      <p>
+        An <strong>array</strong> stores elements in an ordered collection.
+        In many programming languages, array elements are accessed using an index.
+      </p>
+
+      <div class="example">
+        <pre>scores = [72, 85, 91, 68]
+
+scores[0] = 72
+scores[1] = 85
+scores[2] = 91
+scores[3] = 68</pre>
+      </div>
+
+      <p>
+        This example uses zero-based indexing, meaning the first element has
+        index 0. Some languages and data structures use different indexing rules.
+      </p>
+
+      <h3>Advantages</h3>
+      <ul>
+        <li>Direct access by index is typically fast.</li>
+        <li>Elements are easy to process using loops.</li>
+        <li>Arrays are useful for storing collections such as marks or temperatures.</li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <ul>
+        <li>In a conventional fixed-size array, capacity is determined when it is created.</li>
+        <li>Inserting or removing an element in the middle may require shifting other elements.</li>
+      </ul>
+      <p>
+        Many languages also provide dynamic arrays or lists that can grow as
+        needed, though resizing may occasionally require extra work.
+      </p>
+    </section>
+
+    <section>
+      <h2>4. Linked Lists</h2>
+      <p>
+        A <strong>linked list</strong> consists of nodes. Each node stores
+        data and a link to another node. In a singly linked list, each node
+        points to the next node.
+      </p>
+
+      <div class="example">
+        <pre>[10 | next] → [20 | next] → [30 | null]</pre>
+      </div>
+
+      <p>
+        The last node points to <code>null</code>, indicating that there is
+        no next node in this simple example.
+      </p>
+
+      <h3>Advantages</h3>
+      <ul>
+        <li>Nodes can be added or removed without shifting an entire sequence.</li>
+        <li>The structure can grow or shrink as nodes are allocated and released.</li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <ul>
+        <li>Accessing a particular position generally requires following links from the beginning.</li>
+        <li>Links require additional memory.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Stacks</h2>
+      <p>
+        A <strong>stack</strong> follows the LIFO rule:
+        <strong>Last In, First Out</strong>. The most recently added element
+        is the first one removed.
+      </p>
+      <p>A stack of plates is a familiar analogy: the plate placed on top is usually removed first.</p>
+
+      <div class="example">
+        <pre>Push(10)
+Push(20)
+Push(30)
+
+Pop() → 30
+Pop() → 20</pre>
+      </div>
+
+      <h3>Core operations</h3>
+      <ul>
+        <li><strong>Push:</strong> Add an item to the top.</li>
+        <li><strong>Pop:</strong> Remove and return the top item.</li>
+        <li><strong>Peek / Top:</strong> Inspect the top item without removing it.</li>
+      </ul>
+
+      <h3>Applications</h3>
+      <ul>
+        <li>Undo and redo features.</li>
+        <li>Tracking function calls.</li>
+        <li>Checking balanced brackets in expressions.</li>
+        <li>Backtracking algorithms.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Queues</h2>
+      <p>
+        A <strong>queue</strong> usually follows the FIFO rule:
+        <strong>First In, First Out</strong>. The earliest item added is the
+        earliest one removed.
+      </p>
+      <p>A queue at a ticket counter illustrates this principle.</p>
+
+      <div class="example">
+        <pre>Enqueue(10)
+Enqueue(20)
+Enqueue(30)
+
+Dequeue() → 10
+Dequeue() → 20</pre>
+      </div>
+
+      <h3>Core operations</h3>
+      <ul>
+        <li><strong>Enqueue:</strong> Add an item at the rear.</li>
+        <li><strong>Dequeue:</strong> Remove an item from the front.</li>
+        <li><strong>Front / Peek:</strong> Inspect the next item to be removed.</li>
+      </ul>
+
+      <h3>Applications</h3>
+      <ul>
+        <li>Managing print jobs.</li>
+        <li>Scheduling tasks.</li>
+        <li>Processing requests in arrival order.</li>
+        <li>Breadth-first search in graphs.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. Trees</h2>
+      <p>
+        A <strong>tree</strong> is a hierarchical data structure made of
+        nodes connected by edges. A rooted tree has a designated root node.
+      </p>
+
+      <div class="example">
+        <pre>           A
+          / \
+         B   C
+        / \
+       D   E</pre>
+      </div>
+
+      <ul>
+        <li><strong>Root:</strong> The starting node of a rooted tree.</li>
+        <li><strong>Parent:</strong> A node directly above another node.</li>
+        <li><strong>Child:</strong> A node directly below another node.</li>
+        <li><strong>Leaf:</strong> A node with no children.</li>
+        <li><strong>Subtree:</strong> A node together with its descendants.</li>
+      </ul>
+
+      <h3>Binary trees</h3>
+      <p>
+        A <strong>binary tree</strong> is a tree in which each node has at
+        most two children. A binary search tree is a particular kind of
+        binary tree organized to support searching.
+      </p>
+
+      <h3>Applications</h3>
+      <ul>
+        <li>Representing folders and directories.</li>
+        <li>Organizing searchable data.</li>
+        <li>Representing expressions and decision processes.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. Graphs</h2>
+      <p>
+        A <strong>graph</strong> consists of vertices (also called nodes)
+        and edges that connect them. Graphs can represent relationships
+        between objects.
+      </p>
+
+      <div class="example">
+        <pre>A ─── B
+|   / |
+|  /  |
+C ─── D</pre>
+      </div>
+
+      <p>This is a conceptual illustration of a network, not a specific graph layout.</p>
+
+      <h3>Types of graphs</h3>
+      <ul>
+        <li><strong>Undirected graph:</strong> Edges have no direction.</li>
+        <li><strong>Directed graph:</strong> Edges have a direction.</li>
+        <li><strong>Weighted graph:</strong> Edges carry values such as distance or cost.</li>
+      </ul>
+
+      <h3>Applications</h3>
+      <ul>
+        <li>Road and navigation networks.</li>
+        <li>Social networks.</li>
+        <li>Connections between web pages.</li>
+        <li>Communication and computer networks.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>9. Hash Tables</h2>
+      <p>
+        A <strong>hash table</strong> stores key-value pairs. A hash function
+        helps determine where a key's data should be stored.
+      </p>
+
+      <div class="example">
+        <pre>"name"  → "Asha"
+"score" → 95
+"city"  → "Delhi"</pre>
+      </div>
+
+      <p>
+        A program can use a key such as <code>"score"</code> to retrieve
+        its associated value, <code>95</code>.
+      </p>
+
+      <h3>Important concepts</h3>
+      <ul>
+        <li><strong>Key:</strong> Identifies the item to look up.</li>
+        <li><strong>Hash function:</strong> Maps a key to a hash value used to locate storage.</li>
+        <li><strong>Collision:</strong> Occurs when different keys map to the same location.</li>
+      </ul>
+
+      <p>
+        Hash tables are often very fast for lookups on average, but their
+        performance depends on the hash function, collision handling, and
+        table design.
+      </p>
+    </section>
+
+    <section>
+      <h2>10. Choosing the Right Data Structure</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Structure</th>
+            <th>Useful when</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Array</td>
+            <td>You need an ordered collection with quick indexed access.</td>
+          </tr>
+          <tr>
+            <td>Linked list</td>
+            <td>You need linked nodes and frequent insertions or removals at known positions.</td>
+          </tr>
+          <tr>
+            <td>Stack</td>
+            <td>The most recently added item should be handled first.</td>
+          </tr>
+          <tr>
+            <td>Queue</td>
+            <td>Items should generally be handled in arrival order.</td>
+          </tr>
+          <tr>
+            <td>Tree</td>
+            <td>You need hierarchical relationships or structured searching.</td>
+          </tr>
+          <tr>
+            <td>Graph</td>
+            <td>You need to represent general relationships or networks.</td>
+          </tr>
+          <tr>
+            <td>Hash table</td>
+            <td>You need efficient average-case lookup by key.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        These are general guidelines, not absolute rules. Real performance
+        depends on the specific implementation and operations your program needs.
+      </div>
+    </section>
+
+    <section>
+      <h2>11. Knowledge Check</h2>
+      <p>Try to answer each question before revealing the answer.</p>
+
+      <div>
+        <p><strong>1. Which data structure follows LIFO?</strong></p>
+        <button class="answer-button" type="button" data-answer="a1" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a1">
+          A stack: Last In, First Out.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>2. Which data structure normally follows FIFO?</strong></p>
+        <button class="answer-button" type="button" data-answer="a2" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a2">
+          A queue: First In, First Out.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>3. What is a leaf node in a tree?</strong></p>
+        <button class="answer-button" type="button" data-answer="a3" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a3">
+          A node that has no children.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>4. What are the two main components of a graph?</strong></p>
+        <button class="answer-button" type="button" data-answer="a4" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a4">
+          Vertices (nodes) and edges (connections).
+        </div>
+      </div>
+
+      <div>
+        <p><strong>5. What does a hash table store?</strong></p>
+        <button class="answer-button" type="button" data-answer="a5" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a5">
+          Data organized around keys, commonly as key-value pairs.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>6. Which structure is commonly used for undo operations?</strong></p>
+        <button class="answer-button" type="button" data-answer="a6" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a6">
+          A stack is a common choice because the most recent action is usually undone first.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Data structures organize information for efficient use.</li>
+        <li>Arrays and linked lists organize elements in sequences.</li>
+        <li>Stacks use LIFO, while queues typically use FIFO.</li>
+        <li>Trees represent hierarchies; graphs represent general networks.</li>
+        <li>Hash tables support lookup using keys.</li>
+        <li>The best structure depends on the task and required operations.</li>
+      </ul>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Topic navigation">
+      <a href="algorithms-flowcharts.html">← Previous: Algorithms and Flowcharts</a>
+      <a href="databases-sql.html">Next: Databases and SQL →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Your Answer — Learn, explore, and understand.</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll("[data-answer]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const answer = document.getElementById(button.dataset.answer);
+        if (!answer) return;
+
+        const isVisible = answer.classList.toggle("visible");
+        button.setAttribute("aria-expanded", String(isVisible));
+        button.textContent = isVisible ? "Hide answer" : "Reveal answer";
+      });
+    });
+  </script>
+</body>
+</html>

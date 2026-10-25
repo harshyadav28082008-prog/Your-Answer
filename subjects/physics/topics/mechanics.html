@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Learn the foundations of mechanics including motion, forces, Newton's laws, momentum, work, and energy."
+  >
+
+  <title>Mechanics | Physics | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* ========================================
+       MECHANICS LESSON
+       ======================================== */
+
+    .mechanics-page {
+      padding-bottom: 70px;
+    }
+
+    .lesson-hero {
+      padding: 58px 0 48px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-eyebrow {
+      margin: 0 0 14px;
+      color: var(--physics-accent);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .lesson-intro {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--color-text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 290px;
+      gap: 28px;
+      align-items: start;
+      padding-top: 42px;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      margin-bottom: 42px;
+    }
+
+    .lesson-section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.55rem, 4vw, 2.15rem);
+      letter-spacing: -.04em;
+    }
+
+    .lesson-section h3 {
+      margin: 26px 0 9px;
+      font-size: 1.15rem;
+    }
+
+    .lesson-section p {
+      max-width: 760px;
+      margin: 0 0 15px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .concept-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .concept-item {
+      padding: 17px 19px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+    }
+
+    .concept-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--color-text);
+    }
+
+    .concept-item span {
+      color: var(--color-text-muted);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    /* Formula */
+
+    .formula-card {
+      margin: 20px 0;
+      padding: 24px;
+
+      background: var(--physics-accent-soft);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+
+      overflow-x: auto;
+    }
+
+    .formula-label {
+      display: block;
+      margin-bottom: 13px;
+      color: var(--physics-accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .formula {
+      margin: 0;
+      color: var(--color-text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      line-height: 1.7;
+    }
+
+    .formula-note {
+      margin: 10px 0 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+    }
+
+    /* Example */
+
+    .example-card {
+      padding: 23px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+    }
+
+    .example-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--physics-accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .example-card p {
+      margin-bottom: 12px;
+    }
+
+    .example-answer {
+      padding: 13px 15px;
+      background: var(--physics-accent-soft);
+      border-radius: 10px;
+      color: var(--color-text);
+    }
+
+    /* Aside */
+
+    .lesson-aside {
+      display: grid;
+      gap: 14px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .aside-card {
+      padding: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .aside-card h3 {
+      margin: 0 0 11px;
+      font-size: 1rem;
+    }
+
+    .aside-card p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+      line-height: 1.65;
+    }
+
+    .lesson-nav {
+      display: grid;
+      gap: 7px;
+    }
+
+    .lesson-nav a {
+      display: block;
+      padding: 8px 0;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+
+    .lesson-nav a:hover {
+      color: var(--physics-accent);
+    }
+
+    /* Bottom navigation */
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 45px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-bottom a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      color: var(--physics-accent);
+    }
+
+    @media (max-width: 800px) {
+
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+
+      .lesson-hero {
+        padding-top: 35px;
+      }
+
+      .lesson-layout {
+        padding-top: 32px;
+      }
+
+      .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../../index.html">
+        Your Answer
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Toggle colour theme"
+      >
+        Theme
+      </button>
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="mechanics-page">
+
+    <!-- HERO -->
+
+    <section class="lesson-hero">
+      <div class="container">
+
+        <p class="lesson-eyebrow">
+          Physics / 01
+        </p>
+
+        <h1>Mechanics</h1>
+
+        <p class="lesson-intro">
+          The study of motion and the forces that produce it.
+          Mechanics gives us the foundation for understanding everything
+          from a falling object to the motion of planets.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- CONTENT -->
+
+    <div class="container">
+
+      <div class="lesson-layout">
+
+        <article class="lesson-main">
+
+          <!-- INTRODUCTION -->
+
+          <section class="lesson-section">
+
+            <h2>What is mechanics?</h2>
+
+            <p>
+              Mechanics is one of the foundations of physics. It describes
+              how objects move, why their motion changes, and how quantities
+              such as force, momentum, and energy are related.
+            </p>
+
+            <p>
+              Before studying complicated physical systems, it is useful
+              to understand a few basic ideas: position, displacement,
+              velocity, acceleration, and force.
+            </p>
+
+          </section>
+
+
+          <!-- MOTION -->
+
+          <section class="lesson-section" id="motion">
+
+            <h2>Motion</h2>
+
+            <p>
+              An object is in motion when its position changes with respect
+              to a chosen reference point over time.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Position</strong>
+                <span>
+                  The location of an object relative to a chosen reference
+                  point.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Displacement</strong>
+                <span>
+                  The change in position of an object, including its direction.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Velocity</strong>
+                <span>
+                  The rate at which displacement changes with time.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Acceleration</strong>
+                <span>
+                  The rate at which velocity changes with time.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- BASIC EQUATIONS -->
+
+          <section class="lesson-section" id="equations">
+
+            <h2>Equations of motion</h2>
+
+            <p>
+              For motion with constant acceleration, several useful
+              relationships connect displacement, velocity, acceleration,
+              and time.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                First equation
+              </span>
+
+              <p class="formula">
+                v = u + at
+              </p>
+
+              <p class="formula-note">
+                Final velocity = initial velocity + acceleration × time.
+              </p>
+
+            </div>
+
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Second equation
+              </span>
+
+              <p class="formula">
+                s = ut + ½at²
+              </p>
+
+              <p class="formula-note">
+                Displacement for constant acceleration.
+              </p>
+
+            </div>
+
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Third equation
+              </span>
+
+              <p class="formula">
+                v² = u² + 2as
+              </p>
+
+              <p class="formula-note">
+                Useful when time is not directly involved.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- FORCES -->
+
+          <section class="lesson-section" id="forces">
+
+            <h2>Force</h2>
+
+            <p>
+              A force is an interaction that can change the motion of an
+              object. Forces can accelerate objects, change their direction,
+              or deform them.
+            </p>
+
+            <p>
+              Newton's laws provide a framework for connecting force,
+              mass, and motion.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Newton's second law
+              </span>
+
+              <p class="formula">
+                F = ma
+              </p>
+
+              <p class="formula-note">
+                Net force equals mass multiplied by acceleration.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- NEWTON'S LAWS -->
+
+          <section class="lesson-section" id="newton">
+
+            <h2>Newton's laws</h2>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>First law — Inertia</strong>
+                <span>
+                  An object remains at rest or in uniform motion unless a
+                  net external force acts on it.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Second law</strong>
+                <span>
+                  The acceleration of an object depends on the net force
+                  acting on it and its mass.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Third law</strong>
+                <span>
+                  Forces occur in interacting pairs: when one object exerts
+                  a force on another, the second exerts an equal and opposite
+                  force on the first.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- WORK AND ENERGY -->
+
+          <section class="lesson-section" id="energy">
+
+            <h2>Work and energy</h2>
+
+            <p>
+              Energy describes the capacity of a system to produce change.
+              Work provides one way of transferring energy through a force
+              acting over a displacement.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Work
+              </span>
+
+              <p class="formula">
+                W = Fs cos θ
+              </p>
+
+              <p class="formula-note">
+                For a constant force acting through a displacement.
+              </p>
+
+            </div>
+
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Kinetic energy
+              </span>
+
+              <p class="formula">
+                K = ½mv²
+              </p>
+
+              <p class="formula-note">
+                Energy associated with an object's motion.
+              </p>
+
+            </div>
+
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Gravitational potential energy
+              </span>
+
+              <p class="formula">
+                U = mgh
+              </p>
+
+              <p class="formula-note">
+                Near Earth's surface, for a chosen reference level.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- MOMENTUM -->
+
+          <section class="lesson-section" id="momentum">
+
+            <h2>Momentum</h2>
+
+            <p>
+              Momentum describes the quantity of motion carried by an object.
+              It depends on both its mass and velocity.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Momentum
+              </span>
+
+              <p class="formula">
+                p = mv
+              </p>
+
+              <p class="formula-note">
+                Momentum is a vector quantity.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- EXAMPLE -->
+
+          <section class="lesson-section">
+
+            <h2>Quick example</h2>
+
+            <div class="example-card">
+
+              <span class="example-label">
+                Apply the idea
+              </span>
+
+              <p>
+                A 2 kg object experiences a net force of 10 N.
+                What is its acceleration?
+              </p>
+
+              <p>
+                Using Newton's second law:
+              </p>
+
+              <p class="formula">
+                F = ma
+              </p>
+
+              <p class="formula">
+                a = F / m
+              </p>
+
+              <div class="example-answer">
+                <strong>Answer:</strong>
+                The acceleration is 5 m/s².
+              </div>
+
+            </div>
+
+          </section>
+
+        </article>
+
+
+        <!-- ASIDE -->
+
+        <aside class="lesson-aside">
+
+          <div class="aside-card">
+
+            <h3>In this lesson</h3>
+
+            <nav class="lesson-nav">
+              <a href="#motion">Motion</a>
+              <a href="#equations">Equations of motion</a>
+              <a href="#forces">Force</a>
+              <a href="#newton">Newton's laws</a>
+              <a href="#energy">Work &amp; energy</a>
+              <a href="#momentum">Momentum</a>
+            </nav>
+
+          </div>
+
+
+          <div class="aside-card">
+
+            <h3>Remember</h3>
+
+            <p>
+              Mechanics is fundamentally about relationships between
+              position, time, motion, forces, and energy.
+            </p>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+
+      <!-- BOTTOM -->
+
+      <nav class="lesson-bottom" aria-label="Lesson navigation">
+
+        <a href="../index.html">
+          ← Physics
+        </a>
+
+        <a href="gravitation.html">
+          Next: Gravitation →
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+</html>

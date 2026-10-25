@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optics Explorer | Your Answer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    .optics-page{max-width:1180px;margin:auto;padding:1.5rem 1rem 3rem}
+    .optics-hero p,.muted{color:var(--color-text-muted);line-height:1.7}
+    .optics-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,1fr);gap:1rem;align-items:start}
+    .panel{border:1px solid var(--color-border);border-radius:18px;background:var(--color-surface);overflow:hidden}
+    .diagram-wrap{background:#0b1224;padding:.5rem}
+    #opticsCanvas{display:block;width:100%;height:clamp(300px,48vw,460px);touch-action:pan-y}
+    .controls{padding:1rem;display:grid;gap:1rem}
+    .control-row{display:flex;justify-content:space-between;gap:.7rem;align-items:center}
+    .control-row output{color:var(--color-text-muted);font-variant-numeric:tabular-nums}
+    .controls input[type=range]{width:100%;accent-color:var(--color-brand)}
+    .control-group{display:grid;gap:.4rem}
+    .segmented{display:flex;flex-wrap:wrap;gap:.45rem}
+    .optics-btn{border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);padding:.6rem .8rem;border-radius:10px;cursor:pointer;font:inherit}
+    .optics-btn[aria-pressed=true],.optics-btn.active{background:var(--color-brand);color:#fff;border-color:transparent}
+    .info{padding:1.1rem}
+    .info h2{margin:.2rem 0 .5rem}
+    .info p{color:var(--color-text-muted);line-height:1.65}
+    .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;margin-top:1rem}
+    .stat{border:1px solid var(--color-border);border-radius:12px;padding:.75rem;min-width:0}
+    .stat span{display:block;color:var(--color-text-muted);font-size:.78rem;margin-bottom:.25rem}
+    .stat strong{font-size:.95rem;overflow-wrap:anywhere}
+    .legend{display:flex;flex-wrap:wrap;gap:.8rem;font-size:.82rem;color:#cbd6ef;padding:.25rem .5rem .65rem}
+    .legend span{display:inline-flex;align-items:center;gap:.35rem}
+    .swatch{display:inline-block;width:16px;height:3px;border-radius:2px}
+    .note{font-size:.86rem;color:var(--color-text-muted);line-height:1.6;margin-top:1rem}
+    @media(max-width:760px){.optics-layout{grid-template-columns:1fr}}
+    @media(max-width:420px){.optics-page{padding-inline:.7rem}.optics-btn{padding:.55rem .65rem}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+      <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+  </header>
+
+  <main class="optics-page">
+    <div class="optics-hero">
+      <p><a href="../index.html">Explore 3D</a> / Physics</p>
+      <h1>Optics Explorer</h1>
+      <p>Explore reflection and refraction with simplified ray diagrams. Change the object distance and focal length to see how the image changes.</p>
+    </div>
+
+    <div class="optics-layout">
+      <section class="panel" aria-label="Optics ray diagram">
+        <div class="diagram-wrap"><canvas id="opticsCanvas" aria-label="Interactive ray diagram"></canvas>
+          <div class="legend">
+            <span><i class="swatch" style="background:#ff6b6b"></i>Incident / object ray</span>
+            <span><i class="swatch" style="background:#ffd166"></i>Principal rays</span>
+            <span><i class="swatch" style="background:#63d9a5"></i>Image</span>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="control-group">
+            <div class="control-row"><label for="systemSelect">Optical system</label></div>
+            <div class="segmented" id="systemButtons">
+              <button type="button" class="optics-btn active" data-system="convexLens" aria-pressed="true">Convex lens</button>
+              <button type="button" class="optics-btn" data-system="concaveLens" aria-pressed="false">Concave lens</button>
+              <button type="button" class="optics-btn" data-system="concaveMirror" aria-pressed="false">Concave mirror</button>
+              <button type="button" class="optics-btn" data-system="planeMirror" aria-pressed="false">Plane mirror</button>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="control-row"><label for="objectRange">Object distance</label><output id="objectValue">30 cm</output></div>
+            <input id="objectRange" type="range" min="12" max="80" value="30" step="1">
+          </div>
+          <div class="control-group" id="focalControl">
+            <div class="control-row"><label for="focalRange">Focal length</label><output id="focalValue">15 cm</output></div>
+            <input id="focalRange" type="range" min="8" max="30" value="15" step="1">
+          </div>
+          <div class="buttons"><button class="optics-btn" id="resetBtn" type="button">Reset experiment</button></div>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="Image formation information">
+        <div class="info" aria-live="polite">
+          <p id="systemType">Converging lens</p>
+          <h2 id="resultTitle">Real, inverted image</h2>
+          <p id="resultDescription">A convex lens converges parallel rays. The image position depends on the object distance and focal length.</p>
+          <div class="stats">
+            <div class="stat"><span>Image distance</span><strong id="imageDistance">30 cm</strong></div>
+            <div class="stat"><span>Magnification</span><strong id="magnification">−1.00×</strong></div>
+            <div class="stat"><span>Image orientation</span><strong id="orientation">Inverted</strong></div>
+            <div class="stat"><span>Image type</span><strong id="imageType">Real</strong></div>
+          </div>
+          <p class="note" id="formulaNote">Thin lens formula: 1/f = 1/v + 1/u, using positive object and focal distances for this simplified convention.</p>
+          <p class="note">This diagram is schematic, not to scale. It uses a simplified paraxial ray model for introductory learning.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../../assets/js/main.js"></script>
+  <script>
+  (() => {
+    const canvas = document.getElementById('opticsCanvas');
+    const ctx = canvas.getContext('2d');
+    const objectRange = document.getElementById('objectRange');
+    const focalRange = document.getElementById('focalRange');
+    const objectValue = document.getElementById('objectValue');
+    const focalValue = document.getElementById('focalValue');
+    const focalControl = document.getElementById('focalControl');
+    const buttons = [...document.querySelectorAll('[data-system]')];
+    let system = 'convexLens';
+    let width = 0, height = 0, dpr = 1;
+
+    const systems = {
+      convexLens: {name:'Convex lens',type:'Converging lens',description:'A convex lens bends parallel rays toward a focal point. The image may be real or virtual depending on the object position.',kind:'lens',sign:1},
+      concaveLens: {name:'Concave lens',type:'Diverging lens',description:'A concave lens spreads rays apart. For a real object, it forms a smaller, upright, virtual image on the same side as the object.',kind:'lens',sign:-1},
+      concaveMirror: {name:'Concave mirror',type:'Converging mirror',description:'A concave mirror can form real or virtual images. The result changes as the object moves relative to the focal point.',kind:'mirror',sign:1},
+      planeMirror: {name:'Plane mirror',type:'Plane mirror',description:'A plane mirror forms an upright virtual image the same distance behind the mirror as the object is in front.',kind:'plane',sign:0}
+    };
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1,2);
+      width = Math.max(280,rect.width);
+      height = Math.max(300,rect.height);
+      canvas.width = Math.round(width*dpr);
+      canvas.height = Math.round(height*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      update();
+    }
+
+    function line(x1,y1,x2,y2,color,widthLine=1.5,dash=[]) {
+      ctx.beginPath();ctx.setLineDash(dash);ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);
+      ctx.strokeStyle=color;ctx.lineWidth=widthLine;ctx.stroke();ctx.setLineDash([]);
+    }
+    function arrow(x1,y1,x2,y2,color,label) {
+      line(x1,y1,x2,y2,color,2);
+      const dir = Math.sign(y2-y1) || 1;
+      ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-5,y2-8*dir);ctx.lineTo(x2+5,y2-8*dir);ctx.closePath();ctx.fillStyle=color;ctx.fill();
+      if(label){ctx.font='11px system-ui';ctx.fillStyle=color;ctx.textAlign='center';ctx.fillText(label,x2,y2+(dir>0?16:-8));}
+    }
+    function getResult() {
+      const u = Number(objectRange.value);
+      const f = Number(focalRange.value);
+      if(system==='planeMirror') return {u,v:-u,m:1,real:false,orientation:'Upright',description:'The image is virtual, upright, and the same size as the object. It appears the same distance behind the mirror as the object is in front.'};
+      if(system==='concaveLens') {
+        const v = 1/(1/(-f)-1/u);
+        return {u,v,m:v/u,real:false,orientation:'Upright',description:'The diverging lens forms a virtual, upright, reduced image on the object side.'};
+      }
+      const v = 1/(1/f-1/u);
+      const m = -v/u;
+      const real = v>0;
+      return {u,v,m,real,orientation:m<0?'Inverted':'Upright',description:real?'The image forms on the opposite side of a lens or in front of the mirror. Its orientation is inverted.':'The image is virtual and upright, appearing on the same side as the object for a lens or behind the mirror.'};
+    }
+    function update() {
+      if(!width || !height) return;
+      objectValue.textContent = objectRange.value+' cm';
+      focalValue.textContent = focalRange.value+' cm';
+      focalControl.style.display = system==='planeMirror'?'none':'grid';
+      buttons.forEach(b=>{const active=b.dataset.system===system;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+      const s=systems[system];
+      const r=getResult();
+      document.getElementById('systemType').textContent=s.type;
+      document.getElementById('resultDescription').textContent=r.description;
+      document.getElementById('imageDistance').textContent=system==='planeMirror'?Math.abs(r.v).toFixed(1)+' cm':(!Number.isFinite(r.v)||Math.abs(r.v)>500?'At infinity':Math.abs(r.v).toFixed(1)+' cm '+(r.v<0?'(virtual)':'(real)'));
+      document.getElementById('magnification').textContent=(Number.isFinite(r.m)?(r.m<0?'−':'')+Math.abs(r.m).toFixed(2)+'×':'Very large');
+      document.getElementById('orientation').textContent=r.orientation;
+      document.getElementById('imageType').textContent=r.real?'Real':'Virtual';
+      document.getElementById('resultTitle').textContent=system==='planeMirror'?'Virtual, upright image':(r.real?'Real, inverted image':'Virtual, upright image');
+      document.getElementById('formulaNote').textContent=system==='planeMirror'?'Plane mirror rule: image distance = object distance; the image is virtual and upright.':'Thin lens / mirror model: 1/f = 1/v + 1/u. Magnification is represented with sign to indicate orientation.';
+      draw(r);
+    }
+    function draw(r) {
+      ctx.clearRect(0,0,width,height);ctx.fillStyle='#0b1224';ctx.fillRect(0,0,width,height);
+      const left=width*.08,right=width*.92,axisY=height*.66,axisH=height*.28;
+      const center=width*.52;
+      const scale=Math.min((width*.38)/80,3.5);
+      const u=Number(objectRange.value),f=Number(focalRange.value);
+      // subtle grid
+      ctx.strokeStyle='#1c2a47';ctx.lineWidth=1;
+      for(let x=left;x<right;x+=25) line(x,22,x,height-22,'#1b2944',.6);
+      line(left,axisY,right,axisY,'#a7b7d7',1.2);
+      ctx.font='11px system-ui';ctx.fillStyle='#c6d3ef';ctx.textAlign='left';ctx.fillText('Principal axis',left,axisY+18);
+      const opticalX=system==='planeMirror'?center:center;
+      if(system==='planeMirror') {
+        line(opticalX,axisY-axisH,opticalX,axisY+axisH,'#8bd8ff',4);
+        for(let y=axisY-axisH;y<axisY+axisH;y+=12) line(opticalX-7,y+7,opticalX,y,'#8bd8ff',1);
+        ctx.fillStyle='#c6d3ef';ctx.textAlign='center';ctx.fillText('Mirror',opticalX,axisY-axisH-10);
+      } else if(systems[system].kind==='lens') {
+        ctx.beginPath();ctx.ellipse(opticalX,axisY,system==='convexLens'?13:6,axisH,0,0,Math.PI*2);
+        ctx.fillStyle=system==='convexLens'?'#8bd8ff22':'#8bd8ff12';ctx.fill();ctx.strokeStyle='#8bd8ff';ctx.lineWidth=2;ctx.stroke();
+        ctx.fillStyle='#c6d3ef';ctx.textAlign='center';ctx.fillText(systems[system].name,opticalX,axisY-axisH-10);
+      } else {
+        ctx.beginPath();ctx.arc(opticalX,axisY,axisH,Math.PI*.5,Math.PI*1.5);
+        ctx.strokeStyle='#8bd8ff';ctx.lineWidth=4;ctx.stroke();
+        ctx.fillStyle='#c6d3ef';ctx.textAlign='center';ctx.fillText('Concave mirror',opticalX+8,axisY-axisH-10);
+      }
+      const objX=system==='planeMirror'?center-u*scale:opticalX-u*scale;
+      const objTop=axisY-Math.min(65,u*1.2);
+      arrow(objX,axisY,objX,objTop,'#ff6b6b','Object');
+      const v=r.v;
+      let imageX, imageTop;
+      if(system==='planeMirror'){imageX=center+u*scale;imageTop=axisY-Math.min(65,u*1.2);}
+      else if(system==='concaveMirror'){imageX=opticalX-v*scale;imageTop=axisY-(Number.isFinite(r.m)?Math.max(-100,Math.min(100,r.m* (axisY-objTop))):0);}
+      else {imageX=opticalX+v*scale;imageTop=axisY-(Number.isFinite(r.m)?Math.max(-100,Math.min(100,r.m*(axisY-objTop))):0);}
+      imageX=Math.max(left+4,Math.min(right-4,imageX));
+      if(!Number.isFinite(imageTop)) imageTop=axisY-80;
+      imageTop=Math.max(axisY-120,Math.min(axisY+100,imageTop));
+      arrow(imageX,axisY,imageX,imageTop,'#63d9a5','Image');
+      if(system!=='planeMirror') {
+        const fx=system==='concaveMirror'?opticalX-f*scale:opticalX+f*scale;
+        const fx2=system==='concaveMirror'?opticalX-2*f*scale:opticalX+2*f*scale;
+        [fx,fx2].forEach((x,i)=>{if(x>left&&x<right){line(x,axisY-6,x,axisY+6,'#ffd166',1.4);ctx.fillStyle='#ffd166';ctx.textAlign='center';ctx.fillText(i===0?'F':'2F',x,axisY+20);}});
+        // Two simplified principal rays, clipped to the canvas.
+        const topY=objTop;
+        const rayColor='#ffd166';
+        if(system==='concaveMirror') {
+          line(objX,topY,opticalX,topY,rayColor,1.6);
+          line(opticalX,topY,objX,axisY,rayColor,1.2,[5,4]);
+          line(objX,topY,opticalX,axisY,rayColor,1.2);
+        } else {
+          line(objX,topY,opticalX,topY,rayColor,1.6);
+          line(opticalX,topY,imageX,imageTop,rayColor,1.6);
+          if(!r.real) line(opticalX,topY,imageX,imageTop,rayColor,1.2,[5,4]);
+          line(objX,topY,opticalX,axisY,rayColor,1.2);
+          line(opticalX,axisY,imageX,imageTop,rayColor,1.2);
+        }
+      } else {
+        line(objX,objTop,center,axisY-2,'#ffd166',1.5);
+        line(center,axisY-2,imageX,imageTop,'#ffd166',1.5);
+      }
+    }
+    buttons.forEach(button=>button.addEventListener('click',()=>{system=button.dataset.system;update();}));
+    objectRange.addEventListener('input',update);
+    focalRange.addEventListener('input',update);
+    document.getElementById('resetBtn').addEventListener('click',()=>{system='convexLens';objectRange.value='30';focalRange.value='15';update();});
+    window.addEventListener('resize',resize);
+    resize();
+  })();
+  </script>
+</body>
+</html>

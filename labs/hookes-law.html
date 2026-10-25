@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hooke's Law Lab | Your Answer</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .lab-wrap{max-width:1100px;margin:auto;padding:28px 18px 60px}
+    .lab-hero{margin-bottom:24px}
+    .lab-hero h1{font-size:clamp(2rem,5vw,3rem);margin:8px 0}
+    .muted{color:var(--color-text-muted)}
+    .lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .panel{border:1px solid var(--color-border);background:var(--color-surface);border-radius:18px;padding:20px;min-width:0}
+    .panel h2{font-size:1.2rem;margin:0 0 16px}
+    .control{margin:18px 0}
+    .control label{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px;font-weight:600}
+    input[type=range]{width:100%;accent-color:var(--color-brand)}
+    .scene{width:100%;height:auto;display:block;min-height:230px}
+    .readouts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+    .readout{padding:13px;border:1px solid var(--color-border);border-radius:12px}
+    .readout small{display:block;color:var(--color-text-muted);margin-bottom:5px}
+    .readout strong{font-size:1.25rem;overflow-wrap:anywhere}
+    .formula{font-size:1.5rem;text-align:center;padding:18px 8px;border-radius:12px;background:var(--color-background,transparent);margin:10px 0}
+    .graph{width:100%;height:auto;display:block}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .lab-btn{border:1px solid var(--color-border);border-radius:10px;padding:10px 15px;background:var(--color-surface);color:var(--color-text);cursor:pointer;font:inherit}
+    .lab-btn.primary{background:var(--color-brand);color:white;border-color:transparent}
+    .note{font-size:.92rem;line-height:1.6}
+    .wide{grid-column:1/-1}
+    .obs-table{width:100%;border-collapse:collapse;font-size:.92rem}
+    .obs-table th,.obs-table td{padding:10px 8px;text-align:left;border-bottom:1px solid var(--color-border)}
+    .obs-table th{color:var(--color-text-muted)}
+    @media(max-width:760px){.lab-grid{grid-template-columns:1fr}.wide{grid-column:auto}.lab-wrap{padding:22px 14px 45px}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="subjects/">Subjects</a>
+        <a href="explore-3d/">3D Explorer</a>
+        <a href="labs/">Virtual Labs</a>
+        <a href="coding/">Coding Studio</a>
+      </nav>
+
+
+      <div class="header-actions">
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <nav
+  class="mobile-nav container"
+  id="mobile-nav"
+  aria-label="Mobile navigation"
+  hidden
+>
+      <a href="subjects/">Subjects</a>
+      <a href="explore-3d/">3D Explorer</a>
+      <a href="labs/">Virtual Labs</a>
+      <a href="coding/">Coding Studio</a>
+      <a href="about/">About</a>
+    </nav>
+  </header>
+
+  <main class="lab-wrap">
+    <div class="lab-hero">
+      <a href="index.html" class="muted">← All Virtual Labs</a>
+      <p class="muted" style="margin:18px 0 0">PHYSICS · MECHANICS</p>
+      <h1>Hooke’s Law</h1>
+      <p class="muted">Apply a force to a spring and investigate how its extension depends on the force and the spring constant.</p>
+    </div>
+
+    <div class="lab-grid">
+      <section class="panel">
+        <h2>1. Experiment controls</h2>
+
+        <div class="control">
+          <label for="force">Applied force <span id="forceValue">5.0 N</span></label>
+          <input id="force" type="range" min="0" max="20" step="0.5" value="5">
+        </div>
+
+        <div class="control">
+          <label for="stiffness">Spring constant <span id="stiffnessValue">25 N/m</span></label>
+          <input id="stiffness" type="range" min="5" max="100" step="5" value="25">
+        </div>
+
+        <div class="formula">\(F = kx\)</div>
+        <p class="note muted">F = applied force, k = spring constant, and x = extension from the spring’s natural length.</p>
+
+        <div class="actions">
+          <button class="lab-btn primary" id="resetBtn">Reset experiment</button>
+          <button class="lab-btn" id="recordBtn">Record observation</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. Spring model</h2>
+        <svg class="scene" viewBox="0 0 360 300" role="img" aria-label="A spring stretching under an applied force">
+          <defs>
+            <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#64748b"/>
+              <stop offset=".5" stop-color="#dbeafe"/>
+              <stop offset="1" stop-color="#64748b"/>
+            </linearGradient>
+          </defs>
+          <rect x="70" y="18" width="220" height="15" rx="3" fill="#64748b"/>
+          <path d="M100 33 V43 M260 33 V43" stroke="#64748b" stroke-width="4"/>
+          <path id="springPath" d="" fill="none" stroke="url(#metal)" stroke-width="5" stroke-linejoin="round"/>
+          <line id="naturalLine" x1="125" y1="110" x2="235" y2="110" stroke="#94a3b8" stroke-dasharray="5 5" stroke-width="1.5"/>
+          <text x="180" y="102" text-anchor="middle" font-size="11" fill="currentColor">Natural position</text>
+          <rect id="load" x="145" y="150" width="70" height="45" rx="7" fill="#0d9488"/>
+          <text id="loadText" x="180" y="177" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Load</text>
+          <line id="forceArrow" x1="180" y1="203" x2="180" y2="245" stroke="#e11d48" stroke-width="3"/>
+          <path id="arrowHead" d="M171 236 L180 247 L189 236" fill="none" stroke="#e11d48" stroke-width="3"/>
+          <text id="forceLabel" x="195" y="230" font-size="13" fill="#e11d48">5.0 N</text>
+          <text x="180" y="280" text-anchor="middle" font-size="12" fill="currentColor">Illustrative model — not to scale</text>
+        </svg>
+
+        <div class="readouts">
+          <div class="readout"><small>Extension (x)</small><strong id="extension">0.200 m</strong></div>
+          <div class="readout"><small>Extension in cm</small><strong id="extensionCm">20.0 cm</strong></div>
+          <div class="readout"><small>Spring constant (k)</small><strong id="kReadout">25 N/m</strong></div>
+          <div class="readout"><small>Spring force (kx)</small><strong id="springForce">5.0 N</strong></div>
+        </div>
+      </section>
+
+      <section class="panel wide">
+        <h2>3. Force versus extension</h2>
+        <p class="muted note">The straight line shows the predicted relationship for an ideal spring. The marker represents your current settings.</p>
+        <svg id="graph" class="graph" viewBox="0 0 600 300" role="img" aria-label="Graph of force against extension">
+          <rect x="55" y="20" width="510" height="225" fill="none" stroke="currentColor" opacity=".3"/>
+          <g id="gridLines" stroke="currentColor" opacity=".13"></g>
+          <g id="axisLabels" fill="currentColor" font-size="11"></g>
+          <path id="graphLine" fill="none" stroke="#0d9488" stroke-width="3"/>
+          <circle id="graphPoint" r="6" fill="#e11d48" stroke="white" stroke-width="2"/>
+          <text x="310" y="287" text-anchor="middle" fill="currentColor" font-size="13">Extension (m)</text>
+          <text x="17" y="135" text-anchor="middle" fill="currentColor" font-size="13" transform="rotate(-90 17 135)">Force (N)</text>
+        </svg>
+      </section>
+
+      <section class="panel">
+        <h2>4. Procedure</h2>
+        <ol class="note">
+          <li>Choose a spring constant using the slider.</li>
+          <li>Increase the applied force in small steps.</li>
+          <li>Record the extension for each force.</li>
+          <li>Repeat with a different spring constant.</li>
+          <li>Compare the graph gradients and observations.</li>
+        </ol>
+      </section>
+
+      <section class="panel">
+        <h2>5. What to investigate</h2>
+        <ul class="note">
+          <li>What happens to extension when force doubles?</li>
+          <li>Which spring stretches more under the same force?</li>
+          <li>What does the graph’s gradient represent?</li>
+        </ul>
+        <p class="note muted">In this ideal model, the spring obeys Hooke’s law throughout the displayed range. Real springs can stop behaving linearly if stretched too far.</p>
+      </section>
+
+      <section class="panel wide">
+        <h2>6. Observation table</h2>
+        <div style="overflow-x:auto">
+          <table class="obs-table">
+            <thead><tr><th>#</th><th>Force (N)</th><th>Spring constant (N/m)</th><th>Extension (m)</th></tr></thead>
+            <tbody id="observations">
+              <tr><td colspan="4" class="muted">Change the controls and select “Record observation”.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="actions">
+          <button class="lab-btn" id="clearBtn">Clear observations</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    const force = document.getElementById('force');
+    const stiffness = document.getElementById('stiffness');
+    const observations = document.getElementById('observations');
+    let records = [];
+
+    function drawSpring(extension) {
+      const top = 43;
+      const naturalBottom = 125;
+      const bottom = naturalBottom + Math.min(extension / 0.8, 1) * 85;
+      const coils = 12;
+      const step = (bottom - top) / coils;
+      let d = `M180 ${top}`;
+      for (let i = 1; i <= coils; i++) {
+        const x = i === coils ? 180 : (i % 2 ? 145 : 215);
+        d += ` L${x} ${top + i * step}`;
+      }
+      d += ` L180 ${bottom + 5}`;
+      document.getElementById('springPath').setAttribute('d', d);
+      document.getElementById('load').setAttribute('y', bottom + 5);
+      document.getElementById('loadText').setAttribute('y', bottom + 32);
+      document.getElementById('forceArrow').setAttribute('y1', bottom + 52);
+      document.getElementById('forceArrow').setAttribute('y2', Math.min(bottom + 87, 258));
+      document.getElementById('arrowHead').setAttribute(
+        'd', `M171 ${Math.min(bottom + 77, 249)} L180 ${Math.min(bottom + 89, 261)} L189 ${Math.min(bottom + 77, 249)}`
+      );
+      document.getElementById('forceLabel').setAttribute('y', Math.min(bottom + 75, 250));
+      document.getElementById('naturalLine').setAttribute('y1', naturalBottom);
+      document.getElementById('naturalLine').setAttribute('y2', naturalBottom);
+    }
+
+    function drawGraph(k, currentForce, extension) {
+      const left = 55, top = 20, width = 510, height = 225;
+      const maxX = 4, maxF = 20;
+      const grid = document.getElementById('gridLines');
+      const labels = document.getElementById('axisLabels');
+      grid.innerHTML = '';
+      labels.innerHTML = '';
+
+      for (let i = 0; i <= 4; i++) {
+        const x = left + width * i / 4;
+        const y = top + height - height * i / 4;
+        grid.innerHTML += `<line x1="${x}" y1="${top}" x2="${x}" y2="${top + height}"/><line x1="${left}" y1="${y}" x2="${left + width}" y2="${y}"/>`;
+        labels.innerHTML += `<text x="${x}" y="${top + height + 17}" text-anchor="middle">${(maxX * i / 4).toFixed(1)}</text>`;
+        labels.innerHTML += `<text x="${left - 9}" y="${y + 4}" text-anchor="end">${(maxF * i / 4).toFixed(0)}</text>`;
+      }
+
+      const lineEndX = Math.min(maxX, maxF / k);
+      const lineEndF = k * lineEndX;
+      const px = x => left + width * x / maxX;
+      const py = f => top + height - height * f / maxF;
+
+      document.getElementById('graphLine').setAttribute(
+        'd', `M${px(0)} ${py(0)} L${px(lineEndX)} ${py(lineEndF)}`
+      );
+
+      const point = document.getElementById('graphPoint');
+      point.setAttribute('cx', px(extension));
+      point.setAttribute('cy', py(currentForce));
+    }
+
+    function update() {
+      const f = Number(force.value);
+      const k = Number(stiffness.value);
+      const x = f / k;
+
+      document.getElementById('forceValue').textContent = `${f.toFixed(1)} N`;
+      document.getElementById('stiffnessValue').textContent = `${k} N/m`;
+      document.getElementById('extension').textContent = `${x.toFixed(3)} m`;
+      document.getElementById('extensionCm').textContent = `${(x * 100).toFixed(1)} cm`;
+      document.getElementById('kReadout').textContent = `${k} N/m`;
+      document.getElementById('springForce').textContent = `${(k * x).toFixed(1)} N`;
+      document.getElementById('forceLabel').textContent = `${f.toFixed(1)} N`;
+
+      drawSpring(x);
+      drawGraph(k, f, x);
+    }
+
+    function renderRecords() {
+      if (!records.length) {
+        observations.innerHTML = '<tr><td colspan="4" class="muted">No observations recorded yet.</td></tr>';
+        return;
+      }
+      observations.innerHTML = records.map((r, i) =>
+        `<tr><td>${i + 1}</td><td>${r.f.toFixed(1)}</td><td>${r.k}</td><td>${r.x.toFixed(3)}</td></tr>`
+      ).join('');
+    }
+
+    force.addEventListener('input', update);
+    stiffness.addEventListener('input', update);
+
+    document.getElementById('recordBtn').addEventListener('click', () => {
+      const f = Number(force.value);
+      const k = Number(stiffness.value);
+      records.push({ f, k, x: f / k });
+      renderRecords();
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      records = [];
+      renderRecords();
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      force.value = 5;
+      stiffness.value = 25;
+      update();
+    });
+
+    update();
+  </script>
+</body>
+</html>

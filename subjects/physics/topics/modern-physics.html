@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Learn the foundations of modern physics, including relativity, quantum ideas, photons, atomic physics, nuclear physics, and radioactivity."
+  >
+
+  <title>Modern Physics | Physics | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* ========================================
+       MODERN PHYSICS LESSON
+       ======================================== */
+
+    .modern-physics-page {
+      padding-bottom: 70px;
+    }
+
+    .lesson-hero {
+      padding: 58px 0 48px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-eyebrow {
+      margin: 0 0 14px;
+      color: var(--physics-accent);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .lesson-intro {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--color-text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 290px;
+      gap: 28px;
+      align-items: start;
+      padding-top: 42px;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      margin-bottom: 42px;
+      scroll-margin-top: 90px;
+    }
+
+    .lesson-section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.55rem, 4vw, 2.15rem);
+      letter-spacing: -.04em;
+    }
+
+    .lesson-section p {
+      max-width: 760px;
+      margin: 0 0 15px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .concept-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .concept-item {
+      padding: 17px 19px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+    }
+
+    .concept-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--color-text);
+    }
+
+    .concept-item span {
+      color: var(--color-text-muted);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    /* Formula */
+
+    .formula-card {
+      margin: 20px 0;
+      padding: 24px;
+      background: var(--physics-accent-soft);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      overflow-x: auto;
+    }
+
+    .formula-label {
+      display: block;
+      margin-bottom: 13px;
+      color: var(--physics-accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .formula {
+      margin: 0;
+      color: var(--color-text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      line-height: 1.7;
+    }
+
+    .formula-note {
+      margin: 10px 0 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+    }
+
+    /* Example */
+
+    .example-card {
+      padding: 23px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+    }
+
+    .example-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--physics-accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .example-card p {
+      margin-bottom: 12px;
+    }
+
+    .example-answer {
+      padding: 13px 15px;
+      background: var(--physics-accent-soft);
+      border-radius: 10px;
+      color: var(--color-text);
+    }
+
+    /* Aside */
+
+    .lesson-aside {
+      display: grid;
+      gap: 14px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .aside-card {
+      padding: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .aside-card h3 {
+      margin: 0 0 11px;
+      font-size: 1rem;
+    }
+
+    .aside-card p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+      line-height: 1.65;
+    }
+
+    .lesson-nav {
+      display: grid;
+      gap: 7px;
+    }
+
+    .lesson-nav a {
+      display: block;
+      padding: 8px 0;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+
+    .lesson-nav a:hover {
+      color: var(--physics-accent);
+    }
+
+    /* Bottom navigation */
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 45px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-bottom a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      color: var(--physics-accent);
+    }
+
+    @media (max-width: 800px) {
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .lesson-hero {
+        padding-top: 35px;
+      }
+
+      .lesson-layout {
+        padding-top: 32px;
+      }
+
+      .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../../index.html">
+        Your Answer
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Toggle colour theme"
+      >
+        Theme
+      </button>
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="modern-physics-page">
+
+    <section class="lesson-hero">
+      <div class="container">
+
+        <p class="lesson-eyebrow">
+          Physics / 09
+        </p>
+
+        <h1>Modern Physics</h1>
+
+        <p class="lesson-intro">
+          Explore the ideas that changed classical physics: relativity,
+          quantum behaviour, photons, atomic structure, nuclear physics,
+          and radioactivity.
+        </p>
+
+      </div>
+    </section>
+
+
+    <div class="container">
+
+      <div class="lesson-layout">
+
+        <article class="lesson-main">
+
+          <!-- CLASSICAL TO MODERN -->
+
+          <section class="lesson-section" id="introduction">
+
+            <h2>From classical to modern physics</h2>
+
+            <p>
+              Classical physics successfully describes many everyday
+              phenomena, but experiments involving very high speeds,
+              extremely small scales, and electromagnetic radiation
+              revealed important limitations.
+            </p>
+
+            <p>
+              Modern physics developed new frameworks to describe these
+              situations, including relativity and quantum mechanics.
+            </p>
+
+          </section>
+
+
+          <!-- SPECIAL RELATIVITY -->
+
+          <section class="lesson-section" id="relativity">
+
+            <h2>Special relativity</h2>
+
+            <p>
+              Special relativity describes how space, time, and motion
+              behave for observers moving at constant relative velocities.
+              It is based on the principle that the laws of physics are
+              the same in inertial reference frames and that the speed of
+              light in vacuum is invariant.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Time dilation</strong>
+                <span>
+                  Moving clocks can be measured to run more slowly relative
+                  to an observer in another inertial frame.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Length contraction</strong>
+                <span>
+                  Lengths measured along the direction of motion can differ
+                  between reference frames.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- MASS ENERGY -->
+
+          <section class="lesson-section" id="mass-energy">
+
+            <h2>Mass and energy</h2>
+
+            <p>
+              Relativity reveals a deep connection between mass and energy.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Mass-energy equivalence
+              </span>
+
+              <p class="formula">
+                E = mc²
+              </p>
+
+              <p class="formula-note">
+                E is energy, m is mass, and c is the speed of light in
+                vacuum.
+              </p>
+
+            </div>
+
+            <p>
+              This relationship is especially important in nuclear physics,
+              where relatively small changes in mass can correspond to
+              substantial amounts of energy.
+            </p>
+
+          </section>
+
+
+          <!-- QUANTUM IDEA -->
+
+          <section class="lesson-section" id="quantum">
+
+            <h2>Quantum physics</h2>
+
+            <p>
+              Quantum physics describes matter and radiation at microscopic
+              scales. At this level, many physical quantities behave in ways
+              that differ fundamentally from classical expectations.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Quantisation</strong>
+                <span>
+                  Some physical quantities can take only particular allowed
+                  values rather than every possible value.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Probability</strong>
+                <span>
+                  Quantum theory generally predicts probabilities for
+                  measurement outcomes rather than definite classical
+                  trajectories.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Wave-particle duality</strong>
+                <span>
+                  Quantum objects can display both wave-like and
+                  particle-like behaviour depending on the experiment.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- PHOTONS -->
+
+          <section class="lesson-section" id="photons">
+
+            <h2>Photons</h2>
+
+            <p>
+              Light can behave as though it consists of discrete packets
+              of electromagnetic energy called photons.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Photon energy
+              </span>
+
+              <p class="formula">
+                E = hf
+              </p>
+
+              <p class="formula-note">
+                h is Planck's constant and f is the frequency of the
+                electromagnetic radiation.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- PHOTOELECTRIC EFFECT -->
+
+          <section class="lesson-section" id="photoelectric">
+
+            <h2>Photoelectric effect</h2>
+
+            <p>
+              The photoelectric effect occurs when light causes electrons
+              to be emitted from a material.
+            </p>
+
+            <p>
+              The phenomenon helped establish that electromagnetic
+              radiation can transfer energy in discrete amounts.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Einstein's photoelectric equation
+              </span>
+
+              <p class="formula">
+                hf = φ + K<sub>max</sub>
+              </p>
+
+              <p class="formula-note">
+                φ is the work function of the material and K<sub>max</sub>
+                is the maximum kinetic energy of an emitted electron.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- DE BROGLIE -->
+
+          <section class="lesson-section" id="matter-waves">
+
+            <h2>Matter waves</h2>
+
+            <p>
+              The wave-particle idea applies not only to light. Moving
+              particles can also exhibit wave-like behaviour.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                de Broglie wavelength
+              </span>
+
+              <p class="formula">
+                λ = h/p
+              </p>
+
+              <p class="formula-note">
+                λ is wavelength, h is Planck's constant, and p is momentum.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- ATOMIC PHYSICS -->
+
+          <section class="lesson-section" id="atoms">
+
+            <h2>Atomic physics</h2>
+
+            <p>
+              Atoms consist of a compact nucleus surrounded by electrons.
+              Modern atomic physics explains how electrons occupy allowed
+              energy states.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Energy levels</strong>
+                <span>
+                  Electrons in atoms can occupy specific allowed energy
+                  states.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Emission</strong>
+                <span>
+                  An atom can emit electromagnetic radiation when an electron
+                  moves from a higher energy state to a lower one.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Absorption</strong>
+                <span>
+                  An atom can absorb energy when an electron moves to a
+                  higher allowed state.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- NUCLEAR PHYSICS -->
+
+          <section class="lesson-section" id="nuclear">
+
+            <h2>Nuclear physics</h2>
+
+            <p>
+              Nuclear physics studies atomic nuclei and the interactions
+              that determine their stability.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Protons</strong>
+                <span>
+                  Positively charged particles found within the nucleus.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Neutrons</strong>
+                <span>
+                  Electrically neutral particles found within the nucleus.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Isotopes</strong>
+                <span>
+                  Atoms of the same element with different numbers of
+                  neutrons.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- RADIOACTIVITY -->
+
+          <section class="lesson-section" id="radioactivity">
+
+            <h2>Radioactivity</h2>
+
+            <p>
+              Some unstable nuclei spontaneously transform into other
+              nuclear states while emitting radiation.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Alpha radiation</strong>
+                <span>
+                  Consists of helium nuclei and has relatively low
+                  penetrating ability.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Beta radiation</strong>
+                <span>
+                  Consists of high-speed electrons or positrons produced
+                  during certain nuclear transformations.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Gamma radiation</strong>
+                <span>
+                  High-energy electromagnetic radiation emitted by nuclei.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- HALF LIFE -->
+
+          <section class="lesson-section" id="half-life">
+
+            <h2>Half-life</h2>
+
+            <p>
+              The half-life of a radioactive substance is the time required
+              for half of a given population of unstable nuclei to decay.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Radioactive decay
+              </span>
+
+              <p class="formula">
+                N = N₀(1/2)<sup>t/T₁/₂</sup>
+              </p>
+
+              <p class="formula-note">
+                N is the remaining quantity, N₀ is the initial quantity,
+                t is elapsed time, and T₁/₂ is the half-life.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- FISSION AND FUSION -->
+
+          <section class="lesson-section" id="fission-fusion">
+
+            <h2>Fission and fusion</h2>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Nuclear fission</strong>
+                <span>
+                  A heavy nucleus splits into smaller nuclei and can release
+                  a large amount of energy.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Nuclear fusion</strong>
+                <span>
+                  Light nuclei combine to form a heavier nucleus while
+                  releasing energy under suitable conditions.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- EXAMPLE -->
+
+          <section class="lesson-section" id="example">
+
+            <h2>Quick example</h2>
+
+            <div class="example-card">
+
+              <span class="example-label">
+                Apply the idea
+              </span>
+
+              <p>
+                A radioactive sample has a half-life of 4 hours.
+                If its initial amount is 80 units, how much remains
+                after 8 hours?
+              </p>
+
+              <p>
+                After one half-life:
+              </p>
+
+              <p class="formula">
+                80 → 40
+              </p>
+
+              <p>
+                After two half-lives:
+              </p>
+
+              <p class="formula">
+                40 → 20
+              </p>
+
+              <div class="example-answer">
+                <strong>Answer:</strong>
+                20 units remain after 8 hours.
+              </div>
+
+            </div>
+
+          </section>
+
+        </article>
+
+
+        <!-- ASIDE -->
+
+        <aside class="lesson-aside">
+
+          <div class="aside-card">
+
+            <h3>In this lesson</h3>
+
+            <nav class="lesson-nav">
+              <a href="#introduction">Classical to modern</a>
+              <a href="#relativity">Special relativity</a>
+              <a href="#mass-energy">Mass and energy</a>
+              <a href="#quantum">Quantum physics</a>
+              <a href="#photons">Photons</a>
+              <a href="#photoelectric">Photoelectric effect</a>
+              <a href="#matter-waves">Matter waves</a>
+              <a href="#atoms">Atomic physics</a>
+              <a href="#nuclear">Nuclear physics</a>
+              <a href="#radioactivity">Radioactivity</a>
+              <a href="#half-life">Half-life</a>
+              <a href="#fission-fusion">Fission and fusion</a>
+              <a href="#example">Quick example</a>
+            </nav>
+
+          </div>
+
+
+          <div class="aside-card">
+
+            <h3>Remember</h3>
+
+            <p>
+              Modern physics becomes essential when we study extremely
+              small scales, very high speeds, or phenomena that classical
+              physics cannot fully explain.
+            </p>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+
+      <!-- BOTTOM NAVIGATION -->
+
+      <nav class="lesson-bottom" aria-label="Lesson navigation">
+
+        <a href="optics.html">
+          ← Optics
+        </a>
+
+        <a href="../index.html">
+          Back to Physics →
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+</html>

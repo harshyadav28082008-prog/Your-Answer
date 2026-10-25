@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Explore Chemistry on Your Answer — atoms, bonding, reactions, matter, energy, equilibrium, electrochemistry, and organic chemistry."
+  >
+
+  <title>Chemistry | Your Answer</title>
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <style>
+    /* ========================================
+       CHEMISTRY HOME
+       ======================================== */
+
+    .chemistry-page {
+      padding-bottom: 70px;
+    }
+
+    .chemistry-hero {
+      padding: 62px 0 50px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .chemistry-eyebrow {
+      margin: 0 0 14px;
+      color: var(--chemistry-accent, #8b5cf6);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .chemistry-hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: .95;
+      letter-spacing: -.07em;
+    }
+
+    .chemistry-intro {
+      max-width: 720px;
+      margin: 23px 0 0;
+      color: var(--color-text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .chemistry-content {
+      padding-top: 42px;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      letter-spacing: -.05em;
+    }
+
+    .section-heading p {
+      margin: 10px 0 0;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .chemistry-topic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .chemistry-topic-card {
+      display: flex;
+      min-height: 235px;
+      flex-direction: column;
+      padding: 23px;
+      color: var(--color-text);
+      text-decoration: none;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 17px;
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .chemistry-topic-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--chemistry-accent, #8b5cf6);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, .07);
+    }
+
+    .topic-number {
+      color: var(--chemistry-accent, #8b5cf6);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+
+    .topic-icon {
+      display: block;
+      margin: 27px 0 17px;
+      font-size: 1.8rem;
+    }
+
+    .chemistry-topic-card h3 {
+      margin: 0;
+      font-size: 1.18rem;
+      letter-spacing: -.025em;
+    }
+
+    .chemistry-topic-card p {
+      margin: 9px 0 0;
+      color: var(--color-text-muted);
+      font-size: .9rem;
+      line-height: 1.65;
+    }
+
+    .topic-link {
+      margin-top: auto;
+      padding-top: 20px;
+      color: var(--chemistry-accent, #8b5cf6);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .formula-feature {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 25px;
+      align-items: center;
+      margin-top: 42px;
+      padding: 27px;
+      color: var(--color-text);
+      text-decoration: none;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      transition:
+        transform .2s ease,
+        border-color .2s ease;
+    }
+
+    .formula-feature:hover {
+      transform: translateY(-3px);
+      border-color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    .formula-feature-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--chemistry-accent, #8b5cf6);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .formula-feature h2 {
+      margin: 0;
+      font-size: 1.55rem;
+      letter-spacing: -.04em;
+    }
+
+    .formula-feature p {
+      max-width: 650px;
+      margin: 9px 0 0;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    .formula-arrow {
+      font-size: 1.7rem;
+      color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    .chemistry-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 42px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .chemistry-bottom a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .chemistry-bottom a:hover {
+      color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    @media (max-width: 900px) {
+      .chemistry-topic-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .chemistry-hero {
+        padding-top: 38px;
+      }
+
+      .chemistry-topic-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .formula-feature {
+        grid-template-columns: 1fr;
+      }
+
+      .chemistry-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../index.html">
+        Your Answer
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../index.html">Subjects</a>
+        <a href="../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../labs/index.html">Labs</a>
+      </nav>
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Toggle colour theme"
+      >
+        Theme
+      </button>
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../index.html">Subjects</a>
+      <a href="../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="chemistry-page">
+
+    <section class="chemistry-hero">
+      <div class="container">
+
+        <p class="chemistry-eyebrow">
+          Subject / Chemistry
+        </p>
+
+        <h1>Chemistry</h1>
+
+        <p class="chemistry-intro">
+          Understand matter from the smallest particles to complex
+          chemical systems. Explore atoms, bonding, reactions, energy,
+          equilibrium, electrochemistry, and the foundations of organic
+          chemistry.
+        </p>
+
+      </div>
+    </section>
+
+
+    <div class="container chemistry-content">
+
+      <section>
+
+        <div class="section-heading">
+          <h2>Explore Chemistry</h2>
+
+          <p>
+            Build your foundation step by step, beginning with the basic
+            language of chemistry and gradually moving toward reactions,
+            energy, equilibrium, and organic chemistry.
+          </p>
+        </div>
+
+
+        <div class="chemistry-topic-grid">
+
+          <!-- 01 -->
+
+          <a
+            class="chemistry-topic-card"
+            href="topics/basic-concepts.html"
+          >
+            <span class="topic-number">01</span>
+
+            <span class="topic-icon" aria-hidden="true">◈</span>
+
+            <h3>Basic Concepts of Chemistry</h3>
+
+            <p>
+              Mole concept, atomic mass, molecular mass, stoichiometry,
+              units, and chemical calculations.
+            </p>
+
+            <span class="topic-link">
+              Explore topic ↗
+            </span>
+          </a>
+
+
+          <!-- 02 -->
+
+          <a
+            class="chemistry-topic-card"
+            href="topics/atomic-structure.html"
+          >
+            <span class="topic-number">02</span>
+
+            <span class="topic-icon" aria-hidden="true">⚛</span>
+
+            <h3>Atomic Structure</h3>
+
+            <p>
+              Particles, atomic models, quantum numbers, orbitals, and
+              electronic configuration.
+            </p>
+
+            <span class="topic-link">
+              Explore topic ↗
+            </span>
+          </a>
+
+
+          <!-- 03 -->
+
+          <a
+            class="chemistry-topic-card"
+            href="topics/periodicity.html"
+          >
+            <span class="topic-number">03</span>
+
+            <span class="topic-icon" aria-hidden="true">▦</span>
+
+            <h3>Periodic Table & Periodicity</h3>
+
+            <p>
+              Periodic trends, groups, periods, atomic radius, ionisation
+              energy, and electron affinity.
+            </p>
+
+            <span class="topic-link">
+              Explore topic ↗
+            </span>
+          </a>
+
+
+          <!-- 04 -->
+
+          <a
+            class="chemistry-topic-card"
+            href="topics/chemical-bonding.html"
+          >
+            <span class="topic-number">04</span>
+
+            <span class="topic-icon" aria-hidden="true">⌁</span>
+
+            <h3>Chemical Bonding</h3>
+
+            <p>
+              Ionic, covalent, and metallic bonding, Lewis structures,
+              molecular shape, and polarity.
+            </p>
+
+            <span class="topic-link">
+              Explore topic ↗
+            </span>
+          </a>
+
+
+          <!-- 05 -->
+
+          <a
+            class="chemistry-topic-card"
+            href="topics/states-of-matter.html"
+          >
+            <span class="topic-number">05</span>
+
+            <span class="topic-icon" aria-hidden="true">◌</span>
+
+            <h3>States of Matter</h3>
+
+            <p>
+              Solids, liquids, gases, kinetic theory, gas laws, and changes
+              of state.
+            </p>
+
+            <span class="topic-link">
+              Explore topic ↗
+            </span>
+          </a>
+
+
+          <!-- 06 -->
+
+          <a
+            class="chemistry-topic-card"
+            href="topics/thermochemistry.html"
+          >
+            <span class="topic-number">06</span>
+
+            <span class="topic-icon" aria-hidden="true">Δ</span>
+
+            <h3>Thermochemistry</h3>
+
+            <p>
+              Heat, enthalpy, calorimetry, energy changes, and Hess's law.
+            </p>
+
+            <span class="topic-link">
+              Explore topic ↗
+            </span>
+          </a>
+
+
+          <!-- 07 -->
+
+          <a
+            class="chemistry-topic-card"
+            href="topics/chemical-equilibrium.html"
+          >
+            <span class="topic-number">07</span>
+
+            <span class="topic-icon" aria-hidden="true">⇌</span>
+
+            <h3>Chemical Equilibrium</h3>
+
+            <p>
+              Dynamic equilibrium, equilibrium constants, acids, bases,
+              and Le Chatelier's principle.
+            </p>
+
+            <span class="topic-link">
+              Explore topic ↗
+            </span>
+          </a>
+
+
+          <!-- 08 -->
+
+          <a
+            class="chemistry-topic-card"
+            href="topics/redox-electrochemistry.html"
+          >
+            <span class="topic-number">08</span>
+
+            <span class="topic-icon" aria-hidden="true">⇄</span>
+
+            <h3>Redox & Electrochemistry</h3>
+
+            <p>
+              Oxidation, reduction, electrochemical cells, electrode
+              potential, and electrical energy.
+            </p>
+
+            <span class="topic-link">
+              Explore topic ↗
+            </span>
+          </a>
+
+
+          <!-- 09 -->
+
+          <a
+            class="chemistry-topic-card"
+            href="topics/organic-foundations.html"
+          >
+            <span class="topic-number">09</span>
+
+            <span class="topic-icon" aria-hidden="true">⌬</span>
+
+            <h3>Organic Chemistry Foundations</h3>
+
+            <p>
+              Hydrocarbons, functional groups, nomenclature, isomerism,
+              and basic organic reactions.
+            </p>
+
+            <span class="topic-link">
+              Explore topic ↗
+            </span>
+          </a>
+
+          
+<a class="chemistry-topic-card" href="topics/acids-bases.html">
+    <span class="topic-number">10</span>
+  <span class="topic-icon" aria-hidden="true">🧪</span>
+    <h3>Acids &amp; Bases</h3>
+    <p>
+      Explore pH, acid and base strength, neutralisation,
+      indicators, titration and buffer solutions.
+    </p>
+    <span class="topic-link">Explore topic →</span>
+</a>
+
+          
+<a class="chemistry-topic-card" href="topics/chemical-kinetics.html">
+  <div class="topic-card-content">
+    <span class="topic-number">11</span>
+    <div class="topic-icon" aria-hidden="true">⏱️</div>
+    <h3>Chemical Kinetics</h3>
+    <p>
+      Explore reaction rates, rate laws, reaction order,
+      activation energy and the Arrhenius equation.
+    </p>
+    <span class="topic-link">Explore topic →</span>
+  </div>
+</a>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- FORMULA SHEET -->
+
+      <a
+        class="formula-feature"
+        href="topics/formula-sheet.html"
+      >
+
+        <div>
+
+          <span class="formula-feature-label">
+            Quick Reference
+          </span>
+
+          <h2>Chemistry Formula Sheet</h2>
+
+          <p>
+            Keep the most useful equations and relationships from the
+            Chemistry V1 curriculum in one place for quick revision.
+          </p>
+
+        </div>
+
+        <span class="formula-arrow" aria-hidden="true">
+          ↗
+        </span>
+
+      </a>
+
+
+      <!-- BOTTOM -->
+
+      <nav class="chemistry-bottom" aria-label="Chemistry navigation">
+
+        <a href="../index.html">
+          ← All Subjects
+        </a>
+
+        <a href="../../index.html">
+          Your Answer Home →
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../assets/js/main.js"></script>
+
+</body>
+</html>

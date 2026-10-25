@@ -1,0 +1,1915 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Learn geometry through angles, shapes, perimeter, area, an interactive shape explorer, and guided practice on Your Answer.">
+  <title>Geometry — Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <script src="../../../assets/js/main.js" defer></script>
+
+  <style>
+    .geometry-page {
+      --geo-accent: var(--color-brand, #6256d9);
+      --geo-soft: var(--color-brand-soft, #eeecff);
+      --geo-line: var(--color-border, #e5e7eb);
+      --geo-muted: var(--color-text-muted, #707789);
+      --geo-panel: var(--color-surface, #ffffff);
+      --geo-alt: var(--color-surface-alt, #f6f7fb);
+      color: var(--color-text);
+      padding-bottom: 56px;
+    }
+
+    .geometry-page *,
+    .geometry-page *::before,
+    .geometry-page *::after {
+      box-sizing: border-box;
+    }
+
+    .geometry-page button,
+    .geometry-page input,
+    .geometry-page select {
+      font: inherit;
+    }
+
+    .geometry-page button {
+      cursor: pointer;
+    }
+
+    .geometry-page .lesson-container {
+      width: min(1080px, calc(100% - 36px));
+      margin-inline: auto;
+    }
+
+    .geometry-page .lesson-intro {
+      padding: 38px 0 30px;
+    }
+
+    .geometry-page .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 28px;
+      color: var(--geo-muted);
+      font-size: 0.82rem;
+    }
+
+    .geometry-page .breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .geometry-page .breadcrumb a:hover {
+      color: var(--geo-accent);
+    }
+
+    .geometry-page .lesson-kicker {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 15px;
+      color: var(--geo-accent);
+      font-size: 0.74rem;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .geometry-page .lesson-number {
+      padding: 5px 9px;
+      border: 1px solid var(--geo-line);
+      border-radius: 7px;
+      color: var(--geo-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .geometry-page .lesson-title {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.25rem, 6vw, 4.1rem);
+      font-weight: 760;
+      letter-spacing: -0.065em;
+      line-height: 1.04;
+    }
+
+    .geometry-page .lesson-lead {
+      max-width: 650px;
+      margin: 20px 0 0;
+      color: var(--geo-muted);
+      font-size: clamp(1rem, 2vw, 1.12rem);
+      line-height: 1.85;
+    }
+
+    .geometry-page .lesson-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 17px;
+      margin-top: 23px;
+      color: var(--geo-muted);
+      font-size: 0.84rem;
+    }
+
+    .geometry-page .meta-dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: var(--geo-accent);
+    }
+
+    .geometry-page .lesson-nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 10px 0;
+      border-top: 1px solid var(--geo-line);
+      border-bottom: 1px solid var(--geo-line);
+      background: var(--color-surface, #fff);
+      background: color-mix(in srgb, var(--color-surface, #fff) 94%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .geometry-page .lesson-nav {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .geometry-page .lesson-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .geometry-page .lesson-nav a {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      color: var(--geo-muted);
+      font-size: 0.84rem;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .geometry-page .lesson-nav a:hover,
+    .geometry-page .lesson-nav a.active {
+      border-color: color-mix(in srgb, var(--geo-accent) 15%, transparent);
+      background: var(--geo-soft);
+      color: var(--geo-accent);
+    }
+
+    .geometry-page .nav-index {
+      font-size: 0.72rem;
+      opacity: 0.75;
+    }
+
+    .geometry-page .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 265px;
+      gap: 44px;
+      align-items: start;
+      padding-top: 38px;
+    }
+
+    .geometry-page .lesson-content {
+      min-width: 0;
+    }
+
+    .geometry-page .lesson-section {
+      scroll-margin-top: 86px;
+      margin-bottom: 55px;
+    }
+
+    .geometry-page .section-label {
+      margin-bottom: 10px;
+      color: var(--geo-accent);
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .geometry-page .section-title {
+      margin: 0 0 17px;
+      font-size: clamp(1.55rem, 3vw, 2rem);
+      font-weight: 730;
+      letter-spacing: -0.045em;
+      line-height: 1.2;
+    }
+
+    .geometry-page .lesson-copy {
+      color: var(--geo-muted);
+      font-size: 0.98rem;
+      line-height: 1.9;
+    }
+
+    .geometry-page .lesson-copy p {
+      margin: 0 0 15px;
+    }
+
+    .geometry-page .lesson-copy strong {
+      color: var(--color-text);
+    }
+
+    .geometry-page .shape-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 23px 0;
+    }
+
+    .geometry-page .shape-card {
+      padding: 18px;
+      border: 1px solid var(--geo-line);
+      border-radius: 14px;
+      background: var(--geo-panel);
+    }
+
+    .geometry-page .shape-symbol {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 14px;
+      border-radius: 11px;
+      background: var(--geo-soft);
+      color: var(--geo-accent);
+      font-size: 1.5rem;
+    }
+
+    .geometry-page .shape-card h3 {
+      margin: 0 0 6px;
+      font-size: 0.94rem;
+    }
+
+    .geometry-page .shape-card p {
+      margin: 0;
+      color: var(--geo-muted);
+      font-size: 0.83rem;
+      line-height: 1.7;
+    }
+
+    .geometry-page .formula-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 23px 0;
+      padding: 27px 18px;
+      border: 1px solid var(--geo-line);
+      border-radius: 16px;
+      background: var(--geo-alt);
+      text-align: center;
+    }
+
+    .geometry-page .formula-display .math {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.55rem, 5vw, 2.35rem);
+      font-weight: 600;
+      letter-spacing: -0.035em;
+    }
+
+    .geometry-page .formula-note {
+      width: 100%;
+      color: var(--geo-muted);
+      font-size: 0.8rem;
+    }
+
+    .geometry-page .insight-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 22px;
+      padding: 16px 17px;
+      border-left: 3px solid var(--geo-accent);
+      border-radius: 0 11px 11px 0;
+      background: var(--geo-soft);
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    .geometry-page .insight-mark {
+      flex: 0 0 auto;
+      color: var(--geo-accent);
+      font-weight: 800;
+    }
+
+    .geometry-page .example-card,
+    .geometry-page .interactive-panel,
+    .geometry-page .practice-card {
+      overflow: hidden;
+      border: 1px solid var(--geo-line);
+      border-radius: 16px;
+      background: var(--geo-panel);
+    }
+
+    .geometry-page .example-top,
+    .geometry-page .interactive-heading {
+      padding: 19px;
+      border-bottom: 1px solid var(--geo-line);
+    }
+
+    .geometry-page .example-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .geometry-page .example-top strong {
+      font-size: 0.91rem;
+    }
+
+    .geometry-page .example-badge {
+      padding: 5px 8px;
+      border-radius: 6px;
+      background: var(--geo-soft);
+      color: var(--geo-accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .geometry-page .example-steps {
+      display: grid;
+      padding: 4px 19px;
+    }
+
+    .geometry-page .example-step {
+      display: grid;
+      grid-template-columns: 27px minmax(0, 1fr);
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--geo-line);
+    }
+
+    .geometry-page .example-step:last-child {
+      border-bottom: 0;
+    }
+
+    .geometry-page .step-number {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--geo-line);
+      border-radius: 8px;
+      color: var(--geo-muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .geometry-page .step-body strong {
+      display: block;
+      margin: 1px 0 5px;
+      font-size: 0.9rem;
+    }
+
+    .geometry-page .step-body p {
+      margin: 0;
+      color: var(--geo-muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .geometry-page .step-equation {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 7px;
+      background: var(--geo-alt);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.12rem;
+    }
+
+    .geometry-page .interactive-heading h3 {
+      margin: 0 0 7px;
+      font-size: 1.05rem;
+    }
+
+    .geometry-page .interactive-heading p {
+      margin: 0;
+      color: var(--geo-muted);
+      font-size: 0.86rem;
+      line-height: 1.7;
+    }
+
+    .geometry-page .explorer-body {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 20px;
+      padding: 21px;
+    }
+
+    .geometry-page .input-group {
+      margin-bottom: 15px;
+    }
+
+    .geometry-page .input-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .geometry-page .input-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .geometry-page .input-group input,
+    .geometry-page .input-group select {
+      width: 100%;
+      min-height: 45px;
+      padding: 10px 12px;
+      border: 1px solid var(--geo-line);
+      border-radius: 9px;
+      outline: none;
+      background: var(--color-surface, #fff);
+      color: var(--color-text);
+    }
+
+    .geometry-page .input-group input:focus,
+    .geometry-page .input-group select:focus {
+      border-color: var(--geo-accent);
+      box-shadow: 0 0 0 3px var(--geo-soft);
+    }
+
+    .geometry-page .input-help {
+      display: block;
+      margin-top: 6px;
+      color: var(--geo-muted);
+      font-size: 0.74rem;
+      line-height: 1.5;
+    }
+
+    .geometry-page .shape-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      min-height: 230px;
+      padding: 16px;
+      border: 1px solid var(--geo-line);
+      border-radius: 13px;
+      background: var(--geo-alt);
+    }
+
+    .geometry-page .shape-visual svg {
+      display: block;
+      width: 100%;
+      max-width: 290px;
+      max-height: 190px;
+      overflow: visible;
+    }
+
+    .geometry-page .shape-visual figcaption {
+      margin-top: 10px;
+      color: var(--geo-muted);
+      font-size: 0.77rem;
+      text-align: center;
+    }
+
+    .geometry-page .shape-results {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 0 21px 21px;
+    }
+
+    .geometry-page .result-card {
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid var(--geo-line);
+      border-radius: 11px;
+      background: var(--geo-alt);
+    }
+
+    .geometry-page .result-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--geo-muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+
+    .geometry-page .result-value {
+      overflow-wrap: anywhere;
+      color: var(--geo-accent);
+      font-size: clamp(1.15rem, 3vw, 1.6rem);
+      font-weight: 750;
+    }
+
+    .geometry-page .result-explanation {
+      margin: 0;
+      padding: 0 21px 20px;
+      color: var(--geo-muted);
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+    .geometry-page .lab-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 15px 21px;
+      border-top: 1px solid var(--geo-line);
+    }
+
+    .geometry-page .lab-footer p {
+      margin: 0;
+      color: var(--geo-muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .geometry-page .text-button,
+    .geometry-page .secondary-button {
+      padding: 9px 12px;
+      border: 1px solid var(--geo-line);
+      border-radius: 8px;
+      background: var(--geo-panel);
+      color: var(--color-text);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .geometry-page .text-button:hover,
+    .geometry-page .secondary-button:hover {
+      border-color: var(--geo-accent);
+      color: var(--geo-accent);
+    }
+
+    .geometry-page .practice-card {
+      padding: 22px;
+    }
+
+    .geometry-page .practice-progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      color: var(--geo-muted);
+      font-size: 0.79rem;
+    }
+
+    .geometry-page .progress-track {
+      height: 5px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      border-radius: 99px;
+      background: var(--geo-line);
+    }
+
+    .geometry-page .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--geo-accent);
+      transition: width 220ms ease;
+    }
+
+    .geometry-page .practice-question {
+      margin: 0 0 10px;
+      font-size: 1.13rem;
+      font-weight: 730;
+      letter-spacing: -0.025em;
+      line-height: 1.5;
+    }
+
+    .geometry-page .practice-instruction {
+      margin: 0 0 19px;
+      color: var(--geo-muted);
+      font-size: 0.86rem;
+      line-height: 1.7;
+    }
+
+    .geometry-page .practice-answer-row {
+      display: flex;
+      align-items: stretch;
+      gap: 9px;
+    }
+
+    .geometry-page .practice-answer-row input {
+      width: 100%;
+      min-width: 0;
+      min-height: 45px;
+      padding: 10px 12px;
+      border: 1px solid var(--geo-line);
+      border-radius: 9px;
+      outline: none;
+      background: var(--color-surface, #fff);
+      color: var(--color-text);
+    }
+
+    .geometry-page .practice-answer-row input:focus {
+      border-color: var(--geo-accent);
+      box-shadow: 0 0 0 3px var(--geo-soft);
+    }
+
+    .geometry-page .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border: 1px solid var(--geo-accent);
+      border-radius: 9px;
+      background: var(--geo-accent);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 750;
+    }
+
+    .geometry-page .primary-button:hover {
+      opacity: 0.9;
+    }
+
+    .geometry-page .practice-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    .geometry-page .practice-feedback {
+      margin-top: 17px;
+      padding: 13px 14px;
+      border: 1px solid var(--geo-line);
+      border-radius: 10px;
+      color: var(--geo-muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .geometry-page .practice-feedback:empty {
+      display: none;
+    }
+
+    .geometry-page .practice-feedback.success {
+      border-color: #86c9a0;
+      color: var(--color-text);
+    }
+
+    .geometry-page .practice-feedback.hint {
+      background: var(--geo-alt);
+    }
+
+    .geometry-page .practice-feedback.error {
+      border-color: #e8b5a8;
+      color: var(--color-text);
+    }
+
+    .geometry-page .lesson-aside {
+      position: sticky;
+      top: 75px;
+      display: grid;
+      gap: 15px;
+    }
+
+    .geometry-page .aside-card {
+      padding: 18px;
+      border: 1px solid var(--geo-line);
+      border-radius: 14px;
+      background: var(--geo-panel);
+    }
+
+    .geometry-page .aside-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 12px;
+      font-size: 0.88rem;
+      font-weight: 750;
+    }
+
+    .geometry-page .aside-icon {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      border-radius: 9px;
+      background: var(--geo-soft);
+      color: var(--geo-accent);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .geometry-page .aside-card p {
+      margin: 0;
+      color: var(--geo-muted);
+      font-size: 0.83rem;
+      line-height: 1.8;
+    }
+
+    .geometry-page .aside-formula {
+      margin-top: 12px;
+      padding: 11px;
+      border-radius: 9px;
+      background: var(--geo-alt);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .geometry-page .lesson-checklist {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .geometry-page .lesson-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      color: var(--geo-muted);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .geometry-page .check-mark {
+      flex: 0 0 auto;
+      color: var(--geo-accent);
+      font-weight: 800;
+    }
+
+    .geometry-page .lesson-end {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+      margin-top: 15px;
+    }
+
+    .geometry-page .lesson-end-link {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--geo-line);
+      border-radius: 13px;
+      background: var(--geo-panel);
+      text-decoration: none;
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+
+    .geometry-page .lesson-end-link:hover {
+      border-color: var(--geo-accent);
+      transform: translateY(-2px);
+    }
+
+    .geometry-page .lesson-end-label {
+      color: var(--geo-muted);
+      font-size: 0.75rem;
+    }
+
+    .geometry-page .lesson-end-title {
+      font-size: 0.91rem;
+      font-weight: 750;
+      line-height: 1.5;
+    }
+
+    .geometry-page .lesson-end-link.next {
+      text-align: right;
+    }
+
+    @media (max-width: 850px) {
+      .geometry-page .lesson-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 25px;
+      }
+
+      .geometry-page .lesson-aside {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .geometry-page .lesson-aside .aside-card:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .geometry-page .lesson-container {
+        width: min(100% - 28px, 1080px);
+      }
+
+      .geometry-page .lesson-intro {
+        padding-top: 26px;
+      }
+
+      .geometry-page .breadcrumb {
+        margin-bottom: 22px;
+        font-size: 0.77rem;
+      }
+
+      .geometry-page .lesson-title {
+        font-size: clamp(2.3rem, 12vw, 3.4rem);
+      }
+
+      .geometry-page .lesson-meta {
+        gap: 10px 15px;
+      }
+
+      .geometry-page .lesson-nav a {
+        padding: 9px 11px;
+      }
+
+      .geometry-page .lesson-layout {
+        padding-top: 29px;
+      }
+
+      .geometry-page .lesson-section {
+        margin-bottom: 43px;
+      }
+
+      .geometry-page .shape-grid {
+        gap: 9px;
+      }
+
+      .geometry-page .shape-card {
+        padding: 14px;
+      }
+
+      .geometry-page .explorer-body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+        padding: 17px;
+      }
+
+      .geometry-page .shape-visual {
+        min-height: 210px;
+      }
+
+      .geometry-page .shape-results {
+        padding: 0 17px 17px;
+      }
+
+      .geometry-page .result-explanation {
+        padding: 0 17px 17px;
+      }
+
+      .geometry-page .lab-footer {
+        padding: 14px 17px;
+      }
+
+      .geometry-page .practice-card {
+        padding: 17px;
+      }
+
+      .geometry-page .practice-answer-row {
+        flex-direction: column;
+      }
+
+      .geometry-page .practice-answer-row .primary-button {
+        min-height: 44px;
+      }
+
+      .geometry-page .lesson-aside {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .geometry-page .lesson-aside .aside-card:last-child {
+        grid-column: auto;
+      }
+
+      .geometry-page .lesson-end {
+        gap: 9px;
+      }
+
+      .geometry-page .lesson-end-link {
+        padding: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .geometry-page *,
+      .geometry-page *::before,
+      .geometry-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="geometry-page">
+    <header class="site-header">
+      <div class="header-inner container">
+        <a class="brand" href="../../../index.html" aria-label="Your Answer home">
+          <span class="brand-mark">Y</span>
+          <span class="brand-name">Your Answer</span>
+        </a>
+
+        <nav class="top-nav" aria-label="Main navigation">
+          <a href="../../index.html">Subjects</a>
+          <a href="../../../explore-3d/">Explore 3D</a>
+          <a href="../../../labs/">Labs</a>
+          <a href="../../../coding/">Coding</a>
+        </nav>
+
+        <div class="header-actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Toggle light and dark theme"
+          >
+            <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+            <span class="theme-toggle-label">Theme</span>
+          </button>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            data-menu-toggle
+            aria-label="Open navigation menu"
+            aria-controls="mobile-nav"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/">Explore 3D</a>
+        <a href="../../../labs/">Labs</a>
+        <a href="../../../coding/">Coding</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="lesson-intro">
+        <div class="lesson-container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Subjects</a>
+            <span aria-hidden="true">/</span>
+            <a href="../index.html">Mathematics</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Geometry</span>
+          </nav>
+
+          <div class="lesson-kicker">
+            <span>Mathematics</span>
+            <span aria-hidden="true">/</span>
+            <span>Geometry</span>
+            <span class="lesson-number">Lesson 03</span>
+          </div>
+
+          <h1 class="lesson-title">See the mathematics of space.</h1>
+
+          <p class="lesson-lead">
+            Geometry explores shapes, sizes, angles, and the space around us.
+            Learn how to describe figures, measure their boundaries, and
+            calculate the area they cover.
+          </p>
+
+          <div class="lesson-meta">
+            <span><span class="meta-dot"></span>Beginner</span>
+            <span>About 10 minutes</span>
+            <span>Diagrams + interactive explorer</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="lesson-nav-wrap">
+        <nav class="lesson-nav lesson-container" aria-label="Lesson sections">
+          <a class="active" href="#concept"><span class="nav-index">01</span> Shapes</a>
+          <a href="#measurement"><span class="nav-index">02</span> Measurement</a>
+          <a href="#explore"><span class="nav-index">03</span> Shape explorer</a>
+          <a href="#practice"><span class="nav-index">04</span> Practice</a>
+        </nav>
+      </div>
+
+      <div class="lesson-container lesson-layout">
+        <article class="lesson-content">
+
+          <section class="lesson-section" id="concept">
+            <div class="section-label">01 — The foundations</div>
+            <h2 class="section-title">Shapes tell us about space.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Geometry gives us a mathematical language for describing
+                objects and spaces. A shape can have edges, vertices, angles,
+                curved boundaries, or a combination of these features.
+              </p>
+              <p>
+                Start with a few familiar two-dimensional shapes.
+              </p>
+            </div>
+
+            <div class="shape-grid">
+              <div class="shape-card">
+                <div class="shape-symbol" aria-hidden="true">□</div>
+                <h3>Square</h3>
+                <p>Four equal sides and four right angles.</p>
+              </div>
+
+              <div class="shape-card">
+                <div class="shape-symbol" aria-hidden="true">▭</div>
+                <h3>Rectangle</h3>
+                <p>Opposite sides are equal and all angles are right angles.</p>
+              </div>
+
+              <div class="shape-card">
+                <div class="shape-symbol" aria-hidden="true">△</div>
+                <h3>Triangle</h3>
+                <p>Three sides. Its interior angles add up to 180°.</p>
+              </div>
+
+              <div class="shape-card">
+                <div class="shape-symbol" aria-hidden="true">○</div>
+                <h3>Circle</h3>
+                <p>A curved boundary whose points are equally distant from its centre.</p>
+              </div>
+            </div>
+
+            <div class="insight-line">
+              <span class="insight-mark" aria-hidden="true">↳</span>
+              <div>
+                <strong>Look for structure.</strong> A shape is not defined
+                only by its appearance. Its sides, angles, symmetry, and
+                measurements help us describe it precisely.
+              </div>
+            </div>
+          </section>
+
+          <section class="lesson-section" id="measurement">
+            <div class="section-label">02 — Measuring shapes</div>
+            <h2 class="section-title">Perimeter is not area.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Two measurements are especially useful. <strong>Perimeter</strong>
+                measures the distance around a two-dimensional shape.
+                <strong>Area</strong> measures the amount of surface enclosed
+                by its boundary.
+              </p>
+            </div>
+
+            <div class="example-card">
+              <div class="example-top">
+                <strong>Worked example: a rectangle</strong>
+                <span class="example-badge">4 by 3 units</span>
+              </div>
+
+              <div class="example-steps">
+                <div class="example-step">
+                  <span class="step-number">1</span>
+                  <div class="step-body">
+                    <strong>Identify the dimensions</strong>
+                    <p>The rectangle has length 4 units and width 3 units.</p>
+                    <span class="step-equation">l = 4, w = 3</span>
+                  </div>
+                </div>
+
+                <div class="example-step">
+                  <span class="step-number">2</span>
+                  <div class="step-body">
+                    <strong>Calculate the perimeter</strong>
+                    <p>Add all four sides, or double the sum of length and width.</p>
+                    <span class="step-equation">P = 2(4 + 3) = 14</span>
+                  </div>
+                </div>
+
+                <div class="example-step">
+                  <span class="step-number">3</span>
+                  <div class="step-body">
+                    <strong>Calculate the area</strong>
+                    <p>Multiply the length by the width.</p>
+                    <span class="step-equation">A = 4 × 3 = 12</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="formula-display">
+              <div class="math">A = l × w</div>
+              <div class="formula-note">
+                Rectangle area = length × width
+              </div>
+            </div>
+
+            <div class="lesson-copy">
+              <p>
+                The rectangle's perimeter is <strong>14 units</strong>,
+                while its area is <strong>12 square units</strong>.
+                Notice that perimeter and area use different kinds of units:
+                ordinary units for length and square units for area.
+              </p>
+            </div>
+
+            <div class="insight-line">
+              <span class="insight-mark" aria-hidden="true">!</span>
+              <div>
+                A perimeter answers “how far around?” An area answers
+                “how much surface?” Never confuse the two.
+              </div>
+            </div>
+          </section>
+
+          <section class="lesson-section" id="explore">
+            <div class="section-label">03 — Experiment</div>
+            <h2 class="section-title">Change a shape. Discover what changes.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Choose a rectangle, circle, or right triangle. Adjust the
+                dimensions and compare the area with the perimeter. The
+                diagram and calculations update as you experiment.
+              </p>
+            </div>
+
+            <div class="interactive-panel">
+              <div class="interactive-heading">
+                <h3>Interactive shape explorer</h3>
+                <p>
+                  Enter positive dimensions. The diagram is illustrative;
+                  the displayed calculations use your exact values.
+                </p>
+              </div>
+
+              <div class="explorer-body">
+                <div>
+                  <div class="input-group">
+                    <label for="shape-type">Choose a shape</label>
+                    <select id="shape-type">
+                      <option value="rectangle">Rectangle</option>
+                      <option value="circle">Circle</option>
+                      <option value="triangle">Right triangle</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group">
+                    <label id="dimension-a-label" for="dimension-a">Length</label>
+                    <input
+                      type="number"
+                      id="dimension-a"
+                      value="8"
+                      min="0.01"
+                      max="100000"
+                      step="any"
+                      inputmode="decimal"
+                    >
+                    <span class="input-help" id="dimension-a-help">
+                      The longer side of the rectangle.
+                    </span>
+                  </div>
+
+                  <div class="input-group">
+                    <label id="dimension-b-label" for="dimension-b">Width</label>
+                    <input
+                      type="number"
+                      id="dimension-b"
+                      value="4"
+                      min="0.01"
+                      max="100000"
+                      step="any"
+                      inputmode="decimal"
+                    >
+                    <span class="input-help" id="dimension-b-help">
+                      The shorter side of the rectangle.
+                    </span>
+                  </div>
+                </div>
+
+                <figure class="shape-visual">
+                  <svg
+                    id="shape-diagram"
+                    viewBox="0 0 300 200"
+                    role="img"
+                    aria-label="Rectangle diagram showing length and width"
+                  >
+                    <rect
+                      x="65" y="42" width="170" height="100"
+                      rx="2"
+                      fill="#8176ee"
+                      fill-opacity="0.16"
+                      stroke="#8176ee"
+                      stroke-width="2.5"
+                    />
+                    <text x="150" y="165" text-anchor="middle"
+                      fill="currentColor" font-size="12">Length</text>
+                    <text x="150" y="92" text-anchor="middle"
+                      fill="currentColor" font-size="13">Area</text>
+                    <text x="45" y="95" text-anchor="middle"
+                      fill="currentColor" font-size="12"
+                      transform="rotate(-90 45 95)">Width</text>
+                  </svg>
+                  <figcaption id="shape-caption">
+                    A rectangle has four right angles.
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div class="shape-results">
+                <div class="result-card">
+                  <span class="result-label" id="area-label">Area</span>
+                  <div class="result-value" id="area-value">32</div>
+                </div>
+
+                <div class="result-card">
+                  <span class="result-label" id="perimeter-label">Perimeter</span>
+                  <div class="result-value" id="perimeter-value">24</div>
+                </div>
+              </div>
+
+              <p class="result-explanation" id="shape-explanation" aria-live="polite">
+                Area = length × width. Perimeter = 2 × (length + width).
+              </p>
+
+              <div class="lab-footer">
+                <p>Try doubling one dimension and observe the result.</p>
+                <button class="text-button" type="button" id="reset-shape">
+                  Reset shape
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="lesson-section" id="practice">
+            <div class="section-label">04 — Check your understanding</div>
+            <h2 class="section-title">Solve these geometry questions.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Read each question carefully. Pay attention to whether it
+                asks for a perimeter, area, or angle.
+              </p>
+            </div>
+
+            <div class="practice-card">
+              <div class="practice-progress">
+                <span id="practice-count">Question 1 of 3</span>
+                <span id="practice-score">0 correct</span>
+              </div>
+
+              <div
+                class="progress-track"
+                id="practice-progress"
+                role="progressbar"
+                aria-label="Practice questions completed"
+                aria-valuemin="0"
+                aria-valuemax="3"
+                aria-valuenow="0"
+              >
+                <div class="progress-fill" id="practice-progress-fill"></div>
+              </div>
+
+              <h3 class="practice-question" id="practice-question">
+                A rectangle is 6 units long and 3 units wide. What is its area?
+              </h3>
+
+              <p class="practice-instruction" id="practice-instruction">
+                Enter the numerical answer.
+              </p>
+
+              <form id="practice-form">
+                <div class="practice-answer-row">
+                  <input
+                    type="number"
+                    id="practice-answer"
+                    step="any"
+                    inputmode="decimal"
+                    placeholder="Your answer"
+                    aria-label="Your answer"
+                    required
+                  >
+                  <button class="primary-button" type="submit">
+                    Check answer
+                  </button>
+                </div>
+              </form>
+
+              <div class="practice-actions">
+                <button class="secondary-button" type="button" id="show-hint">
+                  Show hint
+                </button>
+
+                <button
+                  class="secondary-button"
+                  type="button"
+                  id="next-question"
+                  hidden
+                >
+                  Next question →
+                </button>
+
+                <button
+                  class="secondary-button"
+                  type="button"
+                  id="restart-practice"
+                  hidden
+                >
+                  Try again
+                </button>
+              </div>
+
+              <div
+                class="practice-feedback"
+                id="practice-feedback"
+                role="status"
+                aria-live="polite"
+              ></div>
+            </div>
+          </section>
+
+          <section class="lesson-section" id="lesson-finish">
+            <div class="section-label">Keep learning</div>
+            <h2 class="section-title">From flat shapes to deeper ideas.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Geometry begins with simple shapes but extends to coordinate
+                systems, transformations, proofs, and three-dimensional
+                objects. Once you understand how dimensions affect area and
+                perimeter, you are ready to explore more complex relationships.
+              </p>
+            </div>
+
+            <div class="lesson-end">
+              <a class="lesson-end-link" href="arithmetic.html">
+                <span class="lesson-end-label">← Previous lesson</span>
+                <span class="lesson-end-title">Arithmetic</span>
+              </a>
+
+              <a class="lesson-end-link next" href="calculus.html">
+                <span class="lesson-end-label">Explore next →</span>
+                <span class="lesson-end-title">Calculus</span>
+              </a>
+            </div>
+          </section>
+        </article>
+
+        <aside class="lesson-aside" aria-label="Learning notes">
+          <div class="aside-card">
+            <h3 class="aside-heading">
+              <span class="aside-icon" aria-hidden="true">□</span>
+              Quick reference
+            </h3>
+            <p>
+              The area of a rectangle measures its surface. Its perimeter
+              measures the total distance around the boundary.
+            </p>
+            <div class="aside-formula">A = l × w</div>
+          </div>
+
+          <div class="aside-card">
+            <h3 class="aside-heading">
+              <span class="aside-icon" aria-hidden="true">✓</span>
+              Learning goals
+            </h3>
+            <ul class="lesson-checklist">
+              <li><span class="check-mark">✓</span>Recognise common two-dimensional shapes.</li>
+              <li><span class="check-mark">✓</span>Distinguish area from perimeter.</li>
+              <li><span class="check-mark">✓</span>Apply formulas to calculate measurements.</li>
+            </ul>
+          </div>
+
+          <div class="aside-card">
+            <h3 class="aside-heading">
+              <span class="aside-icon" aria-hidden="true">i</span>
+              Units matter
+            </h3>
+            <p>
+              If lengths are measured in centimetres, perimeter is measured
+              in centimetres and area in square centimetres.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const page = document.querySelector(".geometry-page");
+      if (!page) return;
+
+      /* Compact lesson navigation. */
+
+      const sectionLinks = Array.from(
+        page.querySelectorAll(".lesson-nav a")
+      );
+
+      const sections = sectionLinks
+        .map(function (link) {
+          return page.querySelector(link.getAttribute("href"));
+        })
+        .filter(Boolean);
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          function (entries) {
+            const visible = entries
+              .filter(function (entry) {
+                return entry.isIntersecting;
+              })
+              .sort(function (a, b) {
+                return a.boundingClientRect.top - b.boundingClientRect.top;
+              });
+
+            if (!visible.length) return;
+
+            const activeId = "#" + visible[0].target.id;
+
+            sectionLinks.forEach(function (link) {
+              const active = link.getAttribute("href") === activeId;
+              link.classList.toggle("active", active);
+
+              if (active) {
+                link.setAttribute("aria-current", "location");
+              } else {
+                link.removeAttribute("aria-current");
+              }
+            });
+          },
+          {
+            rootMargin: "-18% 0px -68% 0px",
+            threshold: 0
+          }
+        );
+
+        sections.forEach(function (section) {
+          observer.observe(section);
+        });
+      }
+
+      /* Interactive shape explorer. */
+
+      const shapeType = page.querySelector("#shape-type");
+      const dimensionA = page.querySelector("#dimension-a");
+      const dimensionB = page.querySelector("#dimension-b");
+      const dimensionALabel = page.querySelector("#dimension-a-label");
+      const dimensionBLabel = page.querySelector("#dimension-b-label");
+      const dimensionAHelp = page.querySelector("#dimension-a-help");
+      const dimensionBHelp = page.querySelector("#dimension-b-help");
+      const diagram = page.querySelector("#shape-diagram");
+      const caption = page.querySelector("#shape-caption");
+      const areaLabel = page.querySelector("#area-label");
+      const perimeterLabel = page.querySelector("#perimeter-label");
+      const areaValue = page.querySelector("#area-value");
+      const perimeterValue = page.querySelector("#perimeter-value");
+      const shapeExplanation = page.querySelector("#shape-explanation");
+      const resetShape = page.querySelector("#reset-shape");
+
+      const defaults = {
+        rectangle: [8, 4],
+        circle: [5, 1],
+        triangle: [3, 4]
+      };
+
+      function fmt(value) {
+        if (!Number.isFinite(value)) return "—";
+        if (Object.is(value, -0)) value = 0;
+
+        return String(Math.round(value * 1000000) / 1000000);
+      }
+
+      function readDimension(input) {
+        const value = Number(input.value);
+
+        if (
+          input.value.trim() === "" ||
+          !Number.isFinite(value) ||
+          value <= 0 ||
+          value > 100000
+        ) {
+          return null;
+        }
+
+        return value;
+      }
+
+      function svgElement(name, attributes) {
+        const element = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          name
+        );
+
+        Object.keys(attributes).forEach(function (key) {
+          element.setAttribute(key, attributes[key]);
+        });
+
+        return element;
+      }
+
+      function drawShape(type, a, b) {
+        diagram.replaceChildren();
+
+        diagram.setAttribute("viewBox", "0 0 300 200");
+
+        const fill = "#8176ee";
+        const stroke = "#8176ee";
+
+        function addLabel(text, x, y, anchor) {
+          const label = svgElement("text", {
+            x: x,
+            y: y,
+            "text-anchor": anchor || "middle",
+            "font-size": "12",
+            fill: "currentColor"
+          });
+
+          label.textContent = text;
+          diagram.appendChild(label);
+        }
+
+        if (type === "rectangle") {
+          const scale = Math.min(170 / a, 100 / b);
+          const width = a * scale;
+          const height = b * scale;
+          const x = (300 - width) / 2;
+          const y = (155 - height) / 2 + 4;
+
+          diagram.appendChild(svgElement("rect", {
+            x: x,
+            y: y,
+            width: width,
+            height: height,
+            rx: 2,
+            fill: fill,
+            "fill-opacity": "0.16",
+            stroke: stroke,
+            "stroke-width": "2.5"
+          }));
+
+          addLabel(fmt(a), 150, Math.min(184, y + height + 23), "middle");
+          addLabel(fmt(b), Math.max(12, x - 12), y + height / 2, "end");
+          addLabel("Rectangle", 150, 19, "middle");
+        }
+
+        if (type === "circle") {
+          const radius = 66;
+
+          diagram.appendChild(svgElement("circle", {
+            cx: 150,
+            cy: 95,
+            r: radius,
+            fill: fill,
+            "fill-opacity": "0.16",
+            stroke: stroke,
+            "stroke-width": "2.5"
+          }));
+
+          diagram.appendChild(svgElement("line", {
+            x1: 150,
+            y1: 95,
+            x2: 150 + radius,
+            y2: 95,
+            stroke: stroke,
+            "stroke-width": "2",
+            "stroke-dasharray": "5 4"
+          }));
+
+          diagram.appendChild(svgElement("circle", {
+            cx: 150,
+            cy: 95,
+            r: 3.5,
+            fill: stroke
+          }));
+
+          addLabel("r = " + fmt(a), 185, 86, "middle");
+          addLabel("Circle", 150, 19, "middle");
+        }
+
+        if (type === "triangle") {
+          const scale = Math.min(170 / a, 115 / b);
+          const width = a * scale;
+          const height = b * scale;
+          const x = (300 - width) / 2;
+          const y = 153;
+
+          const points = [
+            x + "," + y,
+            x + width + "," + y,
+            x + "," + (y - height)
+          ].join(" ");
+
+          diagram.appendChild(svgElement("polygon", {
+            points: points,
+            fill: fill,
+            "fill-opacity": "0.16",
+            stroke: stroke,
+            "stroke-width": "2.5",
+            "stroke-linejoin": "round"
+          }));
+
+          diagram.appendChild(svgElement("path", {
+            d: "M " + x + " " + (y - 12) +
+              " L " + x + " " + y +
+              " L " + (x + 12) + " " + y,
+            fill: "none",
+            stroke: stroke,
+            "stroke-width": "1.5"
+          }));
+
+          addLabel(fmt(a), x + width / 2, y + 20, "middle");
+          addLabel(fmt(b), Math.max(12, x - 10), y - height / 2, "end");
+          addLabel("Right triangle", 150, 19, "middle");
+        }
+      }
+
+      function updateShape() {
+        const type = shapeType.value;
+        const a = readDimension(dimensionA);
+        const b = type === "circle" ? null : readDimension(dimensionB);
+
+        if (type === "rectangle") {
+          dimensionALabel.textContent = "Length";
+          dimensionBLabel.textContent = "Width";
+          dimensionAHelp.textContent = "The rectangle's horizontal dimension.";
+          dimensionBHelp.textContent = "The rectangle's vertical dimension.";
+          dimensionB.disabled = false;
+          areaLabel.textContent = "Area";
+          perimeterLabel.textContent = "Perimeter";
+        } else if (type === "circle") {
+          dimensionALabel.textContent = "Radius";
+          dimensionBLabel.textContent = "Not used for a circle";
+          dimensionAHelp.textContent = "The distance from the centre to the boundary.";
+          dimensionBHelp.textContent = "Only the radius is needed.";
+          dimensionB.disabled = true;
+          areaLabel.textContent = "Area";
+          perimeterLabel.textContent = "Circumference";
+        } else {
+          dimensionALabel.textContent = "Base";
+          dimensionBLabel.textContent = "Height";
+          dimensionAHelp.textContent = "The horizontal leg of the right triangle.";
+          dimensionBHelp.textContent = "The vertical leg of the right triangle.";
+          dimensionB.disabled = false;
+          areaLabel.textContent = "Area";
+          perimeterLabel.textContent = "Perimeter";
+        }
+
+        if (a === null || (type !== "circle" && b === null)) {
+          areaValue.textContent = "—";
+          perimeterValue.textContent = "—";
+          shapeExplanation.textContent =
+            "Enter positive dimensions no greater than 100,000 to calculate the measurements.";
+          caption.textContent = "Enter valid dimensions to update the diagram.";
+          diagram.replaceChildren();
+          return;
+        }
+
+        if (type === "rectangle") {
+          const area = a * b;
+          const perimeter = 2 * (a + b);
+
+          areaValue.textContent = fmt(area) + " square units";
+          perimeterValue.textContent = fmt(perimeter) + " units";
+
+          shapeExplanation.textContent =
+            "Area = " + fmt(a) + " × " + fmt(b) + " = " + fmt(area) +
+            ". Perimeter = 2 × (" + fmt(a) + " + " + fmt(b) +
+            ") = " + fmt(perimeter) + ".";
+
+          caption.textContent = "The diagram represents a rectangle.";
+          drawShape(type, a, b);
+        }
+
+        if (type === "circle") {
+          const area = Math.PI * a * a;
+          const circumference = 2 * Math.PI * a;
+
+          areaValue.textContent = fmt(area) + " square units";
+          perimeterValue.textContent = fmt(circumference) + " units";
+
+          shapeExplanation.textContent =
+            "Area = πr² = π × " + fmt(a) + "² ≈ " + fmt(area) +
+            ". Circumference = 2πr ≈ " + fmt(circumference) + ".";
+
+          caption.textContent =
+            "The dashed line represents the radius.";
+          drawShape(type, a, 0);
+        }
+
+        if (type === "triangle") {
+          const hypotenuse = Math.hypot(a, b);
+          const area = a * b / 2;
+          const perimeter = a + b + hypotenuse;
+
+          areaValue.textContent = fmt(area) + " square units";
+          perimeterValue.textContent = fmt(perimeter) + " units";
+
+          shapeExplanation.textContent =
+            "Area = ½ × base × height = ½ × " + fmt(a) + " × " +
+            fmt(b) + " = " + fmt(area) +
+            ". The hypotenuse ≈ " + fmt(hypotenuse) +
+            ", so the perimeter ≈ " + fmt(perimeter) + ".";
+
+          caption.textContent =
+            "This is a right triangle; its two legs meet at 90°.";
+          drawShape(type, a, b);
+        }
+      }
+
+      shapeType.addEventListener("change", function () {
+        const values = defaults[shapeType.value];
+
+        dimensionA.value = values[0];
+        dimensionB.value = values[1];
+
+        updateShape();
+      });
+
+      dimensionA.addEventListener("input", updateShape);
+      dimensionB.addEventListener("input", updateShape);
+
+      resetShape.addEventListener("click", function () {
+        const values = defaults[shapeType.value];
+
+        dimensionA.value = values[0];
+        dimensionB.value = values[1];
+
+        updateShape();
+      });
+
+      updateShape();
+
+      /* Guided practice. */
+
+      const questions = [
+        {
+          text: "A rectangle is 6 units long and 3 units wide. What is its area?",
+          hint: "Multiply the length by the width.",
+          answer: 18,
+          solution: "Area = length × width = 6 × 3 = 18 square units."
+        },
+        {
+          text: "A square has sides of 5 units. What is its perimeter?",
+          hint: "A square has four equal sides. Add all four sides.",
+          answer: 20,
+          solution: "Perimeter = 4 × side = 4 × 5 = 20 units."
+        },
+        {
+          text: "Two angles in a triangle are 50° and 60°. What is the third angle?",
+          hint: "The interior angles of a triangle add up to 180°.",
+          answer: 70,
+          solution: "The third angle is 180° − 50° − 60° = 70°."
+        }
+      ];
+
+      const form = page.querySelector("#practice-form");
+      const answerInput = page.querySelector("#practice-answer");
+      const questionTitle = page.querySelector("#practice-question");
+      const instruction = page.querySelector("#practice-instruction");
+      const countLabel = page.querySelector("#practice-count");
+      const scoreLabel = page.querySelector("#practice-score");
+      const progress = page.querySelector("#practice-progress");
+      const progressFill = page.querySelector("#practice-progress-fill");
+      const feedback = page.querySelector("#practice-feedback");
+      const hintButton = page.querySelector("#show-hint");
+      const nextButton = page.querySelector("#next-question");
+      const restartButton = page.querySelector("#restart-practice");
+
+      let current = 0;
+      let correct = 0;
+      let completed = 0;
+      let answered = false;
+
+      function setFeedback(message, type) {
+        feedback.textContent = message;
+        feedback.className = "practice-feedback";
+
+        if (type) feedback.classList.add(type);
+      }
+
+      function updateProgress() {
+        countLabel.textContent = current < questions.length
+          ? "Question " + (current + 1) + " of " + questions.length
+          : "Practice complete";
+
+        scoreLabel.textContent = correct + " correct";
+        progress.setAttribute("aria-valuenow", String(completed));
+
+        progressFill.style.width =
+          (completed / questions.length * 100) + "%";
+      }
+
+      function showQuestion() {
+        if (current >= questions.length) {
+          questionTitle.textContent = "Practice complete.";
+          instruction.textContent =
+            "You answered " + correct + " out of " +
+            questions.length + " questions correctly on your first check.";
+
+          form.hidden = true;
+          hintButton.hidden = true;
+          nextButton.hidden = true;
+          restartButton.hidden = false;
+
+          setFeedback(
+            correct === questions.length
+              ? "Excellent work. All three answers were correct on the first check."
+              : "Good effort. Review the explanations and try again to strengthen your understanding.",
+            "success"
+          );
+
+          updateProgress();
+          return;
+        }
+
+        const item = questions[current];
+
+        questionTitle.textContent = item.text;
+        instruction.textContent = "Enter the numerical answer.";
+        answerInput.value = "";
+        answerInput.disabled = false;
+        form.hidden = false;
+        hintButton.hidden = false;
+        nextButton.hidden = true;
+        restartButton.hidden = true;
+        answered = false;
+
+        setFeedback("", "");
+        updateProgress();
+        answerInput.focus();
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (answered) return;
+
+        const raw = answerInput.value.trim();
+
+        if (raw === "" || !Number.isFinite(Number(raw))) {
+          setFeedback("Enter a valid number before checking your answer.", "error");
+          answerInput.focus();
+          return;
+        }
+
+        const submitted = Number(raw);
+        const item = questions[current];
+        const isCorrect = Math.abs(submitted - item.answer) < 0.000001;
+
+        answered = true;
+        completed += 1;
+        answerInput.disabled = true;
+
+        if (isCorrect) {
+          correct += 1;
+          setFeedback("Correct! " + item.solution, "success");
+        } else {
+          setFeedback("Not quite. " + item.solution, "error");
+        }
+
+        hintButton.hidden = true;
+        nextButton.hidden = false;
+        nextButton.textContent =
+          current === questions.length - 1
+            ? "See results →"
+            : "Next question →";
+
+        updateProgress();
+      });
+
+      hintButton.addEventListener("click", function () {
+        if (current >= questions.length) return;
+        setFeedback("Hint: " + questions[current].hint, "hint");
+      });
+
+      nextButton.addEventListener("click", function () {
+        if (!answered) return;
+
+        current += 1;
+        showQuestion();
+      });
+
+      restartButton.addEventListener("click", function () {
+        current = 0;
+        correct = 0;
+        completed = 0;
+        answered = false;
+        showQuestion();
+      });
+
+      showQuestion();
+    })();
+  </script>
+</body>
+</html>

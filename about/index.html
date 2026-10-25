@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about Your Answer, an educational platform for exploring subjects, interactive 3D models, virtual labs, and coding.">
+  <title>About | Your Answer</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .about-hero {
+      padding: 64px 0 48px;
+      max-width: 850px;
+    }
+
+    .about-eyebrow {
+      color: var(--color-brand);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .about-hero h1 {
+      font-size: clamp(2.3rem, 6vw, 4.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin: 16px 0 20px;
+    }
+
+    .about-lead {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--color-text-muted);
+      max-width: 680px;
+    }
+
+    .about-section {
+      padding: 32px 0;
+      max-width: 850px;
+    }
+
+    .about-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 14px;
+    }
+
+    .about-section p {
+      line-height: 1.85;
+      color: var(--color-text-muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .about-card {
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 22px;
+      background: var(--color-surface);
+    }
+
+    .about-card .about-icon {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+    }
+
+    .about-card h3 {
+      margin: 0 0 8px;
+    }
+
+    .about-card p {
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .about-cta {
+      margin: 36px 0 60px;
+      padding: 30px;
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      background: var(--color-surface);
+    }
+
+    .about-cta h2 {
+      margin-top: 0;
+    }
+
+    .about-cta p {
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .about-cta a {
+      display: inline-block;
+      margin: 8px 12px 0 0;
+      color: var(--color-brand);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .about-cta a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../subjects/">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+        <a href="../search.html">Search</a>
+      </nav>
+
+      <div class="header-actions">
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+      </div>
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="../subjects/">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../search.html">Search</a>
+      <a href="./">About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="about-hero">
+      <div class="about-eyebrow">About Your Answer</div>
+      <h1>Curiosity deserves more than a quick answer.</h1>
+      <p class="about-lead">
+        Your Answer is an educational platform built around a simple idea:
+        learning becomes more meaningful when you can explore a concept,
+        understand how it works, and experiment with it yourself.
+      </p>
+    </section>
+
+    <section class="about-section">
+      <h2>Why Your Answer exists</h2>
+      <p>
+        Sometimes reading a definition is not enough. A diagram can make
+        an idea clearer, a three-dimensional model can make it easier to
+        imagine, and an interactive experiment can show what happens when
+        you change a variable.
+      </p>
+      <p>
+        Your Answer brings these approaches together in one place, helping
+        learners move beyond memorising information and towards understanding
+        the ideas behind it.
+      </p>
+    </section>
+
+    <section class="about-section">
+      <h2>One platform, different ways to learn</h2>
+      <p>
+        Explore a subject, visualise a scientific idea, test a simulation,
+        or write your first lines of code. Each part of the platform offers
+        a different way to approach learning.
+      </p>
+
+      <div class="about-grid">
+        <article class="about-card">
+          <div class="about-icon" aria-hidden="true">📚</div>
+          <h3>Learn</h3>
+          <p>
+            Explore mathematics, physics, chemistry, computer science,
+            and other subjects through organised learning resources.
+          </p>
+        </article>
+
+        <article class="about-card">
+          <div class="about-icon" aria-hidden="true">🧊</div>
+          <h3>Visualise</h3>
+          <p>
+            Use interactive 3D models to explore shapes, motion, waves,
+            atoms, molecules, and other concepts.
+          </p>
+        </article>
+
+        <article class="about-card">
+          <div class="about-icon" aria-hidden="true">🧪</div>
+          <h3>Experiment</h3>
+          <p>
+            Investigate scientific principles through virtual labs
+            and simulations you can control.
+          </p>
+        </article>
+
+        <article class="about-card">
+          <div class="about-icon" aria-hidden="true">💻</div>
+          <h3>Create</h3>
+          <p>
+            Practise coding in the browser, experiment with code,
+            and see the results of your work.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <h2>Our approach</h2>
+      <p>
+        Learning should encourage questions, not discourage them.
+        Your Answer aims to make complex ideas easier to approach
+        while leaving room for deeper exploration.
+      </p>
+      <p>
+        The goal is not simply to provide an answer. It is to help
+        you understand why that answer makes sense—and inspire you
+        to ask the next question.
+      </p>
+    </section>
+
+    <section class="about-cta">
+      <h2>Start exploring</h2>
+      <p>
+        Choose a subject, open a model, try an experiment, or build
+        something with code. Your next discovery can begin anywhere.
+      </p>
+      <a href="../subjects/">Explore subjects →</a>
+      <a href="../explore-3d/">Discover 3D models →</a>
+      <a href="../labs/">Enter virtual labs →</a>
+      <a href="../search.html">Search resources →</a>
+    </section>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

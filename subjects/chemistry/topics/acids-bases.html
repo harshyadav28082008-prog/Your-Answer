@@ -1,0 +1,483 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn acids and bases, pH, pOH, acid strength, neutralisation, indicators and acid-base calculations.">
+  <title>Acids and Bases | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .chemistry-lesson{max-width:1120px;margin:0 auto;padding:32px 20px 64px}
+    .lesson-breadcrumb{color:var(--color-text-muted);font-size:.9rem;margin-bottom:22px}
+    .lesson-breadcrumb a,.lesson-section a{color:var(--color-brand)}
+    .lesson-hero{padding:34px;border:1px solid var(--color-border);border-radius:22px;background:var(--color-surface);margin-bottom:28px}
+    .lesson-number{color:var(--color-brand);font-size:.82rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .lesson-hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.12;margin:12px 0}
+    .lesson-hero p,.lesson-section p,.lesson-section li{line-height:1.75;color:var(--color-text-muted)}
+    .lesson-hero p{max-width:720px;font-size:1.05rem}
+    .lesson-layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:28px;align-items:start}
+    .lesson-main{min-width:0}
+    .lesson-section{padding:26px 0;border-bottom:1px solid var(--color-border);scroll-margin-top:24px}
+    .lesson-section:first-child{padding-top:0}
+    .lesson-section h2{font-size:1.55rem;margin:0 0 14px}
+    .lesson-section h3{font-size:1.12rem;margin:22px 0 8px}
+    .lesson-section ul,.lesson-section ol{padding-left:22px}
+    .concept-grid,.formula-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:18px 0}
+    .concept-card,.formula-card,.aside-card{border:1px solid var(--color-border);background:var(--color-surface);border-radius:16px;padding:18px}
+    .concept-card h3,.formula-card h3{margin-top:0}
+    .formula{font-size:1.12rem;font-weight:700;color:var(--color-text);margin:10px 0;overflow-wrap:anywhere}
+    .formula-card p,.concept-card p,.aside-card p{margin-bottom:0;font-size:.94rem}
+    .note-box{border-left:4px solid var(--color-brand);padding:15px 18px;background:var(--color-surface);border-radius:0 12px 12px 0;margin:18px 0}
+    .note-box p{margin:0}
+    .lesson-aside{position:sticky;top:20px;display:grid;gap:16px}
+    .aside-card h3{margin:0 0 12px;font-size:1rem}
+    .aside-card ul{padding-left:18px;margin:0}
+    .aside-card li{margin:9px 0;line-height:1.5;color:var(--color-text-muted);font-size:.9rem}
+    .aside-card a{color:var(--color-brand);text-decoration:none}
+    .aside-card a:hover{text-decoration:underline}
+    .comparison-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.93rem}
+    .comparison-table th,.comparison-table td{border:1px solid var(--color-border);padding:12px;text-align:left;vertical-align:top;line-height:1.6}
+    .comparison-table th{color:var(--color-text);background:var(--color-surface)}
+    .comparison-table td{color:var(--color-text-muted)}
+    .lesson-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:28px}
+    .lesson-bottom a{display:inline-block;border:1px solid var(--color-border);border-radius:12px;padding:12px 16px;color:var(--color-text);text-decoration:none}
+    .lesson-bottom a:hover{border-color:var(--color-brand)}
+    @media(max-width:800px){.lesson-layout{grid-template-columns:1fr}.lesson-aside{position:static;grid-row:1}.contents-card{display:none}}
+    @media(max-width:520px){.chemistry-lesson{padding:22px 15px 44px}.lesson-hero{padding:24px 20px}.concept-grid,.formula-grid{grid-template-columns:1fr}.comparison-table{font-size:.82rem}.comparison-table th,.comparison-table td{padding:8px}}
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="chemistry-lesson">
+    <div class="lesson-breadcrumb">
+      <a href="../../index.html">Subjects</a> /
+      <a href="../index.html">Chemistry</a> /
+      Acids and Bases
+    </div>
+
+    <section class="lesson-hero">
+      <div class="lesson-number">Chemistry · Topic 08</div>
+      <h1>Acids and Bases</h1>
+      <p>
+        From the sour taste of citrus fruits to the cleaning action of bases,
+        acids and bases are part of everyday chemistry. Learn how they behave,
+        how pH measures acidity, and how neutralisation reactions work.
+      </p>
+    </section>
+
+    <div class="lesson-layout">
+      <article class="lesson-main">
+
+        <section class="lesson-section" id="definitions">
+          <h2>1. What are acids and bases?</h2>
+          <p>There are several ways to define acids and bases. Two important models are the Arrhenius and Brønsted–Lowry definitions.</p>
+
+          <div class="concept-grid">
+            <div class="concept-card">
+              <h3>Arrhenius acid</h3>
+              <p>A substance that increases the concentration of H⁺ ions in aqueous solution. More precisely, these protons exist mainly as hydrated ions.</p>
+            </div>
+            <div class="concept-card">
+              <h3>Arrhenius base</h3>
+              <p>A substance that increases the concentration of OH⁻ ions in aqueous solution.</p>
+            </div>
+            <div class="concept-card">
+              <h3>Brønsted–Lowry acid</h3>
+              <p>A proton donor. It transfers an H⁺ ion to another species.</p>
+            </div>
+            <div class="concept-card">
+              <h3>Brønsted–Lowry base</h3>
+              <p>A proton acceptor. It accepts an H⁺ ion from an acid.</p>
+            </div>
+          </div>
+
+          <h3>Examples</h3>
+          <ul>
+            <li>HCl acts as an acid in water.</li>
+            <li>NaOH dissociates to provide OH⁻ ions in water.</li>
+            <li>NH₃ acts as a Brønsted–Lowry base by accepting a proton from water.</li>
+          </ul>
+
+          <div class="formula-card">
+            <h3>Ammonia in water</h3>
+            <div class="formula">NH₃ + H₂O ⇌ NH₄⁺ + OH⁻</div>
+            <p>Ammonia accepts a proton from water. In this reaction, water acts as the acid and ammonia acts as the base.</p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="conjugates">
+          <h2>2. Conjugate acid–base pairs</h2>
+          <p>
+            When a Brønsted–Lowry acid donates a proton, it becomes its
+            conjugate base. When a base accepts a proton, it becomes its
+            conjugate acid.
+          </p>
+
+          <div class="formula-card">
+            <div class="formula">HA + B ⇌ A⁻ + BH⁺</div>
+            <p>HA/A⁻ is one conjugate pair, while B/BH⁺ is the other.</p>
+          </div>
+
+          <p>
+            Conjugate pairs differ by one proton. A stronger acid has a weaker
+            conjugate base, and a weaker acid has a stronger conjugate base,
+            considered in the same solvent and under comparable conditions.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="strong-weak">
+          <h2>3. Strong and weak acids and bases</h2>
+          <p>
+            Strength describes how extensively an acid or base ionises or
+            reacts with the solvent. It is not the same as concentration.
+          </p>
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Behaviour in water</th>
+                <th>Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Strong acid</td>
+                <td>Ionises nearly completely under ordinary dilute aqueous conditions.</td>
+                <td>HCl</td>
+              </tr>
+              <tr>
+                <td>Weak acid</td>
+                <td>Ionises only partially and establishes an equilibrium.</td>
+                <td>CH₃COOH</td>
+              </tr>
+              <tr>
+                <td>Strong base</td>
+                <td>Dissociates extensively to provide basic ions in water.</td>
+                <td>NaOH</td>
+              </tr>
+              <tr>
+                <td>Weak base</td>
+                <td>Reacts partially with water to establish an equilibrium.</td>
+                <td>NH₃</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note-box">
+            <p><strong>Important distinction:</strong> A concentrated weak acid can contain more acid per litre than a dilute strong acid. Strength describes ionisation behaviour; concentration describes the amount present per volume.</p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="ph">
+          <h2>4. Understanding pH</h2>
+          <p>
+            pH is a logarithmic measure related to hydrogen-ion activity.
+            In introductory calculations for dilute aqueous solutions, it is
+            commonly approximated using the molar concentration of H⁺.
+          </p>
+
+          <div class="formula-card">
+            <h3>pH</h3>
+            <div class="formula">pH = −log₁₀[H⁺]</div>
+            <p>For this introductory formula, [H⁺] is expressed in mol L⁻¹ and treated as a numerical concentration relative to the standard concentration.</p>
+          </div>
+
+          <div class="formula-card">
+            <h3>pOH</h3>
+            <div class="formula">pOH = −log₁₀[OH⁻]</div>
+            <p>For dilute aqueous solutions, pOH is similarly calculated from the hydroxide-ion concentration.</p>
+          </div>
+
+          <h3>Relationship between pH and pOH</h3>
+          <div class="formula-card">
+            <div class="formula">pH + pOH = pKᵥ</div>
+            <p>Here pKᵥ is the negative logarithm of the ionic product of water under the specified conditions. At 25°C, pKᵥ is approximately 14.00.</p>
+          </div>
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>At 25°C, approximately</th>
+                <th>Classification</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>pH below 7</td><td>Acidic</td></tr>
+              <tr><td>pH equal to 7</td><td>Neutral</td></tr>
+              <tr><td>pH above 7</td><td>Basic</td></tr>
+            </tbody>
+          </table>
+
+          <p>
+            Neutral pH is temperature-dependent. A pH of 7 is neutral at
+            approximately 25°C, but neutrality does not correspond to pH 7
+            at every temperature.
+          </p>
+
+          <h3>Worked example: pH of a strong acid</h3>
+          <p>Suppose a dilute HCl solution has a concentration of 0.001 mol L⁻¹. Assuming complete ionisation:</p>
+          <ol>
+            <li>[H⁺] ≈ 0.001 = 10⁻³ mol L⁻¹.</li>
+            <li>pH = −log₁₀(10⁻³).</li>
+            <li>Therefore, pH ≈ 3.</li>
+          </ol>
+        </section>
+
+        <section class="lesson-section" id="water">
+          <h2>5. Ionisation of water</h2>
+          <p>
+            Water undergoes a small amount of self-ionisation. The equilibrium
+            can be represented as:
+          </p>
+
+          <div class="formula-card">
+            <div class="formula">2H₂O ⇌ H₃O⁺ + OH⁻</div>
+            <div class="formula">Kᵥ = [H₃O⁺][OH⁻]</div>
+            <p>
+              Kᵥ is the ionic product of water in the usual introductory
+              concentration convention. Its value changes with temperature.
+            </p>
+          </div>
+
+          <p>
+            In neutral water, the activities of H₃O⁺ and OH⁻ are equal.
+            At 25°C, each ion has a concentration of approximately
+            1.0 × 10⁻⁷ mol L⁻¹ in pure water.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="ka-kb">
+          <h2>6. Acid and base dissociation constants</h2>
+          <p>
+            Weak acids and bases establish equilibria in water. Their
+            dissociation constants describe the positions of these equilibria.
+          </p>
+
+          <div class="formula-card">
+            <h3>Acid dissociation constant</h3>
+            <div class="formula">HA + H₂O ⇌ H₃O⁺ + A⁻</div>
+            <div class="formula">Kₐ = [H₃O⁺][A⁻] / [HA]</div>
+            <p>A larger Kₐ generally indicates a stronger acid in the same solvent and under the same conditions.</p>
+          </div>
+
+          <div class="formula-card">
+            <h3>Base dissociation constant</h3>
+            <div class="formula">B + H₂O ⇌ BH⁺ + OH⁻</div>
+            <div class="formula">Kᵦ = [BH⁺][OH⁻] / [B]</div>
+            <p>A larger Kᵦ generally indicates a stronger base under comparable conditions.</p>
+          </div>
+
+          <div class="formula-card">
+            <h3>pK values</h3>
+            <div class="formula">pKₐ = −log₁₀Kₐ</div>
+            <div class="formula">pKᵦ = −log₁₀Kᵦ</div>
+            <p>For a conjugate acid–base pair in water, KₐKᵦ = Kᵥ under the corresponding standard equilibrium conventions. Therefore, pKₐ + pKᵦ = pKᵥ.</p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="neutralisation">
+          <h2>7. Neutralisation reactions</h2>
+          <p>
+            Neutralisation commonly occurs when an acid reacts with a base.
+            In many aqueous reactions involving a strong acid and a strong
+            base, hydrogen ions and hydroxide ions form water.
+          </p>
+
+          <div class="formula-card">
+            <h3>Net ionic equation</h3>
+            <div class="formula">H⁺ + OH⁻ → H₂O</div>
+            <p>This is a simplified representation; in water, the proton is present mainly as a hydrated ion.</p>
+          </div>
+
+          <h3>Example</h3>
+          <div class="formula-card">
+            <div class="formula">HCl + NaOH → NaCl + H₂O</div>
+            <p>Hydrochloric acid reacts with sodium hydroxide to form sodium chloride and water.</p>
+          </div>
+
+          <p>
+            Neutralisation does not always produce a solution with pH 7.
+            The final pH depends on acid and base strengths, their amounts,
+            concentration, and temperature.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="indicators">
+          <h2>8. Indicators and titration</h2>
+          <p>
+            Acid–base indicators are substances that change colour over a
+            particular pH range. They help estimate the acidity of a solution
+            or identify the endpoint of a titration.
+          </p>
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Indicator</th>
+                <th>Acidic colour</th>
+                <th>Basic colour</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Litmus</td>
+                <td>Red</td>
+                <td>Blue</td>
+              </tr>
+              <tr>
+                <td>Phenolphthalein</td>
+                <td>Colourless</td>
+                <td>Pink</td>
+              </tr>
+              <tr>
+                <td>Methyl orange</td>
+                <td>Red</td>
+                <td>Yellow</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            Indicator transition ranges are not identical to the entire acidic
+            or basic pH range. Choose an indicator whose transition range is
+            appropriate for the titration's equivalence region.
+          </p>
+
+          <h3>Acid–base titration calculation</h3>
+          <div class="formula-card">
+            <div class="formula">aMₐVₐ = bMᵦVᵦ</div>
+            <p>
+              For a reaction with stoichiometric coefficients a for the acid
+              and b for the base, this relation applies at equivalence when
+              M is molar concentration and V is volume in consistent units.
+              It assumes the stated reaction stoichiometry.
+            </p>
+          </div>
+
+          <p>
+            For a 1:1 reaction, such as HCl with NaOH, the relationship reduces
+            to MₐVₐ = MᵦVᵦ.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="buffers">
+          <h2>9. Buffer solutions</h2>
+          <p>
+            A buffer solution resists large pH changes when small amounts of
+            acid or base are added. A common buffer contains a weak acid and
+            its conjugate base, or a weak base and its conjugate acid.
+          </p>
+
+          <div class="formula-card">
+            <h3>Henderson–Hasselbalch equation</h3>
+            <div class="formula">pH = pKₐ + log₁₀([A⁻]/[HA])</div>
+            <p>
+              This approximation is useful for a buffer made from a weak acid
+              and its conjugate base when the concentrations are suitable
+              approximations to their activities.
+            </p>
+          </div>
+
+          <ul>
+            <li>Adding a small amount of acid is countered mainly by the conjugate base.</li>
+            <li>Adding a small amount of base is countered mainly by the weak acid.</li>
+            <li>Buffers have a limited capacity; large additions can overwhelm them.</li>
+          </ul>
+        </section>
+
+        <section class="lesson-section" id="summary">
+          <h2>10. Key ideas to remember</h2>
+          <ul>
+            <li>Brønsted–Lowry acids donate protons; bases accept protons.</li>
+            <li>Strong and weak describe ionisation behaviour, not concentration.</li>
+            <li>pH is logarithmic: a one-unit decrease corresponds to a tenfold increase in hydrogen-ion activity.</li>
+            <li>At 25°C, pH + pOH is approximately 14 for dilute aqueous solutions using the usual convention.</li>
+            <li>Kₐ and Kᵦ describe acid and base equilibria.</li>
+            <li>Neutralisation commonly forms water and a salt, but the final pH is not always 7.</li>
+            <li>Indicators have specific transition ranges.</li>
+            <li>Buffers resist pH changes but have limited capacity.</li>
+          </ul>
+        </section>
+
+        <div class="lesson-bottom">
+          <a href="chemical-equilibrium.html">← Previous: Chemical Equilibrium</a>
+          <a href="redox-reactions.html">Next: Redox Reactions →</a>
+        </div>
+      </article>
+
+      <aside class="lesson-aside">
+        <div class="aside-card contents-card">
+          <h3>On this page</h3>
+          <ul>
+            <li><a href="#definitions">Acids and bases</a></li>
+            <li><a href="#conjugates">Conjugate pairs</a></li>
+            <li><a href="#strong-weak">Strong and weak</a></li>
+            <li><a href="#ph">Understanding pH</a></li>
+            <li><a href="#water">Ionisation of water</a></li>
+            <li><a href="#ka-kb">Kₐ and Kᵦ</a></li>
+            <li><a href="#neutralisation">Neutralisation</a></li>
+            <li><a href="#indicators">Indicators and titration</a></li>
+            <li><a href="#buffers">Buffers</a></li>
+            <li><a href="#summary">Key ideas</a></li>
+          </ul>
+        </div>
+
+        <div class="aside-card">
+          <h3>Study tip</h3>
+          <p>
+            In pH questions, identify whether the given value is a concentration,
+            pH, pOH, Kₐ or Kᵦ before choosing a formula. Remember that logarithms
+            make pH changes non-linear.
+          </p>
+        </div>
+
+        <div class="aside-card">
+          <h3>Chemistry topics</h3>
+          <ul>
+            <li><a href="../index.html">Chemistry overview</a></li>
+            <li><a href="basic-concepts.html">Basic Concepts</a></li>
+            <li><a href="atomic-structure.html">Atomic Structure</a></li>
+            <li><a href="periodicity.html">Periodicity</a></li>
+            <li><a href="chemical-bonding.html">Chemical Bonding</a></li>
+            <li><a href="states-of-matter.html">States of Matter</a></li>
+            <li><a href="thermodynamics.html">Thermodynamics</a></li>
+            <li><a href="chemical-equilibrium.html">Chemical Equilibrium</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Learn concepts. Understand connections. Keep asking why.</p>
+      <p><a href="../../../index.html">Your Answer</a> · Chemistry</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

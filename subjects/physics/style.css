@@ -1,0 +1,412 @@
+/* ========================================
+   YOUR ANSWER — PHYSICS
+   Subject Homepage
+   ======================================== */
+
+.physics-page {
+  --physics-accent: #4d78a8;
+  --physics-accent-soft: #edf3fa;
+  padding-bottom: 70px;
+}
+
+html[data-theme="dark"] .physics-page {
+  --physics-accent-soft: #202d3d;
+}
+
+
+/* ========================================
+   HERO
+   ======================================== */
+
+.physics-page .subject-hero {
+  padding: 64px 0 52px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.physics-page .subject-eyebrow {
+  margin: 0 0 14px;
+  color: var(--physics-accent);
+  font-size: .78rem;
+  font-weight: 750;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.physics-page .subject-hero h1 {
+  max-width: 850px;
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: .98;
+  letter-spacing: -.065em;
+}
+
+.physics-page .subject-intro {
+  max-width: 700px;
+  margin: 24px 0 0;
+  color: var(--color-text-muted);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.physics-page .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+  margin-top: 28px;
+}
+
+.physics-page .hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 0 17px;
+
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 11px;
+
+  text-decoration: none;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    background-color .2s ease;
+}
+
+.physics-page .hero-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--physics-accent);
+}
+
+.physics-page .hero-button.primary {
+  color: #fff;
+  background: var(--physics-accent);
+  border-color: var(--physics-accent);
+}
+
+
+/* ========================================
+   SECTIONS
+   ======================================== */
+
+.physics-page .section {
+  padding-top: 52px;
+}
+
+.physics-page .section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.physics-page .section-heading h2 {
+  margin: 0;
+  font-size: clamp(1.65rem, 4vw, 2.25rem);
+  letter-spacing: -.04em;
+}
+
+.physics-page .section-heading p {
+  max-width: 470px;
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+
+/* ========================================
+   LEARNING PATH
+   ======================================== */
+
+.physics-page .learning-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.physics-page .topic-card {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  align-items: start;
+
+  min-width: 0;
+  padding: 21px;
+
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+
+  text-decoration: none;
+
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease;
+}
+
+.physics-page .topic-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--physics-accent);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .06);
+}
+
+html[data-theme="dark"] .physics-page .topic-card:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .2);
+}
+
+.physics-page .topic-number {
+  display: grid;
+  place-items: center;
+
+  width: 36px;
+  height: 36px;
+
+  color: var(--physics-accent);
+  background: var(--physics-accent-soft);
+  border-radius: 10px;
+
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.physics-page .topic-content h3 {
+  margin: 1px 0 6px;
+  font-size: 1.08rem;
+  letter-spacing: -.02em;
+}
+
+.physics-page .topic-content p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: .9rem;
+  line-height: 1.65;
+}
+
+.physics-page .topic-arrow {
+  color: var(--color-text-muted);
+  font-size: 1.15rem;
+}
+
+
+/* ========================================
+   EXPLORE FURTHER
+   ======================================== */
+
+.physics-page .explore-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.physics-page .explore-card {
+  padding: 25px;
+
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 17px;
+
+  text-decoration: none;
+
+  transition:
+    transform .22s ease,
+    border-color .22s ease;
+}
+
+.physics-page .explore-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--physics-accent);
+}
+
+.physics-page .explore-label {
+  display: block;
+  margin-bottom: 12px;
+
+  color: var(--physics-accent);
+
+  font-size: .73rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.physics-page .explore-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.physics-page .explore-card p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+
+/* ========================================
+   PHYSICS LAB
+   ======================================== */
+
+.physics-page .lab-card {
+  position: relative;
+  overflow: hidden;
+
+  padding: 34px;
+
+  color: var(--color-text);
+  background: var(--physics-accent-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+}
+
+.physics-page .lab-card::after {
+  content: "F = ma";
+
+  position: absolute;
+  right: 30px;
+  bottom: 12px;
+
+  color: var(--physics-accent);
+  opacity: .08;
+
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -.08em;
+
+  pointer-events: none;
+}
+
+.physics-page .lab-label {
+  display: block;
+  margin-bottom: 12px;
+
+  color: var(--physics-accent);
+
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.physics-page .lab-card h2 {
+  max-width: 650px;
+  margin: 0 0 10px;
+
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  letter-spacing: -.045em;
+}
+
+.physics-page .lab-card p {
+  position: relative;
+  z-index: 1;
+
+  max-width: 650px;
+  margin: 0;
+
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+.physics-page .lab-link {
+  position: relative;
+  z-index: 1;
+
+  display: inline-flex;
+  margin-top: 22px;
+  padding: 11px 16px;
+
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease;
+}
+
+.physics-page .lab-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--physics-accent);
+}
+
+
+/* ========================================
+   BOTTOM LINKS
+   ======================================== */
+
+.physics-page .bottom-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: 38px;
+  padding-top: 24px;
+
+  border-top: 1px solid var(--color-border);
+}
+
+.physics-page .bottom-links a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+
+  transition: color .2s ease;
+}
+
+.physics-page .bottom-links a:hover {
+  color: var(--physics-accent);
+}
+
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 760px) {
+
+  .physics-page .subject-hero {
+    padding-top: 42px;
+  }
+
+  .physics-page .learning-grid,
+  .physics-page .explore-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .physics-page .section-heading {
+    display: block;
+  }
+
+  .physics-page .section-heading p {
+    margin-top: 9px;
+  }
+}
+
+
+@media (max-width: 520px) {
+
+  .physics-page .subject-hero {
+    padding-top: 32px;
+  }
+
+  .physics-page .topic-card {
+    grid-template-columns: auto 1fr;
+  }
+
+  .physics-page .topic-arrow {
+    display: none;
+  }
+
+  .physics-page .lab-card {
+    padding: 25px;
+  }
+}

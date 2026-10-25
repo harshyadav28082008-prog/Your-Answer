@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn redox reactions, oxidation and reduction, oxidation numbers, redox agents, balancing equations, and corrosion.">
+  <title>Redox Reactions | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .lesson {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 42px 20px 72px;
+    }
+
+    .lesson-hero {
+      padding: 34px;
+      border: 1px solid var(--color-border);
+      border-radius: 22px;
+      background: var(--color-surface);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 1.12;
+      margin: 12px 0;
+    }
+
+    .lesson-hero p,
+    .lesson-section p,
+    .lesson-section li {
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .lesson-section {
+      padding: 26px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-section h2 {
+      font-size: 1.55rem;
+      margin: 0 0 14px;
+    }
+
+    .lesson-section h3 {
+      margin: 22px 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .formula {
+      padding: 17px 20px;
+      margin: 18px 0;
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--color-brand);
+      border-radius: 12px;
+      background: var(--color-surface);
+      overflow-wrap: anywhere;
+      font-size: 1.04rem;
+    }
+
+    .example {
+      padding: 18px 20px;
+      margin: 16px 0;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+    }
+
+    .example strong {
+      color: var(--color-text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .concept-card {
+      padding: 18px;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      background: var(--color-surface);
+    }
+
+    .concept-card h3 {
+      margin-top: 0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 18px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 450px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--color-border);
+      line-height: 1.6;
+    }
+
+    th {
+      color: var(--color-text);
+    }
+
+    td {
+      color: var(--color-text-muted);
+    }
+
+    .lesson-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .lesson-nav a {
+      display: inline-block;
+      padding: 12px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .lesson-nav a:hover {
+      border-color: var(--color-brand);
+    }
+
+    @media (max-width: 600px) {
+      .lesson {
+        padding: 24px 15px 52px;
+      }
+
+      .lesson-hero {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">
+        Theme
+      </button>
+
+      <button type="button" data-menu-toggle
+        aria-controls="mobile-nav" aria-expanded="false">
+        Menu
+      </button>
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="lesson">
+    <section class="lesson-hero">
+      <div class="eyebrow">Chemistry · Topic 09</div>
+      <h1>Redox Reactions</h1>
+      <p>
+        Chemical reactions often involve the transfer of electrons or
+        changes in oxidation numbers. Redox reactions help explain
+        combustion, batteries, corrosion, and many biological processes.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>1. What Is a Redox Reaction?</h2>
+      <p>
+        A redox reaction is a chemical reaction in which oxidation and
+        reduction occur simultaneously. The word redox combines
+        <strong>reduction</strong> and <strong>oxidation</strong>.
+      </p>
+
+      <div class="formula">
+        Zn + Cu²⁺ → Zn²⁺ + Cu
+      </div>
+
+      <p>
+        In this reaction, zinc loses electrons and becomes a zinc ion.
+        Copper ions gain those electrons and become copper metal.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>Oxidation</h3>
+          <p>
+            Loss of electrons, increase in oxidation number, or gain
+            of oxygen in the traditional definition.
+          </p>
+          <div class="formula">Zn → Zn²⁺ + 2e⁻</div>
+        </div>
+
+        <div class="concept-card">
+          <h3>Reduction</h3>
+          <p>
+            Gain of electrons, decrease in oxidation number, or loss
+            of oxygen in the traditional definition.
+          </p>
+          <div class="formula">Cu²⁺ + 2e⁻ → Cu</div>
+        </div>
+      </div>
+
+      <p>
+        Remember: oxidation and reduction always occur together in
+        a redox reaction because electrons lost by one species must
+        be gained by another.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>2. Oxidising and Reducing Agents</h2>
+      <p>
+        An agent is the substance that causes oxidation or reduction
+        in another substance.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>Oxidising agent</h3>
+          <p>
+            Accepts electrons and causes another species to be oxidised.
+            The oxidising agent itself gets reduced.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Reducing agent</h3>
+          <p>
+            Donates electrons and causes another species to be reduced.
+            The reducing agent itself gets oxidised.
+          </p>
+        </div>
+      </div>
+
+      <div class="example">
+        <strong>Example: Zn + Cu²⁺ → Zn²⁺ + Cu</strong>
+        <ul>
+          <li>Zinc is the reducing agent because it donates electrons.</li>
+          <li>Cu²⁺ is the oxidising agent because it accepts electrons.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>3. Oxidation Number</h2>
+      <p>
+        The oxidation number, or oxidation state, is a bookkeeping value
+        used to track electron changes in compounds and ions. It is not
+        always the same as the actual charge on an atom.
+      </p>
+
+      <h3>Important rules</h3>
+      <ul>
+        <li>An element in its free form has oxidation number 0. Examples: Na, O₂ and Cl₂.</li>
+        <li>A monatomic ion has an oxidation number equal to its charge. For example, Mg²⁺ is +2.</li>
+        <li>Group 1 metals are usually +1 in compounds; Group 2 metals are usually +2.</li>
+        <li>Oxygen is usually −2, with exceptions such as peroxides.</li>
+        <li>Hydrogen is usually +1 with non-metals and −1 in metal hydrides.</li>
+        <li>The sum of oxidation numbers in a neutral compound is 0.</li>
+        <li>The sum in a polyatomic ion equals the ion's overall charge.</li>
+      </ul>
+
+      <div class="example">
+        <strong>Example: Find the oxidation number of sulfur in H₂SO₄.</strong>
+        <p>
+          Hydrogen is +1 and oxygen is −2. Let sulfur's oxidation
+          number be x.
+        </p>
+        <div class="formula">
+          2(+1) + x + 4(−2) = 0
+          <br>
+          2 + x − 8 = 0
+          <br>
+          x = +6
+        </div>
+        <p>Therefore, sulfur has oxidation number +6.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>4. Identifying Redox Reactions</h2>
+      <p>
+        One useful method is to compare the oxidation numbers of
+        elements before and after a reaction.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Change</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Oxidation number increases</td>
+              <td>Oxidation</td>
+            </tr>
+            <tr>
+              <td>Oxidation number decreases</td>
+              <td>Reduction</td>
+            </tr>
+            <tr>
+              <td>Both changes occur</td>
+              <td>Redox reaction</td>
+            </tr>
+            <tr>
+              <td>No oxidation numbers change</td>
+              <td>Not a redox reaction by this test</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="example">
+        <strong>Example: 2Mg + O₂ → 2MgO</strong>
+        <p>
+          Magnesium changes from 0 to +2, so it is oxidised.
+          Oxygen changes from 0 to −2, so it is reduced.
+          Therefore, this is a redox reaction.
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>5. Balancing Redox Equations</h2>
+      <p>
+        A balanced chemical equation must conserve both atoms and
+        electric charge. Redox equations can be balanced using the
+        half-reaction method.
+      </p>
+
+      <h3>Half-reaction method</h3>
+      <ol>
+        <li>Separate the reaction into oxidation and reduction half-reactions.</li>
+        <li>Balance all elements except hydrogen and oxygen.</li>
+        <li>Balance oxygen by adding H₂O.</li>
+        <li>In acidic solution, balance hydrogen by adding H⁺.</li>
+        <li>Balance charge by adding electrons.</li>
+        <li>Multiply the half-reactions so the electrons cancel, then add them together.</li>
+        <li>Check that atoms and total charge balance.</li>
+      </ol>
+
+      <div class="example">
+        <strong>Example in acidic solution</strong>
+        <p>Unbalanced reaction:</p>
+        <div class="formula">
+          MnO₄⁻ + Fe²⁺ → Mn²⁺ + Fe³⁺
+        </div>
+        <p>Balanced equation:</p>
+        <div class="formula">
+          MnO₄⁻ + 8H⁺ + 5Fe²⁺
+          → Mn²⁺ + 4H₂O + 5Fe³⁺
+        </div>
+        <p>
+          The atoms and total charge are balanced on both sides.
+        </p>
+      </div>
+
+      <h3>Balancing in basic solution</h3>
+      <p>
+        First balance the equation as appropriate for acidic solution.
+        Then add OH⁻ ions to both sides to neutralise each H⁺ ion,
+        combine H⁺ and OH⁻ to form water, cancel excess water, and
+        check atoms and charge again.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>6. Disproportionation Reactions</h2>
+      <p>
+        A disproportionation reaction occurs when the same element
+        in one reactant is simultaneously oxidised and reduced.
+      </p>
+
+      <div class="example">
+        <strong>Example:</strong>
+        <div class="formula">
+          2H₂O₂ → 2H₂O + O₂
+        </div>
+        <p>
+          Oxygen in hydrogen peroxide has oxidation number −1.
+          It changes to −2 in water and 0 in oxygen gas. Thus,
+          some oxygen is reduced while some is oxidised.
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>7. Redox Reactions in Everyday Life</h2>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>Corrosion</h3>
+          <p>
+            Metals such as iron react with substances in their
+            surroundings. Rusting involves redox processes and is
+            encouraged by moisture and oxygen.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Batteries</h3>
+          <p>
+            Electrochemical cells use oxidation and reduction
+            reactions to convert chemical energy into electrical
+            energy.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Combustion</h3>
+          <p>
+            Many fuels react with oxygen through redox processes,
+            releasing energy as heat and often light.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Living organisms</h3>
+          <p>
+            Cellular respiration involves a series of electron-transfer
+            reactions that help cells obtain usable energy.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>8. Quick Revision</h2>
+      <ul>
+        <li>Oxidation means electron loss; reduction means electron gain.</li>
+        <li>Oxidation number increases during oxidation.</li>
+        <li>Oxidation number decreases during reduction.</li>
+        <li>The oxidising agent is reduced; the reducing agent is oxidised.</li>
+        <li>A balanced redox equation conserves atoms and charge.</li>
+        <li>Corrosion, batteries and combustion involve redox chemistry.</li>
+      </ul>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Adjacent chemistry topics">
+      <a href="acids-bases.html">← Acids &amp; Bases</a>
+      <a href="solutions.html">Next: Solutions →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Your Answer · Learn with understanding.</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

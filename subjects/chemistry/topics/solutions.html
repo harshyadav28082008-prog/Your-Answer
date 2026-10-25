@@ -1,0 +1,549 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn chemistry solutions, concentration, solubility, Henry's law, Raoult's law, and colligative properties.">
+  <title>Solutions | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .lesson {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 42px 20px 72px;
+    }
+
+    .lesson-hero {
+      padding: 34px;
+      border: 1px solid var(--color-border);
+      border-radius: 22px;
+      background: var(--color-surface);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 1.12;
+      margin: 12px 0;
+    }
+
+    .lesson-hero p,
+    .lesson-section p,
+    .lesson-section li {
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .lesson-section {
+      padding: 26px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-section h2 {
+      font-size: 1.55rem;
+      margin: 0 0 14px;
+    }
+
+    .lesson-section h3 {
+      margin: 22px 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .formula {
+      padding: 17px 20px;
+      margin: 18px 0;
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--color-brand);
+      border-radius: 12px;
+      background: var(--color-surface);
+      overflow-wrap: anywhere;
+      line-height: 1.9;
+    }
+
+    .example {
+      padding: 18px 20px;
+      margin: 16px 0;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+    }
+
+    .example strong {
+      color: var(--color-text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .concept-card {
+      padding: 18px;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      background: var(--color-surface);
+    }
+
+    .concept-card h3 {
+      margin-top: 0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 18px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 450px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--color-border);
+      line-height: 1.6;
+    }
+
+    th {
+      color: var(--color-text);
+    }
+
+    td {
+      color: var(--color-text-muted);
+    }
+
+    .lesson-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .lesson-nav a {
+      display: inline-block;
+      padding: 12px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .lesson-nav a:hover {
+      border-color: var(--color-brand);
+    }
+
+    @media (max-width: 600px) {
+      .lesson {
+        padding: 24px 15px 52px;
+      }
+
+      .lesson-hero {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">
+        Theme
+      </button>
+
+      <button type="button" data-menu-toggle
+        aria-controls="mobile-nav" aria-expanded="false">
+        Menu
+      </button>
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="lesson">
+    <section class="lesson-hero">
+      <div class="eyebrow">Chemistry · Topic 10</div>
+      <h1>Solutions</h1>
+      <p>
+        From salt dissolved in water to gases dissolved in liquids,
+        solutions are found throughout everyday life. Learn how their
+        composition, solubility and physical properties are described
+        quantitatively.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>1. What Is a Solution?</h2>
+      <p>
+        A solution is a homogeneous mixture of two or more substances.
+        Its composition is uniform throughout the mixture.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>Solvent</h3>
+          <p>
+            The component that dissolves the solute. It is often the
+            component present in the larger amount.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Solute</h3>
+          <p>
+            The substance dissolved in the solvent. For salt water,
+            salt is the solute and water is the solvent.
+          </p>
+        </div>
+      </div>
+
+      <h3>Types of solutions</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Solute</th>
+              <th>Solvent</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Gas</td>
+              <td>Gas</td>
+              <td>Air</td>
+            </tr>
+            <tr>
+              <td>Gas</td>
+              <td>Liquid</td>
+              <td>Carbon dioxide in a fizzy drink</td>
+            </tr>
+            <tr>
+              <td>Solid</td>
+              <td>Liquid</td>
+              <td>Salt in water</td>
+            </tr>
+            <tr>
+              <td>Liquid</td>
+              <td>Liquid</td>
+              <td>Ethanol in water</td>
+            </tr>
+            <tr>
+              <td>Solid</td>
+              <td>Solid</td>
+              <td>Many metal alloys</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>2. Expressing Concentration</h2>
+      <p>
+        Concentration describes how much solute is present in a given
+        amount of solution or solvent. Different units are useful for
+        different types of calculations.
+      </p>
+
+      <h3>Mass percentage</h3>
+      <div class="formula">
+        Mass % = (Mass of solute / Mass of solution) × 100
+      </div>
+
+      <h3>Volume percentage</h3>
+      <div class="formula">
+        Volume % = (Volume of solute / Volume of solution) × 100
+      </div>
+
+      <h3>Mass-by-volume percentage</h3>
+      <div class="formula">
+        Mass-by-volume % = (Mass of solute in g / Volume of solution in mL) × 100
+      </div>
+
+      <h3>Molarity (M)</h3>
+      <div class="formula">
+        Molarity = Moles of solute / Volume of solution in litres
+      </div>
+
+      <h3>Molality (m)</h3>
+      <div class="formula">
+        Molality = Moles of solute / Mass of solvent in kilograms
+      </div>
+
+      <h3>Mole fraction</h3>
+      <div class="formula">
+        Mole fraction of A, xA = Moles of A / Total moles of all components
+      </div>
+
+      <p>
+        Mole fractions have no units. For a solution containing only
+        components A and B, xA + xB = 1.
+      </p>
+
+      <div class="example">
+        <strong>Worked example: Molarity</strong>
+        <p>
+          Suppose 0.5 mol of a solute is present in 2.0 L of solution.
+        </p>
+        <div class="formula">
+          M = 0.5 / 2.0 = 0.25 mol L⁻¹
+        </div>
+        <p>The solution has a molarity of 0.25 M.</p>
+      </div>
+
+      <h3>Dilution</h3>
+      <p>
+        When a solution is diluted, solvent is added without changing
+        the amount of solute. The concentration decreases.
+      </p>
+      <div class="formula">
+        M₁V₁ = M₂V₂
+      </div>
+      <p>
+        This relationship applies when the same solute is diluted and
+        volumes are expressed in consistent units.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>3. Solubility</h2>
+      <p>
+        Solubility is the maximum amount of a substance that can dissolve
+        in a specified amount of solvent under given conditions.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>Unsaturated solution</h3>
+          <p>
+            Contains less dissolved solute than the amount needed to
+            reach saturation under the stated conditions.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Saturated solution</h3>
+          <p>
+            Contains the maximum equilibrium amount of dissolved solute
+            under the stated conditions.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Supersaturated solution</h3>
+          <p>
+            Contains more dissolved solute than is normally present in
+            a saturated solution at the same conditions. It is often
+            unstable.
+          </p>
+        </div>
+      </div>
+
+      <h3>Factors affecting solubility</h3>
+      <ul>
+        <li><strong>Nature of solute and solvent:</strong> their intermolecular interactions matter.</li>
+        <li><strong>Temperature:</strong> the solubility of many solids in liquids increases with temperature, but there are exceptions.</li>
+        <li><strong>Pressure:</strong> has a major effect on the solubility of gases in liquids.</li>
+      </ul>
+
+      <p>
+        Stirring and crushing a solid can speed up dissolving, but they
+        do not necessarily increase the equilibrium solubility.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>4. Henry's Law</h2>
+      <p>
+        At a constant temperature, the concentration of a dissolved gas
+        in a liquid is proportional to the partial pressure of that gas
+        above the liquid, provided the system behaves suitably.
+      </p>
+
+      <div class="formula">
+        p = Kₕx
+      </div>
+
+      <p>
+        Here, p is the gas's partial pressure, x is its mole fraction
+        in the solution, and Kₕ is Henry's law constant in this
+        convention.
+      </p>
+
+      <div class="example">
+        <strong>Everyday example</strong>
+        <p>
+          Carbon dioxide is dissolved in soft drinks under elevated
+          pressure. When the container is opened, the pressure drops
+          and gas escapes as bubbles.
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>5. Raoult's Law</h2>
+      <p>
+        For an ideal solution, the partial vapour pressure of a volatile
+        component is equal to its mole fraction in the liquid multiplied
+        by the vapour pressure of the pure component at the same
+        temperature.
+      </p>
+
+      <div class="formula">
+        pA = xA pA°
+      </div>
+
+      <p>
+        For a solution containing two volatile components:
+      </p>
+
+      <div class="formula">
+        Ptotal = pA + pB
+        <br>
+        Ptotal = xA pA° + xB pB°
+      </div>
+
+      <p>
+        Here, pA° is the vapour pressure of pure A, and xA is its mole
+        fraction in the liquid solution.
+      </p>
+
+      <p>
+        Real solutions may show positive or negative deviations from
+        Raoult's law when interactions between unlike molecules differ
+        from those in the pure liquids.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>6. Colligative Properties</h2>
+      <p>
+        Colligative properties depend primarily on the number of
+        dissolved solute particles, rather than their chemical identity,
+        for sufficiently dilute solutions.
+      </p>
+
+      <h3>Relative lowering of vapour pressure</h3>
+      <p>
+        For an ideal solution with a non-volatile solute, the relative
+        lowering of vapour pressure equals the solute's mole fraction.
+      </p>
+      <div class="formula">
+        (p° − p) / p° = xsolute
+      </div>
+
+      <h3>Elevation of boiling point</h3>
+      <div class="formula">
+        ΔTb = i Kb m
+      </div>
+      <p>
+        The boiling point increases when a suitable non-volatile solute
+        is dissolved in a solvent. Kb is the ebullioscopic constant,
+        m is molality, and i is the van't Hoff factor.
+      </p>
+
+      <h3>Depression of freezing point</h3>
+      <div class="formula">
+        ΔTf = i Kf m
+      </div>
+      <p>
+        The freezing point decreases. Kf is the cryoscopic constant.
+      </p>
+
+      <h3>Osmotic pressure</h3>
+      <div class="formula">
+        π = iCRT
+      </div>
+      <p>
+        For dilute solutions, π is osmotic pressure, C is molar
+        concentration, R is the gas constant, and T is absolute
+        temperature in kelvin.
+      </p>
+
+      <div class="example">
+        <strong>What does the van't Hoff factor mean?</strong>
+        <p>
+          The factor i accounts for the effective number of solute
+          particles in solution. Dissociation can increase the particle
+          count, while association can decrease it. In real solutions,
+          deviations from ideal behaviour may also affect the observed
+          value.
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>7. Abnormal Molar Mass</h2>
+      <p>
+        Molar mass calculated from colligative properties may differ
+        from the expected value when solute particles associate or
+        dissociate in solution.
+      </p>
+      <ul>
+        <li><strong>Dissociation:</strong> one solute unit forms multiple particles, as with many ionic compounds.</li>
+        <li><strong>Association:</strong> multiple solute units combine into larger particles.</li>
+      </ul>
+      <p>
+        The van't Hoff factor helps account for these changes when
+        interpreting colligative-property measurements.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>8. Quick Revision</h2>
+      <ul>
+        <li>A solution is a homogeneous mixture of solute and solvent.</li>
+        <li>Molarity uses litres of solution; molality uses kilograms of solvent.</li>
+        <li>Henry's law relates gas solubility to partial pressure.</li>
+        <li>Raoult's law describes vapour pressure in ideal solutions.</li>
+        <li>Colligative properties depend primarily on the number of dissolved particles.</li>
+        <li>Boiling-point elevation: ΔTb = iKbm.</li>
+        <li>Freezing-point depression: ΔTf = iKfm.</li>
+        <li>Osmotic pressure for dilute solutions: π = iCRT.</li>
+      </ul>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Adjacent chemistry topics">
+      <a href="redox-reactions.html">← Redox Reactions</a>
+      <a href="chemical-kinetics.html">Next: Chemical Kinetics →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Your Answer · Learn with understanding.</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

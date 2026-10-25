@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn chemical equilibrium, equilibrium constants Kc and Kp, reaction quotient and Le Chatelier's principle.">
+  <title>Chemical Equilibrium | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .chemistry-lesson {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    .lesson-breadcrumb {
+      color: var(--color-text-muted);
+      font-size: .9rem;
+      margin-bottom: 22px;
+    }
+
+    .lesson-breadcrumb a,
+    .lesson-section a {
+      color: var(--color-brand);
+    }
+
+    .lesson-hero {
+      padding: 34px;
+      border: 1px solid var(--color-border);
+      border-radius: 22px;
+      background: var(--color-surface);
+      margin-bottom: 28px;
+    }
+
+    .lesson-number {
+      color: var(--color-brand);
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.12;
+      margin: 12px 0;
+    }
+
+    .lesson-hero p,
+    .lesson-section p,
+    .lesson-section li {
+      line-height: 1.75;
+      color: var(--color-text-muted);
+    }
+
+    .lesson-hero p {
+      max-width: 720px;
+      font-size: 1.05rem;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      padding: 26px 0;
+      border-bottom: 1px solid var(--color-border);
+      scroll-margin-top: 24px;
+    }
+
+    .lesson-section:first-child {
+      padding-top: 0;
+    }
+
+    .lesson-section h2 {
+      font-size: 1.55rem;
+      margin: 0 0 14px;
+    }
+
+    .lesson-section h3 {
+      font-size: 1.12rem;
+      margin: 22px 0 8px;
+    }
+
+    .lesson-section ul,
+    .lesson-section ol {
+      padding-left: 22px;
+    }
+
+    .concept-grid,
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .concept-card,
+    .formula-card,
+    .aside-card {
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .concept-card h3,
+    .formula-card h3 {
+      margin-top: 0;
+    }
+
+    .formula {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin: 10px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .formula-card p,
+    .concept-card p,
+    .aside-card p {
+      margin-bottom: 0;
+      font-size: .94rem;
+    }
+
+    .note-box {
+      border-left: 4px solid var(--color-brand);
+      padding: 15px 18px;
+      background: var(--color-surface);
+      border-radius: 0 12px 12px 0;
+      margin: 18px 0;
+    }
+
+    .note-box p {
+      margin: 0;
+    }
+
+    .lesson-aside {
+      position: sticky;
+      top: 20px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .aside-card h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .aside-card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .aside-card li {
+      margin: 9px 0;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+      font-size: .9rem;
+    }
+
+    .aside-card a {
+      color: var(--color-brand);
+      text-decoration: none;
+    }
+
+    .aside-card a:hover {
+      text-decoration: underline;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: .93rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid var(--color-border);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .comparison-table th {
+      color: var(--color-text);
+      background: var(--color-surface);
+    }
+
+    .comparison-table td {
+      color: var(--color-text-muted);
+    }
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 28px;
+    }
+
+    .lesson-bottom a {
+      display: inline-block;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      border-color: var(--color-brand);
+    }
+
+    @media (max-width: 800px) {
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        grid-row: 1;
+      }
+
+      .contents-card {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .chemistry-lesson {
+        padding: 22px 15px 44px;
+      }
+
+      .lesson-hero {
+        padding: 24px 20px;
+      }
+
+      .concept-grid,
+      .formula-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-table {
+        font-size: .82rem;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">
+        Theme
+      </button>
+
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">
+        Menu
+      </button>
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="chemistry-lesson">
+    <div class="lesson-breadcrumb">
+      <a href="../../index.html">Subjects</a> /
+      <a href="../index.html">Chemistry</a> /
+      Chemical Equilibrium
+    </div>
+
+    <section class="lesson-hero">
+      <div class="lesson-number">Chemistry · Topic 07</div>
+      <h1>Chemical Equilibrium</h1>
+      <p>
+        Many chemical reactions do not proceed in only one direction.
+        Discover how forward and reverse reactions reach a dynamic balance,
+        how equilibrium constants describe that balance, and how changing
+        conditions can shift the composition of a system.
+      </p>
+    </section>
+
+    <div class="lesson-layout">
+      <article class="lesson-main">
+
+        <section class="lesson-section" id="reversible">
+          <h2>1. Reversible reactions</h2>
+          <p>
+            A reversible reaction can proceed in both the forward and reverse
+            directions. The forward reaction converts reactants into products,
+            while the reverse reaction converts products back into reactants.
+          </p>
+
+          <div class="formula-card">
+            <h3>General reversible reaction</h3>
+            <div class="formula">aA + bB ⇌ cC + dD</div>
+            <p>
+              The double arrow indicates that both directions are possible.
+              The letters represent chemical species, and the lowercase
+              letters represent stoichiometric coefficients.
+            </p>
+          </div>
+
+          <h3>Irreversible and reversible reactions</h3>
+          <div class="concept-grid">
+            <div class="concept-card">
+              <h3>Irreversible approximation</h3>
+              <p>
+                The reaction proceeds predominantly in one direction under
+                the specified conditions.
+              </p>
+            </div>
+            <div class="concept-card">
+              <h3>Reversible reaction</h3>
+              <p>
+                Both forward and reverse reactions can occur, and the system
+                may establish equilibrium in a closed system.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="dynamic">
+          <h2>2. Dynamic equilibrium</h2>
+          <p>
+            Chemical equilibrium is reached when the forward and reverse
+            reaction rates become equal. The concentrations of reactants and
+            products then remain constant over time, provided external
+            conditions do not change.
+          </p>
+
+          <ul>
+            <li>The forward and reverse reactions continue to occur.</li>
+            <li>The two reaction rates are equal at equilibrium.</li>
+            <li>Concentrations are constant, but they are not necessarily equal.</li>
+            <li>Equilibrium in this sense is established in a closed system.</li>
+          </ul>
+
+          <div class="note-box">
+            <p>
+              <strong>Important:</strong> Dynamic equilibrium does not mean
+              that reactions have stopped. It means that the two opposing
+              processes occur at equal rates.
+            </p>
+          </div>
+
+          <h3>What happens as equilibrium approaches?</h3>
+          <p>
+            Imagine starting with reactants and almost no products. Initially,
+            the forward reaction may be fast while the reverse reaction is
+            slow. As products accumulate, the reverse reaction becomes faster.
+            Eventually, the two rates become equal.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="kc">
+          <h2>3. The equilibrium constant Kc</h2>
+          <p>
+            For a reaction at a fixed temperature, the equilibrium constant
+            expresses the relationship between equilibrium concentrations
+            of products and reactants.
+          </p>
+
+          <div class="formula-card">
+            <h3>Equilibrium constant in concentration form</h3>
+            <div class="formula">
+              Kc = [C]<sup>c</sup>[D]<sup>d</sup> / ([A]<sup>a</sup>[B]<sup>b</sup>)
+            </div>
+            <p>
+              For aA + bB ⇌ cC + dD, the square brackets represent equilibrium
+              concentrations. Exponents are the coefficients in the balanced
+              chemical equation.
+            </p>
+          </div>
+
+          <h3>Example</h3>
+          <p>Consider the reaction:</p>
+          <div class="formula-card">
+            <div class="formula">H₂(g) + I₂(g) ⇌ 2HI(g)</div>
+            <div class="formula">Kc = [HI]² / ([H₂][I₂])</div>
+          </div>
+
+          <p>
+            If the equilibrium concentrations are [HI] = 0.80 mol L⁻¹,
+            [H₂] = 0.20 mol L⁻¹ and [I₂] = 0.20 mol L⁻¹, then:
+          </p>
+          <ol>
+            <li>Square the HI concentration: 0.80² = 0.64.</li>
+            <li>Multiply the reactant concentrations: 0.20 × 0.20 = 0.04.</li>
+            <li>Divide: Kc = 0.64 / 0.04 = 16.</li>
+          </ol>
+
+          <p>
+            For this example, Kc = 16 using the stated concentration convention.
+          </p>
+
+          <div class="note-box">
+            <p>
+              <strong>Remember:</strong> Pure solids and pure liquids are
+              omitted from the usual equilibrium-constant expression because
+              their activities are treated as constant.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="kp">
+          <h2>4. The equilibrium constant Kp</h2>
+          <p>
+            For gaseous reactions, an equilibrium constant can also be
+            expressed using partial pressures. This form is called Kp.
+          </p>
+
+          <div class="formula-card">
+            <h3>Equilibrium constant in pressure form</h3>
+            <div class="formula">
+              Kp = (P<sub>C</sub>)<sup>c</sup>(P<sub>D</sub>)<sup>d</sup> /
+              ((P<sub>A</sub>)<sup>a</sup>(P<sub>B</sub>)<sup>b</sup>)
+            </div>
+            <p>
+              Each P represents the equilibrium partial pressure of the
+              corresponding gas.
+            </p>
+          </div>
+
+          <h3>Relationship between Kp and Kc</h3>
+          <div class="formula-card">
+            <div class="formula">Kp = Kc(RT)<sup>Δn(g)</sup></div>
+            <p>
+              For ideal gases, Δn(g) equals total gaseous product coefficients
+              minus total gaseous reactant coefficients. Use compatible
+              pressure, concentration, gas-constant and temperature units.
+            </p>
+          </div>
+
+          <p>
+            For H₂(g) + I₂(g) ⇌ 2HI(g), Δn(g) = 2 − (1 + 1) = 0.
+            Therefore, Kp = Kc for this reaction under the ideal-gas relation.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="meaning">
+          <h2>5. What does the value of K tell us?</h2>
+          <p>
+            The size of an equilibrium constant indicates whether products
+            or reactants are favoured in the equilibrium mixture. It does not
+            tell us how quickly equilibrium will be reached.
+          </p>
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Value</th>
+                <th>General interpretation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>K ≫ 1</td>
+                <td>Products are strongly favoured at equilibrium.</td>
+              </tr>
+              <tr>
+                <td>K ≪ 1</td>
+                <td>Reactants are strongly favoured at equilibrium.</td>
+              </tr>
+              <tr>
+                <td>K around 1</td>
+                <td>Neither side is overwhelmingly favoured solely by the value of K.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note-box">
+            <p>
+              The equilibrium constant applies to a particular balanced
+              reaction at a particular temperature. If the reaction equation
+              is reversed, its equilibrium constant becomes 1/K.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="quotient">
+          <h2>6. Reaction quotient Q</h2>
+          <p>
+            The reaction quotient has the same mathematical form as the
+            equilibrium constant, but it uses the concentrations or partial
+            pressures at the current moment, which may not be equilibrium
+            values.
+          </p>
+
+          <div class="formula-card">
+            <h3>Compare Q with K</h3>
+            <div class="formula">Q &lt; K → forward direction favoured</div>
+            <div class="formula">Q &gt; K → reverse direction favoured</div>
+            <div class="formula">Q = K → system is at equilibrium</div>
+          </div>
+
+          <p>
+            These comparisons predict the direction in which the system must
+            shift to approach equilibrium under unchanged conditions.
+          </p>
+
+          <h3>Worked reasoning</h3>
+          <p>
+            Suppose a reaction has Kc = 10 and the current reaction quotient
+            is Qc = 2. Since Qc is smaller than Kc, the mixture has relatively
+            too little product compared with its equilibrium composition.
+            The net reaction proceeds in the forward direction.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="le-chatelier">
+          <h2>7. Le Chatelier's principle</h2>
+          <p>
+            When a system at equilibrium experiences a change in concentration,
+            pressure or temperature, its composition shifts in a direction
+            that tends to oppose the imposed change.
+          </p>
+
+          <h3>Changing concentration</h3>
+          <ul>
+            <li>Adding a reactant generally favours the forward direction.</li>
+            <li>Removing a reactant generally favours the reverse direction.</li>
+            <li>Adding a product generally favours the reverse direction.</li>
+            <li>Removing a product generally favours the forward direction.</li>
+          </ul>
+
+          <h3>Changing pressure or volume</h3>
+          <p>
+            For gaseous equilibria, decreasing volume increases pressure.
+            The system tends to shift toward the side with fewer moles of gas.
+            Increasing volume tends to favour the side with more moles of gas.
+          </p>
+
+          <div class="note-box">
+            <p>
+              If both sides have the same total number of gaseous stoichiometric
+              units, changing pressure by changing volume does not shift the
+              ideal-gas equilibrium position.
+            </p>
+          </div>
+
+          <h3>Changing temperature</h3>
+          <p>
+            Temperature changes can alter the equilibrium constant itself.
+            Treat heat as a reactant for an endothermic forward reaction and
+            as a product for an exothermic forward reaction.
+          </p>
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Forward reaction</th>
+                <th>Temperature increase</th>
+                <th>Equilibrium constant</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Endothermic (ΔH &gt; 0)</td>
+                <td>Favours the forward direction</td>
+                <td>K increases</td>
+              </tr>
+              <tr>
+                <td>Exothermic (ΔH &lt; 0)</td>
+                <td>Favours the reverse direction</td>
+                <td>K decreases</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>What about a catalyst?</h3>
+          <p>
+            A catalyst increases the rates of both forward and reverse reactions.
+            It helps the system reach equilibrium faster but does not change
+            the equilibrium constant or the equilibrium composition at a
+            fixed temperature.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="example">
+          <h2>8. Industrial example: the Haber process</h2>
+          <p>
+            Ammonia is manufactured industrially by reacting nitrogen with
+            hydrogen.
+          </p>
+
+          <div class="formula-card">
+            <div class="formula">N₂(g) + 3H₂(g) ⇌ 2NH₃(g)</div>
+          </div>
+
+          <ul>
+            <li>The forward reaction is exothermic.</li>
+            <li>Higher pressure favours ammonia because the product side has fewer moles of gas.</li>
+            <li>Lower temperature favours the exothermic forward direction at equilibrium.</li>
+            <li>Industry uses a compromise temperature to obtain a useful reaction rate.</li>
+            <li>A catalyst helps the system reach equilibrium faster.</li>
+            <li>Removing ammonia as it forms can encourage further product formation.</li>
+          </ul>
+
+          <div class="note-box">
+            <p>
+              <strong>Key distinction:</strong> Conditions that favour the
+              equilibrium yield are not always the conditions that produce
+              the fastest reaction. Industrial processes balance both.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="summary">
+          <h2>9. Key ideas to remember</h2>
+          <ul>
+            <li>At dynamic equilibrium, forward and reverse reaction rates are equal.</li>
+            <li>Kc uses equilibrium concentrations; Kp uses equilibrium partial pressures.</li>
+            <li>The exponents in equilibrium expressions come from the balanced equation.</li>
+            <li>The reaction quotient Q predicts the direction of net change by comparison with K.</li>
+            <li>Concentration and pressure changes can shift equilibrium, but do not change K at fixed temperature.</li>
+            <li>Temperature changes can change K.</li>
+            <li>A catalyst speeds up the approach to equilibrium without changing its position.</li>
+          </ul>
+        </section>
+
+        <div class="lesson-bottom">
+          <a href="thermodynamics.html">← Previous: Thermodynamics</a>
+          <a href="acids-bases.html">Next: Acids and Bases →</a>
+        </div>
+      </article>
+
+      <aside class="lesson-aside">
+        <div class="aside-card contents-card">
+          <h3>On this page</h3>
+          <ul>
+            <li><a href="#reversible">Reversible reactions</a></li>
+            <li><a href="#dynamic">Dynamic equilibrium</a></li>
+            <li><a href="#kc">Equilibrium constant Kc</a></li>
+            <li><a href="#kp">Equilibrium constant Kp</a></li>
+            <li><a href="#meaning">Meaning of K</a></li>
+            <li><a href="#quotient">Reaction quotient Q</a></li>
+            <li><a href="#le-chatelier">Le Chatelier's principle</a></li>
+            <li><a href="#example">Haber process</a></li>
+            <li><a href="#summary">Key ideas</a></li>
+          </ul>
+        </div>
+
+        <div class="aside-card">
+          <h3>Study tip</h3>
+          <p>
+            When solving equilibrium problems, first balance the equation.
+            Then write the K expression, substitute equilibrium values, and
+            check whether the question asks for K, Q or a direction of shift.
+          </p>
+        </div>
+
+        <div class="aside-card">
+          <h3>Chemistry topics</h3>
+          <ul>
+            <li><a href="../index.html">Chemistry overview</a></li>
+            <li><a href="basic-concepts.html">Basic Concepts</a></li>
+            <li><a href="atomic-structure.html">Atomic Structure</a></li>
+            <li><a href="periodicity.html">Periodicity</a></li>
+            <li><a href="chemical-bonding.html">Chemical Bonding</a></li>
+            <li><a href="states-of-matter.html">States of Matter</a></li>
+            <li><a href="thermodynamics.html">Thermodynamics</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Learn concepts. Understand connections. Keep asking why.</p>
+      <p><a href="../../../index.html">Your Answer</a> · Chemistry</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

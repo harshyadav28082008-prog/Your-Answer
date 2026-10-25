@@ -1,0 +1,748 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn statistics through clear explanations, worked examples, data exploration, and practice on Your Answer.">
+  <title>Statistics | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .statistics-page {
+      --lesson-accent: #5684d8;
+      --lesson-soft: #edf3ff;
+      padding-bottom: 64px;
+    }
+
+    html[data-theme="dark"] .statistics-page {
+      --lesson-soft: #202c43;
+    }
+
+    .statistics-page .lesson-hero {
+      padding: 52px 0 38px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .statistics-page .eyebrow {
+      color: var(--lesson-accent);
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .statistics-page .lesson-hero h1 {
+      max-width: 780px;
+      margin: 14px 0;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      line-height: 1.06;
+      letter-spacing: -0.055em;
+    }
+
+    .statistics-page .hero-description {
+      max-width: 650px;
+      color: var(--color-text-muted);
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .statistics-page .lesson-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .statistics-page .meta-chip {
+      padding: 7px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      font-size: 0.83rem;
+      color: var(--color-text-muted);
+    }
+
+    .statistics-page .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      align-items: start;
+      gap: 36px;
+      padding-top: 34px;
+    }
+
+    .statistics-page .lesson-content {
+      min-width: 0;
+    }
+
+    .statistics-page .lesson-section {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--color-border);
+      scroll-margin-top: 24px;
+    }
+
+    .statistics-page .lesson-section:first-child {
+      padding-top: 8px;
+    }
+
+    .statistics-page .lesson-section h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.45rem, 3vw, 1.9rem);
+      letter-spacing: -0.035em;
+    }
+
+    .statistics-page .lesson-section h3 {
+      margin: 24px 0 10px;
+      font-size: 1.12rem;
+    }
+
+    .statistics-page .lesson-section p,
+    .statistics-page .lesson-section li {
+      color: var(--color-text-muted);
+      line-height: 1.85;
+    }
+
+    .statistics-page .lesson-section ul,
+    .statistics-page .lesson-section ol {
+      padding-left: 24px;
+    }
+
+    .statistics-page .concept-card {
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      background: var(--color-surface);
+    }
+
+    .statistics-page .formula {
+      overflow-x: auto;
+      padding: 17px;
+      margin: 14px 0;
+      border-radius: 12px;
+      background: var(--lesson-soft);
+      text-align: center;
+    }
+
+    .statistics-page .example-label {
+      color: var(--lesson-accent);
+      font-size: 0.76rem;
+      font-weight: 750;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .statistics-page .lesson-aside {
+      position: sticky;
+      top: 76px;
+      align-self: start;
+      min-width: 0;
+    }
+
+    .statistics-page .aside-card {
+      display: block;
+      height: auto;
+      padding: 18px;
+      margin-bottom: 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      background: var(--color-surface);
+    }
+
+    .statistics-page .aside-card h3 {
+      margin: 0 0 14px;
+      font-size: 0.98rem;
+    }
+
+    .statistics-page .aside-card a {
+      display: block;
+      padding: 8px 0;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+
+    .statistics-page .aside-card a:hover {
+      color: var(--lesson-accent);
+    }
+
+    .statistics-page .data-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 11px 12px;
+      margin: 8px 0 12px;
+      color: var(--color-text);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      font: inherit;
+    }
+
+    .statistics-page .lesson-button {
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 10px;
+      color: white;
+      background: var(--lesson-accent);
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .statistics-page .result-box {
+      padding: 14px;
+      margin-top: 14px;
+      border-radius: 12px;
+      background: var(--lesson-soft);
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .statistics-page .practice-item {
+      padding: 18px 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .statistics-page .answer-button {
+      margin-top: 8px;
+      padding: 7px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 9px;
+      color: var(--color-text);
+      background: var(--color-surface);
+      cursor: pointer;
+    }
+
+    .statistics-page .answer-text {
+      display: none;
+      margin-top: 10px;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .statistics-page .answer-text.visible {
+      display: block;
+    }
+
+    .statistics-page .page-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 28px;
+    }
+
+    .statistics-page .page-links a {
+      padding: 11px 15px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    @media (max-width: 800px) {
+      .statistics-page .lesson-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .statistics-page .lesson-aside {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .statistics-page .aside-card {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .statistics-page .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .statistics-page .lesson-hero {
+        padding-top: 34px;
+      }
+    }
+  </style>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">
+        Theme
+      </button>
+
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">
+        Menu
+      </button>
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="statistics-page">
+    <section class="lesson-hero">
+      <div class="container">
+        <div class="eyebrow">Mathematics / Data and Analysis</div>
+        <h1>Statistics: making sense of data.</h1>
+        <p class="hero-description">
+          Statistics helps us turn collections of observations into useful
+          information. Learn how to describe data, compare distributions,
+          and understand what numbers can — and cannot — tell us.
+        </p>
+
+        <div class="lesson-meta">
+          <span class="meta-chip">Beginner to intermediate</span>
+          <span class="meta-chip">Worked examples</span>
+          <span class="meta-chip">Interactive explorer</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container lesson-layout">
+      <article class="lesson-content">
+
+        <section class="lesson-section" id="introduction">
+          <h2>01. What is statistics?</h2>
+          <p>
+            Statistics is the study of collecting, organizing, analyzing,
+            interpreting, and presenting data. It helps us discover patterns
+            without assuming that every observation tells the whole story.
+          </p>
+
+          <div class="concept-card">
+            <h3>Two important branches</h3>
+            <p><strong>Descriptive statistics</strong> summarizes the data
+              we already have, using measures such as the mean, median,
+              range, and standard deviation.</p>
+            <p><strong>Inferential statistics</strong> uses a sample to make
+              cautious estimates or conclusions about a larger population.</p>
+          </div>
+
+          <p>
+            For example, calculating the average score of one class is
+            descriptive statistics. Using a carefully selected sample of
+            students to estimate a wider trend is inferential statistics.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="mean">
+          <h2>02. Mean, median, and mode</h2>
+          <p>
+            These measures describe the centre of a dataset, but they do
+            not always describe it in the same way.
+          </p>
+
+          <h3>Mean — the arithmetic average</h3>
+          <div class="formula">
+            \[
+              \bar{x}=\frac{\sum_{i=1}^{n}x_i}{n}
+            \]
+          </div>
+          <p>Add all observations and divide by the number of observations.</p>
+
+          <div class="concept-card">
+            <span class="example-label">Worked example</span>
+            <p>Data: \(2,4,4,6,9\)</p>
+            <p>
+              \[
+                \bar{x}=\frac{2+4+4+6+9}{5}=\frac{25}{5}=5
+              \]
+            </p>
+            <p>The mean is \(5\).</p>
+          </div>
+
+          <h3>Median — the middle value</h3>
+          <p>
+            Arrange the values in order. If there is an odd number of
+            observations, choose the middle one. If there is an even number,
+            average the two middle values.
+          </p>
+          <div class="formula">
+            \[
+              \text{Median position}=\frac{n+1}{2}
+            \]
+          </div>
+          <p>
+            This position formula applies directly when \(n\) is odd and
+            the observations are ordered. For even \(n\), average the two
+            central observations.
+          </p>
+
+          <h3>Mode — the most frequent value</h3>
+          <p>
+            The mode is the value that appears most often. A dataset may
+            have one mode, multiple modes, or no mode if every value occurs
+            equally often.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="spread">
+          <h2>03. Measuring spread</h2>
+          <p>
+            Two datasets can have the same mean but very different
+            distributions. Measures of spread help us understand how
+            scattered the values are.
+          </p>
+
+          <h3>Range</h3>
+          <div class="formula">
+            \[
+              \text{Range}=\text{Maximum}-\text{Minimum}
+            \]
+          </div>
+
+          <h3>Variance</h3>
+          <p>
+            Variance measures the average squared distance from the mean.
+            The following is the population variance formula:
+          </p>
+          <div class="formula">
+            \[
+              \sigma^2=\frac{\sum_{i=1}^{N}(x_i-\mu)^2}{N}
+            \]
+          </div>
+          <p>
+            For a sample, the commonly used unbiased estimator of population
+            variance divides the sum of squared deviations by \(n-1\):
+          </p>
+          <div class="formula">
+            \[
+              s^2=\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}
+            \]
+          </div>
+
+          <h3>Standard deviation</h3>
+          <div class="formula">
+            \[
+              \sigma=\sqrt{\sigma^2}
+            \]
+          </div>
+          <p>
+            Standard deviation is the square root of variance, so it is
+            expressed in the same units as the original data.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="quartiles">
+          <h2>04. Quartiles and the interquartile range</h2>
+          <p>
+            Quartiles divide ordered data into four parts. The first quartile
+            \(Q_1\) marks the lower quarter, while the third quartile \(Q_3\)
+            marks the upper three-quarters.
+          </p>
+
+          <div class="formula">
+            \[
+              \mathrm{IQR}=Q_3-Q_1
+            \]
+          </div>
+
+          <p>
+            The interquartile range describes the spread of the middle half
+            of the observations. It is less affected by extreme values than
+            the full range.
+          </p>
+
+          <div class="concept-card">
+            <span class="example-label">Remember</span>
+            <p>
+              Different textbooks and software can use different quartile
+              conventions, especially for small datasets. State the method
+              when precision matters.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="distributions">
+          <h2>05. Distributions and outliers</h2>
+          <p>
+            A distribution describes how values are spread across a dataset.
+            Histograms show frequencies across intervals; bar charts compare
+            categories.
+          </p>
+
+          <ul>
+            <li><strong>Symmetric:</strong> the two sides have roughly similar shapes.</li>
+            <li><strong>Right-skewed:</strong> a longer tail extends towards larger values.</li>
+            <li><strong>Left-skewed:</strong> a longer tail extends towards smaller values.</li>
+            <li><strong>Outlier:</strong> a value unusually far from the rest of the data.</li>
+          </ul>
+
+          <p>
+            A common rule flags observations below
+            \(Q_1-1.5\,\mathrm{IQR}\) or above \(Q_3+1.5\,\mathrm{IQR}\)
+            as potential outliers. This is a useful screening rule, not proof
+            that a value is an error.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="correlation">
+          <h2>06. Correlation does not prove causation</h2>
+          <p>
+            Correlation describes how two variables vary together. A positive
+            relationship means larger values of one variable tend to
+            accompany larger values of the other; a negative relationship
+            means they tend to move in opposite directions.
+          </p>
+
+          <div class="formula">
+            \[
+              -1\leq r\leq 1
+            \]
+          </div>
+
+          <p>
+            A correlation near \(1\) indicates a strong positive linear
+            relationship, while a value near \(-1\) indicates a strong
+            negative linear relationship. A value near \(0\) means little
+            linear correlation, but a nonlinear relationship may still exist.
+          </p>
+
+          <div class="concept-card">
+            <h3>Think critically</h3>
+            <p>
+              If two things happen together, one does not necessarily cause
+              the other. A third factor, coincidence, or the way data was
+              collected may explain the relationship.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="explorer">
+          <h2>07. Interactive data explorer</h2>
+          <p>
+            Enter numbers separated by commas to calculate the mean, median,
+            mode, range, and population standard deviation.
+          </p>
+
+          <label for="data-values"><strong>Your dataset</strong></label>
+          <input
+            class="data-input"
+            id="data-values"
+            type="text"
+            value="2, 4, 4, 6, 9"
+            placeholder="Example: 2, 4, 4, 6, 9"
+          >
+
+          <button class="lesson-button" type="button" id="calculate-data">
+            Analyze data
+          </button>
+
+          <div class="result-box" id="data-results" aria-live="polite">
+            Mean: 5<br>
+            Median: 4<br>
+            Mode: 4<br>
+            Range: 7<br>
+            Population standard deviation: 2.37
+          </div>
+        </section>
+
+        <section class="lesson-section" id="practice">
+          <h2>08. Practice</h2>
+          <p>Try solving these questions before revealing the answers.</p>
+
+          <div class="practice-item">
+            <strong>Question 1.</strong>
+            Find the mean of \(3,5,7,9,11\).
+            <br>
+            <button class="answer-button" type="button" data-answer="answer-1">
+              Reveal answer
+            </button>
+            <div class="answer-text" id="answer-1">
+              The sum is \(35\), and there are \(5\) values. The mean is
+              \(35/5=\boxed{7}\).
+            </div>
+          </div>
+
+          <div class="practice-item">
+            <strong>Question 2.</strong>
+            Find the median of \(2,3,8,10\).
+            <br>
+            <button class="answer-button" type="button" data-answer="answer-2">
+              Reveal answer
+            </button>
+            <div class="answer-text" id="answer-2">
+              The two middle values are \(3\) and \(8\). The median is
+              \((3+8)/2=\boxed{5.5}\).
+            </div>
+          </div>
+
+          <div class="practice-item">
+            <strong>Question 3.</strong>
+            A dataset has a minimum of \(12\) and a maximum of \(31\).
+            Find its range.
+            <br>
+            <button class="answer-button" type="button" data-answer="answer-3">
+              Reveal answer
+            </button>
+            <div class="answer-text" id="answer-3">
+              Range \(=31-12=\boxed{19}\).
+            </div>
+          </div>
+
+          <div class="practice-item">
+            <strong>Question 4.</strong>
+            Does a strong correlation between two variables prove that one
+            causes the other?
+            <br>
+            <button class="answer-button" type="button" data-answer="answer-4">
+              Reveal answer
+            </button>
+            <div class="answer-text" id="answer-4">
+              No. Correlation alone does not establish causation.
+            </div>
+          </div>
+        </section>
+
+        <div class="page-links">
+          <a href="../index.html">← Mathematics</a>
+          <a href="probability.html">Probability →</a>
+          <a href="formula-sheet.html">Quick Formula Sheet →</a>
+        </div>
+      </article>
+
+      <aside class="lesson-aside">
+        <div class="aside-card">
+          <h3>In this lesson</h3>
+          <a href="#introduction">Introduction</a>
+          <a href="#mean">Mean, median, mode</a>
+          <a href="#spread">Variance and spread</a>
+          <a href="#quartiles">Quartiles and IQR</a>
+          <a href="#distributions">Distributions</a>
+          <a href="#correlation">Correlation</a>
+          <a href="#explorer">Data explorer</a>
+          <a href="#practice">Practice</a>
+        </div>
+
+        <div class="aside-card">
+          <h3>Remember</h3>
+          <p>Mean = average</p>
+          <p>Median = middle</p>
+          <p>Mode = most frequent</p>
+          <p>Range = maximum − minimum</p>
+          <p>IQR = \(Q_3-Q_1\)</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../../../assets/js/main.js"></script>
+
+  <script>
+    (function () {
+      const input = document.getElementById("data-values");
+      const button = document.getElementById("calculate-data");
+      const output = document.getElementById("data-results");
+
+      function analyze() {
+        const raw = input.value.trim();
+
+        if (!raw) {
+          output.textContent = "Enter at least one number.";
+          return;
+        }
+
+        const parts = raw.split(/[,\s]+/).filter(Boolean);
+        const values = parts.map(Number);
+
+        if (
+          values.length === 0 ||
+          values.some(value => !Number.isFinite(value))
+        ) {
+          output.textContent =
+            "Please enter valid numbers separated by commas or spaces.";
+          return;
+        }
+
+        const sorted = [...values].sort((a, b) => a - b);
+        const n = sorted.length;
+        const sum = values.reduce((total, value) => total + value, 0);
+        const mean = sum / n;
+
+        const median = n % 2 === 1
+          ? sorted[Math.floor(n / 2)]
+          : (sorted[n / 2 - 1] + sorted[n / 2]) / 2;
+
+        const frequencies = new Map();
+        values.forEach(value => {
+          frequencies.set(value, (frequencies.get(value) || 0) + 1);
+        });
+
+        const highestFrequency = Math.max(...frequencies.values());
+        const modes = highestFrequency > 1
+          ? [...frequencies.entries()]
+              .filter(entry => entry[1] === highestFrequency)
+              .map(entry => entry[0])
+          : [];
+
+        const variance = values.reduce(
+          (total, value) => total + (value - mean) ** 2, 0
+        ) / n;
+
+        const range = sorted[n - 1] - sorted[0];
+        const format = value => Number(value.toFixed(4)).toString();
+
+        output.replaceChildren();
+
+        const results = [
+          ["Count", n],
+          ["Mean", format(mean)],
+          ["Median", format(median)],
+          ["Mode", modes.length ? modes.map(format).join(", ") : "No mode"],
+          ["Range", format(range)],
+          ["Population variance", format(variance)],
+          ["Population standard deviation", format(Math.sqrt(variance))]
+        ];
+
+        results.forEach(([label, value]) => {
+          const line = document.createElement("div");
+          const strong = document.createElement("strong");
+          strong.textContent = label + ": ";
+          line.append(strong, document.createTextNode(String(value)));
+          output.appendChild(line);
+        });
+      }
+
+      button.addEventListener("click", analyze);
+
+      document.querySelectorAll("[data-answer]").forEach(button => {
+        button.addEventListener("click", () => {
+          const answer = document.getElementById(button.dataset.answer);
+          const visible = answer.classList.toggle("visible");
+          button.textContent = visible ? "Hide answer" : "Reveal answer";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

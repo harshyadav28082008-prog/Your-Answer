@@ -1,0 +1,885 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore 3D geometric solids and learn about their dimensions and properties on Your Answer.">
+  <title>3D Geometry Explorer | Your Answer</title>
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <style>
+    .geometry-page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--color-brand);
+    }
+
+    .geometry-hero {
+      margin-bottom: 26px;
+    }
+
+    .geometry-hero h1 {
+      margin: 8px 0 12px;
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      letter-spacing: -0.04em;
+    }
+
+    .geometry-hero p {
+      max-width: 700px;
+      color: var(--color-text-muted);
+      line-height: 1.75;
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.8rem;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .geometry-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.8fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      background: var(--color-surface);
+    }
+
+    .panel-heading {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .panel-heading h2 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .panel-heading p {
+      margin: 6px 0 0;
+      color: var(--color-text-muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .viewer {
+      position: relative;
+      min-height: 350px;
+      background:
+        radial-gradient(circle at center, rgba(100, 120, 240, 0.12), transparent 65%),
+        var(--color-surface);
+    }
+
+    #geometry-canvas {
+      display: block;
+      width: 100%;
+      height: 350px;
+      touch-action: none;
+      cursor: grab;
+    }
+
+    #geometry-canvas:active {
+      cursor: grabbing;
+    }
+
+    .viewer-hint {
+      padding: 0 16px 16px;
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .controls {
+      display: grid;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .control-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .control-group label,
+    .control-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .shape-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .shape-button,
+    .action-button {
+      min-height: 42px;
+      padding: 10px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 11px;
+      background: transparent;
+      color: var(--color-text);
+      font: inherit;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+
+    .shape-button[aria-pressed="true"] {
+      border-color: var(--color-brand);
+      background: var(--color-brand);
+      color: white;
+    }
+
+    .control-group input[type="range"] {
+      width: 100%;
+      accent-color: var(--color-brand);
+    }
+
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .toggle-row input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-brand);
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .action-button.primary {
+      border-color: var(--color-brand);
+      background: var(--color-brand);
+      color: white;
+    }
+
+    .properties {
+      margin-top: 22px;
+    }
+
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      padding: 18px;
+    }
+
+    .property {
+      padding: 15px;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+    }
+
+    .property span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--color-text-muted);
+      font-size: 0.82rem;
+    }
+
+    .property strong {
+      font-size: 1.25rem;
+    }
+
+    .learning-panel {
+      margin-top: 22px;
+      padding: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .learning-panel h2 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .learning-panel p {
+      color: var(--color-text-muted);
+      line-height: 1.75;
+    }
+
+    .formula {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(127, 127, 127, 0.09);
+      font-family: monospace;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+
+    .geometry-footer {
+      padding-top: 26px;
+      color: var(--color-text-muted);
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 760px) {
+      .geometry-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .properties-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      #geometry-canvas {
+        height: 310px;
+      }
+
+      .viewer {
+        min-height: 310px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+        <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+  </header>
+
+  <main class="geometry-page">
+    <a class="back-link" href="../index.html">← Back to Explore 3D</a>
+
+    <section class="geometry-hero">
+      <span class="eyebrow">Mathematics · Model 01</span>
+      <h1>3D Geometry Explorer</h1>
+      <p>
+        Explore common solid shapes. Change the shape and its dimensions,
+        rotate the model, and investigate the relationship between its
+        surface area and volume.
+      </p>
+    </section>
+
+    <section class="geometry-layout">
+      <div class="panel">
+        <div class="panel-heading">
+          <h2 id="viewer-title">Cube</h2>
+          <p>Drag the model to rotate it.</p>
+        </div>
+
+        <div class="viewer">
+          <canvas id="geometry-canvas" aria-label="Interactive 3D geometric solid">
+            Your browser does not support canvas.
+          </canvas>
+        </div>
+
+        <p class="viewer-hint">
+          Touch and drag on a tablet, or click and drag with a mouse.
+        </p>
+      </div>
+
+      <aside class="panel">
+        <div class="panel-heading">
+          <h2>Model controls</h2>
+          <p>Choose a solid and adjust its dimensions.</p>
+        </div>
+
+        <div class="controls">
+          <div class="control-group">
+            <span class="control-title">Choose a shape</span>
+
+            <div class="shape-options">
+              <button class="shape-button" data-shape="cube" aria-pressed="true">Cube</button>
+              <button class="shape-button" data-shape="sphere" aria-pressed="false">Sphere</button>
+              <button class="shape-button" data-shape="cylinder" aria-pressed="false">Cylinder</button>
+              <button class="shape-button" data-shape="cone" aria-pressed="false">Cone</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="size-control">Overall size</label>
+            <input id="size-control" type="range" min="1" max="5" step="0.5" value="3">
+            <div class="range-labels">
+              <span>Small</span>
+              <strong id="size-value">3 units</strong>
+              <span>Large</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label for="height-control">Height / depth</label>
+            <input id="height-control" type="range" min="1" max="5" step="0.5" value="3">
+            <div class="range-labels">
+              <span>Short</span>
+              <strong id="height-value">3 units</strong>
+              <span>Tall</span>
+            </div>
+          </div>
+
+          <label class="toggle-row">
+            <input id="wireframe-control" type="checkbox" checked>
+            Show wireframe
+          </label>
+
+          <div class="action-row">
+            <button class="action-button primary" id="reset-view">Reset view</button>
+            <button class="action-button" id="reset-controls">Reset model</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel properties">
+      <div class="panel-heading">
+        <h2>Geometric properties</h2>
+        <p>Values update when you change the model's dimensions.</p>
+      </div>
+
+      <div class="properties-grid">
+        <div class="property">
+          <span>Faces</span>
+          <strong id="faces-value">6</strong>
+        </div>
+        <div class="property">
+          <span>Edges</span>
+          <strong id="edges-value">12</strong>
+        </div>
+        <div class="property">
+          <span>Vertices</span>
+          <strong id="vertices-value">8</strong>
+        </div>
+        <div class="property">
+          <span>Volume</span>
+          <strong id="volume-value">27</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="learning-panel">
+      <h2 id="learning-title">Understanding a cube</h2>
+      <p id="learning-description">
+        A cube has six equal square faces, twelve edges and eight vertices.
+        All its edges have the same length.
+      </p>
+
+      <div class="formula" id="formula-box">
+        Surface area = 6a²<br>
+        Volume = a³<br>
+        a = edge length
+      </div>
+    </section>
+
+    <footer class="geometry-footer">
+      Your Answer · Explore, experiment, understand.
+    </footer>
+  </main>
+
+  <script src="../../assets/js/main.js"></script>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById("geometry-canvas");
+      const ctx = canvas.getContext("2d");
+
+      if (!ctx) return;
+
+      const shapeButtons = document.querySelectorAll("[data-shape]");
+      const sizeControl = document.getElementById("size-control");
+      const heightControl = document.getElementById("height-control");
+      const wireframeControl = document.getElementById("wireframe-control");
+
+      const viewerTitle = document.getElementById("viewer-title");
+      const sizeValue = document.getElementById("size-value");
+      const heightValue = document.getElementById("height-value");
+
+      const facesValue = document.getElementById("faces-value");
+      const edgesValue = document.getElementById("edges-value");
+      const verticesValue = document.getElementById("vertices-value");
+      const volumeValue = document.getElementById("volume-value");
+
+      const learningTitle = document.getElementById("learning-title");
+      const learningDescription = document.getElementById("learning-description");
+      const formulaBox = document.getElementById("formula-box");
+
+      const shapes = {
+        cube: {
+          name: "Cube",
+          faces: "6",
+          edges: "12",
+          vertices: "8",
+          description: "A cube has six equal square faces, twelve edges and eight vertices. All its edges have the same length.",
+          formula: "Surface area = 6a²<br>Volume = a³<br>a = edge length"
+        },
+        sphere: {
+          name: "Sphere",
+          faces: "0",
+          edges: "0",
+          vertices: "0",
+          description: "A sphere is a perfectly round solid. Every point on its surface is the same distance from its centre. It has no flat faces, straight edges or vertices.",
+          formula: "Surface area = 4πr²<br>Volume = (4/3)πr³<br>r = radius"
+        },
+        cylinder: {
+          name: "Cylinder",
+          faces: "3*",
+          edges: "2",
+          vertices: "0",
+          description: "A cylinder has two circular flat faces and one curved surface. It has two circular boundaries and no vertices. The face count includes the curved surface.",
+          formula: "Total surface area = 2πr(r + h)<br>Volume = πr²h<br>r = radius, h = height"
+        },
+        cone: {
+          name: "Cone",
+          faces: "2*",
+          edges: "1",
+          vertices: "1",
+          description: "A cone has one circular base and one curved surface that meets at a single vertex. The face count includes the curved surface.",
+          formula: "Total surface area = πr(r + l)<br>Volume = (1/3)πr²h<br>l = slant height"
+        }
+      };
+
+      let currentShape = "cube";
+      let rotationX = -0.4;
+      let rotationY = 0.65;
+      let dragging = false;
+      let lastX = 0;
+      let lastY = 0;
+      let width = 0;
+      let height = 0;
+      let pixelRatio = 1;
+
+      function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        width = rect.width;
+        height = rect.height;
+
+        canvas.width = Math.round(width * pixelRatio);
+        canvas.height = Math.round(height * pixelRatio);
+
+        ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        draw();
+      }
+
+      function project(point) {
+        const cosY = Math.cos(rotationY);
+        const sinY = Math.sin(rotationY);
+        const cosX = Math.cos(rotationX);
+        const sinX = Math.sin(rotationX);
+
+        const x1 = point.x * cosY - point.z * sinY;
+        const z1 = point.x * sinY + point.z * cosY;
+        const y2 = point.y * cosX - z1 * sinX;
+        const z2 = point.y * sinX + z1 * cosX;
+
+        const camera = 7;
+        const scale = 250 / (camera + z2);
+
+        return {
+          x: width / 2 + x1 * scale,
+          y: height / 2 - y2 * scale,
+          z: z2
+        };
+      }
+
+      function makeMesh() {
+        const size = Number(sizeControl.value);
+        const depth = Number(heightControl.value);
+        const s = size / 2;
+        const h = depth / 2;
+
+        if (currentShape === "cube") {
+          const vertices = [
+            {x:-s,y:-s,z:-s}, {x:s,y:-s,z:-s},
+            {x:s,y:s,z:-s}, {x:-s,y:s,z:-s},
+            {x:-s,y:-s,z:s}, {x:s,y:-s,z:s},
+            {x:s,y:s,z:s}, {x:-s,y:s,z:s}
+          ];
+
+          return {
+            vertices,
+            faces: [
+              [0,1,2,3], [4,7,6,5], [0,4,5,1],
+              [3,2,6,7], [0,3,7,4], [1,5,6,2]
+            ],
+            edges: [
+              [0,1],[1,2],[2,3],[3,0],
+              [4,5],[5,6],[6,7],[7,4],
+              [0,4],[1,5],[2,6],[3,7]
+            ]
+          };
+        }
+
+        if (currentShape === "sphere") {
+          const vertices = [];
+          const faces = [];
+          const edges = [];
+          const rings = 10;
+          const segments = 20;
+
+          for (let i = 0; i <= rings; i++) {
+            const phi = Math.PI * i / rings;
+
+            for (let j = 0; j < segments; j++) {
+              const theta = 2 * Math.PI * j / segments;
+
+              vertices.push({
+                x: s * Math.sin(phi) * Math.cos(theta),
+                y: s * Math.cos(phi),
+                z: s * Math.sin(phi) * Math.sin(theta)
+              });
+            }
+          }
+
+          for (let i = 0; i <= rings; i++) {
+            for (let j = 0; j < segments; j++) {
+              const a = i * segments + j;
+              const b = i * segments + (j + 1) % segments;
+
+              if (i < rings) {
+                const c = (i + 1) * segments + j;
+                const d = (i + 1) * segments + (j + 1) % segments;
+                faces.push([a,b,d,c]);
+                edges.push([a,c]);
+              }
+
+              edges.push([a,b]);
+            }
+          }
+
+          return { vertices, faces, edges };
+        }
+
+        const segments = 32;
+        const vertices = [];
+
+        for (let i = 0; i < segments; i++) {
+          const angle = i * 2 * Math.PI / segments;
+          vertices.push({
+            x: s * Math.cos(angle),
+            y: -h,
+            z: s * Math.sin(angle)
+          });
+        }
+
+        for (let i = 0; i < segments; i++) {
+          const angle = i * 2 * Math.PI / segments;
+          vertices.push({
+            x: s * Math.cos(angle),
+            y: h,
+            z: s * Math.sin(angle)
+          });
+        }
+
+        const bottomCenter = vertices.length;
+        vertices.push({x:0,y:-h,z:0});
+
+        const topCenter = vertices.length;
+        vertices.push({x:0,y:h,z:0});
+
+        const faces = [];
+        const edges = [];
+
+        for (let i = 0; i < segments; i++) {
+          const next = (i + 1) % segments;
+
+          faces.push([i,next,segments+next,segments+i]);
+          edges.push([i,next]);
+          edges.push([segments+i,segments+next]);
+          edges.push([i,segments+i]);
+
+          if (currentShape === "cone") {
+            vertices[segments + i].y = h;
+            vertices[segments + i].x = 0;
+            vertices[segments + i].z = 0;
+          }
+        }
+
+        if (currentShape === "cylinder") {
+          faces.push(Array.from({length:segments}, (_,i) => i));
+          faces.push(Array.from({length:segments}, (_,i) => segments+i));
+          return { vertices, faces, edges };
+        }
+
+        for (let i = 0; i < segments; i++) {
+          const next = (i + 1) % segments;
+          faces.push([i,next,topCenter]);
+          edges.push([i,topCenter]);
+        }
+
+        return { vertices, faces, edges };
+      }
+
+      function draw() {
+        if (!width || !height) return;
+
+        ctx.clearRect(0, 0, width, height);
+
+        const mesh = makeMesh();
+        const projected = mesh.vertices.map(project);
+
+        const palette = {
+          cube: "#7187ee",
+          sphere: "#55a9a0",
+          cylinder: "#d49a52",
+          cone: "#a47be2"
+        };
+
+        const color = palette[currentShape];
+
+        if (!wireframeControl.checked) {
+          mesh.faces
+            .map(face => ({
+              face,
+              depth: face.reduce((sum, i) => sum + projected[i].z, 0) / face.length
+            }))
+            .sort((a, b) => a.depth - b.depth)
+            .forEach(({face}, index) => {
+              ctx.beginPath();
+              face.forEach((vertexIndex, i) => {
+                const point = projected[vertexIndex];
+                if (i === 0) ctx.moveTo(point.x, point.y);
+                else ctx.lineTo(point.x, point.y);
+              });
+              ctx.closePath();
+              ctx.fillStyle = color + (index % 2 ? "65" : "35");
+              ctx.fill();
+            });
+        }
+
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = color;
+        ctx.lineJoin = "round";
+
+        mesh.edges.forEach(([a, b]) => {
+          const p1 = projected[a];
+          const p2 = projected[b];
+
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        });
+
+        if (currentShape === "cube") {
+          ctx.fillStyle = getComputedStyle(document.body)
+            .getPropertyValue("--color-text-muted").trim() || "#888";
+
+          ctx.font = "12px sans-serif";
+          ctx.textAlign = "center";
+
+          const labels = [
+            [0, "A"], [1, "B"], [2, "C"], [3, "D"],
+            [4, "E"], [5, "F"], [6, "G"], [7, "H"]
+          ];
+
+          labels.forEach(([index, label]) => {
+            const p = projected[index];
+            ctx.fillText(label, p.x, p.y - 8);
+          });
+        }
+      }
+
+      function updateProperties() {
+        const size = Number(sizeControl.value);
+        const depth = Number(heightControl.value);
+
+        sizeValue.textContent = size + " units";
+        heightValue.textContent = depth + " units";
+
+        const info = shapes[currentShape];
+
+        viewerTitle.textContent = info.name;
+        learningTitle.textContent = "Understanding a " + info.name.toLowerCase();
+        learningDescription.textContent = info.description;
+        formulaBox.innerHTML = info.formula;
+
+        facesValue.textContent = info.faces;
+        edgesValue.textContent = info.edges;
+        verticesValue.textContent = info.vertices;
+
+        let volume;
+
+        if (currentShape === "cube") {
+          volume = size ** 3;
+        } else if (currentShape === "sphere") {
+          volume = (4 / 3) * Math.PI * (size / 2) ** 3;
+        } else if (currentShape === "cylinder") {
+          volume = Math.PI * (size / 2) ** 2 * depth;
+        } else {
+          volume = Math.PI * (size / 2) ** 2 * depth / 3;
+        }
+
+        volumeValue.textContent = volume.toFixed(2) + " u³";
+        draw();
+      }
+
+      shapeButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          currentShape = button.dataset.shape;
+
+          shapeButtons.forEach(item => {
+            item.setAttribute(
+              "aria-pressed",
+              String(item === button)
+            );
+          });
+
+          updateProperties();
+        });
+      });
+
+      sizeControl.addEventListener("input", updateProperties);
+      heightControl.addEventListener("input", updateProperties);
+      wireframeControl.addEventListener("change", draw);
+
+      document.getElementById("reset-view").addEventListener("click", () => {
+        rotationX = -0.4;
+        rotationY = 0.65;
+        draw();
+      });
+
+      document.getElementById("reset-controls").addEventListener("click", () => {
+        sizeControl.value = "3";
+        heightControl.value = "3";
+        wireframeControl.checked = true;
+        rotationX = -0.4;
+        rotationY = 0.65;
+        updateProperties();
+      });
+
+      canvas.addEventListener("pointerdown", event => {
+        dragging = true;
+        lastX = event.clientX;
+        lastY = event.clientY;
+        canvas.setPointerCapture(event.pointerId);
+      });
+
+      canvas.addEventListener("pointermove", event => {
+        if (!dragging) return;
+
+        const dx = event.clientX - lastX;
+        const dy = event.clientY - lastY;
+
+        rotationY += dx * 0.01;
+        rotationX += dy * 0.01;
+        rotationX = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, rotationX));
+
+        lastX = event.clientX;
+        lastY = event.clientY;
+
+        draw();
+      });
+
+      function stopDragging() {
+        dragging = false;
+      }
+
+      canvas.addEventListener("pointerup", stopDragging);
+      canvas.addEventListener("pointercancel", stopDragging);
+      canvas.addEventListener("lostpointercapture", stopDragging);
+
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(resizeCanvas).observe(canvas);
+      } else {
+        window.addEventListener("resize", resizeCanvas);
+      }
+
+      updateProperties();
+      resizeCanvas();
+    })();
+  </script>
+</body>
+</html>

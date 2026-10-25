@@ -1,0 +1,1760 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Learn algebra through clear explanations, interactive equations, worked examples, and guided practice on Your Answer.">
+  <title>Algebra — Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <script src="../../../assets/js/main.js" defer></script>
+
+  <style>
+    /* =========================================
+       ALGEBRA LESSON
+       All styles are scoped to this page.
+    ========================================= */
+
+    .algebra-page {
+      --algebra-accent: var(--color-brand, #6256d9);
+      --algebra-accent-soft: var(--color-brand-soft, #eeecff);
+      --algebra-line: var(--color-border, #e5e7eb);
+      --algebra-muted: var(--color-text-muted, #707789);
+      --algebra-panel: var(--color-surface, #ffffff);
+      --algebra-panel-alt: var(--color-surface-alt, #f6f7fb);
+
+      color: var(--color-text);
+      padding-bottom: 56px;
+    }
+
+    .algebra-page *,
+    .algebra-page *::before,
+    .algebra-page *::after {
+      box-sizing: border-box;
+    }
+
+    .algebra-page a {
+      color: inherit;
+    }
+
+    .algebra-page button,
+    .algebra-page input {
+      font: inherit;
+    }
+
+    .algebra-page button {
+      cursor: pointer;
+    }
+
+    .algebra-page .lesson-container {
+      width: min(1080px, calc(100% - 36px));
+      margin-inline: auto;
+    }
+
+    /* Lesson introduction */
+
+    .algebra-page .lesson-intro {
+      padding: 38px 0 30px;
+    }
+
+    .algebra-page .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 28px;
+      color: var(--algebra-muted);
+      font-size: 0.82rem;
+    }
+
+    .algebra-page .breadcrumb a {
+      text-decoration: none;
+    }
+
+    .algebra-page .breadcrumb a:hover {
+      color: var(--algebra-accent);
+    }
+
+    .algebra-page .breadcrumb .separator {
+      opacity: 0.55;
+    }
+
+    .algebra-page .lesson-kicker {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 15px;
+      color: var(--algebra-accent);
+      font-size: 0.74rem;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .algebra-page .lesson-kicker .lesson-number {
+      padding: 5px 9px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 7px;
+      color: var(--algebra-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .algebra-page .lesson-title {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.25rem, 6vw, 4.1rem);
+      font-weight: 760;
+      letter-spacing: -0.065em;
+      line-height: 1.04;
+    }
+
+    .algebra-page .lesson-lead {
+      max-width: 650px;
+      margin: 20px 0 0;
+      color: var(--algebra-muted);
+      font-size: clamp(1rem, 2vw, 1.12rem);
+      line-height: 1.85;
+    }
+
+    .algebra-page .lesson-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 17px;
+      margin-top: 23px;
+      color: var(--algebra-muted);
+      font-size: 0.84rem;
+    }
+
+    .algebra-page .meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .algebra-page .meta-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--algebra-accent);
+    }
+
+    /* Compact lesson navigation */
+
+    .algebra-page .lesson-nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 10px 0;
+      border-top: 1px solid var(--algebra-line);
+      border-bottom: 1px solid var(--algebra-line);
+      background: var(--color-surface, #fff);
+      background: color-mix(
+        in srgb,
+        var(--color-surface, #fff) 94%,
+        transparent
+      );
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .algebra-page .lesson-nav {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 1px 0;
+    }
+
+    .algebra-page .lesson-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .algebra-page .lesson-nav a {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      color: var(--algebra-muted);
+      font-size: 0.84rem;
+      font-weight: 650;
+      text-decoration: none;
+      transition: background 160ms ease, color 160ms ease,
+        border-color 160ms ease;
+    }
+
+    .algebra-page .lesson-nav a:hover,
+    .algebra-page .lesson-nav a.active {
+      color: var(--algebra-accent);
+      background: var(--algebra-accent-soft);
+      border-color: color-mix(
+        in srgb,
+        var(--algebra-accent) 15%,
+        transparent
+      );
+    }
+
+    .algebra-page .nav-index {
+      font-size: 0.72rem;
+      opacity: 0.75;
+    }
+
+    /* Main lesson layout */
+
+    .algebra-page .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 265px;
+      gap: 44px;
+      align-items: start;
+      padding-top: 38px;
+    }
+
+    .algebra-page .lesson-content {
+      min-width: 0;
+    }
+
+    .algebra-page .lesson-section {
+      scroll-margin-top: 86px;
+      margin-bottom: 55px;
+    }
+
+    .algebra-page .section-label {
+      margin-bottom: 10px;
+      color: var(--algebra-accent);
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .algebra-page .section-title {
+      margin: 0 0 17px;
+      font-size: clamp(1.55rem, 3vw, 2rem);
+      font-weight: 730;
+      letter-spacing: -0.045em;
+      line-height: 1.2;
+    }
+
+    .algebra-page .lesson-copy {
+      color: var(--algebra-muted);
+      font-size: 0.98rem;
+      line-height: 1.9;
+    }
+
+    .algebra-page .lesson-copy p {
+      margin: 0 0 15px;
+    }
+
+    .algebra-page .lesson-copy strong {
+      color: var(--color-text);
+      font-weight: 700;
+    }
+
+    .algebra-page .equation-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 23px 0;
+      padding: 28px 18px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 16px;
+      background: var(--algebra-panel-alt);
+      text-align: center;
+    }
+
+    .algebra-page .equation-display .math {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.65rem, 5vw, 2.45rem);
+      font-weight: 600;
+      letter-spacing: -0.035em;
+    }
+
+    .algebra-page .math-variable {
+      color: var(--algebra-accent);
+      font-style: italic;
+    }
+
+    .algebra-page .equation-note {
+      width: 100%;
+      margin-top: 1px;
+      color: var(--algebra-muted);
+      font-size: 0.8rem;
+    }
+
+    .algebra-page .insight-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 22px;
+      padding: 16px 17px;
+      border-left: 3px solid var(--algebra-accent);
+      border-radius: 0 11px 11px 0;
+      background: var(--algebra-accent-soft);
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    .algebra-page .insight-mark {
+      flex: 0 0 auto;
+      color: var(--algebra-accent);
+      font-weight: 800;
+    }
+
+    /* Worked example */
+
+    .algebra-page .example-card {
+      overflow: hidden;
+      border: 1px solid var(--algebra-line);
+      border-radius: 16px;
+      background: var(--algebra-panel);
+    }
+
+    .algebra-page .example-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 17px 19px;
+      border-bottom: 1px solid var(--algebra-line);
+    }
+
+    .algebra-page .example-top strong {
+      font-size: 0.91rem;
+    }
+
+    .algebra-page .example-badge {
+      padding: 5px 8px;
+      border-radius: 6px;
+      background: var(--algebra-accent-soft);
+      color: var(--algebra-accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .algebra-page .example-steps {
+      display: grid;
+      gap: 0;
+      padding: 4px 19px;
+    }
+
+    .algebra-page .example-step {
+      display: grid;
+      grid-template-columns: 27px minmax(0, 1fr);
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--algebra-line);
+    }
+
+    .algebra-page .example-step:last-child {
+      border-bottom: 0;
+    }
+
+    .algebra-page .step-number {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 8px;
+      color: var(--algebra-muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .algebra-page .step-body strong {
+      display: block;
+      margin: 1px 0 5px;
+      font-size: 0.9rem;
+    }
+
+    .algebra-page .step-body p {
+      margin: 0;
+      color: var(--algebra-muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .algebra-page .step-equation {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 7px;
+      background: var(--algebra-panel-alt);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.12rem;
+    }
+
+    /* Interactive equation lab */
+
+    .algebra-page .interactive-panel {
+      overflow: hidden;
+      border: 1px solid var(--algebra-line);
+      border-radius: 18px;
+      background: var(--algebra-panel);
+    }
+
+    .algebra-page .interactive-heading {
+      padding: 21px 21px 18px;
+      border-bottom: 1px solid var(--algebra-line);
+    }
+
+    .algebra-page .interactive-heading h3 {
+      margin: 0 0 7px;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .algebra-page .interactive-heading p {
+      margin: 0;
+      color: var(--algebra-muted);
+      font-size: 0.86rem;
+      line-height: 1.7;
+    }
+
+    .algebra-page .equation-lab-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 20px;
+      padding: 21px;
+    }
+
+    .algebra-page .input-group {
+      margin-bottom: 16px;
+    }
+
+    .algebra-page .input-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .algebra-page .input-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .algebra-page .input-group input {
+      width: 100%;
+      min-height: 45px;
+      padding: 10px 12px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 9px;
+      outline: none;
+      background: var(--color-surface, #fff);
+      color: var(--color-text);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .algebra-page .input-group input:focus {
+      border-color: var(--algebra-accent);
+      box-shadow: 0 0 0 3px var(--algebra-accent-soft);
+    }
+
+    .algebra-page .input-help {
+      display: block;
+      margin-top: 6px;
+      color: var(--algebra-muted);
+      font-size: 0.74rem;
+      line-height: 1.5;
+    }
+
+    .algebra-page .live-result {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 190px;
+      padding: 19px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 13px;
+      background: var(--algebra-panel-alt);
+    }
+
+    .algebra-page .result-label {
+      margin-bottom: 12px;
+      color: var(--algebra-muted);
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .algebra-page .result-equation {
+      overflow-wrap: anywhere;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.35rem, 4vw, 1.9rem);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .algebra-page .result-answer {
+      margin-top: 13px;
+      color: var(--algebra-accent);
+      font-size: 1rem;
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+
+    .algebra-page .result-explanation {
+      margin-top: 10px;
+      color: var(--algebra-muted);
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+    .algebra-page .lab-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 15px 21px;
+      border-top: 1px solid var(--algebra-line);
+    }
+
+    .algebra-page .lab-footer p {
+      margin: 0;
+      color: var(--algebra-muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .algebra-page .text-button {
+      padding: 8px 12px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 8px;
+      background: var(--algebra-panel);
+      color: var(--color-text);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .algebra-page .text-button:hover {
+      border-color: var(--algebra-accent);
+      color: var(--algebra-accent);
+    }
+
+    /* Practice */
+
+    .algebra-page .practice-card {
+      padding: 22px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 17px;
+      background: var(--algebra-panel);
+    }
+
+    .algebra-page .practice-progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      color: var(--algebra-muted);
+      font-size: 0.79rem;
+    }
+
+    .algebra-page .progress-track {
+      height: 5px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      border-radius: 99px;
+      background: var(--algebra-line);
+    }
+
+    .algebra-page .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--algebra-accent);
+      transition: width 220ms ease;
+    }
+
+    .algebra-page .practice-question {
+      margin: 0 0 10px;
+      font-size: 1.13rem;
+      font-weight: 730;
+      letter-spacing: -0.025em;
+      line-height: 1.5;
+    }
+
+    .algebra-page .practice-instruction {
+      margin: 0 0 19px;
+      color: var(--algebra-muted);
+      font-size: 0.86rem;
+      line-height: 1.7;
+    }
+
+    .algebra-page .practice-answer-row {
+      display: flex;
+      align-items: stretch;
+      gap: 9px;
+    }
+
+    .algebra-page .practice-answer-row input {
+      width: 100%;
+      min-width: 0;
+      min-height: 45px;
+      padding: 10px 12px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 9px;
+      outline: none;
+      background: var(--color-surface, #fff);
+      color: var(--color-text);
+    }
+
+    .algebra-page .practice-answer-row input:focus {
+      border-color: var(--algebra-accent);
+      box-shadow: 0 0 0 3px var(--algebra-accent-soft);
+    }
+
+    .algebra-page .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border: 1px solid var(--algebra-accent);
+      border-radius: 9px;
+      background: var(--algebra-accent);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 750;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .algebra-page .primary-button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .algebra-page .secondary-button {
+      padding: 10px 13px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 9px;
+      background: var(--algebra-panel);
+      color: var(--color-text);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .algebra-page .secondary-button:hover {
+      border-color: var(--algebra-accent);
+      color: var(--algebra-accent);
+    }
+
+    .algebra-page .practice-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    .algebra-page .practice-feedback {
+      margin-top: 17px;
+      padding: 13px 14px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 10px;
+      color: var(--algebra-muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .algebra-page .practice-feedback:empty {
+      display: none;
+    }
+
+    .algebra-page .practice-feedback.success {
+      border-color: #86c9a0;
+      color: var(--color-text);
+    }
+
+    .algebra-page .practice-feedback.hint {
+      background: var(--algebra-panel-alt);
+    }
+
+    .algebra-page .practice-feedback.error {
+      border-color: #e8b5a8;
+      color: var(--color-text);
+    }
+
+    /* Right-side learning notes */
+
+    .algebra-page .lesson-aside {
+      position: sticky;
+      top: 75px;
+      display: grid;
+      gap: 15px;
+    }
+
+    .algebra-page .aside-card {
+      padding: 18px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 14px;
+      background: var(--algebra-panel);
+    }
+
+    .algebra-page .aside-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 12px;
+      font-size: 0.88rem;
+      font-weight: 750;
+    }
+
+    .algebra-page .aside-icon {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      border-radius: 9px;
+      background: var(--algebra-accent-soft);
+      color: var(--algebra-accent);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .algebra-page .aside-card p {
+      margin: 0;
+      color: var(--algebra-muted);
+      font-size: 0.83rem;
+      line-height: 1.8;
+    }
+
+    .algebra-page .aside-formula {
+      margin-top: 12px;
+      padding: 11px;
+      border-radius: 9px;
+      background: var(--algebra-panel-alt);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .algebra-page .lesson-checklist {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .algebra-page .lesson-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      color: var(--algebra-muted);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .algebra-page .check-mark {
+      flex: 0 0 auto;
+      color: var(--algebra-accent);
+      font-weight: 800;
+    }
+
+    /* End-of-lesson navigation */
+
+    .algebra-page .lesson-end {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+      margin-top: 15px;
+    }
+
+    .algebra-page .lesson-end-link {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--algebra-line);
+      border-radius: 13px;
+      background: var(--algebra-panel);
+      text-decoration: none;
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+
+    .algebra-page .lesson-end-link:hover {
+      border-color: var(--algebra-accent);
+      transform: translateY(-2px);
+    }
+
+    .algebra-page .lesson-end-label {
+      color: var(--algebra-muted);
+      font-size: 0.75rem;
+    }
+
+    .algebra-page .lesson-end-title {
+      font-size: 0.91rem;
+      font-weight: 750;
+      line-height: 1.5;
+    }
+
+    .algebra-page .lesson-end-link.next {
+      text-align: right;
+    }
+
+    /* Responsive layout */
+
+    @media (max-width: 850px) {
+      .algebra-page .lesson-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 25px;
+      }
+
+      .algebra-page .lesson-aside {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .algebra-page .lesson-aside .aside-card:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .algebra-page .lesson-container {
+        width: min(100% - 28px, 1080px);
+      }
+
+      .algebra-page .lesson-intro {
+        padding-top: 26px;
+      }
+
+      .algebra-page .breadcrumb {
+        margin-bottom: 22px;
+        font-size: 0.77rem;
+      }
+
+      .algebra-page .lesson-title {
+        font-size: clamp(2.3rem, 12vw, 3.4rem);
+      }
+
+      .algebra-page .lesson-lead {
+        line-height: 1.75;
+      }
+
+      .algebra-page .lesson-meta {
+        gap: 10px 15px;
+      }
+
+      .algebra-page .lesson-nav a {
+        padding: 9px 11px;
+      }
+
+      .algebra-page .lesson-layout {
+        padding-top: 29px;
+      }
+
+      .algebra-page .lesson-section {
+        margin-bottom: 43px;
+      }
+
+      .algebra-page .equation-lab-body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        padding: 17px;
+      }
+
+      .algebra-page .live-result {
+        min-height: 160px;
+      }
+
+      .algebra-page .interactive-heading {
+        padding: 18px 17px;
+      }
+
+      .algebra-page .lab-footer {
+        padding: 14px 17px;
+      }
+
+      .algebra-page .practice-card {
+        padding: 17px;
+      }
+
+      .algebra-page .practice-answer-row {
+        flex-direction: column;
+      }
+
+      .algebra-page .practice-answer-row .primary-button {
+        min-height: 44px;
+      }
+
+      .algebra-page .lesson-aside {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .algebra-page .lesson-aside .aside-card:last-child {
+        grid-column: auto;
+      }
+
+      .algebra-page .lesson-end {
+        gap: 9px;
+      }
+
+      .algebra-page .lesson-end-link {
+        padding: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .algebra-page *,
+      .algebra-page *::before,
+      .algebra-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="algebra-page">
+
+    <!-- Shared website header -->
+    <header class="site-header">
+      <div class="header-inner container">
+        <a class="brand" href="../../../index.html" aria-label="Your Answer home">
+          <span class="brand-mark">Y</span>
+          <span class="brand-name">Your Answer</span>
+        </a>
+
+        <nav class="top-nav" aria-label="Main navigation">
+          <a href="../../index.html">Subjects</a>
+          <a href="../../../explore-3d/">Explore 3D</a>
+          <a href="../../../labs/">Labs</a>
+          <a href="../../../coding/">Coding</a>
+        </nav>
+
+        <div class="header-actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Toggle light and dark theme"
+          >
+            <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+            <span class="theme-toggle-label">Theme</span>
+          </button>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            data-menu-toggle
+            aria-label="Open navigation menu"
+            aria-controls="mobile-nav"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/">Explore 3D</a>
+        <a href="../../../labs/">Labs</a>
+        <a href="../../../coding/">Coding</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Lesson introduction -->
+      <section class="lesson-intro">
+        <div class="lesson-container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Subjects</a>
+            <span class="separator" aria-hidden="true">/</span>
+            <a href="../index.html">Mathematics</a>
+            <span class="separator" aria-hidden="true">/</span>
+            <span aria-current="page">Algebra</span>
+          </nav>
+
+          <div class="lesson-kicker">
+            <span>Mathematics</span>
+            <span aria-hidden="true">/</span>
+            <span>Algebra</span>
+            <span class="lesson-number">Lesson 01</span>
+          </div>
+
+          <h1 class="lesson-title">Make sense of the unknown.</h1>
+
+          <p class="lesson-lead">
+            Algebra turns unknown values into something you can reason about.
+            Learn how equations work, follow a solution step by step, and
+            experiment with your own numbers.
+          </p>
+
+          <div class="lesson-meta">
+            <span class="meta-item">
+              <span class="meta-dot"></span>
+              Beginner
+            </span>
+            <span class="meta-item">About 8 minutes</span>
+            <span class="meta-item">Concepts + practice</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Compact navigation -->
+      <div class="lesson-nav-wrap">
+        <nav class="lesson-nav lesson-container" aria-label="Lesson sections">
+          <a class="active" href="#concept">
+            <span class="nav-index">01</span> Concept
+          </a>
+          <a href="#example">
+            <span class="nav-index">02</span> Example
+          </a>
+          <a href="#explore">
+            <span class="nav-index">03</span> Explore
+          </a>
+          <a href="#practice">
+            <span class="nav-index">04</span> Practice
+          </a>
+        </nav>
+      </div>
+
+      <div class="lesson-container lesson-layout">
+        <article class="lesson-content">
+
+          <!-- Concept -->
+          <section class="lesson-section" id="concept">
+            <div class="section-label">01 — The idea</div>
+            <h2 class="section-title">An equation is a balance.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Arithmetic usually asks you to calculate with known numbers.
+                Algebra also lets you work with values you do not know yet.
+                We represent an unknown value with a symbol, often a letter
+                such as <strong>x</strong>.
+              </p>
+
+              <p>
+                Consider this equation. It says that an unknown number,
+                increased by three, gives eight.
+              </p>
+            </div>
+
+            <div class="equation-display" aria-label="x plus 3 equals 8">
+              <div class="math">
+                <span class="math-variable">x</span> + 3 = 8
+              </div>
+              <div class="equation-note">
+                Find the value that makes both sides equal.
+              </div>
+            </div>
+
+            <div class="lesson-copy">
+              <p>
+                To find <strong>x</strong>, we need to undo the addition of
+                three. Subtract three from both sides so that the equality
+                remains true.
+              </p>
+
+              <p>
+                Eight minus three is five, so the unknown number is five.
+                We can check the result by putting five back into the
+                original equation.
+              </p>
+            </div>
+
+            <div class="insight-line">
+              <span class="insight-mark" aria-hidden="true">↳</span>
+              <div>
+                <strong>The central rule:</strong> whatever operation you
+                perform on one side of an equation, perform the same
+                operation on the other side.
+              </div>
+            </div>
+          </section>
+
+          <!-- Worked example -->
+          <section class="lesson-section" id="example">
+            <div class="section-label">02 — Follow the method</div>
+            <h2 class="section-title">Solve it one step at a time.</h2>
+
+            <div class="example-card">
+              <div class="example-top">
+                <strong>Worked example</strong>
+                <span class="example-badge">3 steps</span>
+              </div>
+
+              <div class="example-steps">
+                <div class="example-step">
+                  <span class="step-number">1</span>
+                  <div class="step-body">
+                    <strong>Start with the equation</strong>
+                    <p>We know the total, but not the original number.</p>
+                    <span class="step-equation">x + 3 = 8</span>
+                  </div>
+                </div>
+
+                <div class="example-step">
+                  <span class="step-number">2</span>
+                  <div class="step-body">
+                    <strong>Undo the addition</strong>
+                    <p>
+                      Subtract 3 from both sides. The left side becomes
+                      just x.
+                    </p>
+                    <span class="step-equation">x + 3 − 3 = 8 − 3</span>
+                  </div>
+                </div>
+
+                <div class="example-step">
+                  <span class="step-number">3</span>
+                  <div class="step-body">
+                    <strong>Simplify and check</strong>
+                    <p>
+                      We get x = 5. Substituting five into the original
+                      equation gives 5 + 3 = 8.
+                    </p>
+                    <span class="step-equation">x = 5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Interactive explorer -->
+          <section class="lesson-section" id="explore">
+            <div class="section-label">03 — Experiment</div>
+            <h2 class="section-title">Build your own equation.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Now try a more general equation: <strong>ax + b = c</strong>.
+                Change any value below and watch the equation update.
+                Notice how each coefficient affects the answer.
+              </p>
+            </div>
+
+            <div class="interactive-panel">
+              <div class="interactive-heading">
+                <h3>Equation explorer</h3>
+                <p>
+                  Adjust a, b, and c. The solution and explanation update
+                  automatically.
+                </p>
+              </div>
+
+              <div class="equation-lab-body">
+                <div class="equation-inputs">
+                  <div class="input-group">
+                    <label for="coefficient-a">Coefficient a</label>
+                    <input
+                      type="number"
+                      id="coefficient-a"
+                      value="2"
+                      step="any"
+                      inputmode="decimal"
+                    >
+                    <span class="input-help">The number multiplied by x.</span>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="constant-b">Constant b</label>
+                    <input
+                      type="number"
+                      id="constant-b"
+                      value="4"
+                      step="any"
+                      inputmode="decimal"
+                    >
+                    <span class="input-help">The number added to ax.</span>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="constant-c">Right side c</label>
+                    <input
+                      type="number"
+                      id="constant-c"
+                      value="14"
+                      step="any"
+                      inputmode="decimal"
+                    >
+                    <span class="input-help">The target value.</span>
+                  </div>
+                </div>
+
+                <div class="live-result" aria-live="polite">
+                  <div class="result-label">Your equation</div>
+                  <div class="result-equation" id="equation-output">
+                    2x + 4 = 14
+                  </div>
+                  <div class="result-answer" id="answer-output">
+                    x = 5
+                  </div>
+                  <div class="result-explanation" id="explanation-output">
+                    Subtract 4 from both sides, then divide by 2.
+                  </div>
+                </div>
+              </div>
+
+              <div class="lab-footer">
+                <p>Tip: try setting a to zero to explore a special case.</p>
+                <button class="text-button" type="button" id="reset-equation">
+                  Reset values
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Practice -->
+          <section class="lesson-section" id="practice">
+            <div class="section-label">04 — Test your understanding</div>
+            <h2 class="section-title">Your turn.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Solve each equation yourself before checking your answer.
+                If you get stuck, reveal a hint rather than jumping straight
+                to the solution.
+              </p>
+            </div>
+
+            <div class="practice-card">
+              <div class="practice-progress">
+                <span id="practice-count">Question 1 of 3</span>
+                <span id="practice-score">0 correct</span>
+              </div>
+
+              <div
+                class="progress-track"
+                role="progressbar"
+                aria-label="Practice questions completed"
+                aria-valuemin="0"
+                aria-valuemax="3"
+                aria-valuenow="0"
+                id="practice-progress"
+              >
+                <div class="progress-fill" id="practice-progress-fill"></div>
+              </div>
+
+              <h3 class="practice-question" id="practice-question">
+                Solve: x + 7 = 12
+              </h3>
+
+              <p class="practice-instruction" id="practice-instruction">
+                Enter the value of x.
+              </p>
+
+              <form id="practice-form">
+                <div class="practice-answer-row">
+                  <input
+                    type="number"
+                    id="practice-answer"
+                    step="any"
+                    inputmode="decimal"
+                    placeholder="Your answer"
+                    aria-label="Your answer"
+                    required
+                  >
+                  <button class="primary-button" type="submit">
+                    Check answer
+                  </button>
+                </div>
+              </form>
+
+              <div class="practice-actions">
+                <button class="secondary-button" type="button" id="show-hint">
+                  Show hint
+                </button>
+                <button
+                  class="secondary-button"
+                  type="button"
+                  id="next-question"
+                  hidden
+                >
+                  Next question →
+                </button>
+                <button
+                  class="secondary-button"
+                  type="button"
+                  id="restart-practice"
+                  hidden
+                >
+                  Try again
+                </button>
+              </div>
+
+              <div
+                class="practice-feedback"
+                id="practice-feedback"
+                role="status"
+                aria-live="polite"
+              ></div>
+            </div>
+          </section>
+
+          <!-- Lesson completion and navigation -->
+          <section class="lesson-section" id="lesson-finish">
+            <div class="section-label">Keep going</div>
+            <h2 class="section-title">Build on what you know.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                You have explored the basic idea behind solving a linear
+                equation. The next step is to practise using these operations
+                with different numbers and more involved expressions.
+              </p>
+            </div>
+
+            <div class="lesson-end">
+              <a class="lesson-end-link" href="../index.html">
+                <span class="lesson-end-label">← Back to</span>
+                <span class="lesson-end-title">Mathematics overview</span>
+              </a>
+
+              <a class="lesson-end-link next" href="arithmetic.html">
+                <span class="lesson-end-label">Continue to →</span>
+                <span class="lesson-end-title">Arithmetic</span>
+              </a>
+            </div>
+          </section>
+        </article>
+
+        <!-- Supporting information -->
+        <aside class="lesson-aside" aria-label="Learning notes">
+          <div class="aside-card">
+            <h3 class="aside-heading">
+              <span class="aside-icon" aria-hidden="true">∑</span>
+              Remember this
+            </h3>
+
+            <p>
+              An equation stays balanced when the same operation is applied
+              to both sides.
+            </p>
+
+            <div class="aside-formula">
+              ax + b = c
+            </div>
+          </div>
+
+          <div class="aside-card">
+            <h3 class="aside-heading">
+              <span class="aside-icon" aria-hidden="true">✓</span>
+              Learning goals
+            </h3>
+
+            <ul class="lesson-checklist">
+              <li>
+                <span class="check-mark" aria-hidden="true">✓</span>
+                Understand what an unknown represents.
+              </li>
+              <li>
+                <span class="check-mark" aria-hidden="true">✓</span>
+                Keep an equation balanced.
+              </li>
+              <li>
+                <span class="check-mark" aria-hidden="true">✓</span>
+                Solve and check a linear equation.
+              </li>
+            </ul>
+          </div>
+
+          <div class="aside-card">
+            <h3 class="aside-heading">
+              <span class="aside-icon" aria-hidden="true">i</span>
+              A useful distinction
+            </h3>
+
+            <p>
+              A solution is a value that makes an equation true. Always
+              substitute your answer into the original equation to check it.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    /* =========================================
+       ALGEBRA PAGE INTERACTIONS
+       Independent of the shared main.js file.
+    ========================================= */
+
+    (function () {
+      "use strict";
+
+      const page = document.querySelector(".algebra-page");
+      if (!page) return;
+
+      /* Compact navigation: highlight the visible section. */
+
+      const sectionLinks = Array.from(
+        page.querySelectorAll(".lesson-nav a")
+      );
+
+      const observedSections = sectionLinks
+        .map(function (link) {
+          const id = link.getAttribute("href");
+          return id ? page.querySelector(id) : null;
+        })
+        .filter(Boolean);
+
+      if ("IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver(
+          function (entries) {
+            const visibleEntries = entries
+              .filter(function (entry) {
+                return entry.isIntersecting;
+              })
+              .sort(function (a, b) {
+                return a.boundingClientRect.top - b.boundingClientRect.top;
+              });
+
+            if (!visibleEntries.length) return;
+
+            const visibleId = "#" + visibleEntries[0].target.id;
+
+            sectionLinks.forEach(function (link) {
+              const isActive = link.getAttribute("href") === visibleId;
+
+              link.classList.toggle("active", isActive);
+
+              if (isActive) {
+                link.setAttribute("aria-current", "location");
+              } else {
+                link.removeAttribute("aria-current");
+              }
+            });
+          },
+          {
+            rootMargin: "-18% 0px -68% 0px",
+            threshold: 0
+          }
+        );
+
+        observedSections.forEach(function (section) {
+          sectionObserver.observe(section);
+        });
+      }
+
+      /* Interactive equation explorer. */
+
+      const inputA = page.querySelector("#coefficient-a");
+      const inputB = page.querySelector("#constant-b");
+      const inputC = page.querySelector("#constant-c");
+
+      const equationOutput = page.querySelector("#equation-output");
+      const answerOutput = page.querySelector("#answer-output");
+      const explanationOutput = page.querySelector("#explanation-output");
+      const resetEquation = page.querySelector("#reset-equation");
+
+      const defaultEquation = { a: 2, b: 4, c: 14 };
+
+      function formatNumber(value) {
+        if (!Number.isFinite(value)) return String(value);
+        if (Object.is(value, -0)) value = 0;
+
+        const rounded = Math.round(value * 1000000) / 1000000;
+
+        return String(rounded);
+      }
+
+      function readNumber(input) {
+        if (input.value.trim() === "") return null;
+
+        const value = Number(input.value);
+
+        return Number.isFinite(value) ? value : null;
+      }
+
+      function signedTerm(value, symbol) {
+        if (value === 0) return "";
+
+        const magnitude = Math.abs(value);
+        const body = (magnitude === 1 && symbol === "x")
+          ? "x"
+          : formatNumber(magnitude) + symbol;
+
+        if (value < 0) return "− " + body;
+        return "+ " + body;
+      }
+
+      function formatEquation(a, b, c) {
+        let left;
+
+        if (a === 0) {
+          left = "0";
+        } else if (a === 1) {
+          left = "x";
+        } else if (a === -1) {
+          left = "−x";
+        } else {
+          left = formatNumber(a) + "x";
+        }
+
+        const extra = signedTerm(b, " ");
+        if (extra) {
+          left += " " + extra;
+        }
+
+        return left + " = " + formatNumber(c);
+      }
+
+      function updateEquation() {
+        const a = readNumber(inputA);
+        const b = readNumber(inputB);
+        const c = readNumber(inputC);
+
+        if (a === null || b === null || c === null) {
+          equationOutput.textContent = "Complete all three values";
+          answerOutput.textContent = "Waiting for input";
+          explanationOutput.textContent =
+            "Enter a valid number in each field to solve the equation.";
+          return;
+        }
+
+        equationOutput.textContent = formatEquation(a, b, c);
+
+        if (a === 0) {
+          if (b === c) {
+            answerOutput.textContent = "Every value of x works";
+            explanationOutput.textContent =
+              "The equation reduces to " + formatNumber(b) +
+              " = " + formatNumber(c) +
+              ". Both sides are equal regardless of x.";
+          } else {
+            answerOutput.textContent = "No solution";
+            explanationOutput.textContent =
+              "The equation reduces to " + formatNumber(b) +
+              " = " + formatNumber(c) +
+              ". These constants are different, so no value of x can make " +
+              "the equation true.";
+          }
+
+          return;
+        }
+
+        const numerator = c - b;
+        const solution = numerator / a;
+
+        answerOutput.textContent = "x = " + formatNumber(solution);
+        explanationOutput.textContent =
+          "Subtract " + formatNumber(b) +
+          " from both sides: " +
+          " " + formatNumber(a) + "x = " + formatNumber(numerator) +
+          ". Then divide both sides by " + formatNumber(a) +
+          " to obtain x = " + formatNumber(solution) + ".";
+      }
+
+      [inputA, inputB, inputC].forEach(function (input) {
+        input.addEventListener("input", updateEquation);
+      });
+
+      resetEquation.addEventListener("click", function () {
+        inputA.value = defaultEquation.a;
+        inputB.value = defaultEquation.b;
+        inputC.value = defaultEquation.c;
+        updateEquation();
+      });
+
+      updateEquation();
+
+      /* Guided practice. */
+
+      const questions = [
+        {
+          text: "Solve: x + 7 = 12",
+          hint: "What operation undoes adding 7? Apply it to both sides.",
+          answer: 5,
+          solution: "Subtract 7 from both sides: x = 12 − 7 = 5."
+        },
+        {
+          text: "Solve: 3x = 18",
+          hint: "x is multiplied by 3. Which operation undoes multiplication?",
+          answer: 6,
+          solution: "Divide both sides by 3: x = 18 ÷ 3 = 6."
+        },
+        {
+          text: "Solve: 2x + 4 = 14",
+          hint: "First subtract 4 from both sides. Then divide by 2.",
+          answer: 5,
+          solution: "Subtract 4 to get 2x = 10. Divide by 2: x = 5."
+        }
+      ];
+
+      const practiceForm = page.querySelector("#practice-form");
+      const practiceAnswer = page.querySelector("#practice-answer");
+      const practiceQuestion = page.querySelector("#practice-question");
+      const practiceInstruction = page.querySelector("#practice-instruction");
+      const practiceCount = page.querySelector("#practice-count");
+      const practiceScore = page.querySelector("#practice-score");
+      const practiceProgress = page.querySelector("#practice-progress");
+      const practiceProgressFill = page.querySelector("#practice-progress-fill");
+      const practiceFeedback = page.querySelector("#practice-feedback");
+      const showHintButton = page.querySelector("#show-hint");
+      const nextQuestionButton = page.querySelector("#next-question");
+      const restartPracticeButton = page.querySelector("#restart-practice");
+
+      let currentQuestion = 0;
+      let correctAnswers = 0;
+      let completedQuestions = 0;
+      let answeredCurrent = false;
+      let hasShownHint = false;
+
+      function setFeedback(message, type) {
+        practiceFeedback.textContent = message;
+        practiceFeedback.className = "practice-feedback";
+
+        if (type) {
+          practiceFeedback.classList.add(type);
+        }
+      }
+
+      function updatePracticeProgress() {
+        practiceCount.textContent =
+          currentQuestion < questions.length
+            ? "Question " + (currentQuestion + 1) +
+              " of " + questions.length
+            : "Practice complete";
+
+        practiceScore.textContent =
+          correctAnswers + " correct";
+
+        practiceProgress.setAttribute(
+          "aria-valuenow",
+          String(completedQuestions)
+        );
+
+        practiceProgressFill.style.width =
+          (completedQuestions / questions.length * 100) + "%";
+      }
+
+      function showQuestion() {
+        if (currentQuestion >= questions.length) {
+          practiceQuestion.textContent = "You have finished this practice set.";
+          practiceInstruction.textContent =
+            "You answered " + correctAnswers + " out of " +
+            questions.length + " questions correctly on your first check.";
+
+          practiceForm.hidden = true;
+          showHintButton.hidden = true;
+          nextQuestionButton.hidden = true;
+          restartPracticeButton.hidden = false;
+
+          setFeedback(
+            correctAnswers === questions.length
+              ? "Excellent work. All three answers were correct on the first check."
+              : "Practice complete. Review the explanations, then try again to strengthen your understanding.",
+            "success"
+          );
+
+          updatePracticeProgress();
+          return;
+        }
+
+        const question = questions[currentQuestion];
+
+        practiceQuestion.textContent = question.text;
+        practiceInstruction.textContent = "Enter the value of x.";
+        practiceAnswer.value = "";
+        practiceAnswer.disabled = false;
+        practiceForm.hidden = false;
+        showHintButton.hidden = false;
+        nextQuestionButton.hidden = true;
+        restartPracticeButton.hidden = true;
+        answeredCurrent = false;
+        hasShownHint = false;
+
+        setFeedback("", "");
+        updatePracticeProgress();
+        practiceAnswer.focus();
+      }
+
+      practiceForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (answeredCurrent) return;
+
+        const rawAnswer = practiceAnswer.value.trim();
+
+        if (rawAnswer === "" || !Number.isFinite(Number(rawAnswer))) {
+          setFeedback("Enter a valid number before checking your answer.", "error");
+          practiceAnswer.focus();
+          return;
+        }
+
+        const submittedAnswer = Number(rawAnswer);
+        const question = questions[currentQuestion];
+        const isCorrect = Math.abs(submittedAnswer - question.answer) < 0.000001;
+
+        answeredCurrent = true;
+        completedQuestions += 1;
+        practiceAnswer.disabled = true;
+
+        if (isCorrect) {
+          correctAnswers += 1;
+          setFeedback(
+            "Correct! " + question.solution,
+            "success"
+          );
+        } else {
+          setFeedback(
+            "Not quite. " + question.solution +
+            " Take a moment to follow the operations, then continue.",
+            "error"
+          );
+        }
+
+        showHintButton.hidden = true;
+        nextQuestionButton.hidden = false;
+
+        if (currentQuestion === questions.length - 1) {
+          nextQuestionButton.textContent = "See results →";
+        } else {
+          nextQuestionButton.textContent = "Next question →";
+        }
+
+        updatePracticeProgress();
+      });
+
+      showHintButton.addEventListener("click", function () {
+        const question = questions[currentQuestion];
+
+        if (!question) return;
+
+        hasShownHint = true;
+        setFeedback("Hint: " + question.hint, "hint");
+      });
+
+      nextQuestionButton.addEventListener("click", function () {
+        if (!answeredCurrent) return;
+
+        currentQuestion += 1;
+        showQuestion();
+      });
+
+      restartPracticeButton.addEventListener("click", function () {
+        currentQuestion = 0;
+        correctAnswers = 0;
+        completedQuestions = 0;
+        answeredCurrent = false;
+        hasShownHint = false;
+
+        showQuestion();
+      });
+
+      showQuestion();
+    })();
+  </script>
+</body>
+</html>

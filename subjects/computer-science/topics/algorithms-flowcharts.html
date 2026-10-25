@@ -1,0 +1,576 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn algorithms, pseudocode, flowcharts, decision-making, loops, and basic algorithm analysis.">
+  <title>Algorithms and Flowcharts | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <style>
+    .lesson {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+      color: var(--color-text);
+    }
+
+    .lesson-hero {
+      padding: 30px;
+      margin-bottom: 28px;
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      background: var(--color-surface);
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lesson h1 {
+      margin: 10px 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .lesson h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .lesson section {
+      margin: 22px 0;
+      padding: 25px;
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      background: var(--color-surface);
+    }
+
+    .lesson p,
+    .lesson li {
+      line-height: 1.75;
+    }
+
+    .lesson li {
+      margin-bottom: 7px;
+    }
+
+    .note {
+      padding: 15px 17px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      background: var(--color-border);
+      margin: 18px 0;
+      line-height: 1.7;
+    }
+
+    .example {
+      padding: 16px;
+      border: 1px dashed var(--color-border);
+      border-radius: 12px;
+      margin: 15px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .example pre {
+      white-space: pre-wrap;
+      font-family: monospace;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .symbol-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .symbol {
+      padding: 15px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    .symbol strong {
+      display: block;
+      color: var(--color-brand);
+      margin-bottom: 6px;
+    }
+
+    .lesson table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    .lesson th,
+    .lesson td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid var(--color-border);
+      line-height: 1.6;
+    }
+
+    .lesson th {
+      background: var(--color-border);
+    }
+
+    .answer-button {
+      margin-top: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 9px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 9px;
+      background: var(--color-border);
+      line-height: 1.7;
+    }
+
+    .answer.visible {
+      display: block;
+    }
+
+    .lesson-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .lesson-nav a {
+      color: var(--color-brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .lesson {
+        padding: 22px 14px 45px;
+      }
+
+      .lesson-hero,
+      .lesson section {
+        padding: 19px;
+      }
+
+      .lesson table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="lesson">
+    <div class="lesson-hero">
+      <div class="eyebrow">Computer Science · Topic 04</div>
+      <h1>Algorithms and Flowcharts</h1>
+      <p>
+        Learn how to describe a solution step by step, represent its logic
+        visually, and evaluate whether it solves a problem effectively.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. What Is an Algorithm?</h2>
+      <p>
+        An <strong>algorithm</strong> is a finite, ordered set of clear
+        instructions used to solve a problem or complete a task.
+      </p>
+      <p>Consider the everyday task of making a cup of tea. Its steps form a simple algorithm:</p>
+      <ol>
+        <li>Fill a kettle with water.</li>
+        <li>Heat the water.</li>
+        <li>Place a tea bag in a cup.</li>
+        <li>Pour hot water into the cup.</li>
+        <li>Wait for the tea to brew, then serve.</li>
+      </ol>
+
+      <h3>Characteristics of a good algorithm</h3>
+      <ul>
+        <li><strong>Input:</strong> It may accept zero or more inputs.</li>
+        <li><strong>Output:</strong> It produces at least one result.</li>
+        <li><strong>Definiteness:</strong> Every step is clear and unambiguous.</li>
+        <li><strong>Finiteness:</strong> It eventually terminates.</li>
+        <li><strong>Effectiveness:</strong> Its steps can actually be carried out.</li>
+      </ul>
+
+      <div class="note">
+        An algorithm describes the solution logic. A program implements that
+        logic in a programming language.
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Writing an Algorithm</h2>
+      <p>
+        A useful way to design an algorithm is to identify the input, decide
+        the processing steps, and determine the expected output.
+      </p>
+
+      <h3>Example: Find the sum of two numbers</h3>
+      <div class="example">
+        <pre>Algorithm: AddTwoNumbers
+
+1. Start
+2. Read A and B
+3. Sum = A + B
+4. Display Sum
+5. Stop</pre>
+      </div>
+
+      <p><strong>Example input:</strong> A = 7, B = 5</p>
+      <p><strong>Processing:</strong> Sum = 7 + 5 = 12</p>
+      <p><strong>Output:</strong> 12</p>
+
+      <h3>Example: Find the larger of two numbers</h3>
+      <div class="example">
+        <pre>1. Start
+2. Read A and B
+3. If A > B, display A
+4. Otherwise, if B > A, display B
+5. Otherwise, display "Both are equal"
+6. Stop</pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. What Is Pseudocode?</h2>
+      <p>
+        <strong>Pseudocode</strong> expresses an algorithm in a structured,
+        readable form that resembles programming code without following the
+        exact syntax of any particular language.
+      </p>
+
+      <div class="example">
+        <pre>INPUT marks
+
+IF marks >= 40 THEN
+    OUTPUT "Pass"
+ELSE
+    OUTPUT "Fail"
+END IF</pre>
+      </div>
+
+      <p>Pseudocode helps you plan the logic before writing actual code.</p>
+
+      <h3>Pseudocode versus a programming language</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Pseudocode</th>
+            <th>Programming language</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Uses flexible, readable conventions.</td>
+            <td>Follows defined syntax and rules.</td>
+          </tr>
+          <tr>
+            <td>Usually cannot be executed directly.</td>
+            <td>Can be executed or compiled using appropriate tools.</td>
+          </tr>
+          <tr>
+            <td>Focuses on planning the solution.</td>
+            <td>Turns the solution into an executable program.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>4. What Is a Flowchart?</h2>
+      <p>
+        A <strong>flowchart</strong> is a visual representation of an
+        algorithm. It uses standard symbols connected by arrows to show the
+        order of operations and the direction of control.
+      </p>
+
+      <div class="symbol-list">
+        <div class="symbol">
+          <strong>Terminator — Oval</strong>
+          Represents the Start or End of a process.
+        </div>
+        <div class="symbol">
+          <strong>Process — Rectangle</strong>
+          Represents a calculation or instruction, such as <code>Sum = A + B</code>.
+        </div>
+        <div class="symbol">
+          <strong>Input / Output — Parallelogram</strong>
+          Represents reading input or displaying output.
+        </div>
+        <div class="symbol">
+          <strong>Decision — Diamond</strong>
+          Represents a condition with branches, often Yes/No or True/False.
+        </div>
+        <div class="symbol">
+          <strong>Flowline — Arrow</strong>
+          Shows the direction and sequence of execution.
+        </div>
+        <div class="symbol">
+          <strong>Connector — Small Circle</strong>
+          Connects separated parts of a flowchart when needed.
+        </div>
+      </div>
+
+      <div class="note">
+        The symbol's shape communicates its purpose. For example, a decision
+        diamond asks a question, while a process rectangle performs an action.
+      </div>
+    </section>
+
+    <section>
+      <h2>5. A Simple Flowchart in Text</h2>
+      <p>
+        This example checks whether a number is positive. The following
+        text diagram shows the flow; it is a simplified representation
+        rather than a drawing of the standard shapes.
+      </p>
+
+      <div class="example">
+        <pre>          [START]
+             |
+        [Input number]
+             |
+       [Number > 0?]
+          /       \
+        Yes        No
+         |          |
+ [Display Positive] [Display Not Positive]
+          \        /
+             |
+           [END]</pre>
+      </div>
+
+      <p>
+        A decision creates different possible paths. Both paths can later
+        join again before the algorithm ends.
+      </p>
+    </section>
+
+    <section>
+      <h2>6. Three Fundamental Control Structures</h2>
+
+      <h3>Sequence</h3>
+      <p>
+        Instructions run one after another in a specified order.
+      </p>
+      <div class="example">
+        <pre>Read length
+Read width
+area = length * width
+Display area</pre>
+      </div>
+
+      <h3>Selection</h3>
+      <p>
+        A condition determines which path the algorithm follows. Common
+        constructs include <code>IF</code>, <code>ELSE</code>, and
+        <code>SWITCH</code>.
+      </p>
+      <div class="example">
+        <pre>IF temperature > 30 THEN
+    OUTPUT "Hot"
+ELSE
+    OUTPUT "Not hot"
+END IF</pre>
+      </div>
+
+      <h3>Iteration</h3>
+      <p>
+        A set of instructions repeats while a condition holds or for a
+        specified number of times. Loops include <code>FOR</code>,
+        <code>WHILE</code>, and <code>REPEAT-UNTIL</code>.
+      </p>
+      <div class="example">
+        <pre>FOR number = 1 TO 5
+    OUTPUT number
+END FOR</pre>
+      </div>
+      <p>The output is 1, 2, 3, 4, 5.</p>
+    </section>
+
+    <section>
+      <h2>7. Tracing an Algorithm</h2>
+      <p>
+        <strong>Tracing</strong> means following an algorithm step by step
+        while keeping track of how its variables and output change.
+      </p>
+
+      <div class="example">
+        <pre>total = 0
+
+FOR i = 1 TO 4
+    total = total + i
+END FOR
+
+OUTPUT total</pre>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Iteration</th>
+            <th>i</th>
+            <th>total after addition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>1</td><td>1</td></tr>
+          <tr><td>2</td><td>2</td><td>3</td></tr>
+          <tr><td>3</td><td>3</td><td>6</td></tr>
+          <tr><td>4</td><td>4</td><td>10</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Final output:</strong> 10</p>
+      <p>
+        Tracing is especially useful when checking loops, conditions, and
+        unexpected results.
+      </p>
+    </section>
+
+    <section>
+      <h2>8. Correctness and Efficiency</h2>
+      <p>
+        An algorithm should solve the intended problem correctly and use
+        resources sensibly.
+      </p>
+      <ul>
+        <li><strong>Correctness:</strong> Does it produce the expected result for valid inputs?</li>
+        <li><strong>Time complexity:</strong> How does the amount of work grow as the input gets larger?</li>
+        <li><strong>Space complexity:</strong> How does its memory requirement grow?</li>
+      </ul>
+
+      <p>Two common examples of time complexity are:</p>
+      <ul>
+        <li><code>O(1)</code>: constant time; the number of operations does not grow with input size in the stated model.</li>
+        <li><code>O(n)</code>: linear time; the work grows proportionally to the input size in the stated model.</li>
+      </ul>
+
+      <div class="note">
+        These are simplified introductions to Big-O notation. Actual running
+        time also depends on implementation, hardware, and input characteristics.
+      </div>
+    </section>
+
+    <section>
+      <h2>9. Knowledge Check</h2>
+      <p>Try answering each question before revealing the answer.</p>
+
+      <div>
+        <p><strong>1. What is an algorithm?</strong></p>
+        <button class="answer-button" type="button" data-answer="a1" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a1">
+          A finite, ordered set of clear instructions for solving a problem or completing a task.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>2. Which flowchart symbol represents a decision?</strong></p>
+        <button class="answer-button" type="button" data-answer="a2" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a2">
+          A diamond, usually with outgoing branches for possible outcomes.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>3. Which control structure repeats instructions?</strong></p>
+        <button class="answer-button" type="button" data-answer="a3" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a3">
+          Iteration, commonly implemented with loops.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>4. What does pseudocode help a programmer do?</strong></p>
+        <button class="answer-button" type="button" data-answer="a4" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a4">
+          Plan and communicate an algorithm's logic without relying on the exact syntax of a programming language.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>5. What is the final value of total?</strong></p>
+        <pre>total = 2
+total = total * 3
+total = total + 4</pre>
+        <button class="answer-button" type="button" data-answer="a5" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a5">
+          10. First, 2 × 3 = 6; then 6 + 4 = 10.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>An algorithm describes a solution as clear, finite steps.</li>
+        <li>Pseudocode expresses the logic in a readable, code-like form.</li>
+        <li>Flowcharts represent the sequence and branching of operations visually.</li>
+        <li>Sequence, selection, and iteration are fundamental control structures.</li>
+        <li>Tracing helps verify logic; complexity helps describe resource growth.</li>
+      </ul>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Topic navigation">
+      <a href="programming-fundamentals.html">← Previous: Programming Fundamentals</a>
+      <a href="data-structures.html">Next: Data Structures →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Your Answer — Learn, explore, and understand.</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll("[data-answer]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const answer = document.getElementById(button.dataset.answer);
+        if (!answer) return;
+
+        const isVisible = answer.classList.toggle("visible");
+        button.setAttribute("aria-expanded", String(isVisible));
+        button.textContent = isVisible ? "Hide answer" : "Reveal answer";
+      });
+    });
+  </script>
+</body>
+</html>

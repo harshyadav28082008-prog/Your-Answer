@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn computer networks, network types, topologies, IP addresses, DNS, protocols, internet services, and cybersecurity basics.">
+  <title>Computer Networks and the Internet | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <style>
+    .lesson {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+      color: var(--color-text);
+    }
+
+    .lesson-hero,
+    .lesson section {
+      padding: 25px;
+      margin-bottom: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lesson h1 {
+      margin: 10px 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .lesson h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .lesson h3 {
+      margin-top: 22px;
+    }
+
+    .lesson p,
+    .lesson li {
+      line-height: 1.75;
+    }
+
+    .lesson li {
+      margin-bottom: 7px;
+    }
+
+    .note {
+      padding: 15px 17px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      background: var(--color-border);
+      margin: 18px 0;
+      line-height: 1.7;
+    }
+
+    .example {
+      padding: 16px;
+      border: 1px dashed var(--color-border);
+      border-radius: 12px;
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+
+    .example pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-family: monospace;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 13px;
+      margin-top: 16px;
+    }
+
+    .concept-card {
+      padding: 17px;
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+    }
+
+    .concept-card strong {
+      display: block;
+      color: var(--color-brand);
+      margin-bottom: 8px;
+    }
+
+    .lesson table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    .lesson th,
+    .lesson td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid var(--color-border);
+      line-height: 1.6;
+    }
+
+    .lesson th {
+      background: var(--color-border);
+    }
+
+    .answer-button {
+      margin-top: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 9px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 9px;
+      background: var(--color-border);
+      line-height: 1.7;
+    }
+
+    .answer.visible {
+      display: block;
+    }
+
+    .lesson-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .lesson-nav a {
+      color: var(--color-brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .lesson {
+        padding: 22px 14px 45px;
+      }
+
+      .lesson-hero,
+      .lesson section {
+        padding: 19px;
+      }
+
+      .lesson table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="lesson">
+    <div class="lesson-hero">
+      <div class="eyebrow">Computer Science · Topic 07</div>
+      <h1>Computer Networks and the Internet</h1>
+      <p>
+        Explore how computers communicate, how information travels between
+        devices, and how the Internet connects networks around the world.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. What Is a Computer Network?</h2>
+      <p>
+        A <strong>computer network</strong> is a group of interconnected
+        devices that communicate and share information or resources.
+      </p>
+      <p>Networks allow devices to share files, printers, applications, and Internet connections.</p>
+
+      <h3>Basic components</h3>
+      <ul>
+        <li><strong>End devices:</strong> Computers, phones, servers, and printers.</li>
+        <li><strong>Network interface:</strong> Hardware or software that enables a device to communicate over a network.</li>
+        <li><strong>Transmission medium:</strong> The wired or wireless path carrying data.</li>
+        <li><strong>Networking devices:</strong> Switches, routers, and access points that help connect devices and networks.</li>
+        <li><strong>Protocols:</strong> Rules that define how devices communicate.</li>
+      </ul>
+
+      <div class="note">
+        A network is not simply a collection of devices. The devices must
+        have a way to exchange data using compatible communication rules.
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Types of Networks</h2>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <strong>PAN — Personal Area Network</strong>
+          Connects devices around one person, such as a phone and wireless earbuds.
+        </div>
+        <div class="concept-card">
+          <strong>LAN — Local Area Network</strong>
+          Connects devices in a limited area, such as a home, school, or office.
+        </div>
+        <div class="concept-card">
+          <strong>MAN — Metropolitan Area Network</strong>
+          Connects networks across a city or metropolitan area.
+        </div>
+        <div class="concept-card">
+          <strong>WAN — Wide Area Network</strong>
+          Connects networks across large geographical areas.
+        </div>
+      </div>
+
+      <p>
+        The Internet is a global network of interconnected networks. It uses
+        technologies and protocols that allow many different networks to communicate.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. Network Topologies</h2>
+      <p>
+        A <strong>network topology</strong> describes how devices and
+        connections are arranged physically or logically.
+      </p>
+
+      <h3>Star topology</h3>
+      <div class="example">
+        <pre>       Computer A
+            |
+Computer B--Switch--Computer C
+            |
+        Computer D</pre>
+      </div>
+      <p>
+        Devices connect to a central switch or hub. A failure of one device's
+        link usually does not disconnect the others, but a central-device
+        failure can disrupt the network.
+      </p>
+
+      <h3>Bus topology</h3>
+      <div class="example">
+        <pre>[Computer A]---[Computer B]---[Computer C]---[Computer D]</pre>
+      </div>
+      <p>
+        Devices share a common communication backbone. This is simple in
+        concept, but backbone problems can affect the connected devices.
+      </p>
+
+      <h3>Ring topology</h3>
+      <div class="example">
+        <pre>Computer A ---- Computer B
+     |                |
+Computer D ---- Computer C</pre>
+      </div>
+      <p>
+        Devices form a loop. How a failure affects the network depends on
+        the specific ring technology and whether redundancy is provided.
+      </p>
+
+      <h3>Mesh topology</h3>
+      <p>
+        Devices have multiple interconnections. A full mesh connects every
+        device directly to every other device; a partial mesh connects only
+        selected pairs.
+      </p>
+
+      <div class="note">
+        Real networks may combine several topologies. The best arrangement
+        depends on cost, reliability, scale, and performance requirements.
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Networking Devices</h2>
+      <table>
+        <thead>
+          <tr><th>Device</th><th>Main function</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Router</td>
+            <td>Forwards packets between different IP networks.</td>
+          </tr>
+          <tr>
+            <td>Switch</td>
+            <td>Connects devices in a LAN and forwards Ethernet frames using MAC addresses.</td>
+          </tr>
+          <tr>
+            <td>Wireless access point</td>
+            <td>Allows compatible wireless devices to connect to a network.</td>
+          </tr>
+          <tr>
+            <td>Modem</td>
+            <td>Adapts signals for a particular communication service, depending on the technology.</td>
+          </tr>
+          <tr>
+            <td>Firewall</td>
+            <td>Filters network traffic according to security rules.</td>
+          </tr>
+          <tr>
+            <td>Repeater</td>
+            <td>Regenerates or repeats signals to extend a communication link.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Home networking equipment sometimes combines router, switch,
+        wireless access point, and other functions in a single device.
+      </p>
+    </section>
+
+    <section>
+      <h2>5. Wired and Wireless Communication</h2>
+      <h3>Wired networks</h3>
+      <p>
+        Wired networks carry signals through physical media, such as Ethernet
+        cables or fibre-optic cables.
+      </p>
+      <ul>
+        <li>Often provide stable, predictable connections.</li>
+        <li>Can offer high data rates and low interference.</li>
+        <li>Require physical cabling and suitable ports.</li>
+      </ul>
+
+      <h3>Wireless networks</h3>
+      <p>
+        Wireless networks transmit data through electromagnetic waves.
+        Wi-Fi and Bluetooth are common examples, although they serve different needs.
+      </p>
+      <ul>
+        <li>Allow devices to move within the supported coverage area.</li>
+        <li>Reduce the need for data cables.</li>
+        <li>Can be affected by distance, obstacles, interference, and congestion.</li>
+      </ul>
+
+      <div class="note">
+        Wireless does not mean the network has no cables at all. A Wi-Fi
+        access point may still use a wired connection to the rest of the network.
+      </div>
+    </section>
+
+    <section>
+      <h2>6. How Data Travels</h2>
+      <p>
+        Data sent over many computer networks is divided into units such as
+        packets. Each packet carries information needed to deliver and process it.
+      </p>
+
+      <div class="example">
+        <pre>Sending device
+      |
+      v
+Data divided into packets
+      |
+      v
+Network devices forward packets
+      |
+      v
+Destination receives the data
+      |
+      v
+Data is reassembled or processed</pre>
+      </div>
+
+      <p>
+        Different packets may take different routes. Protocols and receiving
+        applications handle delivery, ordering, and recovery where required.
+      </p>
+
+      <h3>Bandwidth, throughput, and latency</h3>
+      <ul>
+        <li><strong>Bandwidth:</strong> The capacity of a connection to carry data, often expressed in bits per second.</li>
+        <li><strong>Throughput:</strong> The actual rate of successful data transfer.</li>
+        <li><strong>Latency:</strong> The delay between sending data and receiving the corresponding response or result.</li>
+        <li><strong>Packet loss:</strong> When transmitted packets fail to reach their intended destination.</li>
+      </ul>
+
+      <div class="note">
+        A high-bandwidth connection can still feel slow if latency is high,
+        packet loss is significant, or the server is overloaded.
+      </div>
+    </section>
+
+    <section>
+      <h2>7. IP Addresses and MAC Addresses</h2>
+      <h3>IP address</h3>
+      <p>
+        An <strong>Internet Protocol (IP) address</strong> identifies a
+        network interface for communication at the IP layer. Routers use
+        destination IP addresses to forward packets between networks.
+      </p>
+      <p>Examples of IPv4 addresses include <code>192.168.1.10</code>.</p>
+      <p>
+        IPv6 uses a larger address space. An example of IPv6 notation is
+        <code>2001:db8::1</code>; the <code>2001:db8::/32</code> range is
+        reserved for documentation examples.
+      </p>
+
+      <h3>MAC address</h3>
+      <p>
+        A <strong>Media Access Control (MAC) address</strong> is a link-layer
+        identifier used by network interfaces on technologies such as Ethernet
+        and Wi-Fi. A typical displayed format is
+        <code>00:1A:2B:3C:4D:5E</code>.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>IP address</th><th>MAC address</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Used for IP-layer addressing and routing.</td><td>Used for link-layer delivery on a local network technology.</td></tr>
+          <tr><td>IPv4 uses 32-bit addresses; IPv6 uses 128-bit addresses.</td><td>Common Ethernet MAC addresses are 48 bits.</td></tr>
+          <tr><td>May change when network configuration changes.</td><td>Often assigned to an interface, though software can sometimes change or randomize it.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>8. DNS and Domain Names</h2>
+      <p>
+        <strong>Domain Name System (DNS)</strong> helps translate domain
+        names, such as <code>example.com</code>, into information used to
+        locate Internet services, including IP addresses.
+      </p>
+
+      <div class="example">
+        <pre>You enter a domain name
+          |
+          v
+Device checks available DNS information
+          |
+          v
+A DNS resolver looks up the required record
+          |
+          v
+The address is returned
+          |
+          v
+The device can attempt to connect to the destination</pre>
+      </div>
+
+      <p>
+        DNS records include A records for IPv4 addresses, AAAA records for
+        IPv6 addresses, and MX records for mail servers.
+      </p>
+
+      <div class="note">
+        DNS lookup is one part of opening a website. A browser must still
+        establish a connection and exchange data with the relevant service.
+      </div>
+    </section>
+
+    <section>
+      <h2>9. Important Network Protocols</h2>
+      <p>
+        A <strong>protocol</strong> defines rules for exchanging information
+        between systems.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Protocol</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>IP</td><td>Addresses and forwards packets between networks.</td></tr>
+          <tr><td>TCP</td><td>Provides a reliable, ordered byte stream between applications.</td></tr>
+          <tr><td>UDP</td><td>Provides datagram transport without TCP's built-in delivery and ordering guarantees.</td></tr>
+          <tr><td>HTTP</td><td>Transfers web resources and other application data.</td></tr>
+          <tr><td>HTTPS</td><td>HTTP protected using TLS for encryption and authentication.</td></tr>
+          <tr><td>DNS</td><td>Looks up domain-related records.</td></tr>
+          <tr><td>DHCP</td><td>Automatically provides IP configuration to clients on many networks.</td></tr>
+          <tr><td>SMTP</td><td>Used to send and relay email.</td></tr>
+          <tr><td>SSH</td><td>Provides secure remote login and other secure network services.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>10. The TCP/IP Model</h2>
+      <p>
+        The TCP/IP model describes networking functions in layers. A common
+        four-layer teaching model is shown below.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Layer</th><th>Examples</th><th>Role</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Application</td>
+            <td>HTTP, DNS, SMTP</td>
+            <td>Supports services used by applications.</td>
+          </tr>
+          <tr>
+            <td>Transport</td>
+            <td>TCP, UDP</td>
+            <td>Communication between applications on hosts.</td>
+          </tr>
+          <tr>
+            <td>Internet</td>
+            <td>IP</td>
+            <td>Logical addressing and packet routing between networks.</td>
+          </tr>
+          <tr>
+            <td>Link</td>
+            <td>Ethernet, Wi-Fi</td>
+            <td>Communication over a local link and its physical medium.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Some models split the link layer into data-link and physical layers.
+        The key idea is that each layer provides services to the layer above it.
+      </p>
+    </section>
+
+    <section>
+      <h2>11. The Internet and the World Wide Web</h2>
+      <p>
+        The <strong>Internet</strong> is the global system of interconnected
+        networks. The <strong>World Wide Web (WWW)</strong> is a collection
+        of linked resources accessed over the Internet, commonly through web browsers.
+      </p>
+
+      <ul>
+        <li><strong>Web browser:</strong> Software that retrieves and displays web content.</li>
+        <li><strong>Web server:</strong> A system that responds to requests for web resources.</li>
+        <li><strong>URL:</strong> An address identifying a resource and how it may be accessed.</li>
+        <li><strong>HTTP/HTTPS:</strong> Protocols used for web communication.</li>
+      </ul>
+
+      <div class="note">
+        The Web is one service that uses the Internet. Email, online gaming,
+        file transfer, and many other services also use the Internet.
+      </div>
+    </section>
+
+    <section>
+      <h2>12. Network Security Basics</h2>
+      <p>
+        Network security protects devices, communication, and information
+        from unauthorized access, disruption, or modification.
+      </p>
+
+      <ul>
+        <li><strong>Encryption:</strong> Makes data unreadable without the required key, when correctly implemented.</li>
+        <li><strong>Authentication:</strong> Checks a user's or system's identity.</li>
+        <li><strong>Firewall:</strong> Applies rules to allow or block network traffic.</li>
+        <li><strong>Updates:</strong> Fix known vulnerabilities in operating systems and applications.</li>
+        <li><strong>Secure Wi-Fi:</strong> Use modern supported security settings and a strong, unique network password.</li>
+        <li><strong>Phishing awareness:</strong> Check unexpected links and requests for sensitive information.</li>
+      </ul>
+
+      <div class="note">
+        HTTPS helps protect data in transit and authenticate the website
+        through its certificate, but it does not automatically make a website
+        trustworthy or safe from every threat.
+      </div>
+    </section>
+
+    <section>
+      <h2>13. Knowledge Check</h2>
+      <p>Try answering each question before revealing the answer.</p>
+
+      <div>
+        <p><strong>1. What does LAN stand for?</strong></p>
+        <button class="answer-button" type="button" data-answer="a1" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a1">
+          Local Area Network.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>2. What is the main role of a router?</strong></p>
+        <button class="answer-button" type="button" data-answer="a2" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a2">
+          It forwards packets between IP networks.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>3. What does DNS help a device find?</strong></p>
+        <button class="answer-button" type="button" data-answer="a3" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a3">
+          DNS provides records associated with domain names, including IP addresses.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>4. Which protocol provides reliable, ordered delivery as a byte stream?</strong></p>
+        <button class="answer-button" type="button" data-answer="a4" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a4">
+          TCP.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>5. What is the difference between the Internet and the Web?</strong></p>
+        <button class="answer-button" type="button" data-answer="a5" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a5">
+          The Internet is the interconnected network infrastructure; the Web is a service that uses it to access linked resources.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>6. What does HTTPS add to HTTP?</strong></p>
+        <button class="answer-button" type="button" data-answer="a6" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a6">
+          TLS protection that provides encryption in transit and helps authenticate the server.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>7. Which measure helps prevent unauthorized network access?</strong></p>
+        <button class="answer-button" type="button" data-answer="a7" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a7">
+          Measures include a properly configured firewall, strong authentication, secure Wi-Fi settings, and timely software updates.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Networks connect devices so they can communicate and share resources.</li>
+        <li>Routers connect IP networks; switches commonly connect devices within a LAN.</li>
+        <li>IP addresses and MAC addresses serve different addressing purposes.</li>
+        <li>DNS helps resolve domain names to useful records.</li>
+        <li>Protocols such as TCP, IP, HTTP, and DNS make communication possible.</li>
+        <li>The Internet is broader than the World Wide Web.</li>
+        <li>Encryption, authentication, updates, and firewalls help improve security.</li>
+      </ul>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Topic navigation">
+      <a href="databases-sql.html">← Previous: Databases and SQL</a>
+      <a href="operating-systems.html">Next: Operating Systems →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Your Answer — Learn, explore, and understand.</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll("[data-answer]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const answer = document.getElementById(button.dataset.answer);
+        if (!answer) return;
+
+        const isVisible = answer.classList.toggle("visible");
+        button.setAttribute("aria-expanded", String(isVisible));
+        button.textContent = isVisible ? "Hide answer" : "Reveal answer";
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn databases, relational tables, primary and foreign keys, SQL queries, joins, and database design fundamentals.">
+  <title>Databases and SQL | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <style>
+    .lesson {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+      color: var(--color-text);
+    }
+
+    .lesson-hero,
+    .lesson section {
+      padding: 25px;
+      margin-bottom: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lesson h1 {
+      margin: 10px 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .lesson h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .lesson h3 {
+      margin-top: 22px;
+    }
+
+    .lesson p,
+    .lesson li {
+      line-height: 1.75;
+    }
+
+    .lesson li {
+      margin-bottom: 7px;
+    }
+
+    .note {
+      padding: 15px 17px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      background: var(--color-border);
+      margin: 18px 0;
+      line-height: 1.7;
+    }
+
+    .example {
+      padding: 16px;
+      border: 1px dashed var(--color-border);
+      border-radius: 12px;
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+
+    .example pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-family: monospace;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .lesson table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    .lesson th,
+    .lesson td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid var(--color-border);
+      line-height: 1.6;
+    }
+
+    .lesson th {
+      background: var(--color-border);
+    }
+
+    .answer-button {
+      margin-top: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 9px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 9px;
+      background: var(--color-border);
+      line-height: 1.7;
+    }
+
+    .answer.visible {
+      display: block;
+    }
+
+    .lesson-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .lesson-nav a {
+      color: var(--color-brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .lesson {
+        padding: 22px 14px 45px;
+      }
+
+      .lesson-hero,
+      .lesson section {
+        padding: 19px;
+      }
+
+      .lesson table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="lesson">
+    <div class="lesson-hero">
+      <div class="eyebrow">Computer Science · Topic 06</div>
+      <h1>Databases and SQL</h1>
+      <p>
+        Learn how digital systems store, organize, retrieve, and update
+        information using databases and Structured Query Language (SQL).
+      </p>
+    </div>
+
+    <section>
+      <h2>1. What Is a Database?</h2>
+      <p>
+        A <strong>database</strong> is an organized collection of data that
+        can be stored, accessed, managed, and updated.
+      </p>
+      <p>
+        Schools can use databases to manage student records, libraries can
+        track books, and online stores can maintain product and order details.
+      </p>
+
+      <h3>What is a DBMS?</h3>
+      <p>
+        A <strong>Database Management System (DBMS)</strong> is software
+        used to create and manage databases. It helps users store, retrieve,
+        modify, and protect data.
+      </p>
+
+      <p>Examples of database systems include:</p>
+      <ul>
+        <li>MySQL</li>
+        <li>PostgreSQL</li>
+        <li>SQLite</li>
+        <li>Microsoft SQL Server</li>
+        <li>Oracle Database</li>
+      </ul>
+
+      <div class="note">
+        A database is the organized collection of data; a DBMS is the software
+        used to manage it.
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Relational Databases</h2>
+      <p>
+        A <strong>relational database</strong> organizes data into tables
+        made up of rows and columns.
+      </p>
+
+      <ul>
+        <li><strong>Table:</strong> A collection of related records.</li>
+        <li><strong>Row:</strong> One record in a table.</li>
+        <li><strong>Column:</strong> A field or attribute shared by records.</li>
+        <li><strong>Schema:</strong> The defined structure of the database.</li>
+      </ul>
+
+      <h3>Example: Students table</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>student_id</th>
+            <th>name</th>
+            <th>age</th>
+            <th>grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>101</td><td>Asha</td><td>16</td><td>11</td></tr>
+          <tr><td>102</td><td>Ravi</td><td>17</td><td>12</td></tr>
+          <tr><td>103</td><td>Mina</td><td>16</td><td>11</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        Each row represents one student, while each column describes a
+        property of the students.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. Primary Keys and Foreign Keys</h2>
+
+      <h3>Primary key</h3>
+      <p>
+        A <strong>primary key</strong> uniquely identifies each row in a
+        table. Its values must be unique and cannot be NULL.
+      </p>
+      <p>
+        In the Students table, <code>student_id</code> can serve as the
+        primary key because each student has a different ID.
+      </p>
+
+      <h3>Foreign key</h3>
+      <p>
+        A <strong>foreign key</strong> is a column or group of columns that
+        refers to a primary key or another eligible unique key in a table.
+        It helps establish relationships between tables.
+      </p>
+
+      <h3>Example: Courses and enrolments</h3>
+      <p><strong>Courses</strong></p>
+      <table>
+        <thead>
+          <tr><th>course_id</th><th>course_name</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Mathematics</td></tr>
+          <tr><td>2</td><td>Physics</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Enrolments</strong></p>
+      <table>
+        <thead>
+          <tr><th>student_id</th><th>course_id</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>101</td><td>1</td></tr>
+          <tr><td>101</td><td>2</td></tr>
+          <tr><td>102</td><td>1</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        Here, <code>course_id</code> in Enrolments refers to
+        <code>course_id</code> in Courses. The combination of
+        <code>student_id</code> and <code>course_id</code> could be used
+        as a composite primary key to prevent duplicate enrolments.
+      </p>
+    </section>
+
+    <section>
+      <h2>4. What Is SQL?</h2>
+      <p>
+        <strong>SQL (Structured Query Language)</strong> is a language used
+        with relational database systems to define structures and query or
+        modify data.
+      </p>
+
+      <h3>Common SQL command categories</h3>
+      <ul>
+        <li><strong>DDL:</strong> Data Definition Language — defines database structures, such as <code>CREATE</code> and <code>ALTER</code>.</li>
+        <li><strong>DML:</strong> Data Manipulation Language — modifies data, such as <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code>.</li>
+        <li><strong>DQL:</strong> Data Query Language — retrieves data, commonly using <code>SELECT</code>.</li>
+        <li><strong>DCL:</strong> Data Control Language — manages permissions, such as <code>GRANT</code> and <code>REVOKE</code>.</li>
+        <li><strong>TCL:</strong> Transaction Control Language — manages transactions, such as <code>COMMIT</code> and <code>ROLLBACK</code>.</li>
+      </ul>
+
+      <div class="note">
+        SQL features and category labels can vary slightly between teaching
+        materials and database products. The commands shown here are common examples.
+      </div>
+    </section>
+
+    <section>
+      <h2>5. Creating a Table</h2>
+      <p>The <code>CREATE TABLE</code> command defines a new table.</p>
+
+      <div class="example">
+        <pre>CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT,
+    grade INT
+);</pre>
+      </div>
+
+      <p>In this example:</p>
+      <ul>
+        <li><code>INT</code> stores integer values.</li>
+        <li><code>VARCHAR(100)</code> stores text up to a specified length in systems that support this type.</li>
+        <li><code>PRIMARY KEY</code> identifies each record uniquely.</li>
+        <li><code>NOT NULL</code> prevents the name field from being left NULL.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Inserting Data</h2>
+      <p>Use <code>INSERT INTO</code> to add records.</p>
+
+      <div class="example">
+        <pre>INSERT INTO Students (student_id, name, age, grade)
+VALUES (101, 'Asha', 16, 11);
+
+INSERT INTO Students (student_id, name, age, grade)
+VALUES (102, 'Ravi', 17, 12);</pre>
+      </div>
+
+      <p>
+        Text values are usually enclosed in single quotation marks. The
+        exact syntax and available data types can vary by database system.
+      </p>
+    </section>
+
+    <section>
+      <h2>7. Retrieving Data with SELECT</h2>
+      <p>
+        The <code>SELECT</code> command retrieves data from one or more tables.
+      </p>
+
+      <h3>Retrieve every column</h3>
+      <div class="example">
+        <pre>SELECT * FROM Students;</pre>
+      </div>
+
+      <h3>Retrieve selected columns</h3>
+      <div class="example">
+        <pre>SELECT name, grade
+FROM Students;</pre>
+      </div>
+
+      <h3>Filter results with WHERE</h3>
+      <div class="example">
+        <pre>SELECT *
+FROM Students
+WHERE grade = 11;</pre>
+      </div>
+
+      <h3>Sort results with ORDER BY</h3>
+      <div class="example">
+        <pre>SELECT name, age
+FROM Students
+ORDER BY age DESC;</pre>
+      </div>
+
+      <p>
+        <code>ASC</code> sorts in ascending order, while <code>DESC</code>
+        sorts in descending order. Many systems use ascending order by default.
+      </p>
+    </section>
+
+    <section>
+      <h2>8. Updating and Deleting Data</h2>
+
+      <h3>UPDATE</h3>
+      <p>Use <code>UPDATE</code> to change existing records.</p>
+      <div class="example">
+        <pre>UPDATE Students
+SET grade = 12
+WHERE student_id = 101;</pre>
+      </div>
+
+      <h3>DELETE</h3>
+      <p>Use <code>DELETE</code> to remove records.</p>
+      <div class="example">
+        <pre>DELETE FROM Students
+WHERE student_id = 102;</pre>
+      </div>
+
+      <div class="note">
+        Be careful with <code>UPDATE</code> and <code>DELETE</code>.
+        Without an appropriate <code>WHERE</code> condition, they can affect
+        every row in the table. Test queries carefully and keep backups of
+        important data.
+      </div>
+    </section>
+
+    <section>
+      <h2>9. Aggregate Functions and GROUP BY</h2>
+      <p>
+        Aggregate functions calculate a result from multiple rows.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Function</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>COUNT()</code></td><td>Counts rows or non-NULL values, depending on the expression.</td></tr>
+          <tr><td><code>SUM()</code></td><td>Adds numeric values.</td></tr>
+          <tr><td><code>AVG()</code></td><td>Calculates the average of numeric values.</td></tr>
+          <tr><td><code>MIN()</code></td><td>Finds the minimum value.</td></tr>
+          <tr><td><code>MAX()</code></td><td>Finds the maximum value.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Example: Count students in each grade</h3>
+      <div class="example">
+        <pre>SELECT grade, COUNT(*) AS student_count
+FROM Students
+GROUP BY grade;</pre>
+      </div>
+
+      <p>
+        <code>GROUP BY</code> combines rows with the same grade into groups,
+        allowing an aggregate calculation for each group.
+      </p>
+    </section>
+
+    <section>
+      <h2>10. Relationships and JOIN</h2>
+      <p>
+        A <strong>JOIN</strong> combines related rows from two or more tables
+        using a condition.
+      </p>
+
+      <h3>INNER JOIN</h3>
+      <p>
+        Returns rows that match the join condition in both tables.
+      </p>
+
+      <div class="example">
+        <pre>SELECT Students.name, Courses.course_name
+FROM Enrolments
+INNER JOIN Students
+    ON Enrolments.student_id = Students.student_id
+INNER JOIN Courses
+    ON Enrolments.course_id = Courses.course_id;</pre>
+      </div>
+
+      <h3>LEFT JOIN</h3>
+      <p>
+        Returns all rows from the left table and matching rows from the
+        right table. When there is no match, columns from the right table
+        are typically NULL.
+      </p>
+
+      <div class="example">
+        <pre>SELECT Students.name, Enrolments.course_id
+FROM Students
+LEFT JOIN Enrolments
+    ON Students.student_id = Enrolments.student_id;</pre>
+      </div>
+
+      <p>
+        JOIN operations help avoid storing every piece of information in one
+        enormous table.
+      </p>
+    </section>
+
+    <section>
+      <h2>11. Database Design and Normalization</h2>
+      <p>
+        <strong>Database normalization</strong> is a way of organizing
+        relational tables to reduce unnecessary duplication and prevent
+        certain update, insertion, and deletion problems.
+      </p>
+
+      <ul>
+        <li><strong>First Normal Form (1NF):</strong> Each field contains a single value appropriate to the chosen data model, rather than a list of repeating values in one cell.</li>
+        <li><strong>Second Normal Form (2NF):</strong> The table is in 1NF and non-key attributes depend on the whole candidate key, not just part of a composite key.</li>
+        <li><strong>Third Normal Form (3NF):</strong> The table is in 2NF and avoids certain unwanted dependencies of non-key attributes on other non-key attributes.</li>
+      </ul>
+
+      <div class="note">
+        Normalization is a deeper topic. For this introduction, remember its
+        main purpose: organizing data consistently and reducing avoidable redundancy.
+      </div>
+    </section>
+
+    <section>
+      <h2>12. Transactions and Data Integrity</h2>
+      <p>
+        A <strong>transaction</strong> is a group of database operations
+        treated as a unit of work.
+      </p>
+
+      <p>Transactions are commonly described by the ACID properties:</p>
+      <ul>
+        <li><strong>Atomicity:</strong> The transaction's operations succeed as a unit or are rolled back as appropriate.</li>
+        <li><strong>Consistency:</strong> A successful transaction preserves defined database rules and constraints.</li>
+        <li><strong>Isolation:</strong> Concurrent transactions are controlled to prevent unintended interference, according to the isolation level.</li>
+        <li><strong>Durability:</strong> Committed changes are designed to persist, including through specified failures.</li>
+      </ul>
+
+      <div class="example">
+        <pre>BEGIN TRANSACTION;
+
+UPDATE Accounts
+SET balance = balance - 500
+WHERE account_id = 1;
+
+UPDATE Accounts
+SET balance = balance + 500
+WHERE account_id = 2;
+
+COMMIT;</pre>
+      </div>
+
+      <p>
+        This simplified example transfers an amount between two accounts.
+        A real system must also validate accounts and balances, handle errors,
+        and use the transaction features supported by its database.
+      </p>
+    </section>
+
+    <section>
+      <h2>13. Knowledge Check</h2>
+      <p>Try answering each question before revealing the answer.</p>
+
+      <div>
+        <p><strong>1. What is a DBMS?</strong></p>
+        <button class="answer-button" type="button" data-answer="a1" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a1">
+          Software used to create, manage, query, and maintain databases.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>2. What does a primary key do?</strong></p>
+        <button class="answer-button" type="button" data-answer="a2" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a2">
+          It uniquely identifies each row in a table and cannot contain NULL values.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>3. Which SQL command retrieves data?</strong></p>
+        <button class="answer-button" type="button" data-answer="a3" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a3">
+          SELECT.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>4. What is the purpose of WHERE?</strong></p>
+        <button class="answer-button" type="button" data-answer="a4" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a4">
+          It filters rows according to a specified condition.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>5. What does an INNER JOIN return?</strong></p>
+        <button class="answer-button" type="button" data-answer="a5" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a5">
+          Rows that satisfy the join condition in both tables.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>6. Why is normalization used?</strong></p>
+        <button class="answer-button" type="button" data-answer="a6" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a6">
+          To organize data, reduce avoidable redundancy, and prevent certain data anomalies.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>7. What should you check before running DELETE?</strong></p>
+        <button class="answer-button" type="button" data-answer="a7" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a7">
+          Confirm the target table and WHERE condition so you remove only the intended rows.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>A database stores organized information, and a DBMS manages it.</li>
+        <li>Relational databases organize records into tables.</li>
+        <li>Primary and foreign keys help identify records and connect tables.</li>
+        <li>SQL supports table creation, data insertion, queries, updates, and deletion.</li>
+        <li>JOIN combines related data, while normalization improves database organization.</li>
+        <li>Transactions help maintain reliable, consistent data.</li>
+      </ul>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Topic navigation">
+      <a href="data-structures.html">← Previous: Data Structures</a>
+      <a href="computer-networks.html">Next: Computer Networks →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Your Answer — Learn, explore, and understand.</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll("[data-answer]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const answer = document.getElementById(button.dataset.answer);
+        if (!answer) return;
+
+        const isVisible = answer.classList.toggle("visible");
+        button.setAttribute("aria-expanded", String(isVisible));
+        button.textContent = isVisible ? "Hide answer" : "Reveal answer";
+      });
+    });
+  </script>
+</body>
+</html>

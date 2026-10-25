@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore advanced mathematics, from linear algebra and differential equations to number theory and mathematical logic.">
+  <title>Advanced Mathematics | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .advanced-page {
+      --advanced-accent: #8a70d6;
+      --advanced-soft: #f1edff;
+      padding-bottom: 64px;
+    }
+
+    html[data-theme="dark"] .advanced-page {
+      --advanced-soft: #2a2440;
+    }
+
+    .advanced-page .lesson-hero {
+      padding: 52px 0 38px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .advanced-page .eyebrow {
+      color: var(--advanced-accent);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .advanced-page .lesson-hero h1 {
+      max-width: 820px;
+      margin: 14px 0;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      line-height: 1.06;
+      letter-spacing: -.055em;
+    }
+
+    .advanced-page .hero-description {
+      max-width: 680px;
+      color: var(--color-text-muted);
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .advanced-page .lesson-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .advanced-page .meta-chip {
+      padding: 7px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      color: var(--color-text-muted);
+      font-size: .83rem;
+    }
+
+    .advanced-page .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      align-items: start;
+      gap: 36px;
+      padding-top: 34px;
+    }
+
+    .advanced-page .lesson-content {
+      min-width: 0;
+    }
+
+    .advanced-page .lesson-section {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--color-border);
+      scroll-margin-top: 24px;
+    }
+
+    .advanced-page .lesson-section:first-child {
+      padding-top: 8px;
+    }
+
+    .advanced-page .lesson-section h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.45rem, 3vw, 1.9rem);
+      letter-spacing: -.035em;
+    }
+
+    .advanced-page .lesson-section h3 {
+      margin: 22px 0 10px;
+      font-size: 1.12rem;
+    }
+
+    .advanced-page .lesson-section p,
+    .advanced-page .lesson-section li {
+      color: var(--color-text-muted);
+      line-height: 1.85;
+    }
+
+    .advanced-page .lesson-section ul,
+    .advanced-page .lesson-section ol {
+      padding-left: 24px;
+    }
+
+    .advanced-page .concept-card {
+      padding: 20px;
+      margin: 18px 0;
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      background: var(--color-surface);
+    }
+
+    .advanced-page .formula {
+      overflow-x: auto;
+      padding: 17px;
+      margin: 14px 0;
+      border-radius: 12px;
+      background: var(--advanced-soft);
+      text-align: center;
+    }
+
+    .advanced-page .example-label {
+      color: var(--advanced-accent);
+      font-size: .76rem;
+      font-weight: 750;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .advanced-page .lesson-aside {
+      position: sticky;
+      top: 76px;
+      align-self: start;
+      min-width: 0;
+    }
+
+    .advanced-page .aside-card {
+      display: block;
+      height: auto;
+      padding: 18px;
+      margin-bottom: 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      background: var(--color-surface);
+    }
+
+    .advanced-page .aside-card h3 {
+      margin: 0 0 14px;
+      font-size: .98rem;
+    }
+
+    .advanced-page .aside-card a {
+      display: block;
+      padding: 8px 0;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: .88rem;
+    }
+
+    .advanced-page .aside-card a:hover {
+      color: var(--advanced-accent);
+    }
+
+    .advanced-page .page-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 28px;
+    }
+
+    .advanced-page .page-links a {
+      padding: 11px 15px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    @media (max-width: 800px) {
+      .advanced-page .lesson-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .advanced-page .lesson-aside {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .advanced-page .aside-card {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .advanced-page .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .advanced-page .lesson-hero {
+        padding-top: 34px;
+      }
+    }
+  </style>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">
+        Theme
+      </button>
+
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">
+        Menu
+      </button>
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="advanced-page">
+    <section class="lesson-hero">
+      <div class="container">
+        <div class="eyebrow">Mathematics / Beyond the Foundations</div>
+        <h1>Advanced mathematics: discover the deeper structure.</h1>
+        <p class="hero-description">
+          Move beyond individual formulas and explore the structures,
+          patterns, and methods that connect different branches of
+          mathematics. This page is a guided map of topics to study next.
+        </p>
+
+        <div class="lesson-meta">
+          <span class="meta-chip">Intermediate to advanced</span>
+          <span class="meta-chip">Conceptual guide</span>
+          <span class="meta-chip">Prerequisites included</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container lesson-layout">
+      <article class="lesson-content">
+
+        <section class="lesson-section" id="roadmap">
+          <h2>01. A roadmap for advanced mathematics</h2>
+          <p>
+            Advanced mathematics is not one subject. It is a collection of
+            connected fields, each with its own questions, language, and
+            tools. Build a solid foundation before moving into proofs and
+            abstract structures.
+          </p>
+
+          <div class="concept-card">
+            <h3>Suggested learning order</h3>
+            <ol>
+              <li>Strengthen algebra, functions, and trigonometry.</li>
+              <li>Learn limits, derivatives, integrals, and series.</li>
+              <li>Study vectors, matrices, and systems of equations.</li>
+              <li>Practise logic, sets, and mathematical proofs.</li>
+              <li>Choose a field and explore its deeper questions.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="linear-algebra">
+          <h2>02. Linear algebra</h2>
+          <p>
+            Linear algebra studies vectors, matrices, linear transformations,
+            and systems of linear equations. It is central to physics,
+            computer graphics, data science, and machine learning.
+          </p>
+
+          <h3>Vectors</h3>
+          <p>A vector can represent a quantity with components and direction.</p>
+          <div class="formula">
+            \[
+              \mathbf{v}=\begin{bmatrix}a\\b\end{bmatrix}
+            \]
+          </div>
+
+          <h3>Matrix multiplication</h3>
+          <p>
+            Matrices can represent transformations that rotate, stretch,
+            reflect, or otherwise map vectors to new vectors.
+          </p>
+          <div class="formula">
+            \[
+              A\mathbf{x}=\mathbf{b}
+            \]
+          </div>
+
+          <div class="concept-card">
+            <span class="example-label">Example</span>
+            <p>Consider the system:</p>
+            <p>
+              \[
+                x+y=5,\qquad x-y=1
+              \]
+            </p>
+            <p>
+              Adding the equations gives \(2x=6\), so \(x=3\).
+              Substituting gives \(y=2\).
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="differential-equations">
+          <h2>03. Differential equations</h2>
+          <p>
+            A differential equation relates an unknown function to one or
+            more of its derivatives. These equations model change in
+            mechanics, electrical circuits, population models, and many
+            other systems.
+          </p>
+
+          <h3>A simple example</h3>
+          <div class="formula">
+            \[
+              \frac{dy}{dx}=ky
+            \]
+          </div>
+          <p>
+            This equation says that the rate of change of \(y\) is
+            proportional to its current value. Its general solution is:
+          </p>
+          <div class="formula">
+            \[
+              y=Ce^{kx}
+            \]
+          </div>
+          <p>
+            Here \(C\) is a constant determined by an initial condition,
+            and \(k\) controls the growth or decay behaviour.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="number-theory">
+          <h2>04. Number theory</h2>
+          <p>
+            Number theory explores integers and their properties. It asks
+            questions about divisibility, prime numbers, remainders, and
+            patterns in whole numbers.
+          </p>
+
+          <h3>Modular arithmetic</h3>
+          <p>
+            Modular arithmetic studies remainders after division. For
+            example, \(17\) leaves remainder \(5\) when divided by \(6\).
+          </p>
+          <div class="formula">
+            \[
+              17\equiv5\pmod 6
+            \]
+          </div>
+
+          <p>
+            This notation is useful for clock arithmetic, cyclic patterns,
+            and some areas of cryptography.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="logic">
+          <h2>05. Mathematical logic and proofs</h2>
+          <p>
+            Mathematical logic studies statements and the rules used to
+            reason about them. Proofs establish why a claim must be true
+            under specified assumptions.
+          </p>
+
+          <h3>Implication</h3>
+          <div class="formula">
+            \[
+              P\Rightarrow Q
+            \]
+          </div>
+          <p>
+            This means “if \(P\), then \(Q\).” A proof must establish the
+            conclusion from the assumptions, not merely show that a few
+            examples work.
+          </p>
+
+          <h3>Common proof methods</h3>
+          <ul>
+            <li><strong>Direct proof:</strong> derive the conclusion from the assumptions.</li>
+            <li><strong>Contrapositive:</strong> prove that not-\(Q\) implies not-\(P\).</li>
+            <li><strong>Contradiction:</strong> show that denying the claim leads to an inconsistency.</li>
+            <li><strong>Induction:</strong> prove a base case and then a step connecting successive cases.</li>
+          </ul>
+        </section>
+
+        <section class="lesson-section" id="sequences">
+          <h2>06. Sequences and infinite series</h2>
+          <p>
+            A sequence is an ordered list of terms. An infinite series adds
+            the terms of a sequence, and its behaviour depends on whether
+            the partial sums approach a finite limit.
+          </p>
+
+          <h3>Geometric series</h3>
+          <div class="formula">
+            \[
+              1+r+r^2+\cdots+r^n
+              =\frac{1-r^{n+1}}{1-r},\quad r\ne1
+            \]
+          </div>
+
+          <p>
+            For an infinite geometric series, the sum is finite when
+            \(|r|&lt;1\):
+          </p>
+          <div class="formula">
+            \[
+              1+r+r^2+\cdots=\frac{1}{1-r}
+              \quad\text{when }|r|&lt;1
+            \]
+          </div>
+        </section>
+
+        <section class="lesson-section" id="choose">
+          <h2>07. Choose your next field</h2>
+          <p>
+            Once the foundations are strong, choose a field based on the
+            questions you want to investigate.
+          </p>
+
+          <div class="concept-card">
+            <h3>For physics and the universe</h3>
+            <p>
+              Explore multivariable calculus, differential equations,
+              vector calculus, and linear algebra.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <h3>For probability and prediction</h3>
+            <p>
+              Explore combinatorics, probability distributions, statistical
+              inference, and stochastic processes.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <h3>For abstract patterns</h3>
+            <p>
+              Explore number theory, abstract algebra, mathematical logic,
+              and set theory.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <h3>For computation</h3>
+            <p>
+              Explore numerical methods, discrete mathematics, algorithms,
+              and optimisation.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="practice">
+          <h2>08. Quick practice</h2>
+
+          <div class="concept-card">
+            <h3>Question 1</h3>
+            <p>
+              If \(x+y=9\) and \(x-y=3\), find \(x\) and \(y\).
+            </p>
+            <details>
+              <summary>Reveal solution</summary>
+              <p>
+                Add the equations: \(2x=12\), so \(x=6\).
+                Then \(y=3\).
+              </p>
+            </details>
+          </div>
+
+          <div class="concept-card">
+            <h3>Question 2</h3>
+            <p>What is the remainder when \(23\) is divided by \(7\)?</p>
+            <details>
+              <summary>Reveal solution</summary>
+              <p>
+                \(23=3(7)+2\), so the remainder is \(2\).
+                In modular notation, \(23\equiv2\pmod7\).
+              </p>
+            </details>
+          </div>
+
+          <div class="concept-card">
+            <h3>Question 3</h3>
+            <p>
+              Find the infinite sum \(1+\frac12+\frac14+\frac18+\cdots\).
+            </p>
+            <details>
+              <summary>Reveal solution</summary>
+              <p>
+                This is a geometric series with \(r=\frac12\).
+                Its sum is \(\frac{1}{1-\frac12}=2\).
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <div class="page-links">
+          <a href="../index.html">← Mathematics</a>
+          <a href="calculus.html">Calculus</a>
+          <a href="statistics.html">Statistics</a>
+          <a href="formula-sheet.html">Quick Formula Sheet →</a>
+        </div>
+      </article>
+
+      <aside class="lesson-aside">
+        <div class="aside-card">
+          <h3>In this lesson</h3>
+          <a href="#roadmap">Learning roadmap</a>
+          <a href="#linear-algebra">Linear algebra</a>
+          <a href="#differential-equations">Differential equations</a>
+          <a href="#number-theory">Number theory</a>
+          <a href="#logic">Logic and proofs</a>
+          <a href="#sequences">Sequences and series</a>
+          <a href="#choose">Choose a field</a>
+          <a href="#practice">Practice</a>
+        </div>
+
+        <div class="aside-card">
+          <h3>Core idea</h3>
+          <p>
+            Advanced mathematics is not only about harder calculations.
+            It is also about structures, rigorous reasoning, and discovering
+            why patterns work.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

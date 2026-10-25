@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore convex lens image formation with an interactive virtual optics experiment.">
+  <title>Convex Lens Lab | Your Answer</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .lab-page {
+      max-width: 1120px;
+      margin: auto;
+      padding: 1.5rem 1rem 4rem;
+    }
+
+    .intro {
+      max-width: 780px;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .muted {
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .lab-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .panel {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .panel-head {
+      padding: 1rem 1.1rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .panel-head h2 {
+      margin: 0 0 .3rem;
+      font-size: 1.15rem;
+    }
+
+    .panel-head p {
+      margin: 0;
+      font-size: .85rem;
+    }
+
+    #lensCanvas {
+      display: block;
+      width: 100%;
+      height: 390px;
+      background: #f3f6fb;
+    }
+
+    [data-theme="dark"] #lensCanvas {
+      background: #141d2c;
+    }
+
+    .canvas-caption {
+      padding: .75rem 1rem;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: .8rem;
+      line-height: 1.6;
+    }
+
+    .controls {
+      display: grid;
+      gap: 1.2rem;
+      padding: 1.1rem;
+    }
+
+    .control-top {
+      display: flex;
+      justify-content: space-between;
+      gap: .75rem;
+      align-items: center;
+    }
+
+    .control-top label {
+      font-weight: 600;
+    }
+
+    output {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: .65rem;
+      accent-color: var(--color-brand);
+    }
+
+    .range-ends {
+      display: flex;
+      justify-content: space-between;
+      color: var(--color-text-muted);
+      font-size: .75rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      padding: 0 1.1rem 1.1rem;
+    }
+
+    .lab-btn {
+      padding: .7rem .9rem;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .lab-btn.primary {
+      border-color: transparent;
+      background: var(--color-brand);
+      color: white;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .65rem;
+      padding: 1rem;
+    }
+
+    .stat {
+      min-width: 0;
+      padding: .8rem;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    .stat span {
+      display: block;
+      margin-bottom: .35rem;
+      color: var(--color-text-muted);
+      font-size: .78rem;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.05rem;
+      overflow-wrap: anywhere;
+    }
+
+    .section {
+      margin-top: 1.25rem;
+      padding: 1.2rem;
+    }
+
+    .section h2 {
+      margin: 0 0 .7rem;
+      font-size: 1.2rem;
+    }
+
+    .formula {
+      padding: 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+
+    .steps {
+      padding-left: 1.3rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .status {
+      color: var(--color-text-muted);
+      font-size: .85rem;
+      line-height: 1.6;
+    }
+
+    .notice {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-text-muted);
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 760px) {
+      .lab-layout {
+        grid-template-columns: 1fr;
+      }
+
+      #lensCanvas {
+        height: 350px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .lab-page {
+        padding-inline: .75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-inner container">
+
+      <a class="brand" href="index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="subjects/">Subjects</a>
+        <a href="explore-3d/">3D Explorer</a>
+        <a href="labs/">Virtual Labs</a>
+        <a href="coding/">Coding Studio</a>
+      </nav>
+
+
+      <div class="header-actions">
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <nav
+  class="mobile-nav container"
+  id="mobile-nav"
+  aria-label="Mobile navigation"
+  hidden
+>
+      <a href="subjects/">Subjects</a>
+      <a href="explore-3d/">3D Explorer</a>
+      <a href="labs/">Virtual Labs</a>
+      <a href="coding/">Coding Studio</a>
+      <a href="about/">About</a>
+    </nav>
+</header>
+
+
+<main class="lab-page">
+
+  <p class="muted">
+    <a href="index.html">Virtual Labs</a> / Convex Lens
+  </p>
+
+  <section class="intro">
+
+    <div class="eyebrow">Physics · Optics</div>
+
+    <h1>Convex Lens</h1>
+
+    <p class="muted">
+      Explore how a convex lens forms images. Change the focal length and
+      object distance, then observe how the image position, size and
+      orientation change.
+    </p>
+
+  </section>
+
+
+  <div class="lab-layout">
+
+    <!-- SIMULATION -->
+
+    <section class="panel">
+
+      <div class="panel-head">
+        <h2>Ray diagram</h2>
+
+        <p class="muted">
+          The diagram shows the principal rays used to locate the image.
+        </p>
+      </div>
+
+      <canvas
+        id="lensCanvas"
+        aria-label="Interactive convex lens ray diagram"
+      ></canvas>
+
+      <div class="canvas-caption">
+        Schematic ray diagram. Distances are represented proportionally
+        within the available display area.
+      </div>
+
+      <div class="button-row">
+
+        <button
+          class="lab-btn primary"
+          id="resetBtn"
+          type="button"
+        >
+          Reset experiment
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTROLS -->
+
+    <section class="panel">
+
+      <div class="panel-head">
+
+        <h2>Experiment controls</h2>
+
+        <p class="muted">
+          Change one variable at a time and observe the result.
+        </p>
+
+      </div>
+
+
+      <div class="controls">
+
+        <div>
+
+          <div class="control-top">
+
+            <label for="focalLength">
+              Focal length
+            </label>
+
+            <output id="focalValue">
+              10 cm
+            </output>
+
+          </div>
+
+          <input
+            id="focalLength"
+            type="range"
+            min="5"
+            max="20"
+            step="1"
+            value="10"
+          >
+
+          <div class="range-ends">
+            <span>5 cm</span>
+            <span>20 cm</span>
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="control-top">
+
+            <label for="objectDistance">
+              Object distance
+            </label>
+
+            <output id="objectValue">
+              25 cm
+            </output>
+
+          </div>
+
+          <input
+            id="objectDistance"
+            type="range"
+            min="5"
+            max="50"
+            step="1"
+            value="25"
+          >
+
+          <div class="range-ends">
+            <span>5 cm</span>
+            <span>50 cm</span>
+          </div>
+
+        </div>
+
+
+        <p
+          class="status"
+          id="status"
+          aria-live="polite"
+        >
+          Virtual image formation experiment ready.
+        </p>
+
+      </div>
+
+
+      <div class="stats">
+
+        <div class="stat">
+          <span>Image distance</span>
+          <strong id="imageDistance">16.67 cm</strong>
+        </div>
+
+        <div class="stat">
+          <span>Magnification</span>
+          <strong id="magnification">−0.67×</strong>
+        </div>
+
+        <div class="stat">
+          <span>Image type</span>
+          <strong id="imageType">Real</strong>
+        </div>
+
+        <div class="stat">
+          <span>Orientation</span>
+          <strong id="orientation">Inverted</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- FORMULA -->
+
+  <section class="panel section">
+
+    <h2>Lens formula</h2>
+
+    <p class="muted">
+      For a thin convex lens, the relationship between focal length,
+      object distance and image distance can be represented by the
+      lens formula.
+    </p>
+
+    <div class="formula">
+
+      <strong>
+        1/f = 1/v − 1/u
+      </strong>
+
+      <p class="muted">
+        f = focal length · u = object distance · v = image distance
+      </p>
+
+    </div>
+
+    <p class="muted">
+      Magnification is calculated from the ratio of image height to
+      object height and can also be expressed as m = v/u using the
+      corresponding sign convention.
+    </p>
+
+  </section>
+
+
+  <!-- PROCEDURE -->
+
+  <section class="panel section">
+
+    <h2>Experiment procedure</h2>
+
+    <ol class="steps">
+
+      <li>
+        Set the focal length to 10 cm.
+      </li>
+
+      <li>
+        Place the object beyond 2F.
+      </li>
+
+      <li>
+        Observe the position and size of the image.
+      </li>
+
+      <li>
+        Move the object closer to the lens and observe the changes.
+      </li>
+
+      <li>
+        Place the object between F and the lens.
+      </li>
+
+      <li>
+        Observe the formation of a virtual, upright and magnified image.
+      </li>
+
+    </ol>
+
+  </section>
+
+
+  <!-- OBSERVATION -->
+
+  <section class="panel section">
+
+    <h2>Observation</h2>
+
+    <p class="muted">
+      Record the current experiment settings so you can compare
+      different object positions.
+    </p>
+
+    <div class="button-row" style="padding:1rem 0">
+
+      <button
+        class="lab-btn primary"
+        id="recordBtn"
+        type="button"
+      >
+        Record observation
+      </button>
+
+      <button
+        class="lab-btn"
+        id="clearBtn"
+        type="button"
+      >
+        Clear table
+      </button>
+
+    </div>
+
+
+    <div style="overflow-x:auto">
+
+      <table
+        style="width:100%;border-collapse:collapse;font-size:.9rem"
+      >
+
+        <thead>
+
+          <tr>
+
+            <th style="padding:.7rem;text-align:left">
+              #
+            </th>
+
+            <th style="padding:.7rem;text-align:left">
+              f (cm)
+            </th>
+
+            <th style="padding:.7rem;text-align:left">
+              u (cm)
+            </th>
+
+            <th style="padding:.7rem;text-align:left">
+              v (cm)
+            </th>
+
+            <th style="padding:.7rem;text-align:left">
+              Magnification
+            </th>
+
+            <th style="padding:.7rem;text-align:left">
+              Type
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="observationBody">
+
+          <tr>
+
+            <td
+              colspan="6"
+              style="padding:.7rem"
+            >
+              No observations recorded yet.
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <p
+      class="status"
+      id="tableStatus"
+      aria-live="polite"
+    >
+      You can record up to 20 observations.
+    </p>
+
+  </section>
+
+
+  <div class="notice">
+
+    <strong>Model limitations:</strong>
+
+    This simulation uses the thin-lens approximation and ideal
+    geometrical optics. Real lenses can introduce aberrations,
+    thickness effects, dispersion and other optical behaviour that
+    are not represented here.
+
+  </div>
+
+</main>
+
+
+<script src="../assets/js/main.js"></script>
+
+<script>
+
+(() => {
+
+  const canvas = document.getElementById("lensCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const focalInput =
+    document.getElementById("focalLength");
+
+  const objectInput =
+    document.getElementById("objectDistance");
+
+  const focalValue =
+    document.getElementById("focalValue");
+
+  const objectValue =
+    document.getElementById("objectValue");
+
+  const imageDistance =
+    document.getElementById("imageDistance");
+
+  const magnification =
+    document.getElementById("magnification");
+
+  const imageType =
+    document.getElementById("imageType");
+
+  const orientation =
+    document.getElementById("orientation");
+
+  const status =
+    document.getElementById("status");
+
+  const observationBody =
+    document.getElementById("observationBody");
+
+  const tableStatus =
+    document.getElementById("tableStatus");
+
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+
+  let records = [];
+
+
+  function calculate() {
+
+    const f =
+      Number(focalInput.value);
+
+    const u =
+      Number(objectInput.value);
+
+
+    /*
+      Using the Cartesian sign convention:
+
+      Lens equation:
+
+      1/f = 1/v - 1/u
+
+      For a real object:
+      u = -object distance
+
+      Therefore:
+
+      1/v = 1/f + 1/u
+
+      where u here is the positive
+      magnitude of the object distance.
+    */
+
+    const denominator =
+      (1 / f) - (1 / u);
+
+    let v;
+
+    if (Math.abs(denominator) < 0.000001) {
+      v = Infinity;
+    } else {
+      v = 1 / denominator;
+    }
+
+
+    let m;
+
+    if (!Number.isFinite(v)) {
+      m = Infinity;
+    } else {
+      m = -v / u;
+    }
+
+
+    let type;
+    let direction;
+
+
+    if (u < f) {
+
+      type = "Virtual";
+      direction = "Upright";
+
+    } else if (Math.abs(u - f) < 0.001) {
+
+      type = "At infinity";
+      direction = "Highly enlarged";
+
+    } else {
+
+      type = "Real";
+      direction = "Inverted";
+
+    }
+
+
+    return {
+      f,
+      u,
+      v,
+      m,
+      type,
+      direction
+    };
+
+  }
+
+
+  function update() {
+
+    const result = calculate();
+
+    focalValue.textContent =
+      result.f.toFixed(0) + " cm";
+
+    objectValue.textContent =
+      result.u.toFixed(0) + " cm";
+
+
+    if (!Number.isFinite(result.v)) {
+
+      imageDistance.textContent =
+        "∞";
+
+      magnification.textContent =
+        "Very large";
+
+    } else {
+
+      imageDistance.textContent =
+        Math.abs(result.v).toFixed(2) + " cm";
+
+      magnification.textContent =
+        Math.abs(result.m).toFixed(2) + "×";
+
+    }
+
+
+    imageType.textContent =
+      result.type;
+
+    orientation.textContent =
+      result.direction;
+
+
+    if (result.type === "Virtual") {
+
+      status.textContent =
+        "The object is inside the focal length, so the image is virtual and upright.";
+
+    } else if (result.type === "At infinity") {
+
+      status.textContent =
+        "The object is approximately at the focal point. The refracted rays are parallel.";
+
+    } else {
+
+      status.textContent =
+        "The lens forms a real inverted image on the opposite side.";
+
+    }
+
+
+    draw();
+
+  }
+
+
+  function resize() {
+
+    const rect =
+      canvas.getBoundingClientRect();
+
+    dpr =
+      Math.min(window.devicePixelRatio || 1, 2);
+
+    width =
+      Math.max(300, rect.width);
+
+    height =
+      Math.max(300, rect.height);
+
+    canvas.width =
+      Math.round(width * dpr);
+
+    canvas.height =
+      Math.round(height * dpr);
+
+    ctx.setTransform(
+      dpr,
+      0,
+      0,
+      dpr,
+      0,
+      0
+    );
+
+    draw();
+
+  }
+
+
+  function drawArrow(
+    x,
+    axisY,
+    heightValue,
+    direction,
+    label,
+    dashed = false
+  ) {
+
+    const top =
+      axisY - heightValue;
+
+    const bottom =
+      axisY;
+
+    ctx.save();
+
+    if (dashed) {
+
+      ctx.setLineDash([6, 5]);
+
+    }
+
+    ctx.lineWidth = 2;
+
+    ctx.strokeStyle =
+      direction > 0
+        ? "#3b82f6"
+        : "#d14b4b";
+
+    ctx.fillStyle =
+      ctx.strokeStyle;
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(x, bottom);
+
+    ctx.lineTo(x, top);
+
+    ctx.stroke();
+
+
+    const arrowSize = 7;
+
+    ctx.beginPath();
+
+    if (direction > 0) {
+
+      ctx.moveTo(
+        x,
+        top
+      );
+
+      ctx.lineTo(
+        x - arrowSize,
+        top + arrowSize
+      );
+
+      ctx.lineTo(
+        x + arrowSize,
+        top + arrowSize
+      );
+
+    } else {
+
+      ctx.moveTo(
+        x,
+        bottom
+      );
+
+      ctx.lineTo(
+        x - arrowSize,
+        bottom - arrowSize
+      );
+
+      ctx.lineTo(
+        x + arrowSize,
+        bottom - arrowSize
+      );
+
+    }
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    ctx.font =
+      "12px system-ui,sans-serif";
+
+    ctx.textAlign =
+      "center";
+
+    ctx.fillText(
+      label,
+      x,
+      direction > 0
+        ? top - 10
+        : bottom + 18
+    );
+
+    ctx.restore();
+
+  }
+
+
+  function drawRay(
+    x1,
+    y1,
+    x2,
+    y2,
+    dashed = false
+  ) {
+
+    ctx.save();
+
+    if (dashed) {
+      ctx.setLineDash([6, 5]);
+    }
+
+    ctx.lineWidth = 1.7;
+    ctx.strokeStyle = "#e19a38";
+
+    ctx.beginPath();
+
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+
+    ctx.stroke();
+
+    ctx.restore();
+
+  }
+
+
+  function draw() {
+
+    if (!width || !height) {
+      return;
+    }
+
+
+    const dark =
+      document.documentElement.dataset.theme === "dark";
+
+
+    const bg =
+      dark ? "#141d2c" : "#f3f6fb";
+
+    const axis =
+      dark ? "#dce6f7" : "#26364d";
+
+    const muted =
+      dark ? "#8597b4" : "#8c9ab0";
+
+
+    ctx.clearRect(
+      0,
+      0,
+      width,
+      height
+    );
+
+    ctx.fillStyle =
+      bg;
+
+    ctx.fillRect(
+      0,
+      0,
+      width,
+      height
+    );
+
+
+    const axisY =
+      height * .58;
+
+    const lensX =
+      width * .5;
+
+
+    /*
+      Scale the experiment so that
+      the object and focal points
+      remain visible on smaller screens.
+    */
+
+    const f =
+      Number(focalInput.value);
+
+    const u =
+      Number(objectInput.value);
+
+
+    const scale =
+      Math.min(
+        (width * .38) / Math.max(u, 1),
+        4.2
+      );
+
+
+    const focalPixels =
+      f * scale;
+
+    const objectPixels =
+      u * scale;
+
+
+    const objectX =
+      lensX - objectPixels;
+
+
+    /*
+      Lens
+    */
+
+    ctx.strokeStyle =
+      "#5d86c7";
+
+    ctx.lineWidth = 5;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      lensX,
+      axisY - 125
+    );
+
+    ctx.bezierCurveTo(
+      lensX - 18,
+      axisY - 75,
+      lensX - 18,
+      axisY + 75,
+      lensX,
+      axisY + 125
+    );
+
+    ctx.bezierCurveTo(
+      lensX + 18,
+      axisY + 75,
+      lensX + 18,
+      axisY - 75,
+      lensX,
+      axisY - 125
+    );
+
+    ctx.stroke();
+
+
+    /*
+      Principal axis
+    */
+
+    ctx.strokeStyle =
+      muted;
+
+    ctx.lineWidth = 1.5;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      20,
+      axisY
+    );
+
+    ctx.lineTo(
+      width - 20,
+      axisY
+    );
+
+    ctx.stroke();
+
+
+    /*
+      Focal points
+    */
+
+    ctx.fillStyle =
+      "#d14b4b";
+
+    ctx.beginPath();
+
+    ctx.arc(
+      lensX - focalPixels,
+      axisY,
+      5,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      lensX + focalPixels,
+      axisY,
+      5,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    ctx.fillStyle =
+      muted;
+
+    ctx.font =
+      "12px system-ui,sans-serif";
+
+    ctx.textAlign =
+      "center";
+
+    ctx.fillText(
+      "F",
+      lensX - focalPixels,
+      axisY + 22
+    );
+
+    ctx.fillText(
+      "F",
+      lensX + focalPixels,
+      axisY + 22
+    );
+
+
+    /*
+      2F markers
+    */
+
+    if (
+      lensX - 2 * focalPixels > 20 &&
+      lensX + 2 * focalPixels < width - 20
+    ) {
+
+      ctx.fillText(
+        "2F",
+        lensX - 2 * focalPixels,
+        axisY + 22
+      );
+
+      ctx.fillText(
+        "2F",
+        lensX + 2 * focalPixels,
+        axisY + 22
+      );
+
+    }
+
+
+    /*
+      Object
+    */
+
+    const objectHeight =
+      82;
+
+    drawArrow(
+      objectX,
+      axisY,
+      objectHeight,
+      1,
+      "Object"
+    );
+
+
+    const result =
+      calculate();
+
+
+    /*
+      Determine image position
+    */
+
+    let imageX;
+    let imageHeight;
+    let imageDirection;
+
+
+    if (!Number.isFinite(result.v)) {
+
+      imageX =
+        width - 25;
+
+      imageHeight =
+        140;
+
+      imageDirection =
+        -1;
+
+    } else {
+
+      imageX =
+        lensX + result.v * scale;
+
+      imageHeight =
+        Math.min(
+          155,
+          Math.max(
+            25,
+            objectHeight *
+            Math.abs(result.m)
+          )
+        );
+
+      imageDirection =
+        result.m >= 0
+          ? 1
+          : -1;
+
+    }
+
+
+    /*
+      Keep image inside visible canvas.
+    */
+
+    imageX =
+      Math.max(
+        lensX + 15,
+        Math.min(
+          width - 20,
+          imageX
+        )
+      );
+
+
+    /*
+      Ray 1:
+      Parallel to principal axis,
+      then through far focal point.
+    */
+
+    const rayEndX =
+      Math.min(
+        width - 20,
+        imageX
+      );
+
+
+    const rayHeight =
+      axisY - objectHeight;
+
+
+    drawRay(
+      objectX,
+      rayHeight,
+      lensX,
+      rayHeight
+    );
+
+
+    if (result.type === "Virtual") {
+
+      drawRay(
+        lensX,
+        rayHeight,
+        width - 20,
+        axisY -
+          (rayHeight - axisY)
+      );
+
+      drawRay(
+        lensX,
+        rayHeight,
+        imageX,
+        axisY - imageHeight,
+        true
+      );
+
+    } else {
+
+      drawRay(
+        lensX,
+        rayHeight,
+        rayEndX,
+        axisY - imageHeight
+      );
+
+    }
+
+
+    /*
+      Ray 2:
+      Through optical centre.
+    */
+
+    drawRay(
+      objectX,
+      rayHeight,
+      rayEndX,
+      axisY - imageHeight
+    );
+
+
+    /*
+      Image
+    */
+
+    if (Number.isFinite(result.v)) {
+
+      drawArrow(
+        imageX,
+        axisY,
+        imageHeight,
+        imageDirection,
+        "Image"
+      );
+
+    } else {
+
+      ctx.fillStyle =
+        muted;
+
+      ctx.textAlign =
+        "center";
+
+      ctx.fillText(
+        "Image at infinity",
+        width - 85,
+        axisY - 90
+      );
+
+    }
+
+
+    /*
+      Labels
+    */
+
+    ctx.fillStyle =
+      axis;
+
+    ctx.textAlign =
+      "left";
+
+    ctx.font =
+      "12px system-ui,sans-serif";
+
+    ctx.fillText(
+      "Principal axis",
+      20,
+      axisY - 10
+    );
+
+
+    ctx.textAlign =
+      "center";
+
+    ctx.fillText(
+      "Convex lens",
+      lensX,
+      axisY + 150
+    );
+
+  }
+
+
+  focalInput.addEventListener(
+    "input",
+    update
+  );
+
+  objectInput.addEventListener(
+    "input",
+    update
+  );
+
+
+  document
+    .getElementById("resetBtn")
+    .addEventListener(
+      "click",
+      () => {
+
+        focalInput.value = 10;
+        objectInput.value = 25;
+
+        update();
+
+        status.textContent =
+          "Experiment reset.";
+
+      }
+    );
+
+
+  document
+    .getElementById("recordBtn")
+    .addEventListener(
+      "click",
+      () => {
+
+        if (records.length >= 20) {
+
+          tableStatus.textContent =
+            "The table is full. Clear it to record more.";
+
+          return;
+
+        }
+
+
+        const r =
+          calculate();
+
+
+        records.push(r);
+
+        renderTable();
+
+        tableStatus.textContent =
+          "Observation " +
+          records.length +
+          " recorded.";
+
+      }
+    );
+
+
+  document
+    .getElementById("clearBtn")
+    .addEventListener(
+      "click",
+      () => {
+
+        records = [];
+
+        renderTable();
+
+        tableStatus.textContent =
+          "Observation table cleared.";
+
+      }
+    );
+
+
+  function renderTable() {
+
+    observationBody.replaceChildren();
+
+
+    if (records.length === 0) {
+
+      const row =
+        document.createElement("tr");
+
+      const cell =
+        document.createElement("td");
+
+      cell.colSpan = 6;
+
+      cell.textContent =
+        "No observations recorded yet.";
+
+      cell.style.padding =
+        ".7rem";
+
+      row.appendChild(cell);
+
+      observationBody.appendChild(row);
+
+      return;
+
+    }
+
+
+    records.forEach(
+      (r, index) => {
+
+        const row =
+          document.createElement("tr");
+
+
+        const values = [
+
+          index + 1,
+
+          r.f.toFixed(0),
+
+          r.u.toFixed(0),
+
+          Number.isFinite(r.v)
+            ? Math.abs(r.v).toFixed(2)
+            : "∞",
+
+          Number.isFinite(r.m)
+            ? r.m.toFixed(2)
+            : "∞",
+
+          r.type
+
+        ];
+
+
+        values.forEach(
+          value => {
+
+            const cell =
+              document.createElement("td");
+
+            cell.textContent =
+              value;
+
+            cell.style.padding =
+              ".7rem";
+
+            row.appendChild(cell);
+
+          }
+        );
+
+
+        observationBody.appendChild(row);
+
+      }
+    );
+
+  }
+
+
+  window.addEventListener(
+    "resize",
+    resize
+  );
+
+
+  new MutationObserver(
+    () => draw()
+  ).observe(
+    document.documentElement,
+    {
+      attributes: true,
+      attributeFilter: ["data-theme"]
+    }
+  );
+
+
+  update();
+
+  resize();
+
+})();
+
+</script>
+
+</body>
+</html>

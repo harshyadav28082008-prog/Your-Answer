@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Molecular Structures | Your Answer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/main.js" defer></script>
+
+  <style>
+    .mol-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 18px 60px;
+    }
+
+    .mol-page h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin: 12px 0;
+    }
+
+    .mol-intro {
+      max-width: 720px;
+      line-height: 1.7;
+      color: var(--color-text-muted);
+      margin-bottom: 28px;
+    }
+
+    .mol-back {
+      color: var(--color-brand);
+      text-decoration: none;
+    }
+
+    .mol-back:hover { text-decoration: underline; }
+
+    .mol-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .mol-panel {
+      min-width: 0;
+      padding: 20px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .mol-panel h2 {
+      font-size: 1.2rem;
+      margin: 0 0 16px;
+    }
+
+    .mol-canvas-wrap {
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    #molCanvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      touch-action: none;
+      cursor: grab;
+    }
+
+    #molCanvas:active { cursor: grabbing; }
+
+    .mol-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+      color: var(--color-text-muted);
+      font-size: 0.88rem;
+    }
+
+    .mol-dot {
+      display: inline-block;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .mol-control { margin: 20px 0; }
+
+    .mol-control label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .mol-control select {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+    }
+
+    .mol-control input[type="range"] {
+      width: 100%;
+      accent-color: var(--color-brand);
+    }
+
+    .mol-control output {
+      color: var(--color-brand);
+      font-weight: 600;
+    }
+
+    .mol-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .mol-button {
+      padding: 10px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .mol-button.primary {
+      background: var(--color-brand);
+      color: white;
+      border-color: var(--color-brand);
+    }
+
+    .mol-button:focus-visible {
+      outline: 2px solid var(--color-brand);
+      outline-offset: 3px;
+    }
+
+    .mol-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .mol-stat {
+      padding: 13px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    .mol-stat span {
+      display: block;
+      color: var(--color-text-muted);
+      font-size: 0.84rem;
+      margin-bottom: 7px;
+    }
+
+    .mol-stat strong {
+      font-size: 1.1rem;
+      overflow-wrap: anywhere;
+    }
+
+    .mol-note {
+      padding: 15px;
+      margin-top: 18px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      line-height: 1.7;
+    }
+
+    .mol-note p { margin: 6px 0 0; }
+
+    .mol-formula {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+
+    .mol-help {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .mol-layout { grid-template-columns: 1fr; }
+      .mol-page { padding: 24px 14px 45px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="mol-page">
+   
+    <header>
+          <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+       <a class="mol-back" href="../index.html">← Back to Explore 3D</a>
+
+      <h1>Molecular Structures</h1>
+      <p class="mol-intro">
+        Explore how atoms are arranged in molecules. Select a compound,
+        rotate its structure, and inspect its chemical formula and geometry.
+      </p>
+    </header>
+
+    <div class="mol-layout">
+      <section class="mol-panel">
+        <h2>Molecule explorer</h2>
+
+        <div class="mol-canvas-wrap">
+          <canvas id="molCanvas" width="760" height="560"
+                  role="img"
+                  aria-label="Interactive molecular model. Drag to rotate the atom-and-bond structure.">
+            Your browser does not support canvas.
+          </canvas>
+        </div>
+
+        <div class="mol-legend">
+          <span><i class="mol-dot" style="background:#e8e8e8;border:1px solid #999"></i>Hydrogen</span>
+          <span><i class="mol-dot" style="background:#343a40"></i>Carbon</span>
+          <span><i class="mol-dot" style="background:#e76f51"></i>Oxygen</span>
+          <span><i class="mol-dot" style="background:#3478f6"></i>Nitrogen</span>
+          <span><i class="mol-dot" style="background:#d4a017"></i>Sulfur</span>
+          <span><i class="mol-dot" style="background:#48a868"></i>Chlorine</span>
+        </div>
+
+        <p class="mol-help">
+          Drag to rotate the model. Use the controls to change rotation speed
+          or pause the automatic movement.
+        </p>
+
+        <div class="mol-actions">
+          <button class="mol-button primary" id="motionButton" type="button">
+            Pause rotation
+          </button>
+          <button class="mol-button" id="resetButton" type="button">
+            Reset view
+          </button>
+        </div>
+      </section>
+
+      <aside class="mol-panel">
+        <h2>Molecule details</h2>
+
+        <div class="mol-control">
+          <label for="moleculeSelect">Select a molecule</label>
+          <select id="moleculeSelect">
+            <option value="water">Water — H₂O</option>
+            <option value="carbonDioxide">Carbon dioxide — CO₂</option>
+            <option value="methane">Methane — CH₄</option>
+            <option value="ammonia">Ammonia — NH₃</option>
+            <option value="oxygen">Oxygen — O₂</option>
+            <option value="nitrogen">Nitrogen — N₂</option>
+            <option value="hydrogen">Hydrogen — H₂</option>
+            <option value="ethanol">Ethanol — C₂H₆O</option>
+            <option value="sulfurDioxide">Sulfur dioxide — SO₂</option>
+            <option value="hydrogenChloride">Hydrogen chloride — HCl</option>
+          </select>
+        </div>
+
+        <div class="mol-control">
+          <label for="rotationSpeed">
+            Rotation speed
+            <output id="rotationValue">1×</output>
+          </label>
+          <input id="rotationSpeed" type="range"
+                 min="0" max="3" step="0.5" value="1">
+        </div>
+
+        <div class="mol-stats">
+          <div class="mol-stat">
+            <span>Formula</span>
+            <strong id="formula">H₂O</strong>
+          </div>
+          <div class="mol-stat">
+            <span>Total atoms</span>
+            <strong id="atomCount">3</strong>
+          </div>
+          <div class="mol-stat">
+            <span>Molecular geometry</span>
+            <strong id="geometry">Bent</strong>
+          </div>
+          <div class="mol-stat">
+            <span>Approx. bond angle</span>
+            <strong id="bondAngle">104.5°</strong>
+          </div>
+        </div>
+
+        <div class="mol-note">
+          <strong id="moleculeName">Water</strong>
+          <p id="description">
+            Water has two hydrogen atoms bonded to one oxygen atom.
+            Its molecular shape is bent.
+          </p>
+        </div>
+
+        <div class="mol-note">
+          <strong>How to read the model</strong>
+          <p>
+            Spheres represent atoms, and connecting rods represent bonds.
+            The displayed sizes and distances are illustrative rather than
+            to scale.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById("molCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const moleculeSelect = document.getElementById("moleculeSelect");
+      const speedInput = document.getElementById("rotationSpeed");
+      const speedOutput = document.getElementById("rotationValue");
+      const motionButton = document.getElementById("motionButton");
+      const resetButton = document.getElementById("resetButton");
+
+      const formulaEl = document.getElementById("formula");
+      const atomCountEl = document.getElementById("atomCount");
+      const geometryEl = document.getElementById("geometry");
+      const bondAngleEl = document.getElementById("bondAngle");
+      const moleculeNameEl = document.getElementById("moleculeName");
+      const descriptionEl = document.getElementById("description");
+
+      const atomColors = {
+        H: "#e8e8e8",
+        C: "#343a40",
+        O: "#e76f51",
+        N: "#3478f6",
+        S: "#d4a017",
+        Cl: "#48a868"
+      };
+
+      // Coordinates are illustrative; bonds are defined by atom indices.
+      const molecules = {
+        water: {
+          name: "Water",
+          formula: "H₂O",
+          geometry: "Bent",
+          angle: "104.5°",
+          description: "Water has two O–H bonds. Its bent shape and polar bonds contribute to many of its unusual properties.",
+          atoms: [
+            { e: "O", p: [0, 0, 0] },
+            { e: "H", p: [-0.85, 0.55, 0] },
+            { e: "H", p: [0.85, 0.55, 0] }
+          ],
+          bonds: [[0, 1], [0, 2]]
+        },
+
+        carbonDioxide: {
+          name: "Carbon dioxide",
+          formula: "CO₂",
+          geometry: "Linear",
+          angle: "180°",
+          description: "Carbon dioxide has a central carbon atom with an oxygen atom on either side in a linear arrangement.",
+          atoms: [
+            { e: "O", p: [-1.35, 0, 0] },
+            { e: "C", p: [0, 0, 0] },
+            { e: "O", p: [1.35, 0, 0] }
+          ],
+          bonds: [[0, 1], [1, 2]]
+        },
+
+        methane: {
+          name: "Methane",
+          formula: "CH₄",
+          geometry: "Tetrahedral",
+          angle: "109.5°",
+          description: "Methane has a central carbon atom bonded to four hydrogen atoms in a tetrahedral arrangement.",
+          atoms: [
+            { e: "C", p: [0, 0, 0] },
+            { e: "H", p: [1, 1, 1] },
+            { e: "H", p: [1, -1, -1] },
+            { e: "H", p: [-1, 1, -1] },
+            { e: "H", p: [-1, -1, 1] }
+          ],
+          bonds: [[0, 1], [0, 2], [0, 3], [0, 4]]
+        },
+
+        ammonia: {
+          name: "Ammonia",
+          formula: "NH₃",
+          geometry: "Trigonal pyramidal",
+          angle: "107°",
+          description: "Ammonia has three N–H bonds and a lone pair on nitrogen, giving the molecule a trigonal pyramidal shape.",
+          atoms: [
+            { e: "N", p: [0, 0.3, 0] },
+            { e: "H", p: [0, -0.65, 0.9] },
+            { e: "H", p: [-0.78, -0.65, -0.45] },
+            { e: "H", p: [0.78, -0.65, -0.45] }
+          ],
+          bonds: [[0, 1], [0, 2], [0, 3]]
+        },
+
+        oxygen: {
+          name: "Oxygen",
+          formula: "O₂",
+          geometry: "Linear diatomic",
+          angle: "—",
+          description: "Oxygen gas consists of two oxygen atoms joined by a double bond. The drawing uses one rod to represent the bond.",
+          atoms: [
+            { e: "O", p: [-0.8, 0, 0] },
+            { e: "O", p: [0.8, 0, 0] }
+          ],
+          bonds: [[0, 1]]
+        },
+
+        nitrogen: {
+          name: "Nitrogen",
+          formula: "N₂",
+          geometry: "Linear diatomic",
+          angle: "—",
+          description: "Nitrogen gas contains two nitrogen atoms joined by a triple bond. The drawing uses one rod for clarity.",
+          atoms: [
+            { e: "N", p: [-0.8, 0, 0] },
+            { e: "N", p: [0.8, 0, 0] }
+          ],
+          bonds: [[0, 1]]
+        },
+
+        hydrogen: {
+          name: "Hydrogen",
+          formula: "H₂",
+          geometry: "Linear diatomic",
+          angle: "—",
+          description: "Hydrogen gas is a diatomic molecule consisting of two hydrogen atoms joined by a covalent bond.",
+          atoms: [
+            { e: "H", p: [-0.8, 0, 0] },
+            { e: "H", p: [0.8, 0, 0] }
+          ],
+          bonds: [[0, 1]]
+        },
+
+        ethanol: {
+          name: "Ethanol",
+          formula: "C₂H₆O",
+          geometry: "Multiple local geometries",
+          angle: "About 109°",
+          description: "Ethanol contains two carbon atoms and one oxygen atom. Its full structure has several bond angles and is not a single ideal geometry.",
+          atoms: [
+            { e: "C", p: [-0.8, 0, 0] },
+            { e: "C", p: [0.5, 0, 0] },
+            { e: "O", p: [1.5, 0.8, 0] },
+            { e: "H", p: [-1.2, 0.9, 0.5] },
+            { e: "H", p: [-1.2, -0.7, 0.6] },
+            { e: "H", p: [-1.2, -0.3, -0.9] },
+            { e: "H", p: [0.8, -0.9, 0.5] },
+            { e: "H", p: [0.8, -0.3, -0.9] },
+            { e: "H", p: [2.1, 0.5, 0] }
+          ],
+          bonds: [[0, 1], [1, 2], [0, 3], [0, 4], [0, 5], [1, 6], [1, 7], [2, 8]]
+        },
+
+        sulfurDioxide: {
+          name: "Sulfur dioxide",
+          formula: "SO₂",
+          geometry: "Bent",
+          angle: "About 119°",
+          description: "Sulfur dioxide has a bent molecular shape. Its bonding is more complex than a simple single-bond picture suggests.",
+          atoms: [
+            { e: "S", p: [0, 0, 0] },
+            { e: "O", p: [-1, 0.7, 0] },
+            { e: "O", p: [1, 0.7, 0] }
+          ],
+          bonds: [[0, 1], [0, 2]]
+        },
+
+        hydrogenChloride: {
+          name: "Hydrogen chloride",
+          formula: "HCl",
+          geometry: "Linear diatomic",
+          angle: "—",
+          description: "Hydrogen chloride is a diatomic molecule containing one hydrogen atom and one chlorine atom.",
+          atoms: [
+            { e: "H", p: [-0.8, 0, 0] },
+            { e: "Cl", p: [0.8, 0, 0] }
+          ],
+          bonds: [[0, 1]]
+        }
+      };
+
+      let rotationX = -0.25;
+      let rotationY = 0.55;
+      let autoRotate = true;
+      let lastTimestamp = 0;
+      let frameId = null;
+      let dragging = false;
+      let lastPointer = null;
+
+      function getMolecule() {
+        return molecules[moleculeSelect.value] || molecules.water;
+      }
+
+      function updateDetails() {
+        const molecule = getMolecule();
+        formulaEl.textContent = molecule.formula;
+        atomCountEl.textContent = molecule.atoms.length;
+        geometryEl.textContent = molecule.geometry;
+        bondAngleEl.textContent = molecule.angle;
+        moleculeNameEl.textContent = molecule.name;
+        descriptionEl.textContent = molecule.description;
+        speedOutput.textContent = Number(speedInput.value).toFixed(1) + "×";
+        drawMolecule();
+      }
+
+      function rotatePoint(point) {
+        const [x, y, z] = point;
+
+        const cosY = Math.cos(rotationY);
+        const sinY = Math.sin(rotationY);
+        const x1 = x * cosY + z * sinY;
+        const z1 = -x * sinY + z * cosY;
+
+        const cosX = Math.cos(rotationX);
+        const sinX = Math.sin(rotationX);
+        const y1 = y * cosX - z1 * sinX;
+        const z2 = y * sinX + z1 * cosX;
+
+        return [x1, y1, z2];
+      }
+
+      function project(point) {
+        const [x, y, z] = point;
+        const scale = 125;
+        const perspective = 1 / (1 + z * 0.12);
+
+        return {
+          x: canvas.width / 2 + x * scale * perspective,
+          y: canvas.height / 2 + y * scale * perspective,
+          z,
+          perspective
+        };
+      }
+
+      function drawMolecule() {
+        const molecule = getMolecule();
+        const w = canvas.width;
+        const h = canvas.height;
+
+        ctx.clearRect(0, 0, w, h);
+
+        // Background guide.
+        ctx.strokeStyle = "rgba(128,128,128,0.14)";
+        ctx.lineWidth = 1;
+
+        for (let x = 0; x < w; x += 50) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, h);
+          ctx.stroke();
+        }
+
+        for (let y = 0; y < h; y += 50) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(w, y);
+          ctx.stroke();
+        }
+
+        const projectedAtoms = molecule.atoms.map((atom, index) => ({
+          ...atom,
+          index,
+          point: project(rotatePoint(atom.p))
+        }));
+
+        // Draw bonds behind atoms.
+        molecule.bonds.forEach(([a, b]) => {
+          const pa = projectedAtoms[a].point;
+          const pb = projectedAtoms[b].point;
+
+          ctx.beginPath();
+          ctx.moveTo(pa.x, pa.y);
+          ctx.lineTo(pb.x, pb.y);
+          ctx.strokeStyle = "rgba(128,128,128,0.95)";
+          ctx.lineWidth = 8 * Math.min(pa.perspective, pb.perspective);
+          ctx.lineCap = "round";
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(pa.x, pa.y);
+          ctx.lineTo(pb.x, pb.y);
+          ctx.strokeStyle = "rgba(255,255,255,0.65)";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        });
+
+        // Paint back atoms first.
+        projectedAtoms.sort((a, b) => a.point.z - b.point.z);
+
+        projectedAtoms.forEach(atom => {
+          const p = atom.point;
+          const radius = (atom.e === "H" ? 17 : 25) * p.perspective;
+
+          const gradient = ctx.createRadialGradient(
+            p.x - radius * 0.35,
+            p.y - radius * 0.4,
+            radius * 0.1,
+            p.x,
+            p.y,
+            radius
+          );
+
+          gradient.addColorStop(0, "#ffffff");
+          gradient.addColorStop(0.25, atom.e === "H"
+            ? "#f5f5f5" : atomColors[atom.e]);
+          gradient.addColorStop(1, atomColors[atom.e]);
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+          ctx.fillStyle = gradient;
+          ctx.fill();
+
+          ctx.strokeStyle = "rgba(0,0,0,0.3)";
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+
+          ctx.fillStyle = atom.e === "H" ? "#333333" : "#ffffff";
+          ctx.font = "bold " + Math.max(12, radius * 0.8) + "px sans-serif";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(atom.e, p.x, p.y);
+        });
+
+        ctx.textAlign = "start";
+        ctx.textBaseline = "alphabetic";
+
+        ctx.fillStyle = "rgba(128,128,128,0.95)";
+        ctx.font = "14px sans-serif";
+        ctx.fillText("Drag to rotate", 16, h - 18);
+      }
+
+      function animate(timestamp) {
+        if (!autoRotate) return;
+
+        if (lastTimestamp) {
+          const delta = Math.min((timestamp - lastTimestamp) / 1000, 0.04);
+          rotationY += delta * Number(speedInput.value) * 0.55;
+          drawMolecule();
+        }
+
+        lastTimestamp = timestamp;
+        frameId = requestAnimationFrame(animate);
+      }
+
+      function stopAnimation() {
+        autoRotate = false;
+
+        if (frameId !== null) {
+          cancelAnimationFrame(frameId);
+          frameId = null;
+        }
+
+        motionButton.textContent = "Resume rotation";
+      }
+
+      function startAnimation() {
+        if (autoRotate) return;
+
+        autoRotate = true;
+        lastTimestamp = 0;
+        motionButton.textContent = "Pause rotation";
+        frameId = requestAnimationFrame(animate);
+      }
+
+      canvas.addEventListener("pointerdown", event => {
+        dragging = true;
+        lastPointer = { x: event.clientX, y: event.clientY };
+        canvas.setPointerCapture(event.pointerId);
+      });
+
+      canvas.addEventListener("pointermove", event => {
+        if (!dragging || !lastPointer) return;
+
+        const dx = event.clientX - lastPointer.x;
+        const dy = event.clientY - lastPointer.y;
+
+        rotationY += dx * 0.01;
+        rotationX += dy * 0.01;
+        rotationX = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, rotationX));
+
+        lastPointer = { x: event.clientX, y: event.clientY };
+        drawMolecule();
+      });
+
+      function endDrag() {
+        dragging = false;
+        lastPointer = null;
+      }
+
+      canvas.addEventListener("pointerup", endDrag);
+      canvas.addEventListener("pointercancel", endDrag);
+      canvas.addEventListener("lostpointercapture", endDrag);
+
+      moleculeSelect.addEventListener("change", updateDetails);
+
+      speedInput.addEventListener("input", () => {
+        speedOutput.textContent = Number(speedInput.value).toFixed(1) + "×";
+      });
+
+      motionButton.addEventListener("click", () => {
+        if (autoRotate) stopAnimation();
+        else startAnimation();
+      });
+
+      resetButton.addEventListener("click", () => {
+        rotationX = -0.25;
+        rotationY = 0.55;
+        speedInput.value = 1;
+        speedOutput.textContent = "1.0×";
+        lastTimestamp = 0;
+        updateDetails();
+      });
+
+      updateDetails();
+
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        frameId = requestAnimationFrame(animate);
+      } else {
+        autoRotate = false;
+        motionButton.textContent = "Resume rotation";
+      }
+    })();
+  </script>
+</body>
+</html>

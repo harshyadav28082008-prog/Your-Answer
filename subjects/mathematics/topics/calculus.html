@@ -1,0 +1,867 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Learn the foundations of calculus, derivatives, rates of change, and tangent lines with interactive examples.">
+  <title>Calculus — Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .calculus-page {
+      --lesson-accent: #7c65d8;
+      --lesson-soft: #f0edff;
+      padding-bottom: 64px;
+    }
+
+    html[data-theme="dark"] .calculus-page {
+      --lesson-soft: #292440;
+    }
+
+    .calculus-page .lesson-hero {
+      padding: 48px 0 30px;
+    }
+
+    .calculus-page .lesson-eyebrow {
+      color: var(--lesson-accent);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .calculus-page .lesson-title {
+      font-size: clamp(2.2rem, 5vw, 3.7rem);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+      margin: 0 0 16px;
+    }
+
+    .calculus-page .lesson-intro {
+      max-width: 680px;
+      color: var(--color-text-muted);
+      font-size: 1.06rem;
+      line-height: 1.8;
+    }
+
+    .calculus-page .lesson-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .calculus-page .meta-chip {
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: 7px 12px;
+      color: var(--color-text-muted);
+      font-size: .82rem;
+    }
+
+    .calculus-page .lesson-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 0;
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      scrollbar-width: none;
+    }
+
+    .calculus-page .lesson-nav a {
+      flex: 0 0 auto;
+      text-decoration: none;
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: .85rem;
+    }
+
+    .calculus-page .lesson-nav a:hover {
+      color: var(--lesson-accent);
+      border-color: var(--lesson-accent);
+    }
+
+    .calculus-page .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 28px;
+      margin-top: 30px;
+      align-items: start;
+    }
+
+    .calculus-page .lesson-content {
+      min-width: 0;
+    }
+
+    .calculus-page .lesson-section {
+      margin-bottom: 34px;
+      scroll-margin-top: 85px;
+    }
+
+    .calculus-page .section-heading {
+      font-size: 1.55rem;
+      letter-spacing: -.025em;
+      margin: 0 0 12px;
+    }
+
+    .calculus-page .lesson-section p {
+      line-height: 1.8;
+      color: var(--color-text-muted);
+    }
+
+    .calculus-page .lesson-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      padding: 22px;
+      margin: 18px 0;
+    }
+
+    .calculus-page .formula {
+      background: var(--lesson-soft);
+      border-radius: 12px;
+      padding: 18px;
+      margin: 16px 0;
+      text-align: center;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .calculus-page .step-number {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--lesson-soft);
+      color: var(--lesson-accent);
+      font-size: .85rem;
+      font-weight: 800;
+      margin-right: 8px;
+    }
+
+    .calculus-page .example-step {
+      margin: 14px 0;
+      line-height: 1.75;
+    }
+
+    .calculus-page .explorer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .calculus-page .control-label {
+      display: block;
+      font-size: .9rem;
+      font-weight: 650;
+      margin: 15px 0 7px;
+    }
+
+    .calculus-page .control-input,
+    .calculus-page .control-select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+    }
+
+    .calculus-page .control-range {
+      width: 100%;
+      accent-color: var(--lesson-accent);
+    }
+
+    .calculus-page .equation-preview {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .calculus-page .graph-wrap {
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--color-surface);
+    }
+
+    .calculus-page .graph-wrap svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .calculus-page .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .calculus-page .result-box {
+      background: var(--lesson-soft);
+      border-radius: 12px;
+      padding: 13px;
+    }
+
+    .calculus-page .result-label {
+      display: block;
+      font-size: .78rem;
+      color: var(--color-text-muted);
+      margin-bottom: 5px;
+    }
+
+    .calculus-page .result-value {
+      font-size: 1.12rem;
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+
+    .calculus-page .lesson-aside {
+      position: sticky;
+      top: 72px;
+    }
+
+    .calculus-page .aside-card {
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
+      background: var(--color-surface);
+    }
+
+    .calculus-page .aside-card h3 {
+      font-size: 1rem;
+      margin: 0 0 12px;
+    }
+
+    .calculus-page .aside-card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .calculus-page .aside-card li {
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin: 8px 0;
+      font-size: .9rem;
+    }
+
+    .calculus-page .practice-question {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .calculus-page .practice-question:last-child {
+      border-bottom: 0;
+    }
+
+    .calculus-page .practice-question p {
+      color: var(--color-text);
+      font-weight: 650;
+    }
+
+    .calculus-page .answer-input {
+      max-width: 230px;
+    }
+
+    .calculus-page .check-button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 15px;
+      background: var(--lesson-accent);
+      color: white;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .calculus-page .feedback {
+      font-size: .9rem;
+      margin-top: 9px;
+      min-height: 1.3em;
+    }
+
+    .calculus-page .topic-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .calculus-page .topic-link {
+      text-decoration: none;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 10px 13px;
+      color: var(--color-text);
+      font-size: .9rem;
+    }
+
+    .calculus-page .topic-link:hover {
+      border-color: var(--lesson-accent);
+      color: var(--lesson-accent);
+    }
+
+    @media (max-width: 800px) {
+      .calculus-page .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .calculus-page .lesson-aside {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .calculus-page .aside-card {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .calculus-page .lesson-hero {
+        padding-top: 32px;
+      }
+
+      .calculus-page .explorer-grid,
+      .calculus-page .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .calculus-page .lesson-card {
+        padding: 17px;
+      }
+    }
+    
+
+
+/* Keep the reference cards compact at the top */
+.calculus-page .lesson-layout {
+  align-items: start;
+}
+
+.calculus-page .lesson-aside {
+  position: sticky;
+  top: 72px;
+  display: block;
+  align-self: start;
+}
+
+.calculus-page .aside-card {
+  flex: initial;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+/* Tablet layout */
+@media (max-width: 800px) {
+  .calculus-page .lesson-aside {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .calculus-page .aside-card {
+    margin-bottom: 0;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 560px) {
+  .calculus-page .lesson-aside {
+    grid-template-columns: 1fr;
+  }
+}
+  
+  
+</style>
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html" aria-label="Your Answer home">
+        <span class="brand-mark">Y</span>
+        <span>Your Answer</span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+        <a href="../../../coding/index.html">Coding</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" data-theme-toggle aria-label="Toggle light and dark theme">◐</button>
+        <button type="button" data-menu-toggle aria-label="Open navigation menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+      <a href="../../../coding/index.html">Coding</a>
+    </nav>
+  </header>
+
+  <main class="calculus-page">
+    <section class="lesson-hero container">
+      <div class="lesson-eyebrow">Mathematics / Calculus</div>
+      <h1 class="lesson-title">Calculus: Change, Made Understandable.</h1>
+      <p class="lesson-intro">
+        Calculus gives us a language for understanding how things change.
+        Start with the idea of a rate of change, explore derivatives, and
+        see how a curve behaves at a particular point.
+      </p>
+
+      <div class="lesson-meta">
+        <span class="meta-chip">Beginner foundations</span>
+        <span class="meta-chip">Interactive explorer</span>
+        <span class="meta-chip">Approx. 15 minutes</span>
+      </div>
+    </section>
+
+    <nav class="lesson-nav container" aria-label="On this page">
+      <a href="#overview">Overview</a>
+      <a href="#derivatives">Derivatives</a>
+      <a href="#example">Worked example</a>
+      <a href="#explorer">Explore</a>
+      <a href="#practice">Practice</a>
+    </nav>
+
+    <div class="lesson-layout container">
+      <article class="lesson-content">
+        <section class="lesson-section" id="overview">
+          <h2 class="section-heading">1. What is calculus?</h2>
+          <p>
+            Imagine a car travelling along a road. Its position changes with
+            time, and its speed tells us how quickly that position changes.
+            Calculus studies ideas like these, including situations where
+            change is not constant.
+          </p>
+          <div class="lesson-card">
+            <h3>Two big ideas</h3>
+            <p><strong>Differentiation</strong> studies instantaneous rates of change and the slopes of curves.</p>
+            <p><strong>Integration</strong> studies accumulation, such as the total distance travelled from a changing velocity.</p>
+          </div>
+          <p>
+            This lesson focuses on differentiation. Integration will be
+            explored separately as you progress.
+          </p>
+        </section>
+
+        <section class="lesson-section" id="derivatives">
+          <h2 class="section-heading">2. Understanding derivatives</h2>
+          <p>
+            A derivative measures how rapidly a function changes at a
+            particular input. Geometrically, it represents the slope of the
+            tangent line to a curve at that point.
+          </p>
+
+          <div class="formula">
+            \(f'(x)=\displaystyle\lim_{h\to0}
+            \frac{f(x+h)-f(x)}{h}\)
+          </div>
+
+          <p>
+            This is the limit definition of a derivative. It compares the
+            change in the function with a small change in its input, then
+            considers what happens as that input change approaches zero.
+          </p>
+
+          <div class="lesson-card">
+            <h3>A useful rule</h3>
+            <div class="formula">If \(f(x)=x^n\), then \(f'(x)=nx^{n-1}\)</div>
+            <p>
+              For powers of \(x\), multiply by the exponent and reduce the
+              exponent by one. This rule works for positive integer powers
+              and has broader extensions.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="example">
+          <h2 class="section-heading">3. A worked example</h2>
+          <p>Find the derivative of the function:</p>
+          <div class="formula">\(f(x)=x^2+3x+2\)</div>
+
+          <div class="example-step">
+            <span class="step-number">1</span>
+            Differentiate \(x^2\). The power rule gives \(2x\).
+          </div>
+          <div class="example-step">
+            <span class="step-number">2</span>
+            Differentiate \(3x\). Its derivative is \(3\).
+          </div>
+          <div class="example-step">
+            <span class="step-number">3</span>
+            The derivative of a constant is zero, so the derivative of \(2\) is \(0\).
+          </div>
+
+          <div class="formula">
+            \(f'(x)=2x+3\)
+          </div>
+
+          <p>
+            At \(x=2\), the derivative is \(f'(2)=2(2)+3=7\).
+            Therefore, the tangent line to this curve at \(x=2\) has slope \(7\).
+          </p>
+        </section>
+
+        <section class="lesson-section" id="explorer">
+          <h2 class="section-heading">4. Interactive derivative explorer</h2>
+          <p>
+            Change the coefficients and move the point along the curve.
+            Observe how the function's value and derivative change together.
+          </p>
+
+          <div class="lesson-card">
+            <div class="explorer-grid">
+              <div>
+                <h3>Define your function</h3>
+
+                <label class="control-label" for="coef-a">Coefficient a</label>
+                <input class="control-input" id="coef-a" type="number" value="1" step="0.5">
+
+                <label class="control-label" for="coef-b">Coefficient b</label>
+                <input class="control-input" id="coef-b" type="number" value="0" step="0.5">
+
+                <label class="control-label" for="coef-c">Constant c</label>
+                <input class="control-input" id="coef-c" type="number" value="0" step="0.5">
+
+                <label class="control-label" for="point-x">
+                  Point x = <span id="point-label">2</span>
+                </label>
+                <input class="control-range" id="point-x" type="range" min="-5" max="5" step="0.25" value="2">
+
+                <p class="equation-preview" id="function-preview">f(x) = x²</p>
+                <p class="equation-preview" id="derivative-preview">f′(x) = 2x</p>
+              </div>
+
+              <div>
+                <div class="graph-wrap">
+                  <svg id="calculus-graph" viewBox="0 0 340 280" role="img" aria-label="Graph of the function and its tangent line">
+                    <line x1="20" y1="140" x2="320" y2="140" stroke="currentColor" opacity=".35"/>
+                    <line x1="170" y1="15" x2="170" y2="265" stroke="currentColor" opacity=".35"/>
+                    <text x="12" y="18" fill="currentColor" font-size="11">Function and tangent</text>
+                  </svg>
+                </div>
+
+                <div class="result-grid">
+                  <div class="result-box">
+                    <span class="result-label">Function value</span>
+                    <span class="result-value" id="function-value">4</span>
+                  </div>
+                  <div class="result-box">
+                    <span class="result-label">Derivative / slope</span>
+                    <span class="result-value" id="slope-value">4</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p>
+              The purple curve represents the function. The straight line
+              shows the tangent at the selected point. The graph adjusts
+              its scale to keep the curve readable.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="practice">
+          <h2 class="section-heading">5. Test your understanding</h2>
+          <p>Try each question, then check your answer.</p>
+
+          <div class="lesson-card">
+            <div class="practice-question">
+              <p>Question 1: What is the derivative of \(f(x)=x^3\)?</p>
+              <input class="control-input answer-input" id="answer-1" type="text" placeholder="Your answer">
+              <br>
+              <button class="check-button" type="button" data-check="1">Check answer</button>
+              <div class="feedback" id="feedback-1" aria-live="polite"></div>
+            </div>
+
+            <div class="practice-question">
+              <p>Question 2: If \(f(x)=4x^2\), what is \(f'(2)\)?</p>
+              <input class="control-input answer-input" id="answer-2" type="text" placeholder="Your answer">
+              <br>
+              <button class="check-button" type="button" data-check="2">Check answer</button>
+              <div class="feedback" id="feedback-2" aria-live="polite"></div>
+            </div>
+
+            <div class="practice-question">
+              <p>Question 3: What is the derivative of the constant function \(f(x)=9\)?</p>
+              <input class="control-input answer-input" id="answer-3" type="text" placeholder="Your answer">
+              <br>
+              <button class="check-button" type="button" data-check="3">Check answer</button>
+              <div class="feedback" id="feedback-3" aria-live="polite"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="lesson-section">
+          <h2 class="section-heading">Continue learning</h2>
+          <p>
+            Build the algebra and geometry skills that support calculus,
+            or move forward to probability.
+          </p>
+          <div class="topic-links">
+            <a class="topic-link" href="algebra.html">← Algebra</a>
+            <a class="topic-link" href="geometry.html">Geometry</a>
+            <a class="topic-link" href="probability.html">Next: Probability →</a>
+            <a class="topic-link" href="../index.html">All Mathematics</a>
+          </div>
+        </section>
+      </article>
+
+      <aside class="lesson-aside">
+        <div class="aside-card">
+          <h3>In this lesson</h3>
+          <ul>
+            <li>Understand rates of change</li>
+            <li>Learn what a derivative represents</li>
+            <li>Apply the power rule</li>
+            <li>Explore a curve interactively</li>
+          </ul>
+        </div>
+
+        <div class="aside-card">
+          <h3>Remember</h3>
+          <ul>
+            <li>A derivative gives an instantaneous rate of change.</li>
+            <li>The derivative is the slope of the tangent line.</li>
+            <li>The derivative of a constant is zero.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    (() => {
+      const aInput = document.getElementById("coef-a");
+      const bInput = document.getElementById("coef-b");
+      const cInput = document.getElementById("coef-c");
+      const xInput = document.getElementById("point-x");
+      const graph = document.getElementById("calculus-graph");
+
+      const number = (input) => {
+        const value = Number(input.value);
+        return Number.isFinite(value) ? value : 0;
+      };
+
+      const fmt = (value) => {
+        if (Math.abs(value) < 0.000001) value = 0;
+        return Number(value.toFixed(3)).toString();
+      };
+
+      const functionValue = (a, b, c, x) => a * x * x + b * x + c;
+      const derivativeValue = (a, b, x) => 2 * a * x + b;
+
+      function formatPolynomial(a, b, c) {
+        const parts = [];
+        const terms = [
+          [a, "x²"],
+          [b, "x"],
+          [c, ""]
+        ];
+
+        for (const [coefficient, symbol] of terms) {
+          if (Math.abs(coefficient) < 0.000001) continue;
+
+          const abs = Math.abs(coefficient);
+          const magnitude = symbol && abs === 1 ? "" : fmt(abs);
+          const term = magnitude + symbol;
+
+          if (parts.length === 0) {
+            parts.push((coefficient < 0 ? "−" : "") + term);
+          } else {
+            parts.push((coefficient < 0 ? " − " : " + ") + term);
+          }
+        }
+
+        return parts.length ? parts.join("") : "0";
+      }
+
+      function makeLine(x1, y1, x2, y2, color, width, dash = "") {
+        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${width}" ${dash ? `stroke-dasharray="${dash}"` : ""} stroke-linecap="round"/>`;
+      }
+
+      function updateExplorer() {
+        const a = number(aInput);
+        const b = number(bInput);
+        const c = number(cInput);
+        const x0 = number(xInput);
+        const y0 = functionValue(a, b, c, x0);
+        const slope = derivativeValue(a, b, x0);
+
+        document.getElementById("point-label").textContent = fmt(x0);
+        document.getElementById("function-preview").textContent =
+          "f(x) = " + formatPolynomial(a, b, c);
+        document.getElementById("derivative-preview").textContent =
+          "f′(x) = " + formatPolynomial(2 * a, b, 0).replace("x²", "x").replace(/(?<![x])x$/, "x");
+
+        // The derivative of ax² + bx + c is 2ax + b.
+        const derivativeText = [];
+        const linearCoefficient = 2 * a;
+        if (Math.abs(linearCoefficient) > 0.000001) {
+          const mag = Math.abs(linearCoefficient) === 1 ? "" : fmt(Math.abs(linearCoefficient));
+          derivativeText.push((linearCoefficient < 0 ? "−" : "") + mag + "x");
+        }
+        if (Math.abs(b) > 0.000001) {
+          derivativeText.push(
+            (derivativeText.length ? (b < 0 ? " − " : " + ") : (b < 0 ? "−" : "")) +
+            fmt(Math.abs(b))
+          );
+        }
+        document.getElementById("derivative-preview").textContent =
+          "f′(x) = " + (derivativeText.join("") || "0");
+
+        document.getElementById("function-value").textContent = fmt(y0);
+        document.getElementById("slope-value").textContent = fmt(slope);
+
+        // Sample the curve and tangent, then choose a readable graph scale.
+        const samples = [];
+        for (let i = 0; i <= 100; i++) {
+          const x = -5 + i * 0.1;
+          samples.push({ x, y: functionValue(a, b, c, x) });
+        }
+
+        const tangent = [];
+        for (let i = 0; i <= 40; i++) {
+          const x = -5 + i * 0.25;
+          tangent.push({ x, y: y0 + slope * (x - x0) });
+        }
+
+        const allY = samples.map(p => p.y).concat(tangent.map(p => p.y), [0]);
+        const maxAbs = Math.max(5, ...allY.map(v => Math.abs(v)));
+        const yLimit = Math.min(10000, maxAbs * 1.12);
+
+        const left = 25, right = 320, top = 25, bottom = 255;
+        const sx = x => left + ((x + 5) / 10) * (right - left);
+        const sy = y => bottom - ((y + yLimit) / (2 * yLimit)) * (bottom - top);
+
+        let markup = "";
+
+        // Grid and axes
+        for (let i = -5; i <= 5; i++) {
+          const px = sx(i);
+          markup += makeLine(px, top, px, bottom, "currentColor", 1, "2 5");
+          if (i !== 0) {
+            markup += `<text x="${px}" y="${sy(0) + 15}" fill="currentColor" opacity=".7" font-size="10" text-anchor="middle">${i}</text>`;
+          }
+        }
+
+        for (let i = -2; i <= 2; i++) {
+          const value = i * yLimit / 2;
+          const py = sy(value);
+          markup += makeLine(left, py, right, py, "currentColor", 1, "2 5");
+        }
+
+        markup += makeLine(left, sy(0), right, sy(0), "currentColor", 1.3);
+        markup += makeLine(sx(0), top, sx(0), bottom, "currentColor", 1.3);
+        markup += `<text x="${right - 4}" y="${sy(0) - 7}" fill="currentColor" font-size="11" text-anchor="end">x</text>`;
+        markup += `<text x="${sx(0) + 8}" y="${top + 12}" fill="currentColor" font-size="11">y</text>`;
+
+        const curvePoints = samples
+          .map(p => `${sx(p.x).toFixed(2)},${sy(p.y).toFixed(2)}`)
+          .join(" ");
+
+        const tangentPoints = tangent
+          .map(p => `${sx(p.x).toFixed(2)},${sy(p.y).toFixed(2)}`)
+          .join(" ");
+
+        markup += `<polyline points="${curvePoints}" fill="none" stroke="#7c65d8" stroke-width="2.7" stroke-linejoin="round"/>`;
+        markup += `<polyline points="${tangentPoints}" fill="none" stroke="#e09a35" stroke-width="2" stroke-dasharray="6 4" stroke-linejoin="round"/>`;
+
+        const px = sx(x0);
+        const py = sy(y0);
+
+        markup += `<line x1="${px}" y1="${py}" x2="${px}" y2="${sy(0)}" stroke="#7c65d8" stroke-width="1" stroke-dasharray="3 3" opacity=".8"/>`;
+        markup += `<circle cx="${px}" cy="${py}" r="5" fill="#7c65d8" stroke="white" stroke-width="1.5"/>`;
+        markup += `<text x="${Math.min(right - 8, Math.max(left + 8, px + 8))}" y="${Math.max(top + 14, py - 10)}" fill="currentColor" font-size="11">(${fmt(x0)}, ${fmt(y0)})</text>`;
+
+        markup += `<text x="${left + 4}" y="${bottom - 6}" fill="#7c65d8" font-size="10">Function</text>`;
+        markup += `<text x="${right - 4}" y="${top + 12}" fill="#e09a35" font-size="10" text-anchor="end">Tangent</text>`;
+
+        graph.innerHTML = markup;
+      }
+
+      [aInput, bInput, cInput, xInput].forEach(input => {
+        input.addEventListener("input", updateExplorer);
+      });
+
+      updateExplorer();
+
+      const answers = {
+        1: ["3x^2", "3x2", "3*x^2", "3*x2"],
+        2: ["16"],
+        3: ["0"]
+      };
+
+      document.querySelectorAll("[data-check]").forEach(button => {
+        button.addEventListener("click", () => {
+          const id = button.dataset.check;
+          const input = document.getElementById("answer-" + id);
+          const feedback = document.getElementById("feedback-" + id);
+          const answer = input.value.toLowerCase().replace(/\s+/g, "").replace(/−/g, "-");
+
+          if (!answer) {
+            feedback.textContent = "Enter an answer first.";
+            return;
+          }
+
+          if (answers[id].includes(answer)) {
+            feedback.textContent = "Correct! Well done.";
+          } else {
+            const hints = {
+              1: "Use the power rule: multiply by the exponent, then reduce the exponent by one.",
+              2: "Differentiate first, then substitute x = 2.",
+              3: "A constant does not change as x changes."
+            };
+            feedback.textContent = "Not quite. " + hints[id];
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

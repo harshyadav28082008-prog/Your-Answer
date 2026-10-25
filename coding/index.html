@@ -1,0 +1,660 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="description" content="Write HTML, CSS and JavaScript and experiment with code in the Your Answer online coding playground.">
+  <title>Coding Playground | Your Answer</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .playground {
+      max-width: 1440px;
+      margin: auto;
+      padding: 32px 20px 60px;
+    }
+
+    .playground-hero {
+      padding: 30px 0 28px;
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .playground-hero h1 {
+      margin: 10px 0;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.045em;
+    }
+
+    .playground-hero p {
+      max-width: 680px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .workspace-column {
+      min-width: 0;
+      display: grid;
+      gap: 18px;
+    }
+
+    .editor-card,
+    .preview-card,
+    .help-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      background: var(--color-surface);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 15px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .panel-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .language-tag {
+      color: var(--color-text-muted);
+      font-size: 0.75rem;
+    }
+
+    .editor {
+      display: block;
+      width: 100%;
+      min-height: 180px;
+      resize: vertical;
+      padding: 16px;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--color-text);
+      font: 13px/1.7 monospace;
+      tab-size: 2;
+      white-space: pre;
+      overflow: auto;
+    }
+
+    .editor:focus {
+      box-shadow: inset 0 0 0 2px var(--color-brand);
+    }
+
+    .editor-css {
+      min-height: 145px;
+    }
+
+    .editor-js {
+      min-height: 210px;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .tool-button {
+      padding: 10px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 9px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .tool-button.primary {
+      background: var(--color-brand);
+      color: white;
+      border-color: transparent;
+    }
+
+    .tool-button:hover {
+      filter: brightness(0.96);
+    }
+
+    .tool-button:focus-visible,
+    .editor:focus-visible {
+      outline: 2px solid var(--color-brand);
+      outline-offset: 2px;
+    }
+
+    .toolbar-note {
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+      margin-left: auto;
+    }
+
+    .preview-frame {
+      display: block;
+      width: 100%;
+      height: 440px;
+      border: 0;
+      background: white;
+    }
+
+    .preview-footer {
+      padding: 10px 14px;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+    }
+
+    .help-card {
+      padding: 18px;
+    }
+
+    .help-card h2 {
+      font-size: 1rem;
+      margin: 0 0 10px;
+    }
+
+    .help-card p,
+    .help-card li {
+      color: var(--color-text-muted);
+      font-size: 0.88rem;
+      line-height: 1.75;
+    }
+
+    .help-card ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .playground-footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 850px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .playground {
+        padding: 22px 14px 42px;
+      }
+
+      .toolbar-note {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .preview-frame {
+        height: 380px;
+      }
+    }
+    
+/* Language tabs */
+.language-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.language-tab {
+  flex: 1;
+  padding: 11px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.language-tab.active {
+  background: var(--color-brand);
+  color: white;
+  border-color: transparent;
+}
+
+.language-tab:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.editor[hidden] {
+  display: none;
+}
+
+.editor-card .editor {
+  min-height: 520px;
+  max-height: 72vh;
+}
+
+.workspace {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.workspace-column {
+  min-width: 0;
+}
+
+@media (max-width: 850px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .editor-card .editor {
+    min-height: 400px;
+    max-height: 65vh;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+        <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+  </header>
+
+  <main class="playground">
+    <section class="playground-hero">
+      <span class="eyebrow">Learn by experimenting</span>
+      <h1>Your Coding Playground</h1>
+      <p>
+        Write your first lines of code, change how a page looks, and make
+        it interactive. Edit the examples and run your work to see the result.
+      </p>
+    </section>
+
+    <div class="toolbar">
+      <button class="tool-button primary" id="run-code" type="button">
+        ▶ Run code
+      </button>
+
+      <button class="tool-button" id="reset-code" type="button">
+        Reset example
+      </button>
+
+      <button class="tool-button" id="clear-output" type="button">
+        Clear console
+      </button>
+
+      <span class="toolbar-note" id="run-status" role="status">
+        Ready to run
+      </span>
+    </div>
+
+
+<section class="workspace" aria-label="Code editor and preview">
+
+  <div class="workspace-column">
+    <section class="editor-card">
+      <div class="panel-header">
+        <span class="panel-title">Code editor</span>
+        <span class="language-tag" id="active-language">HTML</span>
+      </div>
+
+      <div class="language-tabs" role="tablist" aria-label="Programming language">
+        <button class="language-tab active" id="tab-html" type="button"
+          role="tab" aria-selected="true" aria-controls="html-code"
+          data-editor-tab="html">HTML</button>
+
+        <button class="language-tab" id="tab-css" type="button"
+          role="tab" aria-selected="false" aria-controls="css-code"
+          data-editor-tab="css">CSS</button>
+
+        <button class="language-tab" id="tab-js" type="button"
+          role="tab" aria-selected="false" aria-controls="js-code"
+          data-editor-tab="js">JS</button>
+      </div>
+
+      <textarea class="editor" id="html-code" role="tabpanel"
+        aria-labelledby="tab-html" aria-label="HTML code editor"
+        autocapitalize="off" autocomplete="off" autocorrect="off"
+        spellcheck="false"><main class="demo">
+  <h1 id="title">Hello, world!</h1>
+  <p>Welcome to Your Answer's coding playground.</p>
+  <button id="change-button">Click me</button>
+  <p id="message">Your experiment starts here.</p>
+</main></textarea>
+
+      <textarea class="editor" id="css-code" role="tabpanel"
+        aria-labelledby="tab-css" aria-label="CSS code editor"
+        autocapitalize="off" autocomplete="off" autocorrect="off"
+        spellcheck="false" hidden>body {
+  font-family: system-ui, sans-serif;
+  color: #202b43;
+  background: #f5f7fb;
+  padding: 24px;
+}
+
+.demo {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 24px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px #202b4314;
+}
+
+h1 {
+  color: #6258d9;
+}
+
+button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #6258d9;
+  color: white;
+  cursor: pointer;
+}</textarea>
+
+      <textarea class="editor" id="js-code" role="tabpanel"
+        aria-labelledby="tab-js" aria-label="JavaScript code editor"
+        autocapitalize="off" autocomplete="off" autocorrect="off"
+        spellcheck="false" hidden>const button = document.querySelector("#change-button");
+const message = document.querySelector("#message");
+const title = document.querySelector("#title");
+
+button.addEventListener("click", () => {
+  title.textContent = "You did it!";
+  message.textContent = "Your JavaScript is working.";
+  console.log("Button clicked successfully!");
+});</textarea>
+    </section>
+  </div>
+
+  <div class="workspace-column">
+    <section class="preview-card">
+      <div class="panel-header">
+        <span class="panel-title">Live preview</span>
+        <span class="language-tag">Your result</span>
+      </div>
+
+      <iframe class="preview-frame" id="preview"
+        title="Your code preview" sandbox="allow-scripts"
+        referrerpolicy="no-referrer"></iframe>
+
+      <div class="preview-footer">
+        The preview runs in an isolated frame. Press Run code after editing.
+      </div>
+    </section>
+
+    <section class="editor-card">
+      <div class="panel-header">
+        <span class="panel-title">Console</span>
+        <span class="language-tag">Output and errors</span>
+      </div>
+
+      <div id="console-output" role="log" aria-live="polite"
+        style="padding:14px; min-height:90px; max-height:240px; overflow:auto; font:12px/1.7 monospace; overflow-wrap:anywhere;">Console ready. Run your code to begin.</div>
+    </section>
+
+    <section class="help-card">
+      <h2>How to use this playground</h2>
+      <ul>
+        <li><strong>HTML</strong> creates the elements on the page.</li>
+        <li><strong>CSS</strong> changes their appearance.</li>
+        <li><strong>JavaScript</strong> makes elements interactive.</li>
+        <li>Press <strong>Run code</strong> to refresh the preview.</li>
+        <li>Use <strong>Reset example</strong> to restore the starter code.</li>
+      </ul>
+    </section>
+
+    <section class="help-card">
+      <h2>Try your first experiment</h2>
+      <p>
+        Change the heading in the HTML editor. Then change the
+        <code>color</code> value in CSS. Finally, edit the button's
+        message in JavaScript and run the code again.
+      </p>
+    </section>
+  </div>
+
+</section>
+
+  
+    <footer class="playground-footer">
+      <p>Your Answer · Coding Playground V1</p>
+      <p>
+        Only run code you understand. This playground is for learning
+        front-end web development; it does not run Python, C or C++.
+      </p>
+    </footer>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+
+  <script>
+    (() => {
+      const htmlEditor = document.getElementById("html-code");
+      const cssEditor = document.getElementById("css-code");
+      const jsEditor = document.getElementById("js-code");
+      const preview = document.getElementById("preview");
+      const output = document.getElementById("console-output");
+      const status = document.getElementById("run-status");
+      
+const languageLabel = document.getElementById("active-language");
+const editorTabs = document.querySelectorAll("[data-editor-tab]");
+
+editorTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    const selectedLanguage = tab.dataset.editorTab;
+
+    editorTabs.forEach(item => {
+      const selected = item === tab;
+      item.classList.toggle("active", selected);
+      item.setAttribute("aria-selected", String(selected));
+    });
+
+    ["html", "css", "js"].forEach(language => {
+      const editor = document.getElementById(
+        language === "js" ? "js-code" : language + "-code"
+      );
+
+      editor.hidden = language !== selectedLanguage;
+    });
+
+    languageLabel.textContent =
+      selectedLanguage === "js"
+        ? "JavaScript"
+        : selectedLanguage.toUpperCase();
+  });
+});
+
+
+      const initialCode = {
+        html: htmlEditor.value,
+        css: cssEditor.value,
+        js: jsEditor.value
+      };
+
+      function showConsoleMessage(message, type = "log") {
+        const line = document.createElement("div");
+        line.textContent = "[" + type + "] " + String(message);
+        line.style.marginBottom = "5px";
+
+        if (type === "error") {
+          line.style.color = "#d93636";
+        }
+
+        output.appendChild(line);
+        output.scrollTop = output.scrollHeight;
+      }
+
+      function runCode() {
+        output.replaceChildren();
+        status.textContent = "Running…";
+
+        const html = htmlEditor.value;
+        const css = cssEditor.value;
+        const js = jsEditor.value;
+
+        const safeCss = css.replace(/<\/style/gi, "<\\/style");
+        const safeJs = js.replace(/<\/script/gi, "<\\/script");
+
+        const documentContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>${safeCss}</style>
+</head>
+<body>
+${html}
+<script>
+(function () {
+  const send = (type, args) => {
+    parent.postMessage({
+      source: "your-answer-playground",
+      type,
+      args: args.map(value => {
+        try {
+          if (typeof value === "string") return value;
+          if (value instanceof Error) return value.message;
+          return JSON.stringify(value) ?? String(value);
+        } catch {
+          return String(value);
+        }
+      })
+    }, "*");
+  };
+
+  console.log = (...args) => send("log", args);
+  console.info = (...args) => send("info", args);
+  console.warn = (...args) => send("warn", args);
+  console.error = (...args) => send("error", args);
+  window.onerror = (message, source, line, column) => {
+    send("error", [message + " (line " + line + ")"]);
+  };
+})();
+<\/script>
+<script>
+${safeJs}
+<\/script>
+</body>
+</html>`;
+
+        preview.srcdoc = documentContent;
+        status.textContent = "Preview updated";
+      }
+
+      window.addEventListener("message", event => {
+        if (event.source !== preview.contentWindow) return;
+
+        const data = event.data;
+
+        if (!data || data.source !== "your-answer-playground") return;
+
+        for (const message of data.args || []) {
+          showConsoleMessage(message, data.type);
+        }
+      });
+
+      document.getElementById("run-code").addEventListener("click", runCode);
+
+      document.getElementById("reset-code").addEventListener("click", () => {
+        htmlEditor.value = initialCode.html;
+        cssEditor.value = initialCode.css;
+        jsEditor.value = initialCode.js;
+        runCode();
+      });
+
+      document.getElementById("clear-output").addEventListener("click", () => {
+        output.replaceChildren();
+        showConsoleMessage("Console cleared.");
+      });
+
+      runCode();
+    })();
+  </script>
+</body>
+</html>

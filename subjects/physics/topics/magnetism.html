@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Learn about magnetic fields, magnetic forces, electromagnetism, electromagnetic induction, motors, and generators."
+  >
+
+  <title>Magnetism | Physics | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* ========================================
+       MAGNETISM LESSON
+       ======================================== */
+
+    .magnetism-page {
+      padding-bottom: 70px;
+    }
+
+    .lesson-hero {
+      padding: 58px 0 48px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-eyebrow {
+      margin: 0 0 14px;
+      color: var(--physics-accent);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .lesson-intro {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--color-text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 290px;
+      gap: 28px;
+      align-items: start;
+      padding-top: 42px;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      margin-bottom: 42px;
+      scroll-margin-top: 90px;
+    }
+
+    .lesson-section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.55rem, 4vw, 2.15rem);
+      letter-spacing: -.04em;
+    }
+
+    .lesson-section p {
+      max-width: 760px;
+      margin: 0 0 15px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .concept-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .concept-item {
+      padding: 17px 19px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+    }
+
+    .concept-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--color-text);
+    }
+
+    .concept-item span {
+      color: var(--color-text-muted);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    /* Formula */
+
+    .formula-card {
+      margin: 20px 0;
+      padding: 24px;
+      background: var(--physics-accent-soft);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      overflow-x: auto;
+    }
+
+    .formula-label {
+      display: block;
+      margin-bottom: 13px;
+      color: var(--physics-accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .formula {
+      margin: 0;
+      color: var(--color-text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      line-height: 1.7;
+    }
+
+    .formula-note {
+      margin: 10px 0 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+    }
+
+    /* Example */
+
+    .example-card {
+      padding: 23px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+    }
+
+    .example-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--physics-accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .example-card p {
+      margin-bottom: 12px;
+    }
+
+    .example-answer {
+      padding: 13px 15px;
+      background: var(--physics-accent-soft);
+      border-radius: 10px;
+      color: var(--color-text);
+    }
+
+    /* Aside */
+
+    .lesson-aside {
+      display: grid;
+      gap: 14px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .aside-card {
+      padding: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .aside-card h3 {
+      margin: 0 0 11px;
+      font-size: 1rem;
+    }
+
+    .aside-card p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+      line-height: 1.65;
+    }
+
+    .lesson-nav {
+      display: grid;
+      gap: 7px;
+    }
+
+    .lesson-nav a {
+      display: block;
+      padding: 8px 0;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+
+    .lesson-nav a:hover {
+      color: var(--physics-accent);
+    }
+
+    /* Bottom navigation */
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 45px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-bottom a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      color: var(--physics-accent);
+    }
+
+    @media (max-width: 800px) {
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .lesson-hero {
+        padding-top: 35px;
+      }
+
+      .lesson-layout {
+        padding-top: 32px;
+      }
+
+      .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../../index.html">
+        Your Answer
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Toggle colour theme"
+      >
+        Theme
+      </button>
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="magnetism-page">
+
+    <section class="lesson-hero">
+      <div class="container">
+
+        <p class="lesson-eyebrow">
+          Physics / 07
+        </p>
+
+        <h1>Magnetism</h1>
+
+        <p class="lesson-intro">
+          Explore magnetic fields, forces on moving charges and currents,
+          electromagnets, electromagnetic induction, motors, and generators.
+        </p>
+
+      </div>
+    </section>
+
+
+    <div class="container">
+
+      <div class="lesson-layout">
+
+        <article class="lesson-main">
+
+          <!-- MAGNETIC FIELDS -->
+
+          <section class="lesson-section" id="magnetic-fields">
+
+            <h2>Magnetic fields</h2>
+
+            <p>
+              A magnetic field describes the region around a magnet,
+              electric current, or moving charge in which magnetic effects
+              can be observed.
+            </p>
+
+            <p>
+              Magnetic field lines provide a useful way to visualise the
+              direction and relative strength of a magnetic field.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Field direction</strong>
+                <span>
+                  Outside a bar magnet, field lines are conventionally
+                  directed from the north pole toward the south pole.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Field strength</strong>
+                <span>
+                  Closely spaced field lines represent a stronger magnetic
+                  field in a field-line diagram.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- MAGNETIC FORCE -->
+
+          <section class="lesson-section" id="magnetic-force">
+
+            <h2>Force on a moving charge</h2>
+
+            <p>
+              A charged particle moving through a magnetic field can
+              experience a force. The force depends on the charge,
+              velocity, magnetic field strength, and angle between them.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Magnetic force
+              </span>
+
+              <p class="formula">
+                F = qvB sin θ
+              </p>
+
+              <p class="formula-note">
+                q is charge, v is particle speed, B is magnetic field
+                strength, and θ is the angle between velocity and field.
+              </p>
+
+            </div>
+
+            <p>
+              The force is perpendicular to both the particle's velocity
+              and the magnetic field when the charge moves perpendicular
+              to the field.
+            </p>
+
+          </section>
+
+
+          <!-- CURRENT CARRYING WIRE -->
+
+          <section class="lesson-section" id="current-wire">
+
+            <h2>Force on a current-carrying wire</h2>
+
+            <p>
+              A wire carrying current through a magnetic field can also
+              experience a magnetic force. This principle is central to
+              the operation of electric motors.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Force on a wire
+              </span>
+
+              <p class="formula">
+                F = BIL sin θ
+              </p>
+
+              <p class="formula-note">
+                B is magnetic field strength, I is current, L is the
+                length of wire in the field, and θ is the relevant angle.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- ELECTROMAGNETS -->
+
+          <section class="lesson-section" id="electromagnets">
+
+            <h2>Electromagnets</h2>
+
+            <p>
+              Electric current produces a magnetic field. A coil carrying
+              current can therefore behave like a magnet, and placing a
+              suitable magnetic material inside the coil can strengthen
+              the effect.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Solenoid</strong>
+                <span>
+                  A coil of wire that produces a magnetic field when current
+                  flows through it.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Electromagnet</strong>
+                <span>
+                  A magnet whose magnetic effect is produced primarily
+                  by electric current.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- INDUCTION -->
+
+          <section class="lesson-section" id="induction">
+
+            <h2>Electromagnetic induction</h2>
+
+            <p>
+              Changing the magnetic environment of a conductor can induce
+              an electromotive force. This phenomenon is known as
+              electromagnetic induction.
+            </p>
+
+            <p>
+              It provides the foundation for electrical generators,
+              transformers, and many other technologies.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Faraday's law
+              </span>
+
+              <p class="formula">
+                ε = −N ΔΦ / Δt
+              </p>
+
+              <p class="formula-note">
+                ε is induced emf, N is the number of turns, and Φ is
+                magnetic flux. The negative sign represents Lenz's law.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- MAGNETIC FLUX -->
+
+          <section class="lesson-section" id="flux">
+
+            <h2>Magnetic flux</h2>
+
+            <p>
+              Magnetic flux measures the amount of magnetic field passing
+              through a given surface.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Magnetic flux
+              </span>
+
+              <p class="formula">
+                Φ = BA cos θ
+              </p>
+
+              <p class="formula-note">
+                B is magnetic field strength, A is the surface area,
+                and θ is the angle between the field and the normal to
+                the surface.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- MOTORS -->
+
+          <section class="lesson-section" id="motors">
+
+            <h2>Electric motors</h2>
+
+            <p>
+              An electric motor converts electrical energy into mechanical
+              motion. A current-carrying coil placed in a magnetic field
+              experiences forces that can produce rotation.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Electrical input</strong>
+                <span>
+                  Electrical energy is supplied to the motor through
+                  current in its coils.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Magnetic force</strong>
+                <span>
+                  Magnetic forces act on the current-carrying conductors.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Mechanical output</strong>
+                <span>
+                  The resulting torque produces rotational motion.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- GENERATORS -->
+
+          <section class="lesson-section" id="generators">
+
+            <h2>Generators</h2>
+
+            <p>
+              A generator works on the reverse basic principle of a motor.
+              Mechanical motion is used to change magnetic flux and induce
+              an electrical emf.
+            </p>
+
+            <p>
+              In this way, generators convert mechanical energy into
+              electrical energy.
+            </p>
+
+          </section>
+
+
+          <!-- LENZ'S LAW -->
+
+          <section class="lesson-section" id="lenz">
+
+            <h2>Lenz's law</h2>
+
+            <p>
+              The direction of an induced current is such that its magnetic
+              effect opposes the change in magnetic flux that produced it.
+            </p>
+
+            <p>
+              This is represented by the negative sign in Faraday's law and
+              reflects the conservation of energy.
+            </p>
+
+          </section>
+
+
+          <!-- EXAMPLE -->
+
+          <section class="lesson-section" id="example">
+
+            <h2>Quick example</h2>
+
+            <div class="example-card">
+
+              <span class="example-label">
+                Apply the idea
+              </span>
+
+              <p>
+                A 0.5 m wire carries a current of 4 A perpendicular to
+                a magnetic field of 0.2 T. What magnetic force acts on
+                the wire?
+              </p>
+
+              <p>
+                Using:
+              </p>
+
+              <p class="formula">
+                F = BIL
+              </p>
+
+              <p class="formula">
+                F = 0.2 × 4 × 0.5
+              </p>
+
+              <div class="example-answer">
+                <strong>Answer:</strong>
+                The magnetic force is 0.4 N.
+              </div>
+
+            </div>
+
+          </section>
+
+        </article>
+
+
+        <!-- ASIDE -->
+
+        <aside class="lesson-aside">
+
+          <div class="aside-card">
+
+            <h3>In this lesson</h3>
+
+            <nav class="lesson-nav">
+              <a href="#magnetic-fields">Magnetic fields</a>
+              <a href="#magnetic-force">Magnetic force</a>
+              <a href="#current-wire">Current-carrying wire</a>
+              <a href="#electromagnets">Electromagnets</a>
+              <a href="#induction">Electromagnetic induction</a>
+              <a href="#flux">Magnetic flux</a>
+              <a href="#motors">Electric motors</a>
+              <a href="#generators">Generators</a>
+              <a href="#lenz">Lenz's law</a>
+              <a href="#example">Quick example</a>
+            </nav>
+
+          </div>
+
+
+          <div class="aside-card">
+
+            <h3>Remember</h3>
+
+            <p>
+              Electricity and magnetism are deeply connected. Electric
+              currents produce magnetic fields, while changing magnetic
+              fields can produce electrical effects.
+            </p>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+
+      <!-- BOTTOM NAVIGATION -->
+
+      <nav class="lesson-bottom" aria-label="Lesson navigation">
+
+        <a href="electricity.html">
+          ← Electricity
+        </a>
+
+        <a href="modern-physics.html">
+          Next: Modern Physics →
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+</html>

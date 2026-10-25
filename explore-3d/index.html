@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore interactive 3D models of mathematics, physics, chemistry and space on Your Answer.">
+  <title>Explore 3D | Your Answer</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .explore-page {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 32px 20px 70px;
+    }
+
+    .explore-hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px, 6vw, 64px);
+      border: 1px solid var(--color-border);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 85% 25%, rgba(91, 108, 240, 0.18), transparent 35%),
+        var(--color-surface);
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.82rem;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .explore-hero h1 {
+      max-width: 680px;
+      margin: 14px 0;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .explore-hero p {
+      max-width: 610px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .hero-symbols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-symbols span,
+    .category-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+    }
+
+    .section-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 44px 0 20px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    .category-grid,
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .category-card,
+    .model-card {
+      min-width: 0;
+      padding: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      background: var(--color-surface);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .category-card:hover,
+    .model-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-brand);
+    }
+
+    .category-icon {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      margin-bottom: 16px;
+      border-radius: 14px;
+      background: var(--color-bg, rgba(127, 127, 127, 0.1));
+      font-size: 1.6rem;
+    }
+
+    .category-card h3,
+    .model-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+    }
+
+    .category-card p,
+    .model-card p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .model-preview {
+      display: grid;
+      min-height: 155px;
+      place-items: center;
+      overflow: hidden;
+      margin: -22px -22px 20px;
+      border-bottom: 1px solid var(--color-border);
+      border-radius: 19px 19px 0 0;
+      background:
+        radial-gradient(circle at center, rgba(100, 120, 240, 0.13), transparent 68%),
+        var(--color-surface);
+    }
+
+    .model-preview svg {
+      width: 150px;
+      max-width: 90%;
+      height: 130px;
+    }
+
+    .model-preview .orbit {
+      fill: none;
+      stroke: var(--color-text-muted);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 5;
+      opacity: 0.7;
+    }
+
+    .model-preview .shape-line {
+      fill: none;
+      stroke: var(--color-brand);
+      stroke-width: 2;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    .model-card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .model-card-content p {
+      flex: 1;
+    }
+
+    .model-status {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(100, 120, 240, 0.12);
+      color: var(--color-brand);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .model-status.coming-soon {
+      background: rgba(127, 127, 127, 0.12);
+      color: var(--color-text-muted);
+    }
+
+    .model-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-text);
+      font-size: 0.9rem;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .model-link.available {
+      border-color: var(--color-brand);
+      background: var(--color-brand);
+      color: white;
+    }
+
+    .model-link.disabled {
+      cursor: default;
+      opacity: 0.7;
+    }
+
+    .learning-note {
+      margin-top: 32px;
+      padding: 22px;
+      border-left: 3px solid var(--color-brand);
+      border-radius: 0 14px 14px 0;
+      background: var(--color-surface);
+    }
+
+    .learning-note h3 {
+      margin: 0 0 8px;
+    }
+
+    .learning-note p {
+      margin: 0;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .explore-footer {
+      padding: 24px 0 0;
+      color: var(--color-text-muted);
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 620px) {
+      .category-grid,
+      .model-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .explore-page {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      .category-card,
+      .model-card {
+        padding: 18px;
+      }
+
+      .model-preview {
+        margin: -18px -18px 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .category-card,
+      .model-card {
+        transition: none;
+      }
+    }
+    
+.model-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.model-filter {
+  padding: 9px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.model-filter:hover,
+.model-filter.active {
+  background: var(--color-brand);
+  color: white;
+  border-color: var(--color-brand);
+}
+
+.model-filter:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+.model-card[hidden] {
+  display: none !important;
+}
+
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+        <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+  </header>
+
+  <main class="explore-page">
+    <section class="explore-hero">
+      <span class="eyebrow">Learn by exploring</span>
+      <h1>Explore the world in 3D.</h1>
+      <p>
+        Some ideas are easier to understand when you can see them.
+        Explore shapes, discover how waves move, investigate atoms
+        and journey through space using interactive scientific models.
+      </p>
+
+      <div class="hero-symbols" aria-label="Available learning areas">
+        <span>📐 Mathematics</span>
+        <span>⚛️ Chemistry</span>
+        <span>🌊 Physics</span>
+        <span>🪐 Space</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="categories-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="categories-title">Choose a field</h2>
+          <p>Explore models by subject.</p>
+        </div>
+      </div>
+
+      <div class="category-grid">
+        <article class="category-card">
+          <div class="category-icon" aria-hidden="true">📐</div>
+          <h3>Mathematics</h3>
+          <p>Explore solid geometry, dimensions, vectors and spatial relationships.</p>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon" aria-hidden="true">🌊</div>
+          <h3>Physics</h3>
+          <p>Visualise waves, motion, forces and other physical phenomena.</p>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon" aria-hidden="true">⚛️</div>
+          <h3>Chemistry</h3>
+          <p>Examine atomic structure, molecular shapes and chemical arrangements.</p>
+        </article>
+
+        <article class="category-card">
+          <div class="category-icon" aria-hidden="true">🪐</div>
+          <h3>Space and Astronomy</h3>
+          <p>Explore planets, orbital paths and the structure of our solar system.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="models-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="models-title">Model library</h2>
+          <p>Start with a model, then explore more as the library grows.</p>
+        </div>
+      </div>
+      
+<div class="model-filters" aria-label="Filter 3D models">
+  <button class="model-filter active" type="button"
+          data-model-filter="all" aria-pressed="true">
+    All Models
+  </button>
+  <button class="model-filter" type="button"
+          data-model-filter="mathematics" aria-pressed="false">
+    Mathematics
+  </button>
+  <button class="model-filter" type="button"
+          data-model-filter="physics" aria-pressed="false">
+    Physics
+  </button>
+  <button class="model-filter" type="button"
+          data-model-filter="chemistry" aria-pressed="false">
+    Chemistry
+  </button>
+  <button class="model-filter" type="button"
+          data-model-filter="space" aria-pressed="false">
+    Space
+  </button>
+</div>
+
+      
+<div class="model-grid">
+
+  <!-- Model 1: Geometry -->
+  <article class="model-card" data-categories="mathematics">
+    <div class="model-preview">
+      <svg viewBox="0 0 160 130" role="img" aria-label="Wireframe cube">
+        <path class="shape-line" d="M45 38 L91 20 L126 43 L80 62 Z"/>
+        <path class="shape-line" d="M45 38 L45 86 L80 110 L80 62"/>
+        <path class="shape-line" d="M80 110 L126 88 L126 43"/>
+        <path class="shape-line" d="M45 86 L91 68 L126 88"/>
+        <path class="shape-line" d="M91 20 L91 68"/>
+      </svg>
+    </div>
+    <div class="model-card-content">
+      <span class="model-status">Available</span>
+      <h3>3D Geometry Explorer</h3>
+      <p>Explore cubes, spheres, cones and cylinders, and understand their dimensions and properties.</p>
+      <a class="model-link available" href="models/geometry.html">
+        Open model <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </article>
+
+  <!-- Model 2: Vectors -->
+  <article class="model-card" data-categories="mathematics physics">
+    <div class="model-preview">
+      <svg viewBox="0 0 160 130" role="img" aria-label="Three-dimensional vector">
+        <path class="shape-line" d="M25 105 L135 105 M25 105 L25 18 M25 105 L66 66"/>
+        <path class="shape-line" d="M125 99 L135 105 L125 111"/>
+        <path class="shape-line" d="M19 28 L25 18 L31 28"/>
+        <path class="shape-line" d="M56 66 L66 66 L64 76"/>
+        <path class="shape-line" d="M25 105 L108 38"/>
+        <path class="shape-line" d="M96 38 L108 38 L106 50"/>
+      </svg>
+    </div>
+    <div class="model-card-content">
+      <span class="model-status">Available</span>
+      <h3>Vectors in 3D</h3>
+      <p>Explore vector direction, magnitude, components and unit vectors in three-dimensional space.</p>
+      <a class="model-link available" href="models/vectors.html">
+        Open model <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </article>
+
+  <!-- Model 3: Wave Motion -->
+  <article class="model-card" data-categories="physics">
+    <div class="model-preview">
+      <svg viewBox="0 0 160 130" role="img" aria-label="Wave illustration">
+        <path class="orbit" d="M10 65 H150"/>
+        <path class="shape-line" d="M10 65 C22 15 34 15 46 65 S70 115 82 65 S106 15 118 65 S142 115 150 65"/>
+      </svg>
+    </div>
+    <div class="model-card-content">
+      <span class="model-status">Available</span>
+      <h3>Wave Motion</h3>
+      <p>Investigate wavelength, amplitude, frequency and the movement of waves.</p>
+      <a class="model-link available" href="models/waves.html">
+        Open model <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </article>
+
+  <!-- Model 4: Projectile Motion -->
+  <article class="model-card" data-categories="physics">
+    <div class="model-preview">
+      <svg viewBox="0 0 160 130" role="img" aria-label="Projectile trajectory">
+        <path class="orbit" d="M15 105 H145"/>
+        <path class="shape-line" d="M20 100 Q80 -5 140 100"/>
+        <circle cx="20" cy="100" r="4" fill="var(--color-brand)"/>
+        <circle cx="140" cy="100" r="4" fill="var(--color-brand)"/>
+      </svg>
+    </div>
+    <div class="model-card-content">
+      <span class="model-status">Available</span>
+      <h3>Motion and Projectile</h3>
+      <p>Explore trajectories, velocity and the effect of gravity on moving objects.</p>
+      <a class="model-link available" href="models/motion.html">
+        Open model <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </article>
+
+  <!-- Model 5: Atomic Structure -->
+  <article class="model-card" data-categories="chemistry">
+    <div class="model-preview">
+      <svg viewBox="0 0 160 130" role="img" aria-label="Simplified atom">
+        <ellipse class="shape-line" cx="80" cy="65" rx="58" ry="23" transform="rotate(35 80 65)"/>
+        <ellipse class="shape-line" cx="80" cy="65" rx="58" ry="23" transform="rotate(-35 80 65)"/>
+        <circle cx="80" cy="65" r="8" fill="var(--color-brand)"/>
+        <circle cx="119" cy="40" r="5" fill="var(--color-brand)"/>
+      </svg>
+    </div>
+    <div class="model-card-content">
+      <span class="model-status">Available</span>
+      <h3>Atomic Structure</h3>
+      <p>Explore atomic components and compare simplified models of atoms.</p>
+      <a class="model-link available" href="models/atom.html">
+        Open model <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </article>
+
+  <!-- Model 6: Molecular Structures -->
+  <article class="model-card" data-categories="chemistry">
+    <div class="model-preview">
+      <svg viewBox="0 0 160 130" role="img" aria-label="Molecular structure">
+        <path class="shape-line" d="M45 42 L80 65 L116 42 M80 65 L80 103"/>
+        <circle cx="45" cy="42" r="13" fill="#5799e5"/>
+        <circle cx="116" cy="42" r="13" fill="#e7a23b"/>
+        <circle cx="80" cy="65" r="16" fill="var(--color-brand)"/>
+        <circle cx="80" cy="103" r="12" fill="#68b58a"/>
+      </svg>
+    </div>
+    <div class="model-card-content">
+      <span class="model-status">Available</span>
+      <h3>Molecular Structures</h3>
+      <p>Visualise chemical bonds and explore the shapes of common molecules.</p>
+      <a class="model-link available" href="models/molecules.html">
+        Open model <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </article>
+
+  <!-- Model 7: Solar System -->
+  <article class="model-card" data-categories="space">
+    <div class="model-preview">
+      <svg viewBox="0 0 160 130" role="img" aria-label="Solar system illustration">
+        <ellipse class="orbit" cx="80" cy="65" rx="65" ry="25" transform="rotate(-25 80 65)"/>
+        <ellipse class="orbit" cx="80" cy="65" rx="45" ry="17" transform="rotate(30 80 65)"/>
+        <circle cx="80" cy="65" r="12" fill="#e7a23b"/>
+        <circle cx="126" cy="45" r="5" fill="#5799e5"/>
+        <circle cx="47" cy="88" r="4" fill="#b38ad9"/>
+      </svg>
+    </div>
+    <div class="model-card-content">
+      <span class="model-status">Available</span>
+      <h3>Solar System</h3>
+      <p>Explore planetary order, orbital paths and the arrangement of planets.</p>
+      <a class="model-link available" href="models/solar-system.html">
+        Open model <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </article>
+
+  <!-- Model 8: Optics -->
+  <article class="model-card" data-categories="physics">
+    <div class="model-preview">
+      <svg viewBox="0 0 160 130" role="img" aria-label="Light rays and lens">
+        <path class="shape-line" d="M15 35 H75 M15 65 H75 M15 95 H75"/>
+        <path class="shape-line" d="M75 35 L130 65 L75 65 M75 65 L130 65 L75 95"/>
+        <path class="shape-line" d="M85 20 Q65 65 85 110 Q105 65 85 20 Z"/>
+      </svg>
+    </div>
+    <div class="model-card-content">
+      <span class="model-status">Available</span>
+      <h3>Optics Explorer</h3>
+      <p>Investigate reflection, refraction, lenses and the paths of light rays.</p>
+      <a class="model-link available" href="models/optics.html">
+        Open model <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </article>
+
+</div>
+
+
+      
+    </section>
+
+    <aside class="learning-note">
+      <h3>Built for understanding, not just viewing</h3>
+      <p>
+        The goal is to let you change a model, observe what happens
+        and connect the visual result with the underlying scientific idea.
+        More interactive models will be added step by step.
+      </p>
+    </aside>
+
+    <footer class="explore-footer">
+      Your Answer · Explore, experiment, understand.
+    </footer>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+  
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const filters = document.querySelectorAll("[data-model-filter]");
+    const cards = document.querySelectorAll(".model-card");
+
+    filters.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selected = button.dataset.modelFilter;
+
+        filters.forEach((filter) => {
+          const active = filter === button;
+          filter.classList.toggle("active", active);
+          filter.setAttribute("aria-pressed", String(active));
+        });
+
+        cards.forEach((card) => {
+          const categories = (card.dataset.categories || "")
+            .split(/\s+/)
+            .filter(Boolean);
+
+          card.hidden =
+            selected !== "all" && !categories.includes(selected);
+        });
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

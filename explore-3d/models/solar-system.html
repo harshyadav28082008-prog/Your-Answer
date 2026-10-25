@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar System Explorer | Your Answer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    .solar-page{max-width:1180px;margin:auto;padding:1.5rem 1rem 3rem}
+    .solar-hero p,.muted{color:var(--color-text-muted);line-height:1.7}
+    .solar-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(260px,1fr);gap:1rem;align-items:start}
+    .panel{border:1px solid var(--color-border);border-radius:18px;background:var(--color-surface);overflow:hidden}
+    .canvas-wrap{background:#070b18;position:relative}
+    #solarCanvas{display:block;width:100%;height:clamp(320px,52vw,520px)}
+    .hint{position:absolute;left:12px;bottom:10px;color:#b9c6e5;font-size:.78rem;background:#070b18c9;padding:.35rem .55rem;border-radius:8px}
+    .controls{padding:1rem;display:grid;gap:1rem}
+    .control-row{display:flex;justify-content:space-between;gap:.75rem;align-items:center}
+    .control-row output{color:var(--color-text-muted)}
+    .controls input[type=range]{width:100%;accent-color:var(--color-brand)}
+    .check{display:flex;gap:.55rem;align-items:center}
+    .check input{accent-color:var(--color-brand)}
+    .buttons{display:flex;flex-wrap:wrap;gap:.5rem}
+    .solar-btn{border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text);padding:.6rem .85rem;border-radius:10px;cursor:pointer;font:inherit}
+    .solar-btn.primary{background:var(--color-brand);color:white;border-color:transparent}
+    .planet-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem;padding:1rem;border-bottom:1px solid var(--color-border)}
+    .planet-choice{display:flex;align-items:center;gap:.45rem;border:1px solid var(--color-border);border-radius:10px;padding:.6rem .45rem;background:transparent;color:var(--color-text);cursor:pointer;font:inherit;font-size:.86rem}
+    .planet-choice[aria-pressed=true]{border-color:var(--color-brand);box-shadow:inset 0 0 0 1px var(--color-brand)}
+    .planet-dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
+    .planet-info{padding:1.1rem}
+    .planet-info h2{margin:.15rem 0 .4rem}
+    .planet-info p{color:var(--color-text-muted);line-height:1.65}
+    .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;margin-top:1rem}
+    .stat{border:1px solid var(--color-border);border-radius:12px;padding:.75rem}
+    .stat span{display:block;color:var(--color-text-muted);font-size:.78rem;margin-bottom:.25rem}
+    .stat strong{font-size:.95rem}
+    .note{font-size:.86rem;color:var(--color-text-muted);line-height:1.6;margin-top:1rem}
+    @media(max-width:760px){.solar-layout{grid-template-columns:1fr}}
+    @media(max-width:420px){.solar-page{padding-inline:.75rem}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+        <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+  </header>
+
+  <main class="solar-page">
+    <div class="solar-hero">
+      <p><a href="../index.html">Explore 3D</a> / Space</p>
+      <h1>Solar System Explorer</h1>
+      <p>Explore the Sun and eight planets. Select a planet to learn about it, adjust animation speed, and show or hide orbital paths.</p>
+    </div>
+
+    <div class="solar-layout">
+      <section class="panel" aria-label="Solar system animation">
+        <div class="canvas-wrap">
+          <canvas id="solarCanvas" aria-label="Animated solar system diagram"></canvas>
+          <div class="hint">Illustrative orbits · not to scale</div>
+        </div>
+        <div class="controls">
+          <div>
+            <div class="control-row">
+              <label for="speedRange">Animation speed</label>
+              <output id="speedValue">1.0×</output>
+            </div>
+            <input id="speedRange" type="range" min="0" max="3" step="0.25" value="1">
+          </div>
+          <label class="check"><input id="orbitToggle" type="checkbox" checked> Show orbital paths</label>
+          <div class="buttons">
+            <button class="solar-btn primary" id="pauseBtn" type="button">Pause</button>
+            <button class="solar-btn" id="resetBtn" type="button">Reset view</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" aria-label="Planet information">
+        <div class="planet-list" id="planetList" aria-label="Choose a planet"></div>
+        <div class="planet-info" aria-live="polite">
+          <p id="planetType">Terrestrial planet</p>
+          <h2 id="planetName">Earth</h2>
+          <p id="planetDescription">Our home world has liquid water on its surface and is the only world currently known to support life.</p>
+          <div class="stats">
+            <div class="stat"><span>Order from Sun</span><strong id="planetOrder">3rd</strong></div>
+            <div class="stat"><span>Year length</span><strong id="planetYear">365 days</strong></div>
+            <div class="stat"><span>Mean distance</span><strong id="planetDistance">1 AU</strong></div>
+            <div class="stat"><span>Planet type</span><strong id="planetKind">Rocky</strong></div>
+          </div>
+          <p class="note">Planet sizes, distances, and orbital speeds are simplified for learning. Real planetary orbits are elliptical rather than perfect circles.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="../../assets/js/main.js"></script>
+  <script>
+  (() => {
+    const canvas = document.getElementById('solarCanvas');
+    const ctx = canvas.getContext('2d');
+    const list = document.getElementById('planetList');
+    const speedRange = document.getElementById('speedRange');
+    const speedValue = document.getElementById('speedValue');
+    const orbitToggle = document.getElementById('orbitToggle');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const planets = [
+      {name:'Mercury',color:'#b8b2a7',size:3.5,orbit:.115,year:'88 days',distance:'0.39 AU',kind:'Rocky',type:'Terrestrial planet',description:'The smallest planet and the closest to the Sun. Its surface experiences extreme temperature changes.',order:'1st',period:.24},
+      {name:'Venus',color:'#e5bd82',size:5.5,orbit:.185,year:'225 days',distance:'0.72 AU',kind:'Rocky',type:'Terrestrial planet',description:'A rocky world with a very thick atmosphere. Its powerful greenhouse effect makes it the hottest planet.',order:'2nd',period:.62},
+      {name:'Earth',color:'#4b9be8',size:6,orbit:.255,year:'365 days',distance:'1 AU',kind:'Rocky',type:'Terrestrial planet',description:'Our home world has liquid water on its surface and is the only world currently known to support life.',order:'3rd',period:1},
+      {name:'Mars',color:'#d66b4b',size:4.5,orbit:.325,year:'687 days',distance:'1.52 AU',kind:'Rocky',type:'Terrestrial planet',description:'A cold desert world with a thin atmosphere, giant volcanoes, and evidence that liquid water once flowed on its surface.',order:'4th',period:1.88},
+      {name:'Jupiter',color:'#d8ad83',size:12,orbit:.425,year:'11.9 years',distance:'5.20 AU',kind:'Gas giant',type:'Gas giant',description:'The largest planet. Its atmosphere has enormous cloud bands and the long-lived storm known as the Great Red Spot.',order:'5th',period:11.86},
+      {name:'Saturn',color:'#e6d3a0',size:10,orbit:.535,year:'29.4 years',distance:'9.58 AU',kind:'Gas giant',type:'Gas giant',description:'A gas giant famous for its broad, bright ring system, made mostly of icy particles and rocky debris.',order:'6th',period:29.45},
+      {name:'Uranus',color:'#8bd8dc',size:8,orbit:.635,year:'84 years',distance:'19.2 AU',kind:'Ice giant',type:'Ice giant',description:'An ice giant with a blue-green appearance. It rotates on its side compared with most planets.',order:'7th',period:84},
+      {name:'Neptune',color:'#4e70e8',size:8,orbit:.735,year:'165 years',distance:'30.1 AU',kind:'Ice giant',type:'Ice giant',description:'The most distant planet from the Sun, known for its deep-blue appearance and very fast winds.',order:'8th',period:164.8}
+    ];
+
+    let selected = 2;
+    let paused = false;
+    let lastTime = 0;
+    let width = 0, height = 0, dpr = 1;
+    const initialAngles = planets.map((p,i) => i * .73 + .4);
+    const angles = [...initialAngles];
+
+    planets.forEach((planet,index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'planet-choice';
+      button.setAttribute('aria-pressed',index === selected ? 'true' : 'false');
+      const dot = document.createElement('span');
+      dot.className = 'planet-dot';
+      dot.style.background = planet.color;
+      button.append(dot,document.createTextNode(planet.name));
+      button.addEventListener('click',() => selectPlanet(index));
+      list.appendChild(button);
+    });
+
+    function selectPlanet(index) {
+      selected = index;
+      [...list.children].forEach((button,i) => button.setAttribute('aria-pressed',i === selected ? 'true' : 'false'));
+      const p = planets[index];
+      document.getElementById('planetType').textContent = p.type;
+      document.getElementById('planetName').textContent = p.name;
+      document.getElementById('planetDescription').textContent = p.description;
+      document.getElementById('planetOrder').textContent = p.order;
+      document.getElementById('planetYear').textContent = p.year;
+      document.getElementById('planetDistance').textContent = p.distance;
+      document.getElementById('planetKind').textContent = p.kind;
+    }
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      dpr = Math.min(window.devicePixelRatio || 1,2);
+      width = Math.max(280,rect.width);
+      height = Math.max(320,rect.height);
+      canvas.width = Math.round(width*dpr);
+      canvas.height = Math.round(height*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+
+    function draw(time) {
+      const dt = lastTime ? Math.min((time-lastTime)/1000,.05) : 0;
+      lastTime = time;
+      if (!paused) {
+        const speed = Number(speedRange.value);
+        planets.forEach((p,i) => {
+          angles[i] += dt * speed * (.65/Math.sqrt(p.period));
+        });
+      }
+
+      ctx.clearRect(0,0,width,height);
+      ctx.fillStyle = '#070b18';
+      ctx.fillRect(0,0,width,height);
+
+      for (let i=0;i<70;i++) {
+        const x = (i*97.13)%width;
+        const y = (i*53.71)%height;
+        ctx.fillStyle = i%5===0 ? '#64759b' : '#354260';
+        ctx.fillRect(x,y,i%7===0?1.7:1,i%7===0?1.7:1);
+      }
+
+      const cx = width*.5, cy = height*.5;
+      const maxR = Math.min(width*.46,height*.43);
+      const sunR = Math.max(9,Math.min(15,width*.025));
+      const glow = ctx.createRadialGradient(cx,cy,2,cx,cy,sunR*3.1);
+      glow.addColorStop(0,'#ffe9a6');
+      glow.addColorStop(.25,'#ffb32f');
+      glow.addColorStop(1,'#ff8b1600');
+      ctx.fillStyle = glow;
+      ctx.beginPath();ctx.arc(cx,cy,sunR*3.1,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle = '#ffd15c';
+      ctx.beginPath();ctx.arc(cx,cy,sunR,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle = '#fff0b0';
+      ctx.beginPath();ctx.arc(cx-sunR*.25,cy-sunR*.25,sunR*.38,0,Math.PI*2);ctx.fill();
+
+      planets.forEach((p,i) => {
+        const r = maxR*p.orbit;
+        if (orbitToggle.checked) {
+          ctx.beginPath();
+          ctx.ellipse(cx,cy,r,r*.58,0,0,Math.PI*2);
+          ctx.strokeStyle = i===selected ? '#8fa9e8a0' : '#40507185';
+          ctx.lineWidth = i===selected ? 1.5 : .8;
+          ctx.stroke();
+        }
+        const x = cx+Math.cos(angles[i])*r;
+        const y = cy+Math.sin(angles[i])*r*.58;
+        const pr = Math.max(2.5,p.size*Math.min(width/600,1));
+
+        if (i===selected) {
+          ctx.beginPath();ctx.arc(x,y,pr+5,0,Math.PI*2);
+          ctx.strokeStyle = '#ffffffa8';ctx.lineWidth = 1.4;ctx.stroke();
+        }
+        ctx.fillStyle = p.color;
+        ctx.beginPath();ctx.arc(x,y,pr,0,Math.PI*2);ctx.fill();
+
+        if (p.name==='Saturn') {
+          ctx.save();ctx.translate(x,y);ctx.rotate(-.25);
+          ctx.strokeStyle = '#e6d3a0';ctx.lineWidth = Math.max(2,pr*.45);
+          ctx.beginPath();ctx.ellipse(0,0,pr*1.8,pr*.62,0,0,Math.PI*2);ctx.stroke();
+          ctx.restore();
+        }
+        if (i===selected) {
+          ctx.font = '12px system-ui, sans-serif';
+          ctx.textAlign = 'center';ctx.fillStyle = '#e9efff';
+          ctx.fillText(p.name,x,y-pr-9);
+        }
+      });
+      requestAnimationFrame(draw);
+    }
+
+    speedRange.addEventListener('input',() => {
+      speedValue.textContent = Number(speedRange.value).toFixed(2).replace(/0$/,'').replace(/\.$/,'')+'×';
+    });
+    pauseBtn.addEventListener('click',() => {
+      paused = !paused;
+      pauseBtn.textContent = paused ? 'Resume' : 'Pause';
+    });
+    resetBtn.addEventListener('click',() => {
+      selected = 2;
+      planets.forEach((p,i) => { angles[i] = initialAngles[i]; });
+      speedRange.value = '1';
+      speedValue.textContent = '1.0×';
+      orbitToggle.checked = true;
+      paused = false;
+      pauseBtn.textContent = 'Pause';
+      selectPlanet(2);
+    });
+
+    window.addEventListener('resize',resize);
+    resize();
+    selectPlanet(selected);
+    requestAnimationFrame(draw);
+  })();
+  </script>
+</body>
+</html>

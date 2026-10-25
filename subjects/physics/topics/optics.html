@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Learn about light, reflection, refraction, lenses, mirrors, optical instruments, and wave properties of light."
+  >
+
+  <title>Optics | Physics | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* ========================================
+       OPTICS LESSON
+       ======================================== */
+
+    .optics-page {
+      padding-bottom: 70px;
+    }
+
+    .lesson-hero {
+      padding: 58px 0 48px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-eyebrow {
+      margin: 0 0 14px;
+      color: var(--physics-accent);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .lesson-intro {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--color-text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 290px;
+      gap: 28px;
+      align-items: start;
+      padding-top: 42px;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      margin-bottom: 42px;
+      scroll-margin-top: 90px;
+    }
+
+    .lesson-section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.55rem, 4vw, 2.15rem);
+      letter-spacing: -.04em;
+    }
+
+    .lesson-section p {
+      max-width: 760px;
+      margin: 0 0 15px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .concept-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .concept-item {
+      padding: 17px 19px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+    }
+
+    .concept-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--color-text);
+    }
+
+    .concept-item span {
+      color: var(--color-text-muted);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    /* Formula */
+
+    .formula-card {
+      margin: 20px 0;
+      padding: 24px;
+      background: var(--physics-accent-soft);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      overflow-x: auto;
+    }
+
+    .formula-label {
+      display: block;
+      margin-bottom: 13px;
+      color: var(--physics-accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .formula {
+      margin: 0;
+      color: var(--color-text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      line-height: 1.7;
+    }
+
+    .formula-note {
+      margin: 10px 0 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+    }
+
+    /* Example */
+
+    .example-card {
+      padding: 23px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+    }
+
+    .example-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--physics-accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .example-card p {
+      margin-bottom: 12px;
+    }
+
+    .example-answer {
+      padding: 13px 15px;
+      background: var(--physics-accent-soft);
+      border-radius: 10px;
+      color: var(--color-text);
+    }
+
+    /* Aside */
+
+    .lesson-aside {
+      display: grid;
+      gap: 14px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .aside-card {
+      padding: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .aside-card h3 {
+      margin: 0 0 11px;
+      font-size: 1rem;
+    }
+
+    .aside-card p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+      line-height: 1.65;
+    }
+
+    .lesson-nav {
+      display: grid;
+      gap: 7px;
+    }
+
+    .lesson-nav a {
+      display: block;
+      padding: 8px 0;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+
+    .lesson-nav a:hover {
+      color: var(--physics-accent);
+    }
+
+    /* Bottom navigation */
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 45px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-bottom a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      color: var(--physics-accent);
+    }
+
+    @media (max-width: 800px) {
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .lesson-hero {
+        padding-top: 35px;
+      }
+
+      .lesson-layout {
+        padding-top: 32px;
+      }
+
+      .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../../index.html">
+        Your Answer
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Toggle colour theme"
+      >
+        Theme
+      </button>
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="optics-page">
+
+    <section class="lesson-hero">
+      <div class="container">
+
+        <p class="lesson-eyebrow">
+          Physics / 08
+        </p>
+
+        <h1>Optics</h1>
+
+        <p class="lesson-intro">
+          Explore the behaviour of light through reflection, refraction,
+          mirrors, lenses, optical instruments, and the wave nature of light.
+        </p>
+
+      </div>
+    </section>
+
+
+    <div class="container">
+
+      <div class="lesson-layout">
+
+        <article class="lesson-main">
+
+          <!-- LIGHT -->
+
+          <section class="lesson-section" id="light">
+
+            <h2>What is light?</h2>
+
+            <p>
+              Light is electromagnetic radiation that can propagate through
+              empty space. In many everyday situations, light can be
+              modelled as travelling along straight rays.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Ray model</strong>
+                <span>
+                  Represents the direction in which light travels and is
+                  especially useful for analysing mirrors and lenses.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Wave model</strong>
+                <span>
+                  Describes phenomena such as interference, diffraction,
+                  and polarisation.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- REFLECTION -->
+
+          <section class="lesson-section" id="reflection">
+
+            <h2>Reflection</h2>
+
+            <p>
+              Reflection occurs when light reaches a surface and returns
+              into the original medium.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Law of reflection</strong>
+                <span>
+                  The angle of incidence equals the angle of reflection,
+                  with both measured from the normal to the surface.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Regular reflection</strong>
+                <span>
+                  Reflection from a smooth surface can produce a well-defined
+                  reflected image.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Diffuse reflection</strong>
+                <span>
+                  Rough surfaces scatter reflected light in many directions.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- MIRRORS -->
+
+          <section class="lesson-section" id="mirrors">
+
+            <h2>Mirrors</h2>
+
+            <p>
+              Curved mirrors can form images that differ in size, orientation,
+              and position depending on where the object is located.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Mirror equation
+              </span>
+
+              <p class="formula">
+                1/f = 1/u + 1/v
+              </p>
+
+              <p class="formula-note">
+                f is focal length, u is object distance, and v is image
+                distance. Sign conventions depend on the chosen convention.
+              </p>
+
+            </div>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Magnification
+              </span>
+
+              <p class="formula">
+                m = v/u
+              </p>
+
+              <p class="formula-note">
+                The sign and interpretation of magnification depend on the
+                adopted optical sign convention.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- REFRACTION -->
+
+          <section class="lesson-section" id="refraction">
+
+            <h2>Refraction</h2>
+
+            <p>
+              Refraction is the change in direction of light as it passes
+              between media in which its speed is different.
+            </p>
+
+            <p>
+              The frequency of the light remains unchanged at the boundary,
+              while its speed and wavelength can change.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Snell's law
+              </span>
+
+              <p class="formula">
+                n₁ sin θ₁ = n₂ sin θ₂
+              </p>
+
+              <p class="formula-note">
+                n₁ and n₂ are the refractive indices of the two media,
+                while θ₁ and θ₂ are measured from the normal.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- REFRACTIVE INDEX -->
+
+          <section class="lesson-section" id="refractive-index">
+
+            <h2>Refractive index</h2>
+
+            <p>
+              Refractive index describes how much the speed of light is
+              reduced in a particular medium compared with vacuum.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Refractive index
+              </span>
+
+              <p class="formula">
+                n = c/v
+              </p>
+
+              <p class="formula-note">
+                c is the speed of light in vacuum and v is the speed of
+                light in the medium.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- TOTAL INTERNAL REFLECTION -->
+
+          <section class="lesson-section" id="tir">
+
+            <h2>Total internal reflection</h2>
+
+            <p>
+              When light travels from a more optically dense medium toward
+              a less dense medium, sufficiently large angles of incidence
+              can cause the light to be completely reflected back.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Critical angle</strong>
+                <span>
+                  The angle of incidence for which the refracted ray travels
+                  along the boundary.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Applications</strong>
+                <span>
+                  Optical fibres use repeated total internal reflection
+                  to guide light over long distances.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- LENSES -->
+
+          <section class="lesson-section" id="lenses">
+
+            <h2>Lenses</h2>
+
+            <p>
+              Lenses use refraction to converge or diverge light. The two
+              fundamental types are converging and diverging lenses.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Convex lens</strong>
+                <span>
+                  A converging lens that can bring parallel rays toward
+                  a focal point.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Concave lens</strong>
+                <span>
+                  A diverging lens that causes parallel rays to spread apart.
+                </span>
+              </div>
+
+            </div>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Thin lens equation
+              </span>
+
+              <p class="formula">
+                1/f = 1/u + 1/v
+              </p>
+
+              <p class="formula-note">
+                The exact signs depend on the optical sign convention being
+                used.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- DISPERSION -->
+
+          <section class="lesson-section" id="dispersion">
+
+            <h2>Dispersion</h2>
+
+            <p>
+              Dispersion occurs because the refractive index of a material
+              can depend on the wavelength of light.
+            </p>
+
+            <p>
+              White light can therefore separate into different colours
+              when passing through suitable materials such as a prism.
+            </p>
+
+          </section>
+
+
+          <!-- INTERFERENCE -->
+
+          <section class="lesson-section" id="interference">
+
+            <h2>Interference</h2>
+
+            <p>
+              When coherent light waves overlap, their amplitudes combine
+              according to the principle of superposition.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Constructive interference</strong>
+                <span>
+                  Waves reinforce one another and produce greater intensity.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Destructive interference</strong>
+                <span>
+                  Waves partially or completely cancel, producing reduced
+                  intensity.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- DIFFRACTION -->
+
+          <section class="lesson-section" id="diffraction">
+
+            <h2>Diffraction</h2>
+
+            <p>
+              Diffraction is the spreading of waves when they pass through
+              an opening or around an obstacle. It becomes particularly
+              noticeable when the size of the opening is comparable to
+              the wavelength.
+            </p>
+
+          </section>
+
+
+          <!-- POLARISATION -->
+
+          <section class="lesson-section" id="polarisation">
+
+            <h2>Polarisation</h2>
+
+            <p>
+              Polarisation describes restricting the oscillations of a
+              transverse wave to a particular direction.
+            </p>
+
+            <p>
+              The phenomenon provides important evidence that light has
+              transverse wave behaviour.
+            </p>
+
+          </section>
+
+
+          <!-- OPTICAL INSTRUMENTS -->
+
+          <section class="lesson-section" id="instruments">
+
+            <h2>Optical instruments</h2>
+
+            <p>
+              Lenses and mirrors can be combined to construct instruments
+              that form enlarged or otherwise useful images.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>Human eye</strong>
+                <span>
+                  The eye uses a variable-focus lens system to form an image
+                  on the retina.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Microscope</strong>
+                <span>
+                  Uses multiple lenses to produce a strongly magnified image
+                  of a small object.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Telescope</strong>
+                <span>
+                  Collects and magnifies light from distant objects,
+                  allowing astronomical observations.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- EXAMPLE -->
+
+          <section class="lesson-section" id="example">
+
+            <h2>Quick example</h2>
+
+            <div class="example-card">
+
+              <span class="example-label">
+                Apply the idea
+              </span>
+
+              <p>
+                Light travels through a material at
+                2.0 × 10⁸ m/s. Taking the speed of light in vacuum as
+                3.0 × 10⁸ m/s, find the refractive index.
+              </p>
+
+              <p>
+                Using:
+              </p>
+
+              <p class="formula">
+                n = c/v
+              </p>
+
+              <p class="formula">
+                n = (3.0 × 10⁸) / (2.0 × 10⁸)
+              </p>
+
+              <div class="example-answer">
+                <strong>Answer:</strong>
+                The refractive index is approximately 1.5.
+              </div>
+
+            </div>
+
+          </section>
+
+        </article>
+
+
+        <!-- ASIDE -->
+
+        <aside class="lesson-aside">
+
+          <div class="aside-card">
+
+            <h3>In this lesson</h3>
+
+            <nav class="lesson-nav">
+              <a href="#light">Light</a>
+              <a href="#reflection">Reflection</a>
+              <a href="#mirrors">Mirrors</a>
+              <a href="#refraction">Refraction</a>
+              <a href="#refractive-index">Refractive index</a>
+              <a href="#tir">Total internal reflection</a>
+              <a href="#lenses">Lenses</a>
+              <a href="#dispersion">Dispersion</a>
+              <a href="#interference">Interference</a>
+              <a href="#diffraction">Diffraction</a>
+              <a href="#polarisation">Polarisation</a>
+              <a href="#instruments">Optical instruments</a>
+              <a href="#example">Quick example</a>
+            </nav>
+
+          </div>
+
+
+          <div class="aside-card">
+
+            <h3>Remember</h3>
+
+            <p>
+              Reflection changes the direction of light at a surface,
+              while refraction changes its direction because its speed
+              changes when it enters a different medium.
+            </p>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+
+      <!-- BOTTOM NAVIGATION -->
+
+      <nav class="lesson-bottom" aria-label="Lesson navigation">
+
+        <a href="magnetism.html">
+          ← Magnetism
+        </a>
+
+        <a href="modern-physics.html">
+          Next: Modern Physics →
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+</html>

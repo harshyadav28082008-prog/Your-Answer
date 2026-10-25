@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wave Motion | Your Answer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/main.js" defer></script>
+
+  <style>
+    .wave-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 32px 20px 60px;
+    }
+
+    .wave-hero { margin-bottom: 28px; }
+
+    .wave-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin-bottom: 10px;
+    }
+
+    .wave-hero p {
+      color: var(--color-text-muted);
+      max-width: 700px;
+      line-height: 1.7;
+    }
+
+    .wave-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(250px, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .wave-panel {
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+      padding: 20px;
+      min-width: 0;
+    }
+
+    .wave-panel h2 {
+      font-size: 1.2rem;
+      margin: 0 0 16px;
+    }
+
+    .wave-canvas-wrap {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      background: var(--color-surface);
+    }
+
+    #waveCanvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      touch-action: pan-y;
+    }
+
+    .wave-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 14px;
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+    }
+
+    .legend-line {
+      display: inline-block;
+      width: 20px;
+      height: 3px;
+      vertical-align: middle;
+      margin-right: 6px;
+      border-radius: 3px;
+      background: var(--color-brand);
+    }
+
+    .wave-control { margin: 20px 0; }
+
+    .wave-control label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 600;
+      margin-bottom: 9px;
+    }
+
+    .wave-control output {
+      color: var(--color-brand);
+      white-space: nowrap;
+    }
+
+    .wave-control input[type="range"] {
+      width: 100%;
+      accent-color: var(--color-brand);
+    }
+
+    .wave-control small {
+      display: block;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+
+    .wave-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .wave-button {
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: 10px 15px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .wave-button.primary {
+      background: var(--color-brand);
+      color: white;
+      border-color: var(--color-brand);
+    }
+
+    .wave-button:focus-visible {
+      outline: 2px solid var(--color-brand);
+      outline-offset: 3px;
+    }
+
+    .wave-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .wave-stat {
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--color-background, var(--color-surface));
+      border: 1px solid var(--color-border);
+    }
+
+    .wave-stat span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      margin-bottom: 7px;
+    }
+
+    .wave-stat strong {
+      font-size: 1.15rem;
+      overflow-wrap: anywhere;
+    }
+
+    .wave-note {
+      margin-top: 20px;
+      padding: 16px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      line-height: 1.7;
+      background: var(--color-surface);
+    }
+
+    .wave-note p { margin: 6px 0 0; }
+
+    .wave-equation {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 12px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .wave-back {
+      display: inline-block;
+      margin-bottom: 22px;
+      color: var(--color-brand);
+      text-decoration: none;
+    }
+
+    .wave-back:hover { text-decoration: underline; }
+
+    @media (max-width: 760px) {
+      .wave-layout { grid-template-columns: 1fr; }
+      .wave-page { padding: 24px 14px 45px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wave-page">
+    
+
+    <header class="wave-hero">
+          <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+      <a class="wave-back" href="../index.html">← Back to Explore 3D</a>
+      <h1>Wave Motion</h1>
+      <p>
+        Explore how amplitude, wavelength, and frequency affect a wave.
+        Adjust the controls and observe the wave's shape and calculated speed.
+      </p>
+    </header>
+
+    <div class="wave-layout">
+      <section class="wave-panel">
+        <h2>Wave visualizer</h2>
+
+        <div class="wave-canvas-wrap">
+          <canvas id="waveCanvas" width="800" height="420"
+                  role="img"
+                  aria-label="A visual graph of a travelling wave with its equilibrium line and wavelength markers.">
+            Your browser does not support canvas.
+          </canvas>
+        </div>
+
+        <div class="wave-legend">
+          <span><i class="legend-line"></i>Wave</span>
+          <span>Dashed line: equilibrium</span>
+        </div>
+
+        <div class="wave-actions">
+          <button class="wave-button primary" id="motionButton" type="button">
+            Pause motion
+          </button>
+          <button class="wave-button" id="resetButton" type="button">
+            Reset values
+          </button>
+        </div>
+
+        <div class="wave-note">
+          <strong>What to observe</strong>
+          <p id="observation">
+            Increase frequency to see more oscillations per second.
+          </p>
+        </div>
+      </section>
+
+      <aside class="wave-panel">
+        <h2>Wave controls</h2>
+
+        <div class="wave-control">
+          <label for="amplitude">
+            Amplitude
+            <output id="amplitudeValue">40 px</output>
+          </label>
+          <input id="amplitude" type="range"
+                 min="10" max="90" step="5" value="40">
+          <small>Controls the maximum displacement from equilibrium in this visual model.</small>
+        </div>
+
+        <div class="wave-control">
+          <label for="wavelength">
+            Wavelength (λ)
+            <output id="wavelengthValue">200 px</output>
+          </label>
+          <input id="wavelength" type="range"
+                 min="80" max="400" step="10" value="200">
+          <small>Distance between two successive crests in the drawing.</small>
+        </div>
+
+        <div class="wave-control">
+          <label for="frequency">
+            Frequency (f)
+            <output id="frequencyValue">2 Hz</output>
+          </label>
+          <input id="frequency" type="range"
+                 min="0.5" max="5" step="0.5" value="2">
+          <small>Number of complete oscillations per second.</small>
+        </div>
+
+        <div class="wave-stats">
+          <div class="wave-stat">
+            <span>Frequency</span>
+            <strong id="statFrequency">2 Hz</strong>
+          </div>
+          <div class="wave-stat">
+            <span>Wavelength</span>
+            <strong id="statWavelength">200 px</strong>
+          </div>
+          <div class="wave-stat">
+            <span>Wave speed*</span>
+            <strong id="statSpeed">400 px/s</strong>
+          </div>
+          <div class="wave-stat">
+            <span>Period</span>
+            <strong id="statPeriod">0.50 s</strong>
+          </div>
+        </div>
+
+        <div class="wave-note">
+          <strong>Wave equation</strong>
+          <div class="wave-equation">v = f × λ</div>
+          <p>
+            Wave speed equals frequency multiplied by wavelength.
+            Here, wavelength is measured in drawing pixels, so the calculated
+            speed is in pixels per second, not metres per second.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById("waveCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const amplitudeInput = document.getElementById("amplitude");
+      const wavelengthInput = document.getElementById("wavelength");
+      const frequencyInput = document.getElementById("frequency");
+      const motionButton = document.getElementById("motionButton");
+      const resetButton = document.getElementById("resetButton");
+
+      const amplitudeValue = document.getElementById("amplitudeValue");
+      const wavelengthValue = document.getElementById("wavelengthValue");
+      const frequencyValue = document.getElementById("frequencyValue");
+
+      const statFrequency = document.getElementById("statFrequency");
+      const statWavelength = document.getElementById("statWavelength");
+      const statSpeed = document.getElementById("statSpeed");
+      const statPeriod = document.getElementById("statPeriod");
+      const observation = document.getElementById("observation");
+
+      const brandColor = () =>
+        getComputedStyle(document.documentElement)
+          .getPropertyValue("--color-brand").trim() || "#3478f6";
+
+      let running = true;
+      let phase = 0;
+      let lastTime = 0;
+      let animationId = null;
+
+      function getValues() {
+        return {
+          amplitude: Number(amplitudeInput.value),
+          wavelength: Number(wavelengthInput.value),
+          frequency: Number(frequencyInput.value)
+        };
+      }
+
+      function updateStats() {
+        const { amplitude, wavelength, frequency } = getValues();
+        const speed = wavelength * frequency;
+        const period = 1 / frequency;
+
+        amplitudeValue.textContent = amplitude + " px";
+        wavelengthValue.textContent = wavelength + " px";
+        frequencyValue.textContent = frequency + " Hz";
+
+        statFrequency.textContent = frequency + " Hz";
+        statWavelength.textContent = wavelength + " px";
+        statSpeed.textContent = speed.toFixed(1) + " px/s";
+        statPeriod.textContent = period.toFixed(2) + " s";
+
+        if (frequency >= 4) {
+          observation.textContent =
+            "The frequency is high: the wave completes more cycles each second. Its wavelength remains controlled separately.";
+        } else if (wavelength <= 120) {
+          observation.textContent =
+            "The wavelength is short, so more wave cycles fit across the same drawing width.";
+        } else if (amplitude >= 70) {
+          observation.textContent =
+            "The amplitude is large, so the crests and troughs are farther from the equilibrium line.";
+        } else {
+          observation.textContent =
+            "Change one control at a time to compare how amplitude, wavelength, and frequency affect the wave.";
+        }
+      }
+
+      function drawWave() {
+        const width = canvas.width;
+        const height = canvas.height;
+        const { amplitude, wavelength } = getValues();
+        const midY = height / 2;
+        const color = brandColor();
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Subtle grid.
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = "rgba(128,128,128,0.15)";
+
+        for (let x = 0; x <= width; x += 50) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, height);
+          ctx.stroke();
+        }
+
+        for (let y = 0; y <= height; y += 50) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(width, y);
+          ctx.stroke();
+        }
+
+        // Equilibrium line.
+        ctx.save();
+        ctx.setLineDash([7, 7]);
+        ctx.strokeStyle = "rgba(128,128,128,0.8)";
+        ctx.beginPath();
+        ctx.moveTo(0, midY);
+        ctx.lineTo(width, midY);
+        ctx.stroke();
+        ctx.restore();
+
+        // Wave curve.
+        ctx.beginPath();
+        ctx.lineWidth = 4;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = color;
+
+        for (let x = 0; x <= width; x += 2) {
+          const angle = (2 * Math.PI * x / wavelength) - phase;
+          const y = midY - amplitude * Math.sin(angle);
+
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+
+        ctx.stroke();
+
+        // Crest and trough labels.
+        ctx.fillStyle = color;
+        ctx.font = "bold 15px sans-serif";
+        ctx.fillText("Crest", 14, midY - amplitude - 12);
+        ctx.fillText("Trough", 14, midY + amplitude + 24);
+
+        // Wavelength marker.
+        const markerY = Math.min(height - 20, midY + amplitude + 45);
+        const markerEnd = Math.min(wavelength, width - 20);
+
+        if (markerEnd > 20) {
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(20, markerY);
+          ctx.lineTo(markerEnd, markerY);
+          ctx.moveTo(20, markerY - 6);
+          ctx.lineTo(20, markerY + 6);
+          ctx.moveTo(markerEnd, markerY - 6);
+          ctx.lineTo(markerEnd, markerY + 6);
+          ctx.stroke();
+
+          ctx.font = "14px sans-serif";
+          ctx.fillText("λ", (20 + markerEnd) / 2, markerY - 8);
+        }
+      }
+
+      function animate(timestamp) {
+        if (!running) return;
+
+        if (lastTime) {
+          const delta = Math.min((timestamp - lastTime) / 1000, 0.05);
+          phase += 2 * Math.PI * getValues().frequency * delta;
+          phase %= 2 * Math.PI;
+        }
+
+        lastTime = timestamp;
+        drawWave();
+        animationId = requestAnimationFrame(animate);
+      }
+
+      function refresh() {
+        updateStats();
+        drawWave();
+      }
+
+      [amplitudeInput, wavelengthInput, frequencyInput].forEach((input) => {
+        input.addEventListener("input", refresh);
+      });
+
+      motionButton.addEventListener("click", () => {
+        running = !running;
+        motionButton.textContent = running ? "Pause motion" : "Resume motion";
+        lastTime = 0;
+
+        if (running) {
+          animationId = requestAnimationFrame(animate);
+        } else if (animationId !== null) {
+          cancelAnimationFrame(animationId);
+        }
+      });
+
+      resetButton.addEventListener("click", () => {
+        amplitudeInput.value = 40;
+        wavelengthInput.value = 200;
+        frequencyInput.value = 2;
+        phase = 0;
+        refresh();
+      });
+
+      // Respect reduced-motion preference.
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        running = false;
+        motionButton.textContent = "Resume motion";
+      }
+
+      refresh();
+
+      if (running) {
+        animationId = requestAnimationFrame(animate);
+      }
+    })();
+  </script>
+</body>
+</html>

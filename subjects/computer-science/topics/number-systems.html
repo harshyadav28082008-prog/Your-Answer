@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn binary, decimal, octal and hexadecimal number systems, conversions, binary arithmetic, and computer data representation.">
+  <title>Number Systems and Data Representation | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .lesson{max-width:900px;margin:auto;padding-bottom:56px}
+    .lesson-hero{padding:42px 0 30px}
+    .eyebrow{color:var(--color-brand);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .lesson h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;letter-spacing:-.035em;margin:12px 0}
+    .muted{color:var(--color-text-muted);line-height:1.8}
+    .lesson-section{margin:32px 0}
+    .lesson-section h2{font-size:1.5rem;margin-bottom:12px}
+    .lesson-section h3{font-size:1.1rem;margin:22px 0 8px}
+    .lesson-section p,.lesson-section li{line-height:1.8}
+    .lesson-section li{margin:5px 0}
+    .concept-card,.example-card,.check-card,.key-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:15px;padding:19px;margin:15px 0}
+    .number-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .number-card{border:1px solid var(--color-border);border-radius:14px;padding:18px;background:var(--color-surface)}
+    .number-card h3{margin:0 0 8px}
+    .number-card p{margin:0;color:var(--color-text-muted);line-height:1.7}
+    .lesson table{width:100%;border-collapse:collapse;margin:16px 0}
+    .lesson th,.lesson td{padding:11px;border:1px solid var(--color-border);text-align:left;line-height:1.6}
+    .lesson th{background:var(--color-surface)}
+    .lesson pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;border-radius:12px;background:var(--color-surface);border:1px solid var(--color-border);line-height:1.8}
+    .formula{font-weight:700;overflow-wrap:anywhere}
+    .answer{display:none;margin-top:12px;padding:12px;border-radius:10px;background:var(--color-surface);line-height:1.7}
+    .answer.visible{display:block}
+    .lesson button{cursor:pointer;padding:9px 14px;border-radius:9px;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text)}
+    .lesson-nav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--color-border);padding-top:22px;margin-top:38px}
+    .lesson-nav a{color:var(--color-brand);text-decoration:none;font-weight:700}
+    @media(max-width:620px){.number-grid{grid-template-columns:1fr}.lesson th,.lesson td{padding:8px;font-size:.9rem}}
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="container lesson">
+    <section class="lesson-hero">
+      <div class="eyebrow">Computer Science · Topic 02</div>
+      <h1>Number Systems and Data Representation</h1>
+      <p class="muted">
+        Computers store and process information using binary digits. Learn how
+        number systems work, how to convert between them, and how digital
+        systems represent different kinds of data.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>1. What is a number system?</h2>
+      <p>
+        A number system is a way of representing numbers using a set of symbols.
+        Its <strong>base</strong> (or radix) tells us how many different digits
+        it uses. In a positional number system, each digit's value depends on
+        its position.
+      </p>
+
+      <div class="number-grid">
+        <div class="number-card">
+          <h3>Decimal · Base 10</h3>
+          <p>Digits: 0–9. Commonly used in everyday counting.</p>
+        </div>
+        <div class="number-card">
+          <h3>Binary · Base 2</h3>
+          <p>Digits: 0 and 1. Fundamental to digital computing.</p>
+        </div>
+        <div class="number-card">
+          <h3>Octal · Base 8</h3>
+          <p>Digits: 0–7. One octal digit represents three binary bits.</p>
+        </div>
+        <div class="number-card">
+          <h3>Hexadecimal · Base 16</h3>
+          <p>Digits: 0–9 and A–F, where A=10 through F=15.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>2. Positional notation</h2>
+      <p>
+        In base \(b\), a number's value is the sum of each digit multiplied by
+        its corresponding power of \(b\). For whole numbers, the rightmost
+        position has power zero.
+      </p>
+
+      <div class="example-card">
+        <h3>Example: Decimal 472</h3>
+        <p class="formula">472 = 4 × 10² + 7 × 10¹ + 2 × 10⁰</p>
+        <p class="muted">= 400 + 70 + 2</p>
+      </div>
+
+      <div class="example-card">
+        <h3>Example: Binary 1011</h3>
+        <p class="formula">1011₂ = 1 × 2³ + 0 × 2² + 1 × 2¹ + 1 × 2⁰</p>
+        <p class="muted">= 8 + 0 + 2 + 1 = 11₁₀</p>
+      </div>
+
+      <p class="muted">
+        Subscripts indicate the base: 1011₂ is binary, while 1011₁₀ is decimal.
+        Without a subscript, context must make the base clear.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>3. Convert between number systems</h2>
+
+      <h3>Decimal to binary</h3>
+      <p>Repeatedly divide the decimal number by 2. Read the remainders from bottom to top.</p>
+      <div class="example-card">
+        <p><strong>Convert 13₁₀ to binary.</strong></p>
+        <pre>13 ÷ 2 = 6 remainder 1
+ 6 ÷ 2 = 3 remainder 0
+ 3 ÷ 2 = 1 remainder 1
+ 1 ÷ 2 = 0 remainder 1
+
+Read upward: 1101₂</pre>
+        <p class="formula">13₁₀ = 1101₂</p>
+      </div>
+
+      <h3>Binary to decimal</h3>
+      <p>Multiply each bit by its position's power of 2, then add the results.</p>
+      <div class="example-card">
+        <p><strong>Convert 11010₂ to decimal.</strong></p>
+        <p class="formula">11010₂ = 1×16 + 1×8 + 0×4 + 1×2 + 0×1 = 26₁₀</p>
+      </div>
+
+      <h3>Decimal to hexadecimal</h3>
+      <p>Repeatedly divide by 16 and read the remainders upward. Remainders 10–15 are written A–F.</p>
+      <div class="example-card">
+        <p><strong>Convert 254₁₀ to hexadecimal.</strong></p>
+        <pre>254 ÷ 16 = 15 remainder 14
+15 ÷ 16 = 0 remainder 15
+
+15 = F, 14 = E
+Answer: FE₁₆</pre>
+      </div>
+
+      <h3>Binary to octal or hexadecimal</h3>
+      <p>
+        For octal, group bits in sets of three from the right. For hexadecimal,
+        group bits in sets of four. Add leading zeros on the left if needed.
+      </p>
+      <div class="example-card">
+        <p><strong>Binary to octal:</strong> 110101₂ → 110 101 → 6 5 → 65₈</p>
+        <p><strong>Binary to hexadecimal:</strong> 11010110₂ → 1101 0110 → D 6 → D6₁₆</p>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>4. Basic binary arithmetic</h2>
+      <p>Binary addition follows a few simple rules:</p>
+      <table>
+        <thead><tr><th>Addition</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>0 + 0</td><td>0</td></tr>
+          <tr><td>0 + 1</td><td>1</td></tr>
+          <tr><td>1 + 0</td><td>1</td></tr>
+          <tr><td>1 + 1</td><td>10 (write 0, carry 1)</td></tr>
+          <tr><td>1 + 1 + 1</td><td>11 (write 1, carry 1)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="example-card">
+        <h3>Example: 1011₂ + 0110₂</h3>
+        <pre>   1011
+ + 0110
+ ------
+  10001</pre>
+        <p class="muted">11 + 6 = 17, so 10001₂ is correct.</p>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>5. Bits, bytes, and storage</h2>
+      <ul>
+        <li><strong>Bit:</strong> A binary digit, either 0 or 1.</li>
+        <li><strong>Byte:</strong> Commonly 8 bits.</li>
+        <li><strong>Nibble:</strong> 4 bits, equal to one hexadecimal digit.</li>
+        <li><strong>Word:</strong> A processor-dependent unit of data, often related to its natural processing size.</li>
+      </ul>
+
+      <table>
+        <thead><tr><th>Unit</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td>1 byte (B)</td><td>8 bits</td></tr>
+          <tr><td>1 kilobyte (KB)</td><td>1,000 bytes (decimal convention)</td></tr>
+          <tr><td>1 megabyte (MB)</td><td>1,000 KB (decimal convention)</td></tr>
+          <tr><td>1 kibibyte (KiB)</td><td>1,024 bytes</td></tr>
+          <tr><td>1 mebibyte (MiB)</td><td>1,024 KiB</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">
+        Storage manufacturers commonly use decimal units (KB, MB, GB).
+        Binary units (KiB, MiB, GiB) use powers of 1,024. Some software still
+        uses KB or MB informally for binary quantities, so check the context.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>6. How computers represent data</h2>
+
+      <h3>Text</h3>
+      <p>
+        Text is encoded into numbers. ASCII represents a limited set of
+        characters; Unicode provides a much larger system for representing
+        characters from many writing systems. UTF-8 is a widely used Unicode
+        encoding that uses one to four bytes per code point.
+      </p>
+
+      <h3>Images</h3>
+      <p>
+        Raster images are made of pixels. Each pixel stores colour information
+        using an encoding such as RGB. An uncompressed image's approximate
+        storage depends on its width, height, and bits per pixel.
+      </p>
+      <div class="example-card">
+        <p class="formula">Uncompressed size in bits ≈ width × height × bits per pixel</p>
+        <p class="muted">This estimate excludes headers, metadata, padding, and compression.</p>
+      </div>
+
+      <h3>Audio</h3>
+      <p>
+        Digital audio commonly represents sound by sampling its amplitude over
+        time. Sample rate, bit depth, number of channels, and compression affect
+        its quality and file size.
+      </p>
+
+      <h3>Negative integers</h3>
+      <p>
+        Computers commonly represent signed integers using two's complement.
+        In an \(n\)-bit two's-complement system, the representable range is
+        \(-2^{n-1}\) to \(2^{n-1}-1\).
+      </p>
+      <div class="example-card">
+        <p><strong>Example: −5 in 8-bit two's complement</strong></p>
+        <pre>+5        = 00000101
+Invert bits = 11111010
+Add 1       = 11111011
+
+Therefore −5 = 11111011 (8-bit two's complement)</pre>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>7. Why binary?</h2>
+      <p>
+        Digital electronic circuits can distinguish two states reliably, such
+        as low and high voltage. These states can represent 0 and 1. Combining
+        bits allows a system to encode numbers, text, instructions, images,
+        sound, and other information.
+      </p>
+      <p>
+        Binary is not the only possible way to design a computing system, but
+        two-state digital logic is practical and robust for modern computers.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>8. Quick knowledge check</h2>
+      <p class="muted">Try solving each question before revealing the answer.</p>
+
+      <div class="check-card">
+        <p><strong>Question 1:</strong> Convert 1010₂ to decimal.</p>
+        <button type="button" data-answer="a1" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a1">10₁₀, because 8 + 0 + 2 + 0 = 10.</div>
+      </div>
+
+      <div class="check-card">
+        <p><strong>Question 2:</strong> Convert 19₁₀ to binary.</p>
+        <button type="button" data-answer="a2" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a2">10011₂, because 16 + 2 + 1 = 19.</div>
+      </div>
+
+      <div class="check-card">
+        <p><strong>Question 3:</strong> How many bits are in 3 bytes?</p>
+        <button type="button" data-answer="a3" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a3">24 bits, because 3 × 8 = 24.</div>
+      </div>
+
+      <div class="check-card">
+        <p><strong>Question 4:</strong> Convert FF₁₆ to decimal.</p>
+        <button type="button" data-answer="a4" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a4">255₁₀, because F = 15 and 15 × 16 + 15 = 255.</div>
+      </div>
+    </section>
+
+    <div class="key-card">
+      <h2>Key takeaways</h2>
+      <ul>
+        <li>Decimal, binary, octal, and hexadecimal use bases 10, 2, 8, and 16.</li>
+        <li>Positional values depend on powers of the number system's base.</li>
+        <li>Binary values can be converted using place values, repeated division, and bit grouping.</li>
+        <li>One byte contains 8 bits; decimal and binary storage units differ.</li>
+        <li>Computers encode text, images, audio, and numbers into digital representations.</li>
+      </ul>
+    </div>
+
+    <nav class="lesson-nav" aria-label="Topic navigation">
+      <a href="introduction.html">← Previous: Introduction</a>
+      <a href="programming-fundamentals.html">Next: Programming Fundamentals →</a>
+    </nav>
+  </main>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll("[data-answer]").forEach(function(button) {
+      button.addEventListener("click", function() {
+        const answer = document.getElementById(button.dataset.answer);
+        const visible = answer.classList.toggle("visible");
+        button.setAttribute("aria-expanded", String(visible));
+        button.textContent = visible ? "Hide answer" : "Reveal answer";
+      });
+    });
+  </script>
+</body>
+</html>

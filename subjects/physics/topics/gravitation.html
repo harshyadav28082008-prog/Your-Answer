@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Learn about gravitation, gravitational force, fields, potential, escape velocity, and orbital motion."
+  >
+
+  <title>Gravitation | Physics | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* ========================================
+       GRAVITATION LESSON
+       ======================================== */
+
+    .gravitation-page {
+      padding-bottom: 70px;
+    }
+
+    .lesson-hero {
+      padding: 58px 0 48px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-eyebrow {
+      margin: 0 0 14px;
+      color: var(--physics-accent);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .lesson-intro {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--color-text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 290px;
+      gap: 28px;
+      align-items: start;
+      padding-top: 42px;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      margin-bottom: 42px;
+      scroll-margin-top: 90px;
+    }
+
+    .lesson-section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.55rem, 4vw, 2.15rem);
+      letter-spacing: -.04em;
+    }
+
+    .lesson-section h3 {
+      margin: 26px 0 9px;
+      font-size: 1.15rem;
+    }
+
+    .lesson-section p {
+      max-width: 760px;
+      margin: 0 0 15px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .concept-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .concept-item {
+      padding: 17px 19px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+    }
+
+    .concept-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--color-text);
+    }
+
+    .concept-item span {
+      color: var(--color-text-muted);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+
+    /* Formula */
+
+    .formula-card {
+      margin: 20px 0;
+      padding: 24px;
+      background: var(--physics-accent-soft);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      overflow-x: auto;
+    }
+
+    .formula-label {
+      display: block;
+      margin-bottom: 13px;
+      color: var(--physics-accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .formula {
+      margin: 0;
+      color: var(--color-text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.35rem;
+      line-height: 1.7;
+    }
+
+    .formula-note {
+      margin: 10px 0 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+    }
+
+    /* Example */
+
+    .example-card {
+      padding: 23px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+    }
+
+    .example-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--physics-accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .example-card p {
+      margin-bottom: 12px;
+    }
+
+    .example-answer {
+      padding: 13px 15px;
+      background: var(--physics-accent-soft);
+      border-radius: 10px;
+      color: var(--color-text);
+    }
+
+    /* Aside */
+
+    .lesson-aside {
+      display: grid;
+      gap: 14px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .aside-card {
+      padding: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .aside-card h3 {
+      margin: 0 0 11px;
+      font-size: 1rem;
+    }
+
+    .aside-card p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+      line-height: 1.65;
+    }
+
+    .lesson-nav {
+      display: grid;
+      gap: 7px;
+    }
+
+    .lesson-nav a {
+      display: block;
+      padding: 8px 0;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+
+    .lesson-nav a:hover {
+      color: var(--physics-accent);
+    }
+
+    /* Bottom navigation */
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 45px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-bottom a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      color: var(--physics-accent);
+    }
+
+    @media (max-width: 800px) {
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .lesson-hero {
+        padding-top: 35px;
+      }
+
+      .lesson-layout {
+        padding-top: 32px;
+      }
+
+      .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../../index.html">
+        Your Answer
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Toggle colour theme"
+      >
+        Theme
+      </button>
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="gravitation-page">
+
+    <section class="lesson-hero">
+      <div class="container">
+
+        <p class="lesson-eyebrow">
+          Physics / 02
+        </p>
+
+        <h1>Gravitation</h1>
+
+        <p class="lesson-intro">
+          Gravity is one of the fundamental interactions of nature.
+          It connects falling objects on Earth with the motion of planets,
+          moons, satellites, and stars.
+        </p>
+
+      </div>
+    </section>
+
+
+    <div class="container">
+
+      <div class="lesson-layout">
+
+        <article class="lesson-main">
+
+          <!-- INTRODUCTION -->
+
+          <section class="lesson-section" id="introduction">
+
+            <h2>What is gravitation?</h2>
+
+            <p>
+              Gravitation is the attractive interaction between objects
+              that have mass. Every object with mass produces a gravitational
+              influence, although that influence becomes especially noticeable
+              when at least one of the objects is very massive.
+            </p>
+
+            <p>
+              Newton's description of gravity explains many everyday and
+              astronomical phenomena. Later, Einstein's general theory of
+              relativity provided a deeper description in terms of spacetime.
+            </p>
+
+          </section>
+
+
+          <!-- NEWTON'S LAW -->
+
+          <section class="lesson-section" id="newton">
+
+            <h2>Newton's law of universal gravitation</h2>
+
+            <p>
+              Newton proposed that every pair of masses attracts each other.
+              The strength of this gravitational force depends on the masses
+              and decreases with the square of the distance between their
+              centres.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Universal gravitation
+              </span>
+
+              <p class="formula">
+                F = Gm₁m₂ / r²
+              </p>
+
+              <p class="formula-note">
+                G is the universal gravitational constant, m₁ and m₂ are
+                the two masses, and r is the distance between their centres.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- GRAVITATIONAL FIELD -->
+
+          <section class="lesson-section" id="field">
+
+            <h2>Gravitational field</h2>
+
+            <p>
+              A gravitational field describes the gravitational influence
+              surrounding a mass. Instead of thinking only about a force
+              between two objects, we can describe the region around a mass
+              as a field.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Field strength
+              </span>
+
+              <p class="formula">
+                g = F / m
+              </p>
+
+              <p class="formula-note">
+                Gravitational field strength is the force experienced per
+                unit mass.
+              </p>
+
+            </div>
+
+
+            <p>
+              Near the surface of Earth, the magnitude of the gravitational
+              field is approximately 9.8 m/s², although the exact value varies
+              slightly with location and altitude.
+            </p>
+
+          </section>
+
+
+          <!-- WEIGHT -->
+
+          <section class="lesson-section" id="weight">
+
+            <h2>Mass and weight</h2>
+
+            <p>
+              Mass and weight describe different physical quantities.
+              Mass measures an object's inertia and does not depend on the
+              local gravitational field. Weight is the gravitational force
+              acting on that mass.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Weight
+              </span>
+
+              <p class="formula">
+                W = mg
+              </p>
+
+              <p class="formula-note">
+                Here, g represents the local gravitational field strength.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- POTENTIAL -->
+
+          <section class="lesson-section" id="potential">
+
+            <h2>Gravitational potential energy</h2>
+
+            <p>
+              An object's position within a gravitational field can be
+              associated with gravitational potential energy. Near Earth's
+              surface, the familiar expression depends on mass, gravitational
+              field strength, and height.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Near Earth's surface
+              </span>
+
+              <p class="formula">
+                U = mgh
+              </p>
+
+              <p class="formula-note">
+                The zero level for potential energy is chosen according to
+                the physical situation.
+              </p>
+
+            </div>
+
+            <p>
+              For large distances from a spherical mass, the gravitational
+              potential energy is more generally written relative to a
+              reference at infinity.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                General gravitational potential energy
+              </span>
+
+              <p class="formula">
+                U = −GMm / r
+              </p>
+
+              <p class="formula-note">
+                This expression assumes a spherically symmetric central mass
+                M and a smaller mass m at distance r.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- ORBITS -->
+
+          <section class="lesson-section" id="orbits">
+
+            <h2>Orbital motion</h2>
+
+            <p>
+              An orbit occurs when an object continuously falls toward a
+              massive body while also moving sideways. Its trajectory can
+              therefore curve around the central body instead of reaching
+              its surface.
+            </p>
+
+            <p>
+              Circular orbits provide a useful simplified model. In such an
+              orbit, gravitational force supplies the centripetal force
+              required to keep the object moving in a circle.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Circular orbital speed
+              </span>
+
+              <p class="formula">
+                v = √(GM / r)
+              </p>
+
+              <p class="formula-note">
+                For a circular orbit around a spherical central mass M.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- ESCAPE VELOCITY -->
+
+          <section class="lesson-section" id="escape">
+
+            <h2>Escape velocity</h2>
+
+            <p>
+              Escape velocity is the minimum initial speed required for an
+              object to escape the gravitational influence of a body when
+              atmospheric resistance and other complications are ignored.
+            </p>
+
+            <div class="formula-card">
+
+              <span class="formula-label">
+                Escape velocity
+              </span>
+
+              <p class="formula">
+                vₑ = √(2GM / r)
+              </p>
+
+              <p class="formula-note">
+                The expression applies to an object escaping from distance
+                r from the centre of a spherical mass M.
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- KEPLER -->
+
+          <section class="lesson-section" id="kepler">
+
+            <h2>Kepler's laws</h2>
+
+            <p>
+              Before Newton developed his theory of gravitation, Johannes
+              Kepler identified important patterns in planetary motion from
+              astronomical observations.
+            </p>
+
+            <div class="concept-list">
+
+              <div class="concept-item">
+                <strong>First law</strong>
+                <span>
+                  Planets follow elliptical orbits with the Sun at one focus.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Second law</strong>
+                <span>
+                  A line joining a planet to the Sun sweeps out equal areas
+                  in equal times.
+                </span>
+              </div>
+
+              <div class="concept-item">
+                <strong>Third law</strong>
+                <span>
+                  The square of a planet's orbital period is proportional
+                  to the cube of the semi-major axis of its orbit.
+                </span>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- EXAMPLE -->
+
+          <section class="lesson-section" id="example">
+
+            <h2>Quick example</h2>
+
+            <div class="example-card">
+
+              <span class="example-label">
+                Apply the idea
+              </span>
+
+              <p>
+                An object has a mass of 5 kg near Earth's surface.
+                Taking g ≈ 9.8 m/s², what is its weight?
+              </p>
+
+              <p>
+                Using:
+              </p>
+
+              <p class="formula">
+                W = mg
+              </p>
+
+              <p class="formula">
+                W = 5 × 9.8
+              </p>
+
+              <div class="example-answer">
+                <strong>Answer:</strong>
+                The object's weight is approximately 49 N.
+              </div>
+
+            </div>
+
+          </section>
+
+        </article>
+
+
+        <!-- ASIDE -->
+
+        <aside class="lesson-aside">
+
+          <div class="aside-card">
+
+            <h3>In this lesson</h3>
+
+            <nav class="lesson-nav">
+              <a href="#introduction">Introduction</a>
+              <a href="#newton">Universal gravitation</a>
+              <a href="#field">Gravitational field</a>
+              <a href="#weight">Mass &amp; weight</a>
+              <a href="#potential">Potential energy</a>
+              <a href="#orbits">Orbital motion</a>
+              <a href="#escape">Escape velocity</a>
+              <a href="#kepler">Kepler's laws</a>
+              <a href="#example">Quick example</a>
+            </nav>
+
+          </div>
+
+
+          <div class="aside-card">
+
+            <h3>Remember</h3>
+
+            <p>
+              Gravity is always attractive in Newtonian mechanics.
+              Its strength depends on mass and decreases with the square
+              of the distance between the objects.
+            </p>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+
+      <!-- BOTTOM NAVIGATION -->
+
+      <nav class="lesson-bottom" aria-label="Lesson navigation">
+
+        <a href="mechanics.html">
+          ← Mechanics
+        </a>
+
+        <a href="matter-fluids.html">
+          Next: Matter &amp; Fluids →
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+</html>

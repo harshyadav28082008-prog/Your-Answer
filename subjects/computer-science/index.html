@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore computer science through programming, algorithms, data structures, databases, networks, operating systems, and artificial intelligence.">
+  <title>Computer Science | Your Answer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <style>
+    .subject-hero {
+      padding: 52px 0 36px;
+    }
+
+    .subject-eyebrow {
+      color: var(--color-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .subject-hero h1 {
+      margin: 12px 0;
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .subject-description {
+      max-width: 680px;
+      color: var(--color-text-muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .subject-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .subject-meta span {
+      padding: 7px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+    }
+
+    .cs-section {
+      padding: 20px 0 48px;
+    }
+
+    .cs-section-heading {
+      margin-bottom: 22px;
+    }
+
+    .cs-section-heading h2 {
+      margin-bottom: 8px;
+    }
+
+    .cs-section-heading p {
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .cs-topic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .cs-topic-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      min-width: 0;
+      padding: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      text-decoration: none;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .cs-topic-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-brand);
+    }
+
+    .cs-topic-number {
+      display: grid;
+      flex: 0 0 42px;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--color-border);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .cs-topic-content {
+      min-width: 0;
+    }
+
+    .cs-topic-content h3 {
+      margin: 2px 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .cs-topic-content p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .cs-topic-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--color-brand);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .cs-resource {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 26px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+      text-decoration: none;
+      color: var(--color-text);
+    }
+
+    .cs-resource h3 {
+      margin: 0 0 8px;
+    }
+
+    .cs-resource p {
+      margin: 0;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    .cs-resource-icon {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .subject-hero {
+        padding-top: 34px;
+      }
+
+      .cs-topic-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-topic-card {
+        padding: 18px;
+      }
+
+      .cs-resource {
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cs-topic-card {
+        transition: none;
+      }
+
+      .cs-topic-card:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../index.html">Your Answer</a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../index.html">Subjects</a>
+        <a href="../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../labs/index.html">Labs</a>
+      </nav>
+
+      <button type="button" data-theme-toggle
+        aria-label="Toggle colour theme">Theme</button>
+
+      <button type="button" data-menu-toggle
+        aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../index.html">Subjects</a>
+      <a href="../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="subject-hero">
+      <div class="subject-eyebrow">Your Answer · Subject 04</div>
+      <h1>Computer Science</h1>
+      <p class="subject-description">
+        Understand the ideas behind modern computing. Explore how computers
+        represent information, how programs solve problems, how data is
+        organised, and how networks and intelligent systems work.
+      </p>
+
+      <div class="subject-meta">
+        <span>10 learning topics</span>
+        <span>Theory + practical examples</span>
+        <span>Beginner friendly</span>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="cs-section-heading">
+        <h2>Explore the subject</h2>
+        <p>
+          Start with the fundamentals and gradually move towards programming,
+          systems, data, networks, and artificial intelligence.
+        </p>
+      </div>
+
+      <div class="cs-topic-grid">
+        <a class="cs-topic-card" href="topics/introduction.html">
+          <span class="cs-topic-number">01</span>
+          <div class="cs-topic-content">
+            <h3>Introduction to Computer Science</h3>
+            <p>Computers, hardware, software, data, and the basic computing process.</p>
+            <span class="cs-topic-link">Explore topic →</span>
+          </div>
+        </a>
+
+        <a class="cs-topic-card" href="topics/number-systems.html">
+          <span class="cs-topic-number">02</span>
+          <div class="cs-topic-content">
+            <h3>Number Systems and Data Representation</h3>
+            <p>Binary, decimal, octal, hexadecimal, bits, bytes, and encoding.</p>
+            <span class="cs-topic-link">Explore topic →</span>
+          </div>
+        </a>
+
+        <a class="cs-topic-card" href="topics/programming-fundamentals.html">
+          <span class="cs-topic-number">03</span>
+          <div class="cs-topic-content">
+            <h3>Programming Fundamentals</h3>
+            <p>Variables, data types, operators, conditions, loops, and input/output.</p>
+            <span class="cs-topic-link">Explore topic →</span>
+          </div>
+        </a>
+
+        <a class="cs-topic-card" href="topics/algorithms-flowcharts.html">
+          <span class="cs-topic-number">04</span>
+          <div class="cs-topic-content">
+            <h3>Algorithms and Flowcharts</h3>
+            <p>Plan solutions using pseudocode, flowcharts, and logical steps.</p>
+            <span class="cs-topic-link">Explore topic →</span>
+          </div>
+        </a>
+
+        <a class="cs-topic-card" href="topics/data-structures.html">
+          <span class="cs-topic-number">05</span>
+          <div class="cs-topic-content">
+            <h3>Data Structures</h3>
+            <p>Arrays, strings, stacks, queues, linked lists, trees, and graphs.</p>
+            <span class="cs-topic-link">Explore topic →</span>
+          </div>
+        </a>
+
+        <a class="cs-topic-card" href="topics/databases-sql.html">
+          <span class="cs-topic-number">06</span>
+          <div class="cs-topic-content">
+            <h3>Databases and SQL</h3>
+            <p>Tables, keys, relationships, queries, joins, and database design.</p>
+            <span class="cs-topic-link">Explore topic →</span>
+          </div>
+        </a>
+
+        <a class="cs-topic-card" href="topics/computer-networks.html">
+          <span class="cs-topic-number">07</span>
+          <div class="cs-topic-content">
+            <h3>Computer Networks and the Internet</h3>
+            <p>IP addresses, DNS, HTTP, network types, protocols, and routing.</p>
+            <span class="cs-topic-link">Explore topic →</span>
+          </div>
+        </a>
+
+        <a class="cs-topic-card" href="topics/operating-systems.html">
+          <span class="cs-topic-number">08</span>
+          <div class="cs-topic-content">
+            <h3>Operating Systems</h3>
+            <p>Processes, memory, files, scheduling, and system resources.</p>
+            <span class="cs-topic-link">Explore topic →</span>
+          </div>
+        </a>
+
+        <a class="cs-topic-card" href="topics/cybersecurity.html">
+          <span class="cs-topic-number">09</span>
+          <div class="cs-topic-content">
+            <h3>Cybersecurity and Digital Safety</h3>
+            <p>Authentication, encryption basics, malware, privacy, and secure computing.</p>
+            <span class="cs-topic-link">Explore topic →</span>
+          </div>
+        </a>
+
+        <a class="cs-topic-card" href="topics/ai-fundamentals.html">
+          <span class="cs-topic-number">10</span>
+          <div class="cs-topic-content">
+            <h3>Artificial Intelligence Fundamentals</h3>
+            <p>Machine learning, neural networks, training data, and AI limitations.</p>
+            <span class="cs-topic-link">Explore topic →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="cs-section">
+      <div class="cs-section-heading">
+        <h2>Quick reference</h2>
+        <p>Keep important concepts, number conversions, and algorithm notation handy.</p>
+      </div>
+
+      <a class="cs-resource" href="topics/reference-sheet.html">
+        <div>
+          <h3>Computer Science Reference Sheet</h3>
+          <p>A compact collection of useful definitions, conversions, and complexity notation.</p>
+          <span class="cs-topic-link">Open reference sheet →</span>
+        </div>
+        <span class="cs-resource-icon" aria-hidden="true">⌘</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="container" style="padding: 24px 0; color: var(--color-text-muted);">
+    <p>Learn something new. Understand it deeply. — Your Answer</p>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

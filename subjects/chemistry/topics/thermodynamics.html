@@ -1,0 +1,767 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn chemical thermodynamics, heat, work, internal energy, enthalpy, calorimetry, and Hess's law.">
+  <title>Thermodynamics | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .chemistry-lesson {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    .lesson-breadcrumb {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .lesson-breadcrumb a,
+    .lesson-section a {
+      color: var(--color-brand);
+    }
+
+    .lesson-hero {
+      padding: 34px;
+      border: 1px solid var(--color-border);
+      border-radius: 22px;
+      background: var(--color-surface);
+      margin-bottom: 28px;
+    }
+
+    .lesson-number {
+      color: var(--color-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.12;
+      margin: 12px 0;
+    }
+
+    .lesson-hero p,
+    .lesson-section p,
+    .lesson-section li {
+      line-height: 1.75;
+      color: var(--color-text-muted);
+    }
+
+    .lesson-hero p {
+      max-width: 720px;
+      font-size: 1.05rem;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      padding: 26px 0;
+      border-bottom: 1px solid var(--color-border);
+      scroll-margin-top: 24px;
+    }
+
+    .lesson-section:first-child {
+      padding-top: 0;
+    }
+
+    .lesson-section h2 {
+      font-size: 1.55rem;
+      margin: 0 0 14px;
+    }
+
+    .lesson-section h3 {
+      font-size: 1.12rem;
+      margin: 22px 0 8px;
+    }
+
+    .lesson-section ul,
+    .lesson-section ol {
+      padding-left: 22px;
+    }
+
+    .concept-grid,
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .concept-card,
+    .formula-card,
+    .lesson-aside-card {
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .concept-card h3,
+    .formula-card h3 {
+      margin-top: 0;
+    }
+
+    .formula-card .formula {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin: 10px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .formula-card p,
+    .concept-card p,
+    .lesson-aside-card p {
+      margin-bottom: 0;
+      font-size: 0.94rem;
+    }
+
+    .note-box {
+      border-left: 4px solid var(--color-brand);
+      padding: 15px 18px;
+      background: var(--color-surface);
+      border-radius: 0 12px 12px 0;
+      margin: 18px 0;
+    }
+
+    .note-box p {
+      margin: 0;
+    }
+
+    .lesson-aside {
+      position: sticky;
+      top: 20px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .lesson-aside-card h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .lesson-aside-card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .lesson-aside-card li {
+      margin: 9px 0;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .lesson-aside-card a {
+      color: var(--color-brand);
+      text-decoration: none;
+    }
+
+    .lesson-aside-card a:hover {
+      text-decoration: underline;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 0.93rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid var(--color-border);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .comparison-table th {
+      color: var(--color-text);
+      background: var(--color-surface);
+    }
+
+    .comparison-table td {
+      color: var(--color-text-muted);
+    }
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 28px;
+    }
+
+    .lesson-bottom a {
+      display: inline-block;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      border-color: var(--color-brand);
+    }
+
+    @media (max-width: 800px) {
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        grid-row: 1;
+      }
+
+      .lesson-aside-card.contents-card {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .chemistry-lesson {
+        padding: 22px 15px 44px;
+      }
+
+      .lesson-hero {
+        padding: 24px 20px;
+      }
+
+      .concept-grid,
+      .formula-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-table {
+        font-size: 0.82rem;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">
+        Theme
+      </button>
+
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">
+        Menu
+      </button>
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="chemistry-lesson">
+    <div class="lesson-breadcrumb">
+      <a href="../../index.html">Subjects</a> /
+      <a href="../index.html">Chemistry</a> /
+      Thermodynamics
+    </div>
+
+    <section class="lesson-hero">
+      <div class="lesson-number">Chemistry · Topic 06</div>
+      <h1>Thermodynamics</h1>
+      <p>
+        Every chemical reaction involves energy changes. Thermodynamics helps
+        us understand how heat and work move between a system and its
+        surroundings, and how to calculate the energy absorbed or released
+        during physical and chemical processes.
+      </p>
+    </section>
+
+    <div class="lesson-layout">
+      <article class="lesson-main">
+
+        <section class="lesson-section" id="foundations">
+          <h2>1. What is thermodynamics?</h2>
+          <p>
+            Thermodynamics studies energy, heat, work, temperature and their
+            relationships. In chemistry, it is especially useful for analysing
+            reactions, phase changes and energy transfer.
+          </p>
+
+          <div class="concept-grid">
+            <div class="concept-card">
+              <h3>System</h3>
+              <p>
+                The part of the universe being studied, such as the chemicals
+                reacting inside a flask.
+              </p>
+            </div>
+
+            <div class="concept-card">
+              <h3>Surroundings</h3>
+              <p>
+                Everything outside the system that may exchange energy or
+                matter with it.
+              </p>
+            </div>
+
+            <div class="concept-card">
+              <h3>Boundary</h3>
+              <p>
+                The real or imaginary surface separating the system from its
+                surroundings.
+              </p>
+            </div>
+
+            <div class="concept-card">
+              <h3>State variables</h3>
+              <p>
+                Properties such as pressure, volume, temperature and internal
+                energy that describe the state of a system.
+              </p>
+            </div>
+          </div>
+
+          <h3>Types of systems</h3>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>System</th>
+                <th>Matter exchange</th>
+                <th>Energy exchange</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Open</td>
+                <td>Yes</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Closed</td>
+                <td>No</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Isolated</td>
+                <td>No</td>
+                <td>No</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="lesson-section" id="heat-work">
+          <h2>2. Heat and work</h2>
+          <p>
+            Heat and work are two ways energy can be transferred across a
+            system's boundary. They are not properties stored in a system;
+            instead, they describe energy transfer during a process.
+          </p>
+
+          <div class="concept-grid">
+            <div class="concept-card">
+              <h3>Heat (q)</h3>
+              <p>
+                Energy transferred because of a temperature difference.
+                Heat flows spontaneously from a hotter body to a colder one.
+              </p>
+            </div>
+
+            <div class="concept-card">
+              <h3>Work (w)</h3>
+              <p>
+                Energy transferred when a force acts through a displacement
+                or through another organised process, such as electrical work.
+              </p>
+            </div>
+          </div>
+
+          <h3>Sign convention used here</h3>
+          <ul>
+            <li><strong>q &gt; 0:</strong> heat enters the system.</li>
+            <li><strong>q &lt; 0:</strong> heat leaves the system.</li>
+            <li><strong>w &gt; 0:</strong> work is done on the system.</li>
+            <li><strong>w &lt; 0:</strong> work is done by the system.</li>
+          </ul>
+
+          <div class="note-box">
+            <p>
+              <strong>Important:</strong> Some textbooks use a different
+              convention for work. Always check the convention before
+              applying an equation. The following lessons use the chemistry
+              convention, where ΔU = q + w.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="internal-energy">
+          <h2>3. Internal energy and the first law</h2>
+          <p>
+            Internal energy, U, is the total microscopic energy of a system,
+            including contributions from particle motion and interactions.
+            The change in internal energy depends on the initial and final
+            states.
+          </p>
+
+          <div class="formula-card">
+            <h3>First law of thermodynamics</h3>
+            <div class="formula">ΔU = q + w</div>
+            <p>
+              The change in internal energy equals heat supplied to the system
+              plus work done on the system.
+            </p>
+          </div>
+
+          <h3>Example</h3>
+          <p>
+            Suppose a system absorbs 500 J of heat and does 200 J of work on
+            its surroundings.
+          </p>
+          <ol>
+            <li>Heat absorbed: q = +500 J.</li>
+            <li>Work done by the system: w = −200 J.</li>
+            <li>Change in internal energy: ΔU = 500 + (−200) = +300 J.</li>
+          </ol>
+          <p>
+            The internal energy increases by 300 J.
+          </p>
+
+          <h3>Pressure-volume work</h3>
+          <div class="formula-card">
+            <div class="formula">w = −Pₑₓₜ ΔV</div>
+            <p>
+              For expansion or compression against a constant external
+              pressure, Pₑₓₜ is the external pressure and ΔV = V₂ − V₁.
+              Use compatible units.
+            </p>
+          </div>
+
+          <ul>
+            <li>Expansion: ΔV is positive, so w is negative.</li>
+            <li>Compression: ΔV is negative, so w is positive.</li>
+            <li>At constant volume, pressure-volume work is zero.</li>
+          </ul>
+        </section>
+
+        <section class="lesson-section" id="enthalpy">
+          <h2>4. Enthalpy and heat of reaction</h2>
+          <p>
+            Enthalpy, H, is a thermodynamic state function defined as internal
+            energy plus pressure multiplied by volume.
+          </p>
+
+          <div class="formula-card">
+            <div class="formula">H = U + PV</div>
+            <div class="formula">ΔH = ΔU + Δ(PV)</div>
+            <p>
+              At constant pressure, when only pressure-volume work is involved,
+              the heat exchanged is equal to the enthalpy change:
+              qₚ = ΔH.
+            </p>
+          </div>
+
+          <h3>Exothermic and endothermic reactions</h3>
+          <div class="concept-grid">
+            <div class="concept-card">
+              <h3>Exothermic</h3>
+              <p>
+                Releases heat to the surroundings. At constant pressure,
+                ΔH is negative.
+              </p>
+            </div>
+
+            <div class="concept-card">
+              <h3>Endothermic</h3>
+              <p>
+                Absorbs heat from the surroundings. At constant pressure,
+                ΔH is positive.
+              </p>
+            </div>
+          </div>
+
+          <h3>Enthalpy change for gaseous reactions</h3>
+          <div class="formula-card">
+            <div class="formula">ΔH = ΔU + Δn(g)RT</div>
+            <p>
+              For an ideal-gas reaction at the same temperature,
+              Δn(g) is the total stoichiometric amount of gaseous products
+              minus that of gaseous reactants. This relation assumes the
+              usual ideal-gas treatment.
+            </p>
+          </div>
+
+          <div class="note-box">
+            <p>
+              <strong>Watch the sign:</strong> A negative ΔH indicates an
+              exothermic reaction under the stated conditions; a positive
+              ΔH indicates an endothermic reaction.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="calorimetry">
+          <h2>5. Calorimetry and heat capacity</h2>
+          <p>
+            Calorimetry measures heat transferred during a physical or chemical
+            process. In a simple temperature-change calculation, heat depends
+            on mass, specific heat capacity and temperature change.
+          </p>
+
+          <div class="formula-card">
+            <h3>Heat from a temperature change</h3>
+            <div class="formula">q = mcΔT</div>
+            <ul>
+              <li><strong>q</strong> = heat transferred</li>
+              <li><strong>m</strong> = mass</li>
+              <li><strong>c</strong> = specific heat capacity</li>
+              <li><strong>ΔT</strong> = T₂ − T₁</li>
+            </ul>
+          </div>
+
+          <h3>Worked example</h3>
+          <p>
+            A 100 g sample of water warms from 20°C to 25°C. Take the specific
+            heat capacity of water as 4.18 J g⁻¹ °C⁻¹.
+          </p>
+          <ol>
+            <li>Mass: m = 100 g.</li>
+            <li>Temperature change: ΔT = 25 − 20 = 5°C.</li>
+            <li>Heat absorbed: q = 100 × 4.18 × 5 = 2090 J.</li>
+          </ol>
+          <p>
+            The water absorbs approximately 2.09 kJ of heat.
+          </p>
+
+          <h3>Heat capacity</h3>
+          <div class="formula-card">
+            <div class="formula">C = q / ΔT</div>
+            <p>
+              Heat capacity is the heat required to raise the temperature of
+              an entire object or system by one degree. Unlike specific heat
+              capacity, it depends on the amount of material.
+            </p>
+          </div>
+
+          <div class="note-box">
+            <p>
+              In an ideal insulated calorimeter, heat lost by one part equals
+              heat gained by the other. Real experiments may also need to
+              account for heat absorbed by the calorimeter and heat exchanged
+              with the surroundings.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="hess-law">
+          <h2>6. Hess's law</h2>
+          <p>
+            Hess's law states that the total enthalpy change for a reaction
+            depends only on the initial and final states, not on the pathway
+            taken. This works because enthalpy is a state function.
+          </p>
+
+          <div class="formula-card">
+            <div class="formula">ΔH(overall) = Σ ΔH(steps)</div>
+            <p>
+              If a reaction can be represented as a series of reactions,
+              their enthalpy changes can be added to find the overall change.
+            </p>
+          </div>
+
+          <h3>Rules for using Hess's law</h3>
+          <ul>
+            <li>Reverse a reaction and its enthalpy change changes sign.</li>
+            <li>Multiply a reaction equation by a factor and multiply its ΔH by the same factor.</li>
+            <li>Add reaction equations and cancel species that appear on both sides.</li>
+            <li>Add the adjusted enthalpy changes to obtain the overall ΔH.</li>
+          </ul>
+
+          <h3>Using standard enthalpies of formation</h3>
+          <div class="formula-card">
+            <div class="formula">
+              ΔH°reaction = ΣνΔH°f(products) − ΣνΔH°f(reactants)
+            </div>
+            <p>
+              Here, ν represents each species' stoichiometric coefficient.
+              Standard enthalpies of formation must be multiplied by their
+              coefficients before the sums are calculated.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="entropy">
+          <h2>7. Entropy and spontaneity</h2>
+          <p>
+            Entropy, S, is a state function related to how energy and matter
+            can be distributed among the possible microscopic arrangements
+            of a system. It helps explain why some processes occur
+            spontaneously under particular conditions.
+          </p>
+
+          <div class="concept-grid">
+            <div class="concept-card">
+              <h3>Entropy change</h3>
+              <p>
+                Entropy often increases when a substance becomes more dispersed,
+                such as when a liquid evaporates or a gas expands. The exact
+                change depends on the process.
+              </p>
+            </div>
+
+            <div class="concept-card">
+              <h3>Second law</h3>
+              <p>
+                For a spontaneous process, the total entropy change of the
+                system and surroundings is positive. For a reversible process,
+                the total entropy change is zero.
+              </p>
+            </div>
+          </div>
+
+          <h3>Gibbs free energy</h3>
+          <div class="formula-card">
+            <div class="formula">ΔG = ΔH − TΔS</div>
+            <p>
+              At constant temperature and pressure, Gibbs free energy helps
+              assess spontaneity when the relevant conditions are specified.
+              Use absolute temperature in kelvin and consistent units.
+            </p>
+          </div>
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Gibbs free-energy change</th>
+                <th>Interpretation at constant T and P</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ΔG &lt; 0</td>
+                <td>Forward process is thermodynamically spontaneous.</td>
+              </tr>
+              <tr>
+                <td>ΔG &gt; 0</td>
+                <td>Forward process is non-spontaneous under those conditions.</td>
+              </tr>
+              <tr>
+                <td>ΔG = 0</td>
+                <td>System is at equilibrium.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note-box">
+            <p>
+              <strong>Spontaneous does not mean fast.</strong> Thermodynamics
+              indicates whether a process is energetically favourable under
+              specified conditions; kinetics describes how quickly it occurs.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="summary">
+          <h2>8. Key ideas to remember</h2>
+          <ul>
+            <li>A system is the part being studied; everything else is its surroundings.</li>
+            <li>Heat and work describe energy transfer across the system boundary.</li>
+            <li>Using the chemistry sign convention, ΔU = q + w.</li>
+            <li>At constant pressure with only pressure-volume work, qₚ = ΔH.</li>
+            <li>Use q = mcΔT for simple temperature-change calculations.</li>
+            <li>Hess's law follows from enthalpy being a state function.</li>
+            <li>Entropy and Gibbs free energy help analyse spontaneity and equilibrium.</li>
+            <li>A spontaneous reaction is not necessarily a fast reaction.</li>
+          </ul>
+        </section>
+
+        <div class="lesson-bottom">
+          <a href="states-of-matter.html">← Previous: States of Matter</a>
+          <a href="chemical-equilibrium.html">Next: Chemical Equilibrium →</a>
+        </div>
+      </article>
+
+      <aside class="lesson-aside">
+        <div class="lesson-aside-card contents-card">
+          <h3>On this page</h3>
+          <ul>
+            <li><a href="#foundations">Thermodynamics basics</a></li>
+            <li><a href="#heat-work">Heat and work</a></li>
+            <li><a href="#internal-energy">Internal energy</a></li>
+            <li><a href="#enthalpy">Enthalpy</a></li>
+            <li><a href="#calorimetry">Calorimetry</a></li>
+            <li><a href="#hess-law">Hess's law</a></li>
+            <li><a href="#entropy">Entropy and spontaneity</a></li>
+            <li><a href="#summary">Key ideas</a></li>
+          </ul>
+        </div>
+
+        <div class="lesson-aside-card">
+          <h3>Study tip</h3>
+          <p>
+            Before substituting values, write down the sign of heat and work.
+            A correct equation with an incorrect sign can still produce the
+            wrong answer.
+          </p>
+        </div>
+
+        <div class="lesson-aside-card">
+          <h3>Chemistry topics</h3>
+          <ul>
+            <li><a href="../index.html">Chemistry overview</a></li>
+            <li><a href="basic-concepts.html">Basic Concepts</a></li>
+            <li><a href="atomic-structure.html">Atomic Structure</a></li>
+            <li><a href="periodicity.html">Periodicity</a></li>
+            <li><a href="chemical-bonding.html">Chemical Bonding</a></li>
+            <li><a href="states-of-matter.html">States of Matter</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Learn concepts. Understand connections. Keep asking why.</p>
+      <p><a href="../../../index.html">Your Answer</a> · Chemistry</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

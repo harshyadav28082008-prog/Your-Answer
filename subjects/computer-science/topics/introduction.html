@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn computer science fundamentals, hardware, software, data, algorithms, and the basic working of a computer.">
+  <title>Introduction to Computer Science | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .lesson { max-width: 900px; margin: auto; padding-bottom: 56px; }
+    .lesson-hero { padding: 42px 0 30px; }
+    .eyebrow { color: var(--color-brand); font-size: .82rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .lesson h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; letter-spacing: -.035em; margin: 12px 0; }
+    .muted { color: var(--color-text-muted); line-height: 1.8; }
+    .lesson-section { margin: 30px 0; }
+    .lesson-section h2 { font-size: 1.55rem; margin-bottom: 12px; }
+    .lesson-section h3 { font-size: 1.12rem; margin: 20px 0 8px; }
+    .lesson-section p, .lesson-section li { line-height: 1.8; }
+    .lesson-section li { margin: 5px 0; }
+    .concept-card, .example-card, .key-card, .check-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+    .concept-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .concept-card h3 { margin-top: 0; }
+    .process { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 18px 0; }
+    .process-step { border: 1px solid var(--color-border); border-radius: 12px; padding: 14px 8px; text-align: center; background: var(--color-surface); }
+    .process-step strong { display: block; margin-bottom: 5px; }
+    .process-step span { color: var(--color-text-muted); font-size: .88rem; }
+    .lesson table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .lesson th, .lesson td { padding: 12px; border: 1px solid var(--color-border); text-align: left; line-height: 1.6; }
+    .lesson th { background: var(--color-surface); }
+    .lesson pre { white-space: pre-wrap; overflow-wrap: anywhere; padding: 16px; border-radius: 12px; background: var(--color-surface); border: 1px solid var(--color-border); line-height: 1.7; }
+    .answer { display: none; margin-top: 12px; padding: 12px; border-radius: 10px; background: var(--color-surface); line-height: 1.7; }
+    .answer.visible { display: block; }
+    .lesson button { cursor: pointer; padding: 9px 14px; border-radius: 9px; border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); }
+    .lesson-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--color-border); padding-top: 22px; margin-top: 38px; }
+    .lesson-nav a { color: var(--color-brand); text-decoration: none; font-weight: 700; }
+    @media (max-width: 620px) {
+      .concept-grid { grid-template-columns: 1fr; }
+      .process { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .lesson th, .lesson td { padding: 9px; font-size: .9rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="container lesson">
+    <section class="lesson-hero">
+      <div class="eyebrow">Computer Science · Topic 01</div>
+      <h1>Introduction to Computer Science</h1>
+      <p class="muted">
+        Discover what computer science studies, how computers process information,
+        and how hardware, software, data, and algorithms work together.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>1. What is Computer Science?</h2>
+      <p>
+        <strong>Computer science</strong> is the study of computation, information,
+        algorithms, and the systems used to process information. It includes
+        programming, data organisation, artificial intelligence, computer
+        networks, security, and much more.
+      </p>
+      <div class="example-card">
+        <strong>Example: A navigation app</strong>
+        <p class="muted">
+          It receives your location and destination, processes map data,
+          calculates possible routes, and presents directions. Computer science
+          helps explain how these steps can be designed efficiently.
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>2. What does a computer do?</h2>
+      <p>
+        A computer accepts input, processes it according to instructions,
+        may store information, and produces output.
+      </p>
+
+      <div class="process" aria-label="Basic computer process">
+        <div class="process-step"><strong>Input</strong><span>Receive data</span></div>
+        <div class="process-step"><strong>Processing</strong><span>Work on data</span></div>
+        <div class="process-step"><strong>Storage</strong><span>Keep data</span></div>
+        <div class="process-step"><strong>Output</strong><span>Present results</span></div>
+      </div>
+
+      <p class="muted">
+        These are functional stages, not always a strict sequence. A computer
+        may store information before, during, or after processing, and some
+        systems continuously receive input and produce output.
+      </p>
+
+      <h3>Example: Adding two numbers</h3>
+      <ol>
+        <li><strong>Input:</strong> You enter 12 and 8.</li>
+        <li><strong>Processing:</strong> The computer calculates 12 + 8.</li>
+        <li><strong>Storage:</strong> The values or result may be held in memory.</li>
+        <li><strong>Output:</strong> The screen displays 20.</li>
+      </ol>
+    </section>
+
+    <section class="lesson-section">
+      <h2>3. Hardware and software</h2>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>Hardware</h3>
+          <p class="muted">The physical components of a computer that can be touched.</p>
+          <ul>
+            <li>CPU</li>
+            <li>RAM and storage drives</li>
+            <li>Keyboard and mouse</li>
+            <li>Monitor and speakers</li>
+          </ul>
+        </div>
+        <div class="concept-card">
+          <h3>Software</h3>
+          <p class="muted">Programs and instructions that tell hardware what tasks to perform.</p>
+          <ul>
+            <li>Operating systems</li>
+            <li>Web browsers</li>
+            <li>Games and editors</li>
+            <li>Programming tools</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>
+        Hardware and software depend on each other. A program provides
+        instructions, while hardware executes those instructions.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Hardware</th><th>Typical role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CPU</td><td>Executes instructions and performs operations.</td></tr>
+          <tr><td>RAM</td><td>Temporarily holds data and instructions in use.</td></tr>
+          <tr><td>SSD or HDD</td><td>Stores files and programs persistently.</td></tr>
+          <tr><td>Input device</td><td>Supplies data or commands.</td></tr>
+          <tr><td>Output device</td><td>Presents information to a user or another system.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="lesson-section">
+      <h2>4. Data and information</h2>
+      <p>
+        <strong>Data</strong> consists of recorded values or observations.
+        <strong>Information</strong> is data interpreted or organised so that
+        it becomes meaningful in a particular context.
+      </p>
+      <div class="example-card">
+        <p><strong>Data:</strong> 68, 72, 75, 85</p>
+        <p><strong>Information:</strong> These are four test scores; their average is 75.</p>
+      </div>
+      <p class="muted">
+        The distinction depends on context: information for one task may become
+        raw data for another.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>5. What is an algorithm?</h2>
+      <p>
+        An <strong>algorithm</strong> is a well-defined sequence of steps for
+        solving a problem or completing a task. Algorithms can be written in
+        ordinary language, pseudocode, flowcharts, or programming languages.
+      </p>
+
+      <h3>Example: Find the larger of two numbers</h3>
+      <pre>START
+  INPUT A, B
+  IF A > B
+    DISPLAY A
+  ELSE IF B > A
+    DISPLAY B
+  ELSE
+    DISPLAY "Both numbers are equal"
+END</pre>
+
+      <p>
+        A good algorithm should have clear instructions and produce the
+        intended result for the inputs it is designed to handle.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>6. Programming languages</h2>
+      <p>
+        Programming languages allow people to express instructions in a form
+        that can be translated or executed by a computer system.
+      </p>
+      <table>
+        <thead>
+          <tr><th>Language</th><th>Common uses</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Python</td><td>Automation, data analysis, AI, education.</td></tr>
+          <tr><td>C</td><td>Systems programming and embedded software.</td></tr>
+          <tr><td>C++</td><td>Games, performance-intensive software, systems.</td></tr>
+          <tr><td>JavaScript</td><td>Interactive websites and web applications.</td></tr>
+          <tr><td>SQL</td><td>Querying and managing relational databases.</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">
+        SQL is a specialised language for working with databases rather than
+        a general-purpose programming language.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>7. Major areas of Computer Science</h2>
+      <ul>
+        <li><strong>Algorithms:</strong> Designing and analysing problem-solving methods.</li>
+        <li><strong>Programming:</strong> Turning solutions into executable instructions.</li>
+        <li><strong>Data structures:</strong> Organising data for effective use.</li>
+        <li><strong>Computer architecture:</strong> Understanding how computer components work together.</li>
+        <li><strong>Operating systems:</strong> Managing hardware and software resources.</li>
+        <li><strong>Networks:</strong> Connecting devices to exchange data.</li>
+        <li><strong>Cybersecurity:</strong> Protecting systems and information.</li>
+        <li><strong>Artificial intelligence:</strong> Building systems that perform tasks associated with intelligent behaviour.</li>
+      </ul>
+    </section>
+
+    <section class="lesson-section">
+      <h2>8. Quick knowledge check</h2>
+      <p class="muted">Try answering each question before revealing the explanation.</p>
+
+      <div class="check-card">
+        <p><strong>Question 1:</strong> Which component executes program instructions?</p>
+        <button type="button" data-answer="answer1" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="answer1">The CPU executes program instructions. It works with memory and other components to carry out tasks.</div>
+      </div>
+
+      <div class="check-card">
+        <p><strong>Question 2:</strong> Is a web browser hardware or software?</p>
+        <button type="button" data-answer="answer2" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="answer2">Software. A web browser is a program used to access and interact with websites.</div>
+      </div>
+
+      <div class="check-card">
+        <p><strong>Question 3:</strong> What is an algorithm?</p>
+        <button type="button" data-answer="answer3" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="answer3">A well-defined sequence of steps designed to solve a problem or complete a task.</div>
+      </div>
+
+      <div class="check-card">
+        <p><strong>Question 4:</strong> What is the difference between RAM and persistent storage?</p>
+        <button type="button" data-answer="answer4" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="answer4">RAM temporarily holds data in use and is volatile; SSDs and HDDs retain stored data when power is off.</div>
+      </div>
+    </section>
+
+    <div class="key-card">
+      <h2>Key takeaways</h2>
+      <ul>
+        <li>Computer science studies computation, information, algorithms, and computing systems.</li>
+        <li>Hardware provides physical components; software provides instructions.</li>
+        <li>Computers process data to perform tasks and produce useful results.</li>
+        <li>Algorithms describe the steps used to solve problems.</li>
+        <li>Programming languages express instructions for computer systems.</li>
+      </ul>
+    </div>
+
+    <nav class="lesson-nav" aria-label="Topic navigation">
+      <a href="../index.html">← All Computer Science topics</a>
+      <a href="number-systems.html">Next: Number Systems →</a>
+    </nav>
+  </main>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll("[data-answer]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const answer = document.getElementById(button.dataset.answer);
+        const isVisible = answer.classList.toggle("visible");
+        button.setAttribute("aria-expanded", String(isVisible));
+        button.textContent = isVisible ? "Hide answer" : "Reveal answer";
+      });
+    });
+  </script>
+</body>
+</html>

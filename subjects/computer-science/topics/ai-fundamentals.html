@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn artificial intelligence, machine learning, neural networks, generative AI, data, and responsible AI.">
+  <title>Artificial Intelligence Fundamentals | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <style>
+    .lesson {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+      color: var(--color-text);
+    }
+
+    .lesson-hero,
+    .lesson section {
+      padding: 25px;
+      margin-bottom: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lesson h1 {
+      margin: 10px 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .lesson h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .lesson h3 {
+      margin-top: 22px;
+    }
+
+    .lesson p,
+    .lesson li {
+      line-height: 1.75;
+    }
+
+    .lesson li {
+      margin-bottom: 7px;
+    }
+
+    .note {
+      padding: 15px 17px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      background: var(--color-border);
+      margin: 18px 0;
+      line-height: 1.7;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 13px;
+      margin-top: 16px;
+    }
+
+    .concept-card {
+      padding: 17px;
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+    }
+
+    .concept-card strong {
+      display: block;
+      color: var(--color-brand);
+      margin-bottom: 8px;
+    }
+
+    .lesson table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    .lesson th,
+    .lesson td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid var(--color-border);
+      line-height: 1.6;
+    }
+
+    .lesson th {
+      background: var(--color-border);
+    }
+
+    .example {
+      padding: 16px;
+      border: 1px dashed var(--color-border);
+      border-radius: 12px;
+      margin: 15px 0;
+      overflow-wrap: anywhere;
+      line-height: 1.75;
+    }
+
+    .example pre {
+      white-space: pre-wrap;
+      font-family: monospace;
+      line-height: 1.8;
+    }
+
+    .answer-button {
+      margin-top: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 9px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 9px;
+      background: var(--color-border);
+      line-height: 1.7;
+    }
+
+    .answer.visible {
+      display: block;
+    }
+
+    .lesson-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .lesson-nav a {
+      color: var(--color-brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .lesson {
+        padding: 22px 14px 45px;
+      }
+
+      .lesson-hero,
+      .lesson section {
+        padding: 19px;
+      }
+
+      .lesson table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="lesson">
+    <div class="lesson-hero">
+      <div class="eyebrow">Computer Science · Topic 10</div>
+      <h1>Artificial Intelligence Fundamentals</h1>
+      <p>
+        Explore how artificial intelligence systems learn from data,
+        recognize patterns, make predictions, generate content, and
+        support decision-making.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. What Is Artificial Intelligence?</h2>
+      <p>
+        <strong>Artificial intelligence (AI)</strong> is a field of computer
+        science concerned with creating systems that perform tasks commonly
+        associated with abilities such as perception, language processing,
+        reasoning, planning, and decision-making.
+      </p>
+
+      <h3>Examples of AI</h3>
+      <ul>
+        <li>Speech recognition and voice assistants.</li>
+        <li>Image recognition and object detection.</li>
+        <li>Recommendations for music, videos, and products.</li>
+        <li>Navigation and route prediction.</li>
+        <li>Language translation and conversational systems.</li>
+        <li>Scientific data analysis and forecasting.</li>
+      </ul>
+
+      <div class="note">
+        AI is a broad field. Not every automated program uses AI, and not
+        every AI system learns from data after it has been deployed.
+      </div>
+    </section>
+
+    <section>
+      <h2>2. AI, Machine Learning, and Deep Learning</h2>
+      <p>
+        These terms are related, but they do not mean exactly the same thing.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <strong>Artificial Intelligence</strong>
+          The broad field of building systems that perform tasks associated
+          with intelligent behaviour.
+        </div>
+        <div class="concept-card">
+          <strong>Machine Learning</strong>
+          A branch of AI in which systems learn patterns from data to make
+          predictions, decisions, or representations.
+        </div>
+        <div class="concept-card">
+          <strong>Deep Learning</strong>
+          A branch of machine learning that uses neural networks with
+          multiple processing layers.
+        </div>
+      </div>
+
+      <div class="example">
+        <pre>Artificial Intelligence
+        |
+        └── Machine Learning
+                 |
+                 └── Deep Learning</pre>
+      </div>
+
+      <p>
+        This diagram shows a common conceptual relationship. AI also includes
+        approaches that do not rely on machine learning, such as rule-based
+        reasoning and some search and planning methods.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. How Does Machine Learning Work?</h2>
+      <p>
+        Machine learning uses data and an algorithm to build a model that
+        can perform a task, such as classifying an image or estimating a value.
+      </p>
+
+      <div class="example">
+        <pre>Collect data
+     |
+     v
+Prepare and inspect data
+     |
+     v
+Choose a model and learning method
+     |
+     v
+Train the model
+     |
+     v
+Evaluate on separate data
+     |
+     v
+Deploy, monitor, and improve</pre>
+      </div>
+
+      <h3>Important terms</h3>
+      <ul>
+        <li><strong>Dataset:</strong> A collection of examples used for analysis or learning.</li>
+        <li><strong>Feature:</strong> An input property used by a model.</li>
+        <li><strong>Label:</strong> The target answer provided for a training example in supervised learning.</li>
+        <li><strong>Model:</strong> A learned or constructed representation used to produce outputs.</li>
+        <li><strong>Training:</strong> The process of adjusting model parameters or structure according to a learning method.</li>
+        <li><strong>Inference:</strong> Using a trained model to produce a prediction or output.</li>
+      </ul>
+
+      <div class="note">
+        A model's output depends on its design, training data, and input.
+        Training does not automatically guarantee that its predictions will be accurate.
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Main Types of Machine Learning</h2>
+
+      <h3>Supervised learning</h3>
+      <p>
+        The model learns from examples containing inputs and known target
+        answers.
+      </p>
+      <div class="example">
+        <strong>Example:</strong> Training a model on labelled pictures
+        of cats and dogs so it can classify new pictures.
+      </div>
+
+      <h3>Unsupervised learning</h3>
+      <p>
+        The model looks for structure or patterns in data without relying
+        on labelled target answers for every example.
+      </p>
+      <div class="example">
+        <strong>Example:</strong> Grouping customers into clusters based
+        on similarities in their activity.
+      </div>
+
+      <h3>Reinforcement learning</h3>
+      <p>
+        An agent learns to choose actions by interacting with an environment
+        and receiving rewards or penalties according to a defined objective.
+      </p>
+      <div class="example">
+        <strong>Example:</strong> Training an agent to play a game by
+        rewarding actions that improve its long-term score.
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Learning signal</th>
+            <th>Example task</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Supervised</td>
+            <td>Known target answers</td>
+            <td>Classifying emails as spam or not spam</td>
+          </tr>
+          <tr>
+            <td>Unsupervised</td>
+            <td>Patterns in data</td>
+            <td>Grouping similar documents</td>
+          </tr>
+          <tr>
+            <td>Reinforcement</td>
+            <td>Rewards from actions</td>
+            <td>Learning a game-playing strategy</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>5. Neural Networks</h2>
+      <p>
+        An <strong>artificial neural network</strong> is a machine-learning
+        model built from connected computational units commonly called
+        neurons. These units combine inputs using adjustable parameters
+        and activation functions.
+      </p>
+
+      <div class="example">
+        <pre>Input layer
+     |
+     v
+Hidden layer(s)
+     |
+     v
+Output layer</pre>
+      </div>
+
+      <h3>Layers in a simple network</h3>
+      <ul>
+        <li><strong>Input layer:</strong> Receives the model's input features.</li>
+        <li><strong>Hidden layers:</strong> Transform information using learned parameters and activation functions.</li>
+        <li><strong>Output layer:</strong> Produces the final prediction or other result.</li>
+      </ul>
+
+      <h3>Training a neural network</h3>
+      <p>
+        During training, the network's predictions are compared with a
+        training objective. An optimization method adjusts its parameters
+        to reduce the chosen loss function.
+      </p>
+      <p>
+        A common training method for neural networks uses backpropagation
+        to calculate gradients and an optimizer to update parameters.
+      </p>
+
+      <div class="note">
+        Neural networks are inspired loosely by biological neurons, but
+        artificial neurons are mathematical computational units, not
+        realistic copies of brain cells.
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Generative AI</h2>
+      <p>
+        <strong>Generative AI</strong> refers to AI systems that produce
+        new content, such as text, images, audio, video, or computer code.
+      </p>
+
+      <h3>Examples of generated content</h3>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <strong>Text</strong>
+          Explanations, summaries, drafts, and dialogue.
+        </div>
+        <div class="concept-card">
+          <strong>Images</strong>
+          Illustrations, concept art, and visual designs.
+        </div>
+        <div class="concept-card">
+          <strong>Audio</strong>
+          Speech, music, and sound effects.
+        </div>
+        <div class="concept-card">
+          <strong>Code</strong>
+          Code suggestions, examples, and explanations.
+        </div>
+      </div>
+
+      <h3>Large language models</h3>
+      <p>
+        A <strong>large language model (LLM)</strong> is trained on large
+        amounts of text and other suitable data to model patterns in
+        language. Many LLMs generate text by predicting likely next tokens
+        based on the context and their learned parameters.
+      </p>
+
+      <p>
+        A token may represent a word, part of a word, punctuation, or another
+        unit of text. Tokens are not always the same as words.
+      </p>
+
+      <div class="note">
+        Fluent language is not proof of factual accuracy. Generative AI
+        can produce incorrect claims, invented references, or misleading
+        explanations, so important information should be checked.
+      </div>
+    </section>
+
+    <section>
+      <h2>7. Algorithms Used in AI</h2>
+      <p>
+        Different problems require different algorithms. No single method
+        is best for every AI task.
+      </p>
+
+      <ul>
+        <li><strong>Linear regression:</strong> Estimates numerical values using a linear relationship between inputs and output.</li>
+        <li><strong>Decision trees:</strong> Make predictions through a sequence of feature-based decisions.</li>
+        <li><strong>K-means clustering:</strong> Groups data into a chosen number of clusters according to distance-based criteria.</li>
+        <li><strong>Nearest neighbours:</strong> Predicts or classifies using similar examples in a dataset.</li>
+        <li><strong>Search algorithms:</strong> Explore possible states or paths to find a solution.</li>
+        <li><strong>Neural networks:</strong> Learn complex patterns through layers of parameterized computations.</li>
+      </ul>
+
+      <div class="note">
+        Choosing an algorithm involves considering the task, amount and
+        quality of data, computational cost, interpretability, and how
+        success will be measured.
+      </div>
+    </section>
+
+    <section>
+      <h2>8. Data Quality and Model Evaluation</h2>
+      <p>
+        The quality of data strongly influences what a model learns.
+        Missing values, incorrect labels, unbalanced examples, and
+        unrepresentative samples can lead to poor results.
+      </p>
+
+      <h3>Training, validation, and test data</h3>
+      <ul>
+        <li><strong>Training set:</strong> Used to fit the model.</li>
+        <li><strong>Validation set:</strong> Helps select models or tune settings.</li>
+        <li><strong>Test set:</strong> Used for a final evaluation on data kept separate from training and model selection.</li>
+      </ul>
+
+      <h3>Overfitting and underfitting</h3>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <strong>Overfitting</strong>
+          The model learns details or noise in the training data and performs
+          poorly on new examples.
+        </div>
+        <div class="concept-card">
+          <strong>Underfitting</strong>
+          The model fails to capture important patterns, performing poorly
+          even on the training task.
+        </div>
+      </div>
+
+      <h3>Common evaluation measures</h3>
+      <ul>
+        <li><strong>Accuracy:</strong> The proportion of predictions that are correct.</li>
+        <li><strong>Precision:</strong> Among predicted positive cases, the proportion that are actually positive.</li>
+        <li><strong>Recall:</strong> Among actual positive cases, the proportion correctly identified.</li>
+        <li><strong>Mean squared error:</strong> The average of squared differences between predicted and actual numerical values.</li>
+      </ul>
+
+      <div class="note">
+        Accuracy alone can be misleading when classes are highly imbalanced.
+        The best evaluation measure depends on the real-world consequences
+        of different kinds of errors.
+      </div>
+    </section>
+
+    <section>
+      <h2>9. AI Applications</h2>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <strong>Healthcare</strong>
+          Supporting image analysis, research, and some clinical workflows
+          under appropriate professional oversight.
+        </div>
+        <div class="concept-card">
+          <strong>Education</strong>
+          Helping create practice material, explanations, and learning support.
+        </div>
+        <div class="concept-card">
+          <strong>Science</strong>
+          Finding patterns in complex datasets and assisting research.
+        </div>
+        <div class="concept-card">
+          <strong>Agriculture</strong>
+          Supporting crop monitoring, plant-disease detection, and resource planning.
+        </div>
+        <div class="concept-card">
+          <strong>Transport</strong>
+          Estimating traffic, planning routes, and assisting driver-support systems.
+        </div>
+        <div class="concept-card">
+          <strong>Accessibility</strong>
+          Supporting speech recognition, captions, translation, and image descriptions.
+        </div>
+      </div>
+
+      <p>
+        AI is most useful when its performance is appropriate for the task
+        and its limitations are understood by the people using it.
+      </p>
+    </section>
+
+    <section>
+      <h2>10. Limitations and Responsible AI</h2>
+      <p>
+        AI systems can be powerful, but they also have limitations.
+        Responsible development includes evaluating their effects on
+        people and society.
+      </p>
+
+      <h3>Important challenges</h3>
+      <ul>
+        <li><strong>Bias:</strong> Data or design choices can produce systematically unfair results.</li>
+        <li><strong>Privacy:</strong> Personal data may be collected, inferred, or exposed inappropriately.</li>
+        <li><strong>Reliability:</strong> A system can make errors, including confident-looking errors.</li>
+        <li><strong>Explainability:</strong> It may be difficult to understand why a complex model produced a particular output.</li>
+        <li><strong>Security:</strong> Systems may be manipulated or exposed to malicious inputs.</li>
+        <li><strong>Resource use:</strong> Training and operating some models can require substantial computing power and energy.</li>
+        <li><strong>Human oversight:</strong> High-impact decisions may require meaningful human review and accountability.</li>
+      </ul>
+
+      <h3>Good practices when using AI</h3>
+      <ul>
+        <li>Verify important claims using reliable sources.</li>
+        <li>Avoid entering confidential or sensitive information into services unless their data practices permit it.</li>
+        <li>Consider who could be unfairly affected by a model's errors.</li>
+        <li>Follow relevant rules for privacy, copyright, and academic integrity.</li>
+        <li>Use qualified human judgment for important medical, legal, financial, or safety decisions.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>11. Knowledge Check</h2>
+      <p>Try answering each question before revealing the answer.</p>
+
+      <div>
+        <p><strong>1. What is the relationship between AI, machine learning, and deep learning?</strong></p>
+        <button class="answer-button" type="button" data-answer="a1" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a1">
+          AI is the broad field, machine learning is one branch of AI, and deep learning is a branch of machine learning that uses neural networks with multiple layers.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>2. What is the difference between supervised and unsupervised learning?</strong></p>
+        <button class="answer-button" type="button" data-answer="a2" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a2">
+          Supervised learning uses examples with known target answers. Unsupervised learning looks for patterns or structure without requiring target labels for every example.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>3. What does a model learn during training?</strong></p>
+        <button class="answer-button" type="button" data-answer="a3" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a3">
+          Depending on the method, it adjusts parameters or constructs a representation that captures useful patterns from the training data.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>4. What is generative AI?</strong></p>
+        <button class="answer-button" type="button" data-answer="a4" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a4">
+          AI that generates content such as text, images, audio, video, or code.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>5. What is overfitting?</strong></p>
+        <button class="answer-button" type="button" data-answer="a5" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a5">
+          When a model fits the training data too closely, including noise or accidental details, and struggles to generalize to new data.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>6. Why should training and test data be kept separate?</strong></p>
+        <button class="answer-button" type="button" data-answer="a6" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a6">
+          A separate test set helps estimate how well the model performs on unseen data, provided it is not repeatedly used to tune the model.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>7. Why should AI-generated information be verified?</strong></p>
+        <button class="answer-button" type="button" data-answer="a7" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a7">
+          AI systems can produce inaccurate or misleading outputs even when the responses sound convincing.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>AI is a broad field focused on systems that perform tasks associated with intelligent behaviour.</li>
+        <li>Machine learning uses data to learn patterns; deep learning uses multilayer neural networks.</li>
+        <li>Supervised, unsupervised, and reinforcement learning use different learning approaches.</li>
+        <li>Generative AI can create text, images, audio, video, and code.</li>
+        <li>Data quality and careful evaluation affect model reliability.</li>
+        <li>Bias, privacy, security, and resource use are important AI challenges.</li>
+        <li>AI should be used thoughtfully, with verification and appropriate human oversight.</li>
+      </ul>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Topic navigation">
+      <a href="cybersecurity.html">← Previous: Cybersecurity</a>
+      <a href="../index.html">Back to Computer Science →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Your Answer — Learn, explore, and understand.</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll("[data-answer]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const answer = document.getElementById(button.dataset.answer);
+        if (!answer) return;
+
+        const isVisible = answer.classList.toggle("visible");
+        button.setAttribute("aria-expanded", String(isVisible));
+        button.textContent = isVisible ? "Hide answer" : "Reveal answer";
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn cybersecurity fundamentals, common threats, encryption, authentication, network security, and safe digital practices.">
+  <title>Cybersecurity and Digital Safety | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <style>
+    .lesson {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+      color: var(--color-text);
+    }
+
+    .lesson-hero,
+    .lesson section {
+      padding: 25px;
+      margin-bottom: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lesson h1 {
+      margin: 10px 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .lesson h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .lesson h3 {
+      margin-top: 22px;
+    }
+
+    .lesson p,
+    .lesson li {
+      line-height: 1.75;
+    }
+
+    .lesson li {
+      margin-bottom: 7px;
+    }
+
+    .note {
+      padding: 15px 17px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      background: var(--color-border);
+      margin: 18px 0;
+      line-height: 1.7;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 13px;
+      margin-top: 16px;
+    }
+
+    .concept-card {
+      padding: 17px;
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+    }
+
+    .concept-card strong {
+      display: block;
+      color: var(--color-brand);
+      margin-bottom: 8px;
+    }
+
+    .lesson table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    .lesson th,
+    .lesson td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid var(--color-border);
+      line-height: 1.6;
+    }
+
+    .lesson th {
+      background: var(--color-border);
+    }
+
+    .example {
+      padding: 16px;
+      border: 1px dashed var(--color-border);
+      border-radius: 12px;
+      margin: 15px 0;
+      overflow-wrap: anywhere;
+      line-height: 1.75;
+    }
+
+    .answer-button {
+      margin-top: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 9px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 9px;
+      background: var(--color-border);
+      line-height: 1.7;
+    }
+
+    .answer.visible {
+      display: block;
+    }
+
+    .lesson-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .lesson-nav a {
+      color: var(--color-brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .lesson {
+        padding: 22px 14px 45px;
+      }
+
+      .lesson-hero,
+      .lesson section {
+        padding: 19px;
+      }
+
+      .lesson table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="lesson">
+    <div class="lesson-hero">
+      <div class="eyebrow">Computer Science · Topic 09</div>
+      <h1>Cybersecurity and Digital Safety</h1>
+      <p>
+        Learn how digital systems protect information, how common cyber threats
+        work, and how to make safer decisions online.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. What Is Cybersecurity?</h2>
+      <p>
+        <strong>Cybersecurity</strong> is the practice of protecting computers,
+        networks, applications, and data from unauthorized access, disruption,
+        damage, or theft.
+      </p>
+      <p>
+        It includes technical measures, organizational policies, and the
+        everyday decisions people make while using digital services.
+      </p>
+
+      <h3>The CIA triad</h3>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <strong>Confidentiality</strong>
+          Information is accessible only to authorized people or systems.
+        </div>
+        <div class="concept-card">
+          <strong>Integrity</strong>
+          Information remains accurate and is changed only in authorized ways.
+        </div>
+        <div class="concept-card">
+          <strong>Availability</strong>
+          Systems and information remain accessible when needed by authorized users.
+        </div>
+      </div>
+
+      <div class="note">
+        Example: A school's student database needs confidentiality to protect
+        private records, integrity to keep grades accurate, and availability
+        so authorized staff can use it.
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Threats, Vulnerabilities, and Risk</h2>
+      <ul>
+        <li><strong>Threat:</strong> Something that could cause harm to a system or its information.</li>
+        <li><strong>Vulnerability:</strong> A weakness that could be exploited.</li>
+        <li><strong>Exploit:</strong> A method or action that takes advantage of a vulnerability.</li>
+        <li><strong>Risk:</strong> The possibility and potential impact of a threat causing harm.</li>
+        <li><strong>Mitigation:</strong> A measure that reduces the likelihood or impact of harm.</li>
+      </ul>
+
+      <div class="example">
+        <strong>Example</strong>
+        <p>
+          An outdated application may contain a known vulnerability.
+          An attacker may attempt to exploit it. Installing the official
+          security update can reduce that risk.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Common Cyber Threats</h2>
+
+      <h3>Malware</h3>
+      <p>
+        <strong>Malware</strong> is software designed to cause harm, misuse
+        resources, or gain unauthorized access.
+      </p>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <strong>Virus</strong>
+          Malware that attaches to files or programs and spreads when its host is run.
+        </div>
+        <div class="concept-card">
+          <strong>Worm</strong>
+          Malware that can spread between systems, often across networks.
+        </div>
+        <div class="concept-card">
+          <strong>Trojan horse</strong>
+          Malicious software disguised as something legitimate or useful.
+        </div>
+        <div class="concept-card">
+          <strong>Ransomware</strong>
+          Malware that can lock or encrypt data and demand payment.
+        </div>
+        <div class="concept-card">
+          <strong>Spyware</strong>
+          Software that secretly collects information about a user or system.
+        </div>
+        <div class="concept-card">
+          <strong>Adware</strong>
+          Software that displays advertisements; some forms also track users or behave deceptively.
+        </div>
+      </div>
+
+      <h3>Phishing</h3>
+      <p>
+        <strong>Phishing</strong> is a form of social engineering in which
+        someone pretends to be a trusted person or organization to trick
+        people into revealing information or taking unsafe actions.
+      </p>
+
+      <h3>Other common threats</h3>
+      <ul>
+        <li><strong>Credential theft:</strong> Stealing usernames, passwords, or authentication tokens.</li>
+        <li><strong>Denial of service:</strong> Overwhelming a service so legitimate users cannot access it.</li>
+        <li><strong>Man-in-the-middle attack:</strong> Intercepting or interfering with communication between parties.</li>
+        <li><strong>Insider threat:</strong> Risk caused by someone with legitimate access, intentionally or accidentally.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Social Engineering and Phishing Detection</h2>
+      <p>
+        Social engineering targets human decisions rather than relying only
+        on technical weaknesses. Attackers may create urgency, impersonate
+        authority, or promise rewards to influence a person.
+      </p>
+
+      <h3>Warning signs</h3>
+      <ul>
+        <li>Unexpected requests for passwords, verification codes, or payment.</li>
+        <li>Messages that pressure you to act immediately.</li>
+        <li>Unusual sender addresses or website domains.</li>
+        <li>Unexpected attachments or links.</li>
+        <li>Requests to bypass normal procedures or keep a transaction secret.</li>
+      </ul>
+
+      <div class="note">
+        If a message claims to come from a bank, school, delivery service,
+        or other organization, verify it through the organization's official
+        app, website, or a trusted contact method rather than relying on the message.
+      </div>
+
+      <h3>What should you do with a suspicious message?</h3>
+      <ol>
+        <li>Do not click links or open unexpected attachments.</li>
+        <li>Check the sender and the request carefully.</li>
+        <li>Open the official website or app independently.</li>
+        <li>Report the message through the service or your organization's approved process.</li>
+        <li>If you already shared sensitive information, change affected credentials and contact the relevant service promptly.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>5. Passwords and Authentication</h2>
+      <p>
+        <strong>Authentication</strong> verifies that a user or system is
+        who or what it claims to be.
+      </p>
+
+      <h3>Good password practices</h3>
+      <ul>
+        <li>Use long, unique passwords or passphrases for different accounts.</li>
+        <li>Use a reputable password manager to create and store passwords.</li>
+        <li>Never share verification codes or passwords with someone who asks unexpectedly.</li>
+        <li>Enable multifactor authentication wherever available.</li>
+        <li>Change credentials promptly if you suspect an account has been compromised.</li>
+      </ul>
+
+      <h3>Multifactor authentication (MFA)</h3>
+      <p>
+        MFA combines two or more different kinds of evidence:
+      </p>
+      <ul>
+        <li><strong>Something you know:</strong> A password or PIN.</li>
+        <li><strong>Something you have:</strong> A security key or authentication device.</li>
+        <li><strong>Something you are:</strong> A biometric characteristic, such as a fingerprint.</li>
+      </ul>
+
+      <div class="note">
+        Two passwords are still two examples of the same factor. MFA
+        requires different factor types, not simply multiple questions.
+      </div>
+    </section>
+
+    <section>
+      <h2>6. Encryption and Hashing</h2>
+
+      <h3>Encryption</h3>
+      <p>
+        <strong>Encryption</strong> transforms readable data into a form
+        that cannot normally be understood without the appropriate key.
+        It helps protect information during storage and transmission.
+      </p>
+
+      <ul>
+        <li><strong>Symmetric encryption:</strong> Uses the same secret key for encryption and decryption.</li>
+        <li><strong>Asymmetric encryption:</strong> Uses a related public and private key pair.</li>
+      </ul>
+
+      <h3>Hashing</h3>
+      <p>
+        A <strong>cryptographic hash function</strong> maps input data to
+        a fixed-size output called a hash. It is designed to make it
+        computationally difficult to find an input that produces a
+        chosen hash or to find two different inputs with the same hash.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Encryption</th><th>Hashing</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Designed to protect confidentiality.</td>
+            <td>Often used to verify data or support integrity checks.</td>
+          </tr>
+          <tr>
+            <td>Can be reversed by authorized decryption using the required key.</td>
+            <td>Designed to be one-way, not decrypted back to the original input.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        Password systems should not store plain-text passwords. They should
+        use a password-hashing scheme designed for passwords, with unique
+        salts and suitable parameters.
+      </div>
+    </section>
+
+    <section>
+      <h2>7. Network Security</h2>
+      <p>
+        Network security helps protect communication, connected devices,
+        and services from unauthorized activity.
+      </p>
+
+      <ul>
+        <li><strong>Firewall:</strong> Filters network traffic according to configured rules.</li>
+        <li><strong>HTTPS:</strong> Uses TLS to protect communication between a browser and a website, helping provide confidentiality and integrity.</li>
+        <li><strong>VPN:</strong> Creates a protected connection over another network; it does not automatically make every online activity anonymous or safe.</li>
+        <li><strong>Secure Wi-Fi:</strong> Uses appropriate wireless security settings and a strong network password.</li>
+        <li><strong>Network monitoring:</strong> Helps detect unusual traffic and potential security incidents.</li>
+      </ul>
+
+      <div class="note">
+        The padlock or HTTPS indicator means the connection has security
+        properties; it does not prove that a website itself is trustworthy.
+      </div>
+    </section>
+
+    <section>
+      <h2>8. Updates, Backups, and Device Safety</h2>
+
+      <h3>Security updates</h3>
+      <p>
+        Software updates can fix vulnerabilities, improve reliability, and
+        add security features. Install updates from official, trusted sources.
+      </p>
+
+      <h3>Backups</h3>
+      <p>
+        Backups help recover data after accidental deletion, device failure,
+        or some cyber incidents. Keep important backups protected from
+        unauthorized access and, where possible, from changes made by compromised devices.
+      </p>
+
+      <h3>Practical safety checklist</h3>
+      <ul>
+        <li>Keep your operating system, browser, and applications updated.</li>
+        <li>Install software from official or trusted sources.</li>
+        <li>Review app permissions before granting access to sensitive data.</li>
+        <li>Lock devices when not in use.</li>
+        <li>Back up important files and periodically check that recovery works.</li>
+        <li>Avoid sensitive transactions on untrusted devices or networks.</li>
+        <li>Remove applications and browser extensions you no longer need.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>9. Privacy and Digital Footprints</h2>
+      <p>
+        A <strong>digital footprint</strong> is the trail of information
+        associated with your online activity. It can include posts,
+        comments, uploaded files, account activity, and information collected
+        by websites or apps.
+      </p>
+
+      <h3>Protecting your privacy</h3>
+      <ul>
+        <li>Think carefully before sharing personal information publicly.</li>
+        <li>Review privacy and audience settings on social platforms.</li>
+        <li>Limit unnecessary app permissions and data collection.</li>
+        <li>Be cautious when sharing live location, travel plans, or identifying documents.</li>
+        <li>Remember that deleting a post may not remove copies already saved or shared by others.</li>
+      </ul>
+
+      <div class="note">
+        Digital safety includes both cybersecurity and thoughtful decisions
+        about privacy, reputation, and respectful online behaviour.
+      </div>
+    </section>
+
+    <section>
+      <h2>10. Responsible and Ethical Cybersecurity</h2>
+      <p>
+        Cybersecurity knowledge should be used to protect systems and
+        information. Testing a system without permission can violate
+        privacy, policies, or laws.
+      </p>
+
+      <ul>
+        <li>Test only systems you own or are explicitly authorized to assess.</li>
+        <li>Use legal training labs and intentionally vulnerable practice environments for learning.</li>
+        <li>Do not access, change, or share another person's data without permission.</li>
+        <li>Report vulnerabilities responsibly to the appropriate owner or security team.</li>
+        <li>Follow the rules and scope of any security testing program.</li>
+      </ul>
+
+      <h3>Core security principles</h3>
+      <ul>
+        <li><strong>Least privilege:</strong> Give users and programs only the permissions they need.</li>
+        <li><strong>Defense in depth:</strong> Use multiple layers of protection instead of relying on one measure.</li>
+        <li><strong>Secure by default:</strong> Prefer settings that minimize unnecessary exposure.</li>
+        <li><strong>Incident response:</strong> Prepare to identify, contain, investigate, and recover from security incidents.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>11. Knowledge Check</h2>
+      <p>Try answering each question before revealing the answer.</p>
+
+      <div>
+        <p><strong>1. What do the letters CIA represent in cybersecurity?</strong></p>
+        <button class="answer-button" type="button" data-answer="a1" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a1">
+          Confidentiality, Integrity, and Availability.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>2. What is phishing?</strong></p>
+        <button class="answer-button" type="button" data-answer="a2" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a2">
+          A social-engineering attack that impersonates a trusted source to trick people into revealing information or taking unsafe actions.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>3. Why is multifactor authentication useful?</strong></p>
+        <button class="answer-button" type="button" data-answer="a3" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a3">
+          It requires evidence from multiple different factor types, making an account harder to access with only a stolen password.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>4. What is the main difference between encryption and hashing?</strong></p>
+        <button class="answer-button" type="button" data-answer="a4" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a4">
+          Encryption is designed to allow authorized decryption with the appropriate key. Cryptographic hashing is designed to be one-way.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>5. Does HTTPS guarantee that a website is honest?</strong></p>
+        <button class="answer-button" type="button" data-answer="a5" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a5">
+          No. HTTPS protects the connection, but a fraudulent website can also use HTTPS.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>6. Why are software updates important?</strong></p>
+        <button class="answer-button" type="button" data-answer="a6" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a6">
+          Updates can fix known vulnerabilities and improve security, reliability, and functionality.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>7. What does the principle of least privilege mean?</strong></p>
+        <button class="answer-button" type="button" data-answer="a7" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a7">
+          Give each user or program only the permissions required to perform its legitimate tasks.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Cybersecurity protects systems, networks, applications, and information.</li>
+        <li>The CIA triad describes confidentiality, integrity, and availability.</li>
+        <li>Malware, phishing, and credential theft are common threats.</li>
+        <li>Unique passwords and multifactor authentication help protect accounts.</li>
+        <li>Encryption and hashing serve different purposes.</li>
+        <li>Updates, backups, and careful permission management reduce risk.</li>
+        <li>Online privacy and responsible behaviour are important parts of digital safety.</li>
+        <li>Security testing must be authorized and conducted responsibly.</li>
+      </ul>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Topic navigation">
+      <a href="operating-systems.html">← Previous: Operating Systems</a>
+      <a href="ai-fundamentals.html">Next: Artificial Intelligence Fundamentals →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Your Answer — Learn, explore, and understand.</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll("[data-answer]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const answer = document.getElementById(button.dataset.answer);
+        if (!answer) return;
+
+        const isVisible = answer.classList.toggle("visible");
+        button.setAttribute("aria-expanded", String(isVisible));
+        button.textContent = isVisible ? "Hide answer" : "Reveal answer";
+      });
+    });
+  </script>
+</body>
+</html>

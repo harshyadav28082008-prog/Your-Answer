@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Learn the basic concepts of Chemistry including atoms, molecules, moles, molar mass, and stoichiometry."
+  >
+
+  <title>Basic Concepts of Chemistry | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    /* ========================================
+       CHEMISTRY LESSON — BASIC CONCEPTS
+       ======================================== */
+
+    .chemistry-lesson {
+      padding-bottom: 70px;
+    }
+
+    .lesson-hero {
+      padding: 58px 0 45px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-eyebrow {
+      margin: 0 0 14px;
+      color: var(--chemistry-accent, #8b5cf6);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      line-height: 1;
+      letter-spacing: -.065em;
+    }
+
+    .lesson-intro {
+      max-width: 730px;
+      margin: 20px 0 0;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      gap: 35px;
+      align-items: start;
+      padding-top: 42px;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      margin-bottom: 42px;
+      scroll-margin-top: 80px;
+    }
+
+    .lesson-section h2 {
+      margin: 0 0 15px;
+      font-size: clamp(1.55rem, 4vw, 2.1rem);
+      letter-spacing: -.045em;
+    }
+
+    .lesson-section h3 {
+      margin: 26px 0 9px;
+      font-size: 1.15rem;
+    }
+
+    .lesson-section p {
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .concept-card {
+      margin: 18px 0;
+      padding: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .concept-card strong {
+      color: var(--color-text);
+    }
+
+    .formula-card {
+      margin: 18px 0;
+      padding: 20px;
+      overflow-x: auto;
+      background: var(--chemistry-accent-soft, rgba(139, 92, 246, .08));
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .formula-label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--chemistry-accent, #8b5cf6);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .formula {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.3rem;
+      line-height: 1.7;
+      white-space: nowrap;
+    }
+
+    .example-box {
+      margin: 20px 0;
+      padding: 21px;
+      border-left: 3px solid var(--chemistry-accent, #8b5cf6);
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-right: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      border-radius: 0 14px 14px 0;
+    }
+
+    .example-box h3 {
+      margin-top: 0;
+    }
+
+    .example-box p {
+      margin-bottom: 8px;
+    }
+
+    .lesson-aside {
+      position: sticky;
+      top: 75px;
+    }
+
+    .aside-card {
+      padding: 19px;
+      margin-bottom: 14px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .aside-card h2 {
+      margin: 0 0 12px;
+      font-size: .95rem;
+    }
+
+    .aside-card a {
+      display: block;
+      padding: 6px 0;
+      color: var(--color-text-muted);
+      font-size: .86rem;
+      text-decoration: none;
+    }
+
+    .aside-card a:hover {
+      color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    .symbol-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    .symbol-table th,
+    .symbol-table td {
+      padding: 11px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .symbol-table th {
+      color: var(--color-text);
+      font-size: .82rem;
+    }
+
+    .symbol-table td {
+      color: var(--color-text-muted);
+      font-size: .86rem;
+    }
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 20px;
+      padding-top: 25px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-bottom a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    @media (max-width: 800px) {
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .aside-card {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .lesson-hero {
+        padding-top: 35px;
+      }
+
+      .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../../index.html">
+        Your Answer
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Toggle colour theme"
+      >
+        Theme
+      </button>
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="chemistry-lesson">
+
+    <section class="lesson-hero">
+
+      <div class="container">
+
+        <p class="lesson-eyebrow">
+          Chemistry / 01
+        </p>
+
+        <h1>Basic Concepts of Chemistry</h1>
+
+        <p class="lesson-intro">
+          Chemistry begins with a simple idea: matter is made of particles,
+          and those particles combine in measurable ways. This foundation
+          gives us the language needed to understand chemical reactions and
+          calculations.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <div class="container lesson-layout">
+
+      <!-- MAIN CONTENT -->
+
+      <article class="lesson-main">
+
+
+        <!-- MATTER -->
+
+        <section class="lesson-section" id="matter">
+
+          <h2>1. Matter and Its Composition</h2>
+
+          <p>
+            Matter is anything that has mass and occupies space. Chemistry
+            studies the composition, structure, properties, and changes of
+            matter.
+          </p>
+
+          <div class="concept-card">
+            <strong>Element</strong>
+            <p>
+              A pure substance consisting of atoms with the same atomic
+              number.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Compound</strong>
+            <p>
+              A substance formed when two or more different elements combine
+              chemically in a fixed ratio.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Mixture</strong>
+            <p>
+              A physical combination of substances in which the components
+              retain their individual identities.
+            </p>
+          </div>
+
+        </section>
+
+
+        <!-- ATOMS AND MOLECULES -->
+
+        <section class="lesson-section" id="particles">
+
+          <h2>2. Atoms, Molecules and Ions</h2>
+
+          <p>
+            An <strong>atom</strong> is the smallest unit of an element that
+            retains its chemical identity.
+          </p>
+
+          <p>
+            Atoms can combine to form <strong>molecules</strong>, while atoms
+            or groups of atoms carrying a net electrical charge are called
+            <strong>ions</strong>.
+          </p>
+
+          <div class="concept-card">
+            <strong>Cation</strong>
+            <p>
+              A positively charged ion formed when an atom loses electrons.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Anion</strong>
+            <p>
+              A negatively charged ion formed when an atom gains electrons.
+            </p>
+          </div>
+
+        </section>
+
+
+        <!-- MOLE -->
+
+        <section class="lesson-section" id="mole">
+
+          <h2>3. The Mole</h2>
+
+          <p>
+            Individual atoms and molecules are extremely small, so chemistry
+            uses the mole as a convenient counting unit.
+          </p>
+
+          <p>
+            One mole contains approximately
+            <strong>6.022 × 10²³</strong> particles. This number is known as
+            Avogadro's constant.
+          </p>
+
+          <div class="formula-card">
+
+            <span class="formula-label">
+              Avogadro's relation
+            </span>
+
+            <p class="formula">
+              N = nN<sub>A</sub>
+            </p>
+
+          </div>
+
+          <p>
+            Here, <strong>N</strong> is the number of particles,
+            <strong>n</strong> is the amount of substance in moles, and
+            <strong>N<sub>A</sub></strong> is Avogadro's constant.
+          </p>
+
+        </section>
+
+
+        <!-- MOLAR MASS -->
+
+        <section class="lesson-section" id="molar-mass">
+
+          <h2>4. Molar Mass</h2>
+
+          <p>
+            Molar mass is the mass of one mole of a substance. It is commonly
+            expressed in grams per mole.
+          </p>
+
+          <div class="formula-card">
+
+            <span class="formula-label">
+              Amount of substance
+            </span>
+
+            <p class="formula">
+              n = m/M
+            </p>
+
+          </div>
+
+          <p>
+            Where <strong>n</strong> is the number of moles,
+            <strong>m</strong> is the given mass, and
+            <strong>M</strong> is the molar mass.
+          </p>
+
+          <div class="example-box">
+
+            <h3>Example</h3>
+
+            <p>
+              If a substance has a molar mass of 18 g/mol, then 36 g of that
+              substance corresponds to:
+            </p>
+
+            <p>
+              n = 36 / 18 = <strong>2 mol</strong>
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- STOICHIOMETRY -->
+
+        <section class="lesson-section" id="stoichiometry">
+
+          <h2>5. Stoichiometry</h2>
+
+          <p>
+            Stoichiometry is the quantitative study of the relationships
+            between reactants and products in a chemical reaction.
+          </p>
+
+          <p>
+            A balanced chemical equation provides the mole ratio between
+            substances involved in the reaction.
+          </p>
+
+          <div class="example-box">
+
+            <h3>Example</h3>
+
+            <p>
+              For the reaction:
+            </p>
+
+            <p>
+              2H₂ + O₂ → 2H₂O
+            </p>
+
+            <p>
+              The mole ratio of hydrogen to oxygen to water is
+              <strong>2 : 1 : 2</strong>.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- CONCENTRATION -->
+
+        <section class="lesson-section" id="concentration">
+
+          <h2>6. Concentration</h2>
+
+          <p>
+            Concentration describes how much solute is present in a given
+            amount of solution.
+          </p>
+
+          <div class="formula-card">
+
+            <span class="formula-label">
+              Molarity
+            </span>
+
+            <p class="formula">
+              C = n/V
+            </p>
+
+          </div>
+
+          <p>
+            Here, <strong>C</strong> is concentration in mol/L,
+            <strong>n</strong> is the amount of solute in moles, and
+            <strong>V</strong> is the volume of solution in litres.
+          </p>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="lesson-section" id="summary">
+
+          <h2>Key Ideas</h2>
+
+          <p>
+            The basic language of chemistry rests on a few important
+            relationships:
+          </p>
+
+          <div class="concept-card">
+
+            <strong>
+              Mass → moles → particles
+            </strong>
+
+            <p>
+              These conversions allow chemists to move between measurable
+              quantities and the microscopic world of atoms and molecules.
+            </p>
+
+          </div>
+
+          <div class="concept-card">
+
+            <strong>
+              Balanced equations → mole ratios
+            </strong>
+
+            <p>
+              Chemical equations provide the quantitative relationships
+              needed to calculate reactants and products.
+            </p>
+
+          </div>
+
+        </section>
+
+
+      </article>
+
+
+      <!-- ASIDE -->
+
+      <aside class="lesson-aside">
+
+        <div class="aside-card">
+
+          <h2>On this page</h2>
+
+          <a href="#matter">Matter</a>
+          <a href="#particles">Atoms & Molecules</a>
+          <a href="#mole">The Mole</a>
+          <a href="#molar-mass">Molar Mass</a>
+          <a href="#stoichiometry">Stoichiometry</a>
+          <a href="#concentration">Concentration</a>
+          <a href="#summary">Key Ideas</a>
+
+        </div>
+
+
+        <div class="aside-card">
+
+          <h2>Core relationships</h2>
+
+          <table class="symbol-table">
+
+            <tr>
+              <th>Symbol</th>
+              <th>Meaning</th>
+            </tr>
+
+            <tr>
+              <td>n</td>
+              <td>moles</td>
+            </tr>
+
+            <tr>
+              <td>m</td>
+              <td>mass</td>
+            </tr>
+
+            <tr>
+              <td>M</td>
+              <td>molar mass</td>
+            </tr>
+
+            <tr>
+              <td>N</td>
+              <td>particles</td>
+            </tr>
+
+            <tr>
+              <td>V</td>
+              <td>volume</td>
+            </tr>
+
+          </table>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+
+    <div class="container">
+
+      <nav class="lesson-bottom" aria-label="Lesson navigation">
+
+        <a href="../index.html">
+          ← Chemistry
+        </a>
+
+        <a href="atomic-structure.html">
+          Next: Atomic Structure →
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+</html>

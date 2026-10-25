@@ -1,0 +1,755 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore three-dimensional vectors, components, magnitude and unit vectors interactively.">
+  <title>Vectors in 3D | Your Answer</title>
+
+  <link rel="stylesheet" href="../../assets/css/style.css">
+
+  <style>
+    .vector-page {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px 20px 60px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: var(--color-brand);
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: .8rem;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .vector-hero {
+      margin-bottom: 26px;
+    }
+
+    .vector-hero h1 {
+      margin: 8px 0 12px;
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      letter-spacing: -.04em;
+    }
+
+    .vector-hero p {
+      max-width: 720px;
+      color: var(--color-text-muted);
+      line-height: 1.75;
+    }
+
+    .vector-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(260px, .8fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      background: var(--color-surface);
+    }
+
+    .panel-heading {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .panel-heading h2 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .panel-heading p {
+      margin: 6px 0 0;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+      line-height: 1.5;
+    }
+
+    #vector-canvas {
+      display: block;
+      width: 100%;
+      height: 360px;
+      touch-action: none;
+      cursor: grab;
+    }
+
+    #vector-canvas:active {
+      cursor: grabbing;
+    }
+
+    .canvas-hint {
+      padding: 0 14px 15px;
+      color: var(--color-text-muted);
+      font-size: .8rem;
+      text-align: center;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      padding: 0 18px 18px;
+      color: var(--color-text-muted);
+      font-size: .82rem;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend i {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .controls {
+      display: grid;
+      gap: 21px;
+      padding: 20px;
+    }
+
+    .control-group {
+      display: grid;
+      gap: 9px;
+    }
+
+    .control-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .component-x { color: #e56b6f; }
+    .component-y { color: #37a77b; }
+    .component-z { color: #6395ed; }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--color-brand);
+    }
+
+    .range-ends {
+      display: flex;
+      justify-content: space-between;
+      color: var(--color-text-muted);
+      font-size: .78rem;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .9rem;
+    }
+
+    .check-row input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-brand);
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .action-button {
+      min-height: 42px;
+      padding: 10px 13px;
+      border: 1px solid var(--color-border);
+      border-radius: 11px;
+      background: transparent;
+      color: var(--color-text);
+      font: inherit;
+      font-size: .88rem;
+      cursor: pointer;
+    }
+
+    .action-button.primary {
+      border-color: var(--color-brand);
+      background: var(--color-brand);
+      color: white;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .result-card {
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+      background: var(--color-surface);
+    }
+
+    .result-card span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--color-text-muted);
+      font-size: .82rem;
+    }
+
+    .result-card strong {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      overflow-wrap: anywhere;
+    }
+
+    .result-panel,
+    .learning-panel {
+      margin-top: 22px;
+      padding: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .result-panel h2,
+    .learning-panel h2 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+    }
+
+    .equation {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(127,127,127,.09);
+      font-family: monospace;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+
+    .learning-panel p {
+      color: var(--color-text-muted);
+      line-height: 1.75;
+    }
+
+    .vector-footer {
+      padding-top: 26px;
+      color: var(--color-text-muted);
+      text-align: center;
+      font-size: .85rem;
+    }
+
+    @media (max-width: 760px) {
+      .vector-layout {
+        grid-template-columns: 1fr;
+      }
+
+      #vector-canvas {
+        height: 310px;
+      }
+
+      .results {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+        <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+  </header>
+
+  <main class="vector-page">
+    <a class="back-link" href="../index.html">← Back to Explore 3D</a>
+
+    <section class="vector-hero">
+      <span class="eyebrow">Mathematics · Model 02</span>
+      <h1>Vectors in 3D</h1>
+      <p>
+        A vector has both magnitude and direction. Change its three
+        components to explore how a vector extends through space and
+        how its magnitude is calculated.
+      </p>
+    </section>
+
+    <section class="vector-layout">
+      <div class="panel">
+        <div class="panel-heading">
+          <h2>3D coordinate system</h2>
+          <p>Drag to rotate. The arrow represents the vector from the origin.</p>
+        </div>
+
+        <canvas id="vector-canvas" aria-label="Interactive three-dimensional vector diagram">
+          Your browser does not support canvas.
+        </canvas>
+
+        <p class="canvas-hint">Touch and drag to rotate the view.</p>
+
+        <div class="legend">
+          <span><i style="background:#e56b6f"></i> X axis / component</span>
+          <span><i style="background:#37a77b"></i> Y axis / component</span>
+          <span><i style="background:#6395ed"></i> Z axis / component</span>
+          <span><i style="background:#a47be2"></i> Resultant vector</span>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="panel-heading">
+          <h2>Vector components</h2>
+          <p>Adjust each component from −5 to +5.</p>
+        </div>
+
+        <div class="controls">
+          <div class="control-group">
+            <div class="control-heading">
+              <label class="component-x" for="x-control">X component (a)</label>
+              <output class="component-x" id="x-value">3</output>
+            </div>
+            <input id="x-control" type="range" min="-5" max="5" step="1" value="3">
+            <div class="range-ends"><span>−5</span><span>0</span><span>+5</span></div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-heading">
+              <label class="component-y" for="y-control">Y component (b)</label>
+              <output class="component-y" id="y-value">2</output>
+            </div>
+            <input id="y-control" type="range" min="-5" max="5" step="1" value="2">
+            <div class="range-ends"><span>−5</span><span>0</span><span>+5</span></div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-heading">
+              <label class="component-z" for="z-control">Z component (c)</label>
+              <output class="component-z" id="z-value">4</output>
+            </div>
+            <input id="z-control" type="range" min="-5" max="5" step="1" value="4">
+            <div class="range-ends"><span>−5</span><span>0</span><span>+5</span></div>
+          </div>
+
+          <label class="check-row">
+            <input id="show-components" type="checkbox" checked>
+            Show component projections
+          </label>
+
+          <div class="action-row">
+            <button class="action-button primary" id="reset-view">Reset view</button>
+            <button class="action-button" id="reset-vector">Reset vector</button>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="results" aria-label="Vector results">
+      <div class="result-card">
+        <span>Magnitude |v|</span>
+        <strong id="magnitude-value">5.39</strong>
+      </div>
+      <div class="result-card">
+        <span>Unit vector</span>
+        <strong id="unit-value">0.557i + 0.371j + 0.743k</strong>
+      </div>
+      <div class="result-card">
+        <span>Component form</span>
+        <strong id="component-value">(3, 2, 4)</strong>
+      </div>
+    </section>
+
+    <section class="result-panel">
+      <h2>Live calculation</h2>
+      <div class="equation" id="calculation">
+        |v| = √(3² + 2² + 4²)<br>
+        |v| = √29 ≈ 5.39
+      </div>
+    </section>
+
+    <section class="learning-panel">
+      <h2>Understanding the vector</h2>
+      <p id="learning-text">
+        This vector moves 3 units along X, 2 units along Y and 4 units
+        along Z. Its magnitude is the straight-line distance from the
+        origin to the vector's endpoint.
+      </p>
+      <p>
+        The three components are perpendicular to one another. By the
+        three-dimensional Pythagorean theorem, their squares add to the
+        square of the vector's magnitude.
+      </p>
+    </section>
+
+    <footer class="vector-footer">
+      Your Answer · Explore, experiment, understand.
+    </footer>
+  </main>
+
+  <script src="../../assets/js/main.js"></script>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById("vector-canvas");
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      const controls = {
+        x: document.getElementById("x-control"),
+        y: document.getElementById("y-control"),
+        z: document.getElementById("z-control")
+      };
+
+      const showComponents = document.getElementById("show-components");
+
+      let width = 0;
+      let height = 0;
+      let pixelRatio = 1;
+      let rotationX = -0.45;
+      let rotationY = 0.65;
+      let dragging = false;
+      let lastX = 0;
+      let lastY = 0;
+
+      const axisColors = {
+        x: "#e56b6f",
+        y: "#37a77b",
+        z: "#6395ed",
+        vector: "#a47be2"
+      };
+
+      function vectorValues() {
+        return {
+          x: Number(controls.x.value),
+          y: Number(controls.y.value),
+          z: Number(controls.z.value)
+        };
+      }
+
+      function project(point) {
+        const cosY = Math.cos(rotationY);
+        const sinY = Math.sin(rotationY);
+        const cosX = Math.cos(rotationX);
+        const sinX = Math.sin(rotationX);
+
+        const x1 = point.x * cosY - point.z * sinY;
+        const z1 = point.x * sinY + point.z * cosY;
+        const y2 = point.y * cosX - z1 * sinX;
+        const z2 = point.y * sinX + z1 * cosX;
+
+        const scale = Math.min(width, height) * 0.065;
+        return {
+          x: width / 2 + x1 * scale,
+          y: height / 2 - y2 * scale,
+          z: z2
+        };
+      }
+
+      function line(a, b, color, lineWidth = 2, dash = []) {
+        const p1 = project(a);
+        const p2 = project(b);
+
+        ctx.beginPath();
+        ctx.setLineDash(dash);
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+
+      function drawArrow(a, b, color) {
+        const p1 = project(a);
+        const p2 = project(b);
+        const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+        const head = 11;
+
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(p2.x, p2.y);
+        ctx.lineTo(
+          p2.x - head * Math.cos(angle - Math.PI / 6),
+          p2.y - head * Math.sin(angle - Math.PI / 6)
+        );
+        ctx.lineTo(
+          p2.x - head * Math.cos(angle + Math.PI / 6),
+          p2.y - head * Math.sin(angle + Math.PI / 6)
+        );
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+      }
+
+      function label(point, text, color) {
+        const p = project(point);
+        ctx.fillStyle = color;
+        ctx.font = "bold 13px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(text, p.x, p.y - 9);
+      }
+
+      function draw() {
+        if (!width || !height) return;
+
+        ctx.clearRect(0, 0, width, height);
+
+        const origin = {x:0, y:0, z:0};
+        const extent = 5.5;
+
+        const xEnd = {x:extent, y:0, z:0};
+        const yEnd = {x:0, y:extent, z:0};
+        const zEnd = {x:0, y:0, z:extent};
+
+        line({x:-extent,y:0,z:0}, xEnd, axisColors.x, 1.5);
+        line({x:0,y:-extent,z:0}, yEnd, axisColors.y, 1.5);
+        line({x:0,y:0,z:-extent}, zEnd, axisColors.z, 1.5);
+
+        label(xEnd, "X", axisColors.x);
+        label(yEnd, "Y", axisColors.y);
+        label(zEnd, "Z", axisColors.z);
+
+        for (let i = -5; i <= 5; i++) {
+          if (i === 0) continue;
+
+          [
+            [{x:i,y:-0.09,z:0},{x:i,y:0.09,z:0},axisColors.x],
+            [{x:-0.09,y:i,z:0},{x:0.09,y:i,z:0},axisColors.y],
+            [{x:0,y:-0.09,z:i},{x:0,y:0.09,z:i},axisColors.z]
+          ].forEach(([a,b,color]) => line(a,b,color,1));
+        }
+
+        const v = vectorValues();
+        const endpoint = {x:v.x,y:v.y,z:v.z};
+
+        if (showComponents.checked) {
+          const p1 = {x:v.x,y:0,z:0};
+          const p2 = {x:v.x,y:v.y,z:0};
+
+          line(origin, p1, axisColors.x, 2.5, [5,4]);
+          line(p1, p2, axisColors.y, 2.5, [5,4]);
+          line(p2, endpoint, axisColors.z, 2.5, [5,4]);
+
+          line(
+            endpoint,
+            {x:0,y:v.y,z:v.z},
+            axisColors.z,
+            1,
+            [3,4]
+          );
+        }
+
+        drawArrow(origin, endpoint, axisColors.vector);
+
+        const originPoint = project(origin);
+        ctx.beginPath();
+        ctx.arc(originPoint.x, originPoint.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = getComputedStyle(document.body)
+          .getPropertyValue("--color-text").trim() || "#777";
+        ctx.fill();
+
+        label(endpoint, "v", axisColors.vector);
+      }
+
+      function updateResults() {
+        const v = vectorValues();
+        const magnitude = Math.sqrt(v.x ** 2 + v.y ** 2 + v.z ** 2);
+
+        document.getElementById("x-value").textContent = v.x;
+        document.getElementById("y-value").textContent = v.y;
+        document.getElementById("z-value").textContent = v.z;
+
+        document.getElementById("magnitude-value").textContent =
+          magnitude.toFixed(3);
+
+        document.getElementById("component-value").textContent =
+          `(${v.x}, ${v.y}, ${v.z})`;
+
+        if (magnitude === 0) {
+          document.getElementById("unit-value").textContent =
+            "Undefined (zero vector)";
+        } else {
+          const ux = v.x / magnitude;
+          const uy = v.y / magnitude;
+          const uz = v.z / magnitude;
+
+          document.getElementById("unit-value").textContent =
+            `${ux.toFixed(3)}i ${uy < 0 ? "−" : "+"} ${Math.abs(uy).toFixed(3)}j ${uz < 0 ? "−" : "+"} ${Math.abs(uz).toFixed(3)}k`;
+        }
+
+        const squareSum = v.x ** 2 + v.y ** 2 + v.z ** 2;
+        const radical = Number.isInteger(Math.sqrt(squareSum))
+          ? Math.sqrt(squareSum)
+          : `√${squareSum}`;
+
+        document.getElementById("calculation").innerHTML =
+          `|v| = √(${v.x}² + ${v.y}² + ${v.z}²)<br>` +
+          `|v| = √${squareSum} ≈ ${magnitude.toFixed(3)}`;
+
+        document.getElementById("learning-text").textContent =
+          `This vector has components (${v.x}, ${v.y}, ${v.z}). ` +
+          `Its magnitude is ${magnitude.toFixed(3)} units, ` +
+          `the straight-line distance from the origin to its endpoint.`;
+
+        draw();
+      }
+
+      function resizeCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        width = rect.width;
+        height = rect.height;
+
+        canvas.width = Math.round(width * pixelRatio);
+        canvas.height = Math.round(height * pixelRatio);
+        ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+        draw();
+      }
+
+      Object.values(controls).forEach(control => {
+        control.addEventListener("input", updateResults);
+      });
+
+      showComponents.addEventListener("change", draw);
+
+      document.getElementById("reset-view").addEventListener("click", () => {
+        rotationX = -0.45;
+        rotationY = 0.65;
+        draw();
+      });
+
+      document.getElementById("reset-vector").addEventListener("click", () => {
+        controls.x.value = 3;
+        controls.y.value = 2;
+        controls.z.value = 4;
+        showComponents.checked = true;
+        rotationX = -0.45;
+        rotationY = 0.65;
+        updateResults();
+      });
+
+      canvas.addEventListener("pointerdown", event => {
+        dragging = true;
+        lastX = event.clientX;
+        lastY = event.clientY;
+        canvas.setPointerCapture(event.pointerId);
+      });
+
+      canvas.addEventListener("pointermove", event => {
+        if (!dragging) return;
+
+        rotationY += (event.clientX - lastX) * 0.01;
+        rotationX += (event.clientY - lastY) * 0.01;
+
+        rotationX = Math.max(
+          -Math.PI / 2,
+          Math.min(Math.PI / 2, rotationX)
+        );
+
+        lastX = event.clientX;
+        lastY = event.clientY;
+        draw();
+      });
+
+      function stopDragging() {
+        dragging = false;
+      }
+
+      canvas.addEventListener("pointerup", stopDragging);
+      canvas.addEventListener("pointercancel", stopDragging);
+      canvas.addEventListener("lostpointercapture", stopDragging);
+
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(resizeCanvas).observe(canvas);
+      } else {
+        window.addEventListener("resize", resizeCanvas);
+      }
+
+      updateResults();
+      resizeCanvas();
+    })();
+  </script>
+</body>
+</html>

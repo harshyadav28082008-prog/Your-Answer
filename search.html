@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search Your Answer for subjects, interactive 3D models, virtual experiments, and coding resources.">
+  <title>Search | Your Answer</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .search-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 20px 70px;
+    }
+
+    .search-hero {
+      max-width: 760px;
+      margin: 0 auto 36px;
+      text-align: center;
+    }
+
+    .search-eyebrow {
+      color: var(--color-brand);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .search-hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      line-height: 1.12;
+      margin: 14px 0;
+    }
+
+    .search-hero p {
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .search-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 8px;
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      background: var(--color-surface);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .search-form input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      border: 0;
+      outline: none;
+      background: transparent;
+      color: var(--color-text);
+      font: inherit;
+    }
+
+    .search-form input:focus-visible {
+      outline: 2px solid var(--color-brand);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+
+    .search-button {
+      padding: 11px 18px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--color-brand);
+      color: white;
+      font: inherit;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .search-hint {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    .search-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 30px 0 18px;
+    }
+
+    .search-toolbar h2 {
+      margin: 0;
+      font-size: 1.35rem;
+    }
+
+    .search-count {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .search-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .filter-button {
+      padding: 8px 13px;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+
+    .filter-button[aria-pressed="true"] {
+      background: var(--color-brand);
+      color: white;
+      border-color: var(--color-brand);
+    }
+
+    .filter-button:focus-visible,
+    .search-button:focus-visible,
+    .resource-card a:focus-visible {
+      outline: 3px solid var(--color-brand);
+      outline-offset: 3px;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .resource-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 20px;
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      background: var(--color-surface);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-brand);
+    }
+
+    .resource-icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      background: var(--color-border);
+      font-size: 1.35rem;
+    }
+
+    .resource-type {
+      margin-bottom: 8px;
+      color: var(--color-brand);
+      font-size: 0.73rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .resource-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    .resource-card p {
+      flex: 1;
+      margin: 0 0 18px;
+      color: var(--color-text-muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .resource-card a {
+      color: var(--color-brand);
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .resource-card a:hover {
+      text-decoration: underline;
+    }
+
+    .empty-state {
+      padding: 44px 20px;
+      border: 1px dashed var(--color-border);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .empty-state h3 {
+      margin-top: 0;
+    }
+
+    .empty-state p {
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    .empty-state button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .search-footer {
+      margin-top: 36px;
+      text-align: center;
+    }
+
+    .search-footer a {
+      color: var(--color-brand);
+      text-decoration: none;
+      font-weight: 650;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 850px) {
+      .resource-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .search-page {
+        padding: 32px 15px 48px;
+      }
+
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .search-form {
+        gap: 5px;
+      }
+
+      .search-button {
+        padding: 10px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="subjects/">Subjects</a>
+        <a href="explore-3d/">3D Explorer</a>
+        <a href="labs/">Virtual Labs</a>
+        <a href="coding/">Coding Studio</a>
+        <a href="search.html">Search</a>
+
+      </nav>
+
+
+      <div class="header-actions">
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <nav
+  class="mobile-nav container"
+  id="mobile-nav"
+  aria-label="Mobile navigation"
+  hidden
+>
+      <a href="subjects/">Subjects</a>
+      <a href="explore-3d/">3D Explorer</a>
+      <a href="labs/">Virtual Labs</a>
+      <a href="coding/">Coding Studio</a>
+      <a href="about/">About</a>
+       <a href="search.html">Search</a>
+    </nav>
+
+ 
+  </header>
+
+  <main class="search-page">
+    <section class="search-hero">
+      <span class="search-eyebrow">DISCOVER · EXPLORE · LEARN</span>
+      <h1>What do you want to learn?</h1>
+      <p>
+        Search subjects, interactive models, virtual experiments, and coding
+        resources in Your Answer.
+      </p>
+
+      <form class="search-form" id="searchForm" role="search">
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Try “gravity”, “chemistry”, or “pendulum”…"
+          aria-label="Search learning resources"
+          autocomplete="off">
+        <button class="search-button" type="submit">Search</button>
+      </form>
+
+      <p class="search-hint">
+        Search by topic, resource type, or keyword.
+      </p>
+    </section>
+
+    <section aria-labelledby="resultsHeading">
+      <div class="search-toolbar">
+        <h2 id="resultsHeading">Explore resources</h2>
+        <span class="search-count" id="resultCount" aria-live="polite">
+          Loading resources…
+        </span>
+      </div>
+
+      <div class="search-filters" aria-label="Filter resource type">
+        <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-button" type="button" data-filter="subject" aria-pressed="false">Subjects</button>
+        <button class="filter-button" type="button" data-filter="3d" aria-pressed="false">3D Models</button>
+        <button class="filter-button" type="button" data-filter="lab" aria-pressed="false">Virtual Labs</button>
+        <button class="filter-button" type="button" data-filter="coding" aria-pressed="false">Coding</button>
+      </div>
+
+      <div class="resource-grid" id="resourceGrid">
+
+        <!-- Subjects -->
+        <article class="resource-card" data-type="subject"
+                 data-search="mathematics maths algebra geometry calculus probability statistics formulas">
+          <div class="resource-icon" aria-hidden="true">∑</div>
+          <div class="resource-type">Subject</div>
+          <h3>Mathematics</h3>
+          <p>Explore mathematical topics, formulas, and problem-solving concepts.</p>
+          <a href="subjects/index.html">Explore subjects →</a>
+        </article>
+
+        <article class="resource-card" data-type="subject"
+                 data-search="physics mechanics motion force energy gravity optics waves electricity">
+          <div class="resource-icon" aria-hidden="true">⚛️</div>
+          <div class="resource-type">Subject</div>
+          <h3>Physics</h3>
+          <p>Learn about motion, forces, energy, waves, light, and electricity.</p>
+          <a href="subjects/index.html">Explore subjects →</a>
+        </article>
+
+        <article class="resource-card" data-type="subject"
+                 data-search="chemistry atoms molecules reactions acids bases periodic table">
+          <div class="resource-icon" aria-hidden="true">🧪</div>
+          <div class="resource-type">Subject</div>
+          <h3>Chemistry</h3>
+          <p>Discover atoms, molecules, chemical reactions, and chemical principles.</p>
+          <a href="subjects/index.html">Explore subjects →</a>
+        </article>
+
+        <article class="resource-card" data-type="subject"
+                 data-search="computer science programming algorithms logic computing">
+          <div class="resource-icon" aria-hidden="true">💻</div>
+          <div class="resource-type">Subject</div>
+          <h3>Computer Science</h3>
+          <p>Explore computing concepts, programming logic, and algorithms.</p>
+          <a href="subjects/index.html">Explore subjects →</a>
+        </article>
+
+        <!-- 3D models -->
+        <article class="resource-card" data-type="3d"
+                 data-search="geometry shapes solids sphere cube cone cylinder three dimensional">
+          <div class="resource-icon" aria-hidden="true">◇</div>
+          <div class="resource-type">3D Model</div>
+          <h3>Geometry</h3>
+          <p>Explore geometric shapes and spatial relationships in three dimensions.</p>
+          <a href="explore-3d/index.html">Explore 3D →</a>
+        </article>
+
+        <article class="resource-card" data-type="3d"
+                 data-search="vectors direction magnitude mathematics physics">
+          <div class="resource-icon" aria-hidden="true">↗</div>
+          <div class="resource-type">3D Model</div>
+          <h3>Vectors</h3>
+          <p>Visualise vector direction, magnitude, and spatial relationships.</p>
+          <a href="explore-3d/index.html">Explore 3D →</a>
+        </article>
+
+        <article class="resource-card" data-type="3d"
+                 data-search="waves amplitude frequency wavelength physics">
+          <div class="resource-icon" aria-hidden="true">〰️</div>
+          <div class="resource-type">3D Model</div>
+          <h3>Waves</h3>
+          <p>Explore wave behaviour and understand important wave properties.</p>
+          <a href="explore-3d/index.html">Explore 3D →</a>
+        </article>
+
+        <article class="resource-card" data-type="3d"
+                 data-search="motion projectile trajectory velocity gravity">
+          <div class="resource-icon" aria-hidden="true">🏹</div>
+          <div class="resource-type">3D Model</div>
+          <h3>Motion and Projectile Motion</h3>
+          <p>Visualise moving objects and projectile trajectories.</p>
+          <a href="explore-3d/index.html">Explore 3D →</a>
+        </article>
+
+        <article class="resource-card" data-type="3d"
+                 data-search="atom atomic structure nucleus electrons protons neutrons">
+          <div class="resource-icon" aria-hidden="true">⚛️</div>
+          <div class="resource-type">3D Model</div>
+          <h3>Atomic Structure</h3>
+          <p>Explore a visual model of an atom and its main components.</p>
+          <a href="explore-3d/index.html">Explore 3D →</a>
+        </article>
+
+        <article class="resource-card" data-type="3d"
+                 data-search="molecules chemical bonds molecular structure chemistry">
+          <div class="resource-icon" aria-hidden="true">🔬</div>
+          <div class="resource-type">3D Model</div>
+          <h3>Molecules</h3>
+          <p>Explore molecular structures and how atoms connect.</p>
+          <a href="explore-3d/index.html">Explore 3D →</a>
+        </article>
+
+        <article class="resource-card" data-type="3d"
+                 data-search="solar system planets sun orbit astronomy space">
+          <div class="resource-icon" aria-hidden="true">🪐</div>
+          <div class="resource-type">3D Model</div>
+          <h3>Solar System</h3>
+          <p>Explore the Sun, planets, and their orbital relationships.</p>
+          <a href="explore-3d/index.html">Explore 3D →</a>
+        </article>
+
+        <article class="resource-card" data-type="3d"
+                 data-search="optics light reflection refraction lenses mirrors">
+          <div class="resource-icon" aria-hidden="true">💡</div>
+          <div class="resource-type">3D Model</div>
+          <h3>Optics</h3>
+          <p>Explore light and visualise important concepts in optics.</p>
+          <a href="explore-3d/index.html">Explore 3D →</a>
+        </article>
+
+        <!-- Virtual labs -->
+        <article class="resource-card" data-type="lab"
+                 data-search="simple pendulum oscillation time period gravity physics experiment">
+          <div class="resource-icon" aria-hidden="true">⏱️</div>
+          <div class="resource-type">Virtual Lab</div>
+          <h3>Simple Pendulum</h3>
+          <p>Investigate pendulum motion and the factors affecting its time period.</p>
+          <a href="labs/index.html">Explore virtual labs →</a>
+        </article>
+
+        <article class="resource-card" data-type="lab"
+                 data-search="ohms law voltage current resistance circuit electricity">
+          <div class="resource-icon" aria-hidden="true">🔌</div>
+          <div class="resource-type">Virtual Lab</div>
+          <h3>Ohm's Law</h3>
+          <p>Explore the relationship between voltage, current, and resistance.</p>
+          <a href="labs/index.html">Explore virtual labs →</a>
+        </article>
+
+        <article class="resource-card" data-type="lab"
+                 data-search="projectile motion launch angle velocity trajectory gravity experiment">
+          <div class="resource-icon" aria-hidden="true">🎯</div>
+          <div class="resource-type">Virtual Lab</div>
+          <h3>Projectile Motion</h3>
+          <p>Investigate how launch conditions affect a projectile's path.</p>
+          <a href="labs/index.html">Explore virtual labs →</a>
+        </article>
+
+        <article class="resource-card" data-type="lab"
+                 data-search="spring mass system oscillation mass stiffness physics">
+          <div class="resource-icon" aria-hidden="true">〰️</div>
+          <div class="resource-type">Virtual Lab</div>
+          <h3>Spring–Mass System</h3>
+          <p>Explore oscillation and how mass and spring stiffness affect motion.</p>
+          <a href="labs/index.html">Explore virtual labs →</a>
+        </article>
+
+        <article class="resource-card" data-type="lab"
+                 data-search="hookes law spring force extension elasticity">
+          <div class="resource-icon" aria-hidden="true">🪀</div>
+          <div class="resource-type">Virtual Lab</div>
+          <h3>Hooke's Law</h3>
+          <p>Explore the relationship between force and spring extension.</p>
+          <a href="labs/index.html">Explore virtual labs →</a>
+        </article>
+
+        <article class="resource-card" data-type="lab"
+                 data-search="refraction of light optics refractive index glass water">
+          <div class="resource-icon" aria-hidden="true">🌈</div>
+          <div class="resource-type">Virtual Lab</div>
+          <h3>Refraction of Light</h3>
+          <p>Explore how light changes direction when entering another medium.</p>
+          <a href="labs/index.html">Explore virtual labs →</a>
+        </article>
+
+        <article class="resource-card" data-type="lab"
+                 data-search="acid base ph indicators neutralisation chemistry">
+          <div class="resource-icon" aria-hidden="true">🧪</div>
+          <div class="resource-type">Virtual Lab</div>
+          <h3>Acid–Base and pH</h3>
+          <p>Explore pH, indicator colours, and neutralisation.</p>
+          <a href="labs/acid-base-ph.html">Open experiment →</a>
+        </article>
+
+        <article class="resource-card" data-type="lab"
+                 data-search="reaction rate temperature concentration surface area chemistry">
+          <div class="resource-icon" aria-hidden="true">⚗️</div>
+          <div class="resource-type">Virtual Lab</div>
+          <h3>Reaction Rate</h3>
+          <p>Investigate how temperature, concentration, and surface area affect reaction speed.</p>
+          <a href="labs/reaction-rate.html">Open experiment →</a>
+        </article>
+
+        <article class="resource-card" data-type="lab"
+                 data-search="photosynthesis plant light intensity carbon dioxide temperature biology">
+          <div class="resource-icon" aria-hidden="true">🌱</div>
+          <div class="resource-type">Virtual Lab</div>
+          <h3>Photosynthesis</h3>
+          <p>Explore how light, carbon dioxide, and temperature affect photosynthesis.</p>
+          <a href="labs/photosynthesis.html">Open experiment →</a>
+        </article>
+
+        <!-- Coding -->
+        <article class="resource-card" data-type="coding"
+                 data-search="coding playground html css javascript web development editor programming">
+          <div class="resource-icon" aria-hidden="true">⌨️</div>
+          <div class="resource-type">Coding</div>
+          <h3>Coding Playground</h3>
+          <p>Experiment with HTML, CSS, and JavaScript in an interactive coding space.</p>
+          <a href="coding/index.html">Open playground →</a>
+        </article>
+      </div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <h3>No matching resources found</h3>
+        <p>Try another keyword or choose a different resource category.</p>
+        <button type="button" id="clearSearchButton">Clear search and filters</button>
+      </div>
+    </section>
+
+    <div class="search-footer">
+      <a href="index.html">← Return to the homepage</a>
+    </div>
+  </main>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+    const cards = Array.from(document.querySelectorAll(".resource-card"));
+    const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
+    const resultCount = document.getElementById("resultCount");
+    const emptyState = document.getElementById("emptyState");
+    const clearSearchButton = document.getElementById("clearSearchButton");
+
+    let activeFilter = "all";
+
+    function filterResources() {
+      const query = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const title = card.querySelector("h3").textContent.toLowerCase();
+        const description = card.querySelector("p").textContent.toLowerCase();
+        const keywords = (card.dataset.search || "").toLowerCase();
+        const type = card.dataset.type;
+
+        const matchesQuery =
+          !query ||
+          title.includes(query) ||
+          description.includes(query) ||
+          keywords.includes(query);
+
+        const matchesFilter =
+          activeFilter === "all" || type === activeFilter;
+
+        const visible = matchesQuery && matchesFilter;
+        card.hidden = !visible;
+
+        if (visible) visibleCount++;
+      });
+
+      resultCount.textContent =
+        visibleCount + (visibleCount === 1 ? " resource found" : " resources found");
+
+      emptyState.hidden = visibleCount !== 0;
+      document.getElementById("resultsHeading").textContent =
+        query ? "Search results" : "Explore resources";
+    }
+
+    searchForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      filterResources();
+      document.getElementById("resultsHeading").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+
+    searchInput.addEventListener("input", filterResources);
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+
+        filterButtons.forEach((item) => {
+          item.setAttribute(
+            "aria-pressed",
+            String(item === button)
+          );
+        });
+
+        filterResources();
+      });
+    });
+
+    clearSearchButton.addEventListener("click", () => {
+      searchInput.value = "";
+      activeFilter = "all";
+
+      filterButtons.forEach((button) => {
+        button.setAttribute(
+          "aria-pressed",
+          String(button.dataset.filter === "all")
+        );
+      });
+
+      filterResources();
+      searchInput.focus();
+    });
+
+    filterResources();
+  </script>
+</body>
+</html>

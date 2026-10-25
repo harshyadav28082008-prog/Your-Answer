@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore how light intensity, carbon dioxide, and temperature affect photosynthesis in an interactive virtual lab.">
+  <title>Photosynthesis Lab | Your Answer</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .lab-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .breadcrumb {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: 22px;
+    }
+
+    .breadcrumb a,
+    .back-link {
+      color: var(--color-brand);
+      text-decoration: none;
+    }
+
+    .hero {
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      margin: 10px 0;
+    }
+
+    .hero p,
+    .muted {
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .hero p {
+      max-width: 720px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .panel {
+      min-width: 0;
+      padding: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .panel h2 {
+      font-size: 1.25rem;
+      margin: 0 0 8px;
+    }
+
+    .scene {
+      position: relative;
+      height: 260px;
+      margin: 20px 0;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #dceefb, #f3f8e9);
+      transition: background 0.3s;
+    }
+
+    .sun {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #fbbf24;
+      box-shadow: 0 0 30px rgba(251, 191, 36, 0.65);
+      transition: opacity 0.3s, box-shadow 0.3s;
+    }
+
+    .light-ray {
+      position: absolute;
+      top: 58px;
+      right: 35px;
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, rgba(251,191,36,.32), transparent 70%);
+      clip-path: polygon(0 0, 100% 0, 100% 100%);
+      transition: opacity 0.3s;
+    }
+
+    .plant {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 150px;
+      height: 200px;
+      transform: translateX(-50%);
+    }
+
+    .stem {
+      position: absolute;
+      bottom: 28px;
+      left: 72px;
+      width: 7px;
+      height: 135px;
+      border-radius: 6px;
+      background: #39834a;
+    }
+
+    .leaf {
+      position: absolute;
+      width: 70px;
+      height: 36px;
+      background: #4caa57;
+      border: 2px solid #328242;
+      transition: background 0.3s;
+    }
+
+    .leaf.left {
+      left: 8px;
+      bottom: 90px;
+      border-radius: 90% 0 90% 0;
+      transform: rotate(15deg);
+    }
+
+    .leaf.right {
+      right: 3px;
+      bottom: 125px;
+      border-radius: 0 90% 0 90%;
+      transform: rotate(-15deg);
+    }
+
+    .leaf.top {
+      left: 43px;
+      bottom: 155px;
+      width: 52px;
+      height: 30px;
+      border-radius: 90% 0 90% 0;
+      transform: rotate(35deg);
+    }
+
+    .pot {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      width: 90px;
+      height: 42px;
+      transform: translateX(-50%);
+      background: #b96e48;
+      clip-path: polygon(8% 0, 92% 0, 80% 100%, 20% 100%);
+    }
+
+    .scene-caption {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      max-width: 60%;
+      color: #304454;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .control {
+      margin: 22px 0;
+    }
+
+    .control-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .value {
+      color: var(--color-brand);
+      white-space: nowrap;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--color-brand);
+    }
+
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+    }
+
+    .control small {
+      display: block;
+      margin-top: 7px;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .result {
+      padding: 18px;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      margin-top: 18px;
+    }
+
+    .big-number {
+      margin: 8px 0;
+      font-size: 2.3rem;
+      font-weight: 750;
+      line-height: 1.2;
+      color: var(--color-brand);
+    }
+
+    .meter {
+      height: 10px;
+      margin: 12px 0 8px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: var(--color-border);
+    }
+
+    .meter-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--color-brand);
+      transition: width 0.3s;
+    }
+
+    .status {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .lab-button {
+      padding: 10px 15px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .lab-button.primary {
+      background: var(--color-brand);
+      color: white;
+      border-color: var(--color-brand);
+    }
+
+    .lab-button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid var(--color-brand);
+      outline-offset: 3px;
+    }
+
+    .observation {
+      margin-top: 16px;
+      padding: 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      line-height: 1.65;
+      overflow-wrap: anywhere;
+    }
+
+    .panel ul {
+      padding-left: 20px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .notes {
+      margin-top: 22px;
+    }
+
+    .notes textarea {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 115px;
+      padding: 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      resize: vertical;
+    }
+
+    .notice {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--color-brand);
+      background: var(--color-surface);
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 24px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 760px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lab-page {
+        padding: 24px 15px 45px;
+      }
+
+      .panel {
+        padding: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="subjects/">Subjects</a>
+        <a href="explore-3d/">3D Explorer</a>
+        <a href="labs/">Virtual Labs</a>
+        <a href="coding/">Coding Studio</a>
+      </nav>
+
+
+      <div class="header-actions">
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <nav
+  class="mobile-nav container"
+  id="mobile-nav"
+  aria-label="Mobile navigation"
+  hidden
+>
+      <a href="subjects/">Subjects</a>
+      <a href="explore-3d/">3D Explorer</a>
+      <a href="labs/">Virtual Labs</a>
+      <a href="coding/">Coding Studio</a>
+      <a href="about/">About</a>
+    </nav>
+  </header>
+
+  <main class="lab-page">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a> /
+      <a href="index.html">Virtual Labs</a> /
+      Photosynthesis
+    </div>
+
+    <section class="hero">
+      <span class="eyebrow">BIOLOGY LAB</span>
+      <h1>Photosynthesis</h1>
+      <p>
+        Plants use light energy to convert carbon dioxide and water into
+        glucose and oxygen. Investigate how light intensity, carbon dioxide
+        availability, and temperature can affect the rate of this process.
+      </p>
+    </section>
+
+    <div class="layout">
+      <section class="panel">
+        <h2>Experiment controls</h2>
+        <p class="muted">
+          Adjust the conditions and compare the modelled photosynthesis rate.
+          Change one variable at a time for a clearer comparison.
+        </p>
+
+        <div class="scene" id="scene">
+          <span class="scene-caption">Plant under changing conditions</span>
+          <div class="sun" id="sun"></div>
+          <div class="light-ray" id="lightRay"></div>
+          <div class="plant" aria-hidden="true">
+            <div class="stem"></div>
+            <div class="leaf left" id="leafLeft"></div>
+            <div class="leaf right" id="leafRight"></div>
+            <div class="leaf top" id="leafTop"></div>
+          </div>
+          <div class="pot"></div>
+        </div>
+
+        <div class="control">
+          <div class="control-head">
+            <label for="light">Light intensity</label>
+            <span class="value" id="lightValue">50%</span>
+          </div>
+          <input type="range" id="light" min="0" max="100" value="50" step="5">
+          <div class="range-labels">
+            <span>No light</span>
+            <span>High intensity</span>
+          </div>
+          <small>
+            Increasing light intensity can increase photosynthesis until another
+            factor becomes limiting.
+          </small>
+        </div>
+
+        <div class="control">
+          <div class="control-head">
+            <label for="co2">Carbon dioxide availability</label>
+            <span class="value" id="co2Value">50%</span>
+          </div>
+          <input type="range" id="co2" min="0" max="100" value="50" step="5">
+          <div class="range-labels">
+            <span>Very low</span>
+            <span>High availability</span>
+          </div>
+          <small>
+            Carbon dioxide is a raw material used to make sugars during photosynthesis.
+          </small>
+        </div>
+
+        <div class="control">
+          <div class="control-head">
+            <label for="temperature">Temperature</label>
+            <span class="value" id="temperatureValue">25 °C</span>
+          </div>
+          <input type="range" id="temperature" min="0" max="50" value="25" step="1">
+          <div class="range-labels">
+            <span>0 °C</span>
+            <span>50 °C</span>
+          </div>
+          <small>
+            Photosynthesis uses enzymes. The rate often rises towards an
+            optimum, then falls at excessively high temperatures.
+          </small>
+        </div>
+
+        <div class="buttons">
+          <button class="lab-button primary" id="startButton">Start experiment</button>
+          <button class="lab-button" id="resetButton">Reset</button>
+        </div>
+      </section>
+
+      <aside class="panel">
+        <h2>Live results</h2>
+        <p class="muted">
+          These values are illustrative and do not represent measured oxygen production.
+        </p>
+
+        <div class="result">
+          <span class="muted">Relative photosynthesis rate</span>
+          <div class="big-number" id="rateValue">100%</div>
+          <div class="meter" role="progressbar"
+               id="rateMeter"
+               aria-label="Relative photosynthesis rate"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+            <div class="meter-fill" id="rateFill"></div>
+          </div>
+          <div class="status" id="rateDescription">Moderate modelled activity</div>
+        </div>
+
+        <div class="result">
+          <span class="muted">Model run progress</span>
+          <div class="big-number" id="progressValue">0%</div>
+          <div class="meter" role="progressbar"
+               id="progressMeter"
+               aria-label="Model run progress"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="meter-fill" id="progressFill"></div>
+          </div>
+          <div class="status" id="runStatus" aria-live="polite">
+            Ready to start.
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">Key observations</h2>
+        <ul>
+          <li>Light is the energy source for photosynthesis.</li>
+          <li>Low carbon dioxide can limit the rate.</li>
+          <li>Temperature affects the enzymes involved in the process.</li>
+          <li>Increasing one factor may not help if another factor is limiting.</li>
+        </ul>
+
+        <div class="observation" id="observation" aria-live="polite">
+          Start with the default settings. Change one condition and compare the result.
+        </div>
+      </aside>
+    </div>
+
+    <section class="panel notes">
+      <h2>Record your observations</h2>
+      <p class="muted">
+        Record the settings, compare results, and explain which factor appears to limit the rate.
+      </p>
+      <textarea id="notes" placeholder="Example: I kept CO₂ and temperature constant and increased light intensity. The model rate changed from..."></textarea>
+
+      <div class="buttons">
+        <button class="lab-button primary" id="recordButton">Add results to notes</button>
+        <button class="lab-button" id="clearNotesButton">Clear notes</button>
+      </div>
+    </section>
+
+    <div class="notice">
+      <strong>Scientific note:</strong> This is a simplified conceptual model,
+      not a precise biological simulation. Actual photosynthesis depends on plant
+      species, light wavelength, water supply, leaf condition, and other factors.
+      The progress animation is not a measurement of glucose or oxygen production.
+    </div>
+
+    <a class="back-link" href="index.html">← Back to Virtual Labs</a>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    const light = document.getElementById("light");
+    const co2 = document.getElementById("co2");
+    const temperature = document.getElementById("temperature");
+
+    const lightValue = document.getElementById("lightValue");
+    const co2Value = document.getElementById("co2Value");
+    const temperatureValue = document.getElementById("temperatureValue");
+
+    const rateValue = document.getElementById("rateValue");
+    const rateFill = document.getElementById("rateFill");
+    const rateMeter = document.getElementById("rateMeter");
+    const rateDescription = document.getElementById("rateDescription");
+
+    const progressValue = document.getElementById("progressValue");
+    const progressFill = document.getElementById("progressFill");
+    const progressMeter = document.getElementById("progressMeter");
+    const runStatus = document.getElementById("runStatus");
+    const observation = document.getElementById("observation");
+
+    const sun = document.getElementById("sun");
+    const lightRay = document.getElementById("lightRay");
+    const scene = document.getElementById("scene");
+    const notes = document.getElementById("notes");
+    const startButton = document.getElementById("startButton");
+
+    let progress = 0;
+    let running = false;
+    let intervalId = null;
+    let currentRate = 0;
+
+    function calculateRate() {
+      const l = Number(light.value) / 100;
+      const c = Number(co2.value) / 100;
+      const t = Number(temperature.value);
+
+      // Simplified limiting-factor model.
+      // Temperature factor peaks near 25 °C and decreases away from that point.
+      const temperatureFactor = Math.max(0, 1 - Math.pow((t - 25) / 30, 2));
+      const lightFactor = l / (0.25 + l);
+      const co2Factor = c / (0.25 + c);
+
+      return Math.max(0, Math.min(1,
+        (lightFactor / 0.8) *
+        (co2Factor / 0.8) *
+        temperatureFactor
+      ));
+    }
+
+    function updateDisplay() {
+      lightValue.textContent = light.value + "%";
+      co2Value.textContent = co2.value + "%";
+      temperatureValue.textContent = temperature.value + " °C";
+
+      currentRate = calculateRate();
+      const percentage = Math.round(currentRate * 100);
+
+      rateValue.textContent = percentage + "%";
+      rateFill.style.width = percentage + "%";
+      rateMeter.setAttribute("aria-valuenow", percentage);
+
+      progressValue.textContent = Math.round(progress) + "%";
+      progressFill.style.width = progress + "%";
+      progressMeter.setAttribute("aria-valuenow", Math.round(progress));
+
+      sun.style.opacity = String(0.25 + Number(light.value) / 130);
+      sun.style.boxShadow =
+        "0 0 " + (Number(light.value) * 0.5) +
+        "px rgba(251, 191, 36, 0.65)";
+      lightRay.style.opacity = String(Number(light.value) / 100);
+
+      if (percentage === 0) {
+        rateDescription.textContent = "No modelled photosynthesis activity";
+      } else if (percentage < 30) {
+        rateDescription.textContent = "Low modelled activity";
+      } else if (percentage < 70) {
+        rateDescription.textContent = "Moderate modelled activity";
+      } else {
+        rateDescription.textContent = "High modelled activity";
+      }
+
+      let limitingFactor = "No single factor identified";
+
+      if (Number(light.value) < 25) {
+        limitingFactor = "Light intensity may be limiting";
+      } else if (Number(co2.value) < 25) {
+        limitingFactor = "Carbon dioxide availability may be limiting";
+      } else if (Number(temperature.value) < 5 ||
+                 Number(temperature.value) > 40) {
+        limitingFactor = "Temperature may be limiting";
+      }
+
+      observation.textContent =
+        "With light at " + light.value + "%, CO₂ availability at " +
+        co2.value + "%, and temperature at " + temperature.value +
+        " °C, the model gives a relative rate of " + percentage +
+        "%. " + limitingFactor +
+        ". Change one factor at a time to compare conditions.";
+    }
+
+    function stopExperiment(message) {
+      running = false;
+
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+
+      runStatus.textContent = message;
+      startButton.textContent =
+        progress >= 100 ? "Run again" : "Resume experiment";
+    }
+
+    function startExperiment() {
+      if (running) {
+        stopExperiment("Experiment paused at " + Math.round(progress) + "%.");
+        return;
+      }
+
+      if (progress >= 100) {
+        progress = 0;
+      }
+
+      running = true;
+      startButton.textContent = "Pause experiment";
+      runStatus.textContent = "Model run in progress…";
+
+      intervalId = setInterval(() => {
+        // Illustrative animation; not a measurement of real plant growth.
+        progress += 0.8 + currentRate * 1.2;
+        progress = Math.min(100, progress);
+
+        updateDisplay();
+
+        if (progress >= 100) {
+          stopExperiment("Model run complete. Reset to compare another trial.");
+          startButton.textContent = "Run again";
+        }
+      }, 500);
+    }
+
+    function resetExperiment() {
+      stopExperiment("Ready to start.");
+
+      progress = 0;
+      light.value = 50;
+      co2.value = 50;
+      temperature.value = 25;
+
+      updateDisplay();
+      startButton.textContent = "Start experiment";
+      runStatus.textContent = "Ready to start.";
+    }
+
+    [light, co2, temperature].forEach((control) => {
+      control.addEventListener("input", updateDisplay);
+    });
+
+    startButton.addEventListener("click", startExperiment);
+    document.getElementById("resetButton").addEventListener("click", resetExperiment);
+
+    document.getElementById("recordButton").addEventListener("click", () => {
+      const entry =
+        "Light intensity: " + light.value + "%; " +
+        "CO₂ availability: " + co2.value + "%; " +
+        "Temperature: " + temperature.value + " °C; " +
+        "Relative model rate: " + Math.round(currentRate * 100) + "%; " +
+        "Run progress: " + Math.round(progress) + "%.\n";
+
+      notes.value += (notes.value.trim() ? "\n" : "") + entry;
+    });
+
+    document.getElementById("clearNotesButton").addEventListener("click", () => {
+      notes.value = "";
+    });
+
+    updateDisplay();
+  </script>
+</body>
+</html>

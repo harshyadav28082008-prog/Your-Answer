@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Quick Physics formula sheet covering mechanics, waves, thermal physics, electricity, magnetism, optics, and modern physics."
+  >
+
+  <title>Physics Formula Sheet | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* ========================================
+       PHYSICS FORMULA SHEET
+       ======================================== */
+
+    .formula-page {
+      padding-bottom: 70px;
+    }
+
+    .formula-hero {
+      padding: 58px 0 45px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .formula-eyebrow {
+      margin: 0 0 14px;
+      color: var(--physics-accent);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .formula-hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.7rem, 7vw, 5.2rem);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .formula-hero p {
+      max-width: 720px;
+      margin: 20px 0 0;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .formula-content {
+      padding-top: 42px;
+    }
+
+    .formula-group {
+      margin-bottom: 42px;
+      scroll-margin-top: 80px;
+    }
+
+    .formula-group-header {
+      margin-bottom: 16px;
+    }
+
+    .formula-group-header h2 {
+      margin: 0;
+      font-size: clamp(1.45rem, 4vw, 2rem);
+      letter-spacing: -.04em;
+    }
+
+    .formula-group-header p {
+      margin: 7px 0 0;
+      color: var(--color-text-muted);
+      font-size: .92rem;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .formula-item {
+      padding: 19px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+    }
+
+    .formula-name {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--color-text-muted);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .formula-expression {
+      margin: 0;
+      color: var(--color-text);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    .formula-note {
+      margin: 9px 0 0;
+      color: var(--color-text-muted);
+      font-size: .82rem;
+      line-height: 1.55;
+    }
+
+    .formula-index {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 25px;
+      align-items: start;
+      margin-bottom: 45px;
+    }
+
+    .index-card {
+      position: sticky;
+      top: 75px;
+      padding: 19px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .index-card h2 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .index-links {
+      display: grid;
+      gap: 5px;
+    }
+
+    .index-links a {
+      padding: 7px 0;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: .88rem;
+    }
+
+    .index-links a:hover {
+      color: var(--physics-accent);
+    }
+
+    .formula-note-box {
+      margin-top: 12px;
+      padding: 17px 19px;
+      background: var(--physics-accent-soft);
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+      color: var(--color-text-muted);
+      font-size: .88rem;
+      line-height: 1.65;
+    }
+
+    .formula-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 45px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .formula-bottom a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .formula-bottom a:hover {
+      color: var(--physics-accent);
+    }
+
+    @media (max-width: 800px) {
+      .formula-index {
+        grid-template-columns: 1fr;
+      }
+
+      .index-card {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .formula-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .formula-hero {
+        padding-top: 35px;
+      }
+
+      .formula-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../index.html">
+        Your Answer
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../index.html">Subjects</a>
+        <a href="../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../labs/index.html">Labs</a>
+      </nav>
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Toggle colour theme"
+      >
+        Theme
+      </button>
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../index.html">Subjects</a>
+      <a href="../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="formula-page">
+
+    <section class="formula-hero">
+      <div class="container">
+
+        <p class="formula-eyebrow">
+          Physics / Quick Reference
+        </p>
+
+        <h1>Formula Sheet</h1>
+
+        <p>
+          A compact collection of the most commonly used Physics formulas
+          across the Your Answer V1 curriculum. Use it as a quick reference
+          while studying rather than as a replacement for understanding
+          the concepts behind each equation.
+        </p>
+
+      </div>
+    </section>
+
+
+    <div class="container formula-content">
+
+      <div class="formula-index">
+
+        <!-- INDEX -->
+
+        <aside class="index-card">
+
+          <h2>Jump to</h2>
+
+          <nav class="index-links">
+            <a href="#mechanics">Mechanics</a>
+            <a href="#gravitation">Gravitation</a>
+            <a href="#fluids">Matter & Fluids</a>
+            <a href="#thermal">Thermal Physics</a>
+            <a href="#waves">Waves</a>
+            <a href="#electricity">Electricity</a>
+            <a href="#magnetism">Magnetism</a>
+            <a href="#optics">Optics</a>
+            <a href="#modern">Modern Physics</a>
+          </nav>
+
+        </aside>
+
+
+        <!-- FORMULAS -->
+
+        <div>
+
+
+          <!-- MECHANICS -->
+
+          <section class="formula-group" id="mechanics">
+
+            <div class="formula-group-header">
+              <h2>Mechanics</h2>
+              <p>Motion, force, energy, momentum, and circular motion.</p>
+            </div>
+
+            <div class="formula-grid">
+
+              <div class="formula-item">
+                <span class="formula-name">Speed</span>
+                <p class="formula-expression">v = d/t</p>
+                <p class="formula-note">Distance divided by time.</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Acceleration</span>
+                <p class="formula-expression">a = Δv/Δt</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Newton's second law</span>
+                <p class="formula-expression">F = ma</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Momentum</span>
+                <p class="formula-expression">p = mv</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Kinetic energy</span>
+                <p class="formula-expression">K = ½mv²</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Gravitational potential energy</span>
+                <p class="formula-expression">U = mgh</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Work</span>
+                <p class="formula-expression">W = Fs cos θ</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Power</span>
+                <p class="formula-expression">P = W/t</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Density</span>
+                <p class="formula-expression">ρ = m/V</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Impulse</span>
+                <p class="formula-expression">J = FΔt = Δp</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Centripetal acceleration</span>
+                <p class="formula-expression">a = v²/r</p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Centripetal force</span>
+                <p class="formula-expression">F = mv²/r</p>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- GRAVITATION -->
+
+          <section class="formula-group" id="gravitation">
+
+            <div class="formula-group-header">
+              <h2>Gravitation</h2>
+              <p>Universal gravitation and gravitational fields.</p>
+            </div>
+
+            <div class="formula-grid">
+
+              <div class="formula-item">
+                <span class="formula-name">Universal gravitation</span>
+                <p class="formula-expression">
+                  F = Gm₁m₂/r²
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Gravitational field</span>
+                <p class="formula-expression">
+                  g = GM/r²
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Weight</span>
+                <p class="formula-expression">
+                  W = mg
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Escape velocity</span>
+                <p class="formula-expression">
+                  vₑ = √(2GM/R)
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- FLUIDS -->
+
+          <section class="formula-group" id="fluids">
+
+            <div class="formula-group-header">
+              <h2>Matter & Fluids</h2>
+              <p>Pressure, density, buoyancy, and fluid flow.</p>
+            </div>
+
+            <div class="formula-grid">
+
+              <div class="formula-item">
+                <span class="formula-name">Pressure</span>
+                <p class="formula-expression">
+                  P = F/A
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Liquid pressure</span>
+                <p class="formula-expression">
+                  P = ρgh
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Buoyant force</span>
+                <p class="formula-expression">
+                  Fᵦ = ρVg
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Continuity equation</span>
+                <p class="formula-expression">
+                  A₁v₁ = A₂v₂
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Bernoulli equation</span>
+                <p class="formula-expression">
+                  P + ½ρv² + ρgh = constant
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- THERMAL -->
+
+          <section class="formula-group" id="thermal">
+
+            <div class="formula-group-header">
+              <h2>Thermal Physics</h2>
+              <p>Heat, temperature, gases, and thermodynamic processes.</p>
+            </div>
+
+            <div class="formula-grid">
+
+              <div class="formula-item">
+                <span class="formula-name">Heat transfer</span>
+                <p class="formula-expression">
+                  Q = mcΔT
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Latent heat</span>
+                <p class="formula-expression">
+                  Q = mL
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Ideal gas law</span>
+                <p class="formula-expression">
+                  PV = nRT
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">First law of thermodynamics</span>
+                <p class="formula-expression">
+                  ΔU = Q − W
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Efficiency</span>
+                <p class="formula-expression">
+                  η = useful output / total input
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- WAVES -->
+
+          <section class="formula-group" id="waves">
+
+            <div class="formula-group-header">
+              <h2>Waves</h2>
+              <p>Wave motion, frequency, wavelength, and oscillations.</p>
+            </div>
+
+            <div class="formula-grid">
+
+              <div class="formula-item">
+                <span class="formula-name">Wave equation</span>
+                <p class="formula-expression">
+                  v = fλ
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Frequency</span>
+                <p class="formula-expression">
+                  f = 1/T
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Angular frequency</span>
+                <p class="formula-expression">
+                  ω = 2πf
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Simple harmonic motion</span>
+                <p class="formula-expression">
+                  a = −ω²x
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- ELECTRICITY -->
+
+          <section class="formula-group" id="electricity">
+
+            <div class="formula-group-header">
+              <h2>Electricity</h2>
+              <p>Charge, current, voltage, resistance, and electrical power.</p>
+            </div>
+
+            <div class="formula-grid">
+
+              <div class="formula-item">
+                <span class="formula-name">Current</span>
+                <p class="formula-expression">
+                  I = Q/t
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Ohm's law</span>
+                <p class="formula-expression">
+                  V = IR
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Electrical power</span>
+                <p class="formula-expression">
+                  P = VI
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Power in resistor</span>
+                <p class="formula-expression">
+                  P = I²R
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Electrical energy</span>
+                <p class="formula-expression">
+                  E = Pt
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Electrical resistance</span>
+                <p class="formula-expression">
+                  R = ρL/A
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- MAGNETISM -->
+
+          <section class="formula-group" id="magnetism">
+
+            <div class="formula-group-header">
+              <h2>Magnetism</h2>
+              <p>Magnetic forces, fields, flux, and electromagnetic induction.</p>
+            </div>
+
+            <div class="formula-grid">
+
+              <div class="formula-item">
+                <span class="formula-name">Force on moving charge</span>
+                <p class="formula-expression">
+                  F = qvB sin θ
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Force on current-carrying wire</span>
+                <p class="formula-expression">
+                  F = BIL sin θ
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Magnetic flux</span>
+                <p class="formula-expression">
+                  Φ = BA cos θ
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Faraday's law</span>
+                <p class="formula-expression">
+                  ε = −NΔΦ/Δt
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- OPTICS -->
+
+          <section class="formula-group" id="optics">
+
+            <div class="formula-group-header">
+              <h2>Optics</h2>
+              <p>Reflection, refraction, lenses, and light.</p>
+            </div>
+
+            <div class="formula-grid">
+
+              <div class="formula-item">
+                <span class="formula-name">Mirror equation</span>
+                <p class="formula-expression">
+                  1/f = 1/u + 1/v
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Magnification</span>
+                <p class="formula-expression">
+                  m = v/u
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Refractive index</span>
+                <p class="formula-expression">
+                  n = c/v
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Snell's law</span>
+                <p class="formula-expression">
+                  n₁ sin θ₁ = n₂ sin θ₂
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Lens equation</span>
+                <p class="formula-expression">
+                  1/f = 1/u + 1/v
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- MODERN PHYSICS -->
+
+          <section class="formula-group" id="modern">
+
+            <div class="formula-group-header">
+              <h2>Modern Physics</h2>
+              <p>Relativity, quantum physics, and nuclear physics.</p>
+            </div>
+
+            <div class="formula-grid">
+
+              <div class="formula-item">
+                <span class="formula-name">Mass-energy equivalence</span>
+                <p class="formula-expression">
+                  E = mc²
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Photon energy</span>
+                <p class="formula-expression">
+                  E = hf
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Photon momentum</span>
+                <p class="formula-expression">
+                  p = h/λ
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">de Broglie wavelength</span>
+                <p class="formula-expression">
+                  λ = h/p
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Photoelectric equation</span>
+                <p class="formula-expression">
+                  hf = φ + K<sub>max</sub>
+                </p>
+              </div>
+
+              <div class="formula-item">
+                <span class="formula-name">Radioactive decay</span>
+                <p class="formula-expression">
+                  N = N₀(1/2)<sup>t/T₁/₂</sup>
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <div class="formula-note-box">
+            <strong>Tip:</strong>
+            Learn what each symbol represents and when a formula applies.
+            Memorising an equation without understanding its conditions
+            can lead to incorrect results.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <nav class="formula-bottom" aria-label="Formula navigation">
+
+        <a href="index.html">
+          ← Back to Physics
+        </a>
+
+        <a href="../../index.html">
+          All Subjects →
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+</html>

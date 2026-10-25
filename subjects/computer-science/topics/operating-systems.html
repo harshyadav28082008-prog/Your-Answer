@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn operating systems, process management, memory, files, scheduling, device management, and operating system types.">
+  <title>Operating Systems | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <style>
+    .lesson {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+      color: var(--color-text);
+    }
+
+    .lesson-hero,
+    .lesson section {
+      padding: 25px;
+      margin-bottom: 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lesson h1 {
+      margin: 10px 0;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+    }
+
+    .lesson h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .lesson h3 {
+      margin-top: 22px;
+    }
+
+    .lesson p,
+    .lesson li {
+      line-height: 1.75;
+    }
+
+    .lesson li {
+      margin-bottom: 7px;
+    }
+
+    .note {
+      padding: 15px 17px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      background: var(--color-border);
+      margin: 18px 0;
+      line-height: 1.7;
+    }
+
+    .example {
+      padding: 16px;
+      border: 1px dashed var(--color-border);
+      border-radius: 12px;
+      margin: 15px 0;
+      overflow-x: auto;
+    }
+
+    .example pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-family: monospace;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 13px;
+      margin-top: 16px;
+    }
+
+    .concept-card {
+      padding: 17px;
+      border: 1px solid var(--color-border);
+      border-radius: 13px;
+    }
+
+    .concept-card strong {
+      display: block;
+      color: var(--color-brand);
+      margin-bottom: 8px;
+    }
+
+    .lesson table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+
+    .lesson th,
+    .lesson td {
+      text-align: left;
+      padding: 12px;
+      border: 1px solid var(--color-border);
+      line-height: 1.6;
+    }
+
+    .lesson th {
+      background: var(--color-border);
+    }
+
+    .answer-button {
+      margin-top: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 9px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    .answer {
+      display: none;
+      margin-top: 10px;
+      padding: 12px;
+      border-radius: 9px;
+      background: var(--color-border);
+      line-height: 1.7;
+    }
+
+    .answer.visible {
+      display: block;
+    }
+
+    .lesson-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .lesson-nav a {
+      color: var(--color-brand);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .lesson {
+        padding: 22px 14px 45px;
+      }
+
+      .lesson-hero,
+      .lesson section {
+        padding: 19px;
+      }
+
+      .lesson table {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="lesson">
+    <div class="lesson-hero">
+      <div class="eyebrow">Computer Science · Topic 08</div>
+      <h1>Operating Systems</h1>
+      <p>
+        Discover how operating systems manage hardware, memory, processes,
+        files, and devices while providing an environment for applications to run.
+      </p>
+    </div>
+
+    <section>
+      <h2>1. What Is an Operating System?</h2>
+      <p>
+        An <strong>operating system (OS)</strong> is system software that
+        manages computer hardware and provides services for applications and users.
+      </p>
+      <p>
+        When you open a browser, save a document, or play music, the operating
+        system helps coordinate the resources needed for those tasks.
+      </p>
+
+      <h3>Examples of operating systems</h3>
+      <ul>
+        <li>Microsoft Windows</li>
+        <li>macOS</li>
+        <li>GNU/Linux distributions</li>
+        <li>Android</li>
+        <li>iOS</li>
+      </ul>
+
+      <div class="note">
+        The operating system acts as a resource manager and provides a
+        standard environment through which programs use the computer.
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Main Functions of an Operating System</h2>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <strong>Process management</strong>
+          Creates, schedules, and coordinates running programs.
+        </div>
+        <div class="concept-card">
+          <strong>Memory management</strong>
+          Allocates memory and manages address spaces and virtual memory.
+        </div>
+        <div class="concept-card">
+          <strong>File management</strong>
+          Organizes files and directories and controls access to stored data.
+        </div>
+        <div class="concept-card">
+          <strong>Device management</strong>
+          Coordinates access to devices such as keyboards, displays, and storage.
+        </div>
+        <div class="concept-card">
+          <strong>Security and permissions</strong>
+          Helps control access to accounts, files, devices, and system resources.
+        </div>
+        <div class="concept-card">
+          <strong>User interface</strong>
+          Provides ways to interact with the system, such as a graphical desktop or command line.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Kernel and System Calls</h2>
+      <p>
+        The <strong>kernel</strong> is the core component of an operating
+        system. It manages fundamental operations such as scheduling,
+        memory, and access to hardware.
+      </p>
+      <p>
+        Applications generally request protected operating-system services
+        through defined interfaces called <strong>system calls</strong>.
+      </p>
+
+      <div class="example">
+        <pre>Application
+     |
+     v
+Operating-system interface
+     |
+     v
+Kernel
+     |
+     v
+Hardware resources</pre>
+      </div>
+
+      <p>
+        For example, an application may request that the OS open a file.
+        The operating system checks the request and permissions, then
+        performs the appropriate operations.
+      </p>
+
+      <div class="note">
+        This is a simplified model. Real operating systems may contain
+        additional services, drivers, libraries, and security boundaries.
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Programs, Processes, and Threads</h2>
+
+      <h3>Program</h3>
+      <p>
+        A <strong>program</strong> is a set of instructions stored for
+        execution. By itself, a program file is not necessarily running.
+      </p>
+
+      <h3>Process</h3>
+      <p>
+        A <strong>process</strong> is a running instance of a program,
+        together with the resources and execution state managed for it.
+      </p>
+
+      <h3>Thread</h3>
+      <p>
+        A <strong>thread</strong> is a sequence of execution within a
+        process. A process can have one or multiple threads.
+      </p>
+
+      <div class="example">
+        <pre>Process: Web Browser
+    |
+    |-- Thread 1: Interface work
+    |-- Thread 2: Background task
+    |-- Thread 3: Page processing</pre>
+      </div>
+
+      <p>
+        This is a conceptual illustration. Actual browser architecture
+        varies and may use multiple processes as well as multiple threads.
+      </p>
+    </section>
+
+    <section>
+      <h2>5. Process States</h2>
+      <p>
+        A process can move through different states during its lifetime.
+        A simplified model includes the following:
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>State</th><th>Meaning</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>New</td>
+            <td>The process is being created.</td>
+          </tr>
+          <tr>
+            <td>Ready</td>
+            <td>The process can run but is waiting for CPU time.</td>
+          </tr>
+          <tr>
+            <td>Running</td>
+            <td>The process is currently executing on a CPU core.</td>
+          </tr>
+          <tr>
+            <td>Waiting / Blocked</td>
+            <td>The process is waiting for an event, such as an I/O operation.</td>
+          </tr>
+          <tr>
+            <td>Terminated</td>
+            <td>The process has finished or has been stopped.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="example">
+        <pre>New → Ready → Running → Terminated
+             ^      |
+             |      v
+             └── Waiting</pre>
+      </div>
+
+      <p>
+        State transitions depend on events such as scheduling decisions,
+        I/O completion, and process termination.
+      </p>
+    </section>
+
+    <section>
+      <h2>6. CPU Scheduling</h2>
+      <p>
+        A <strong>CPU scheduler</strong> chooses which eligible process or
+        thread should run next. Scheduling helps share processor time among
+        competing tasks.
+      </p>
+
+      <h3>Common scheduling algorithms</h3>
+      <ul>
+        <li><strong>First Come, First Served (FCFS):</strong> Tasks are handled in arrival order.</li>
+        <li><strong>Shortest Job First (SJF):</strong> Selects the task with the shortest expected CPU burst.</li>
+        <li><strong>Priority Scheduling:</strong> Selects tasks according to priority rules.</li>
+        <li><strong>Round Robin:</strong> Gives each ready task a time slice before moving to another task.</li>
+      </ul>
+
+      <h3>Example: Round Robin</h3>
+      <div class="example">
+        <pre>Time slice = 2 units
+
+Process A runs for up to 2 units
+Process B runs for up to 2 units
+Process C runs for up to 2 units
+Then the scheduler cycles through remaining ready tasks.</pre>
+      </div>
+
+      <p>
+        Round Robin is useful for sharing CPU time responsively. The
+        appropriate scheduling method depends on the system's goals.
+      </p>
+    </section>
+
+    <section>
+      <h2>7. Memory Management</h2>
+      <p>
+        Memory management controls how programs use main memory (RAM).
+        The operating system tracks memory usage and provides processes
+        with suitable address spaces.
+      </p>
+
+      <h3>Key concepts</h3>
+      <ul>
+        <li><strong>RAM:</strong> Fast, temporary working memory used by running programs.</li>
+        <li><strong>Virtual memory:</strong> An abstraction that gives processes their own address spaces and can use storage to support memory management.</li>
+        <li><strong>Paging:</strong> Divides virtual memory into fixed-size pages and physical memory into corresponding frames.</li>
+        <li><strong>Page fault:</strong> An event that occurs when an access requires a page that is not currently mapped as needed; the OS handles it according to the circumstances.</li>
+        <li><strong>Memory protection:</strong> Helps prevent one process from accessing another process's protected memory without authorization.</li>
+      </ul>
+
+      <div class="note">
+        Virtual memory is not the same as physical RAM. Using storage to
+        support memory management is generally much slower than accessing RAM.
+      </div>
+    </section>
+
+    <section>
+      <h2>8. File Systems</h2>
+      <p>
+        A <strong>file system</strong> defines how files and directories are
+        organized and how information about stored data is maintained.
+      </p>
+
+      <h3>Common file-system concepts</h3>
+      <ul>
+        <li><strong>File:</strong> A named collection of data.</li>
+        <li><strong>Directory:</strong> A structure used to organize files and other directories.</li>
+        <li><strong>Path:</strong> Identifies a file or directory's location in a file-system hierarchy.</li>
+        <li><strong>Metadata:</strong> Information about a file, such as size, timestamps, or permissions.</li>
+        <li><strong>Permissions:</strong> Rules controlling who may read, write, or execute data.</li>
+      </ul>
+
+      <h3>Examples of file systems</h3>
+      <ul>
+        <li>NTFS, commonly used by Windows.</li>
+        <li>APFS, used by modern Apple operating systems.</li>
+        <li>ext4, used by many Linux systems.</li>
+        <li>FAT32 and exFAT, often encountered on removable storage.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>9. Device and I/O Management</h2>
+      <p>
+        The operating system coordinates input and output (I/O) between
+        applications and devices.
+      </p>
+      <ul>
+        <li><strong>Device drivers:</strong> Software components that allow the OS to communicate with particular hardware.</li>
+        <li><strong>Interrupts:</strong> Signals that can alert the CPU to events requiring attention.</li>
+        <li><strong>Buffering:</strong> Temporarily stores data while it is transferred between components.</li>
+        <li><strong>Spooling:</strong> Queues work for a device, such as print jobs waiting for a printer.</li>
+      </ul>
+
+      <div class="example">
+        <pre>Application requests printing
+           |
+           v
+Operating system prepares print job
+           |
+           v
+Print queue stores pending work
+           |
+           v
+Printer processes the job</pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>10. Deadlocks</h2>
+      <p>
+        A <strong>deadlock</strong> occurs when a set of processes are
+        permanently waiting for resources or events that cannot become
+        available because of the waiting relationships between them.
+      </p>
+
+      <h3>Four classic conditions</h3>
+      <ul>
+        <li><strong>Mutual exclusion:</strong> At least one resource can be used by only one process at a time.</li>
+        <li><strong>Hold and wait:</strong> A process holds one resource while waiting for another.</li>
+        <li><strong>No preemption:</strong> Resources cannot simply be taken away under the assumed model.</li>
+        <li><strong>Circular wait:</strong> Processes form a cycle, each waiting for a resource held by another.</li>
+      </ul>
+
+      <p>
+        Under the classic resource-allocation model, all four conditions
+        must hold for deadlock to be possible.
+      </p>
+
+      <h3>Ways systems handle deadlocks</h3>
+      <ul>
+        <li><strong>Prevention:</strong> Design resource rules so at least one necessary condition cannot hold.</li>
+        <li><strong>Avoidance:</strong> Grant requests only when the resulting state meets a safety criterion.</li>
+        <li><strong>Detection and recovery:</strong> Detect deadlocks and take steps to recover.</li>
+        <li><strong>Ignore:</strong> Some systems do not attempt general-purpose handling for certain kinds of deadlock.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>11. Types of Operating Systems</h2>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <strong>Batch OS</strong>
+          Processes groups of jobs with limited direct interaction during execution.
+        </div>
+        <div class="concept-card">
+          <strong>Time-sharing OS</strong>
+          Shares processor time among users or tasks to support interactive use.
+        </div>
+        <div class="concept-card">
+          <strong>Real-time OS</strong>
+          Designed to meet timing requirements within specified constraints.
+        </div>
+        <div class="concept-card">
+          <strong>Distributed OS</strong>
+          Coordinates resources across multiple computers; the term can describe several different system designs.
+        </div>
+        <div class="concept-card">
+          <strong>Network OS</strong>
+          Provides services for connected computers, such as shared resources and centralized administration.
+        </div>
+        <div class="concept-card">
+          <strong>Mobile OS</strong>
+          Designed for mobile devices, including touch interfaces and power management.
+        </div>
+      </div>
+
+      <div class="note">
+        These categories are not always mutually exclusive. One operating
+        system can have characteristics of more than one category.
+      </div>
+    </section>
+
+    <section>
+      <h2>12. User Interfaces: GUI and CLI</h2>
+
+      <h3>Graphical User Interface (GUI)</h3>
+      <p>
+        A GUI lets users interact through visual elements such as windows,
+        icons, buttons, menus, and touch controls.
+      </p>
+
+      <h3>Command-Line Interface (CLI)</h3>
+      <p>
+        A CLI accepts text commands. It is useful for automation, system
+        administration, development, and tasks that benefit from precise commands.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>GUI</th><th>CLI</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Visual and often easier to discover.</td><td>Text-based and often efficient for repetitive tasks.</td></tr>
+          <tr><td>Commonly uses windows, icons, and menus.</td><td>Uses commands and their arguments.</td></tr>
+          <tr><td>Good for many everyday interactive tasks.</td><td>Useful for scripting and remote administration.</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        Many operating systems provide both interfaces, and advanced users
+        often use them together.
+      </p>
+    </section>
+
+    <section>
+      <h2>13. Knowledge Check</h2>
+      <p>Try answering each question before revealing the answer.</p>
+
+      <div>
+        <p><strong>1. What is the main purpose of an operating system?</strong></p>
+        <button class="answer-button" type="button" data-answer="a1" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a1">
+          To manage computer resources and provide services and an environment for applications and users.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>2. What is the difference between a program and a process?</strong></p>
+        <button class="answer-button" type="button" data-answer="a2" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a2">
+          A program is a set of stored instructions; a process is a running instance with execution state and managed resources.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>3. Which scheduling algorithm uses time slices?</strong></p>
+        <button class="answer-button" type="button" data-answer="a3" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a3">
+          Round Robin.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>4. What is virtual memory?</strong></p>
+        <button class="answer-button" type="button" data-answer="a4" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a4">
+          A memory-management abstraction that gives processes address spaces and can use storage to support memory management.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>5. Name the four classic deadlock conditions.</strong></p>
+        <button class="answer-button" type="button" data-answer="a5" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a5">
+          Mutual exclusion, hold and wait, no preemption, and circular wait.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>6. What does a device driver do?</strong></p>
+        <button class="answer-button" type="button" data-answer="a6" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a6">
+          It provides software support for communication between the operating system and a particular device.
+        </div>
+      </div>
+
+      <div>
+        <p><strong>7. What is the difference between a GUI and a CLI?</strong></p>
+        <button class="answer-button" type="button" data-answer="a7" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a7">
+          A GUI uses visual controls, while a CLI lets users interact through text commands.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>An OS manages hardware and provides services for applications.</li>
+        <li>The kernel handles core system operations.</li>
+        <li>Processes and threads represent units of program execution.</li>
+        <li>Scheduling, memory management, and file systems are major OS responsibilities.</li>
+        <li>Drivers, interrupts, and buffering support device communication.</li>
+        <li>Deadlocks can be prevented, avoided, detected, or handled in other ways.</li>
+        <li>Operating systems can offer graphical interfaces, command lines, or both.</li>
+      </ul>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Topic navigation">
+      <a href="computer-networks.html">← Previous: Computer Networks</a>
+      <a href="cybersecurity.html">Next: Cybersecurity and Digital Safety →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Your Answer — Learn, explore, and understand.</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll("[data-answer]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        const answer = document.getElementById(button.dataset.answer);
+        if (!answer) return;
+
+        const isVisible = answer.classList.toggle("visible");
+        button.setAttribute("aria-expanded", String(isVisible));
+        button.textContent = isVisible ? "Hide answer" : "Reveal answer";
+      });
+    });
+  </script>
+</body>
+</html>

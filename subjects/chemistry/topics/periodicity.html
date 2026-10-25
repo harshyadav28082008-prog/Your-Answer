@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Learn about the periodic table, periodic law, groups, periods, atomic radius, ionisation energy, electron affinity, and electronegativity."
+  >
+
+  <title>Periodic Table & Periodicity | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    /* ========================================
+       CHEMISTRY LESSON — PERIODICITY
+       ======================================== */
+
+    .chemistry-lesson {
+      padding-bottom: 70px;
+    }
+
+    .lesson-hero {
+      padding: 58px 0 45px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-eyebrow {
+      margin: 0 0 14px;
+      color: var(--chemistry-accent, #8b5cf6);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      line-height: 1;
+      letter-spacing: -.065em;
+    }
+
+    .lesson-intro {
+      max-width: 730px;
+      margin: 20px 0 0;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      gap: 35px;
+      align-items: start;
+      padding-top: 42px;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      margin-bottom: 42px;
+      scroll-margin-top: 80px;
+    }
+
+    .lesson-section h2 {
+      margin: 0 0 15px;
+      font-size: clamp(1.55rem, 4vw, 2.1rem);
+      letter-spacing: -.045em;
+    }
+
+    .lesson-section h3 {
+      margin: 26px 0 9px;
+      font-size: 1.15rem;
+    }
+
+    .lesson-section p {
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .concept-card {
+      margin: 18px 0;
+      padding: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .concept-card strong {
+      color: var(--color-text);
+    }
+
+    .trend-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .trend-card {
+      padding: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .trend-direction {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--chemistry-accent, #8b5cf6);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .trend-card h3 {
+      margin: 0 0 7px;
+      font-size: 1rem;
+    }
+
+    .trend-card p {
+      margin: 0;
+      font-size: .87rem;
+      line-height: 1.65;
+    }
+
+    .periodic-mini {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(0, 1fr));
+      gap: 4px;
+      margin: 24px 0;
+    }
+
+    .element-box {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      color: var(--color-text);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      font-size: .7rem;
+      font-weight: 700;
+    }
+
+    .element-box.highlight {
+      color: var(--chemistry-accent, #8b5cf6);
+      border-color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    .comparison-table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .comparison-table th {
+      color: var(--color-text);
+      font-size: .82rem;
+    }
+
+    .comparison-table td {
+      color: var(--color-text-muted);
+      font-size: .87rem;
+      line-height: 1.5;
+    }
+
+    .lesson-aside {
+      position: sticky;
+      top: 75px;
+    }
+
+    .aside-card {
+      padding: 19px;
+      margin-bottom: 14px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .aside-card h2 {
+      margin: 0 0 12px;
+      font-size: .95rem;
+    }
+
+    .aside-card a {
+      display: block;
+      padding: 6px 0;
+      color: var(--color-text-muted);
+      font-size: .86rem;
+      text-decoration: none;
+    }
+
+    .aside-card a:hover {
+      color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 20px;
+      padding-top: 25px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-bottom a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    @media (max-width: 900px) {
+      .periodic-mini {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 800px) {
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .aside-card {
+        margin-bottom: 0;
+      }
+
+      .trend-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .lesson-hero {
+        padding-top: 35px;
+      }
+
+      .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .periodic-mini {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .lesson-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../../index.html">
+        Your Answer
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Toggle colour theme"
+      >
+        Theme
+      </button>
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-controls="mobile-nav"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="chemistry-lesson">
+
+    <section class="lesson-hero">
+
+      <div class="container">
+
+        <p class="lesson-eyebrow">
+          Chemistry / 03
+        </p>
+
+        <h1>Periodic Table & Periodicity</h1>
+
+        <p class="lesson-intro">
+          The periodic table is more than a list of elements. Its structure
+          reveals repeating patterns in atomic structure and helps us predict
+          how elements behave.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <div class="container lesson-layout">
+
+      <article class="lesson-main">
+
+
+        <!-- PERIODIC LAW -->
+
+        <section class="lesson-section" id="periodic-law">
+
+          <h2>1. The Periodic Law</h2>
+
+          <p>
+            When elements are arranged according to increasing atomic number,
+            their physical and chemical properties show repeating patterns.
+            This is the basis of the modern periodic table.
+          </p>
+
+          <div class="concept-card">
+
+            <strong>Modern periodic law</strong>
+
+            <p>
+              The properties of elements are periodic functions of their
+              atomic numbers.
+            </p>
+
+          </div>
+
+        </section>
+
+
+        <!-- ORGANISATION -->
+
+        <section class="lesson-section" id="organisation">
+
+          <h2>2. Groups and Periods</h2>
+
+          <p>
+            The periodic table is organised into horizontal rows called
+            <strong>periods</strong> and vertical columns called
+            <strong>groups</strong>.
+          </p>
+
+          <div class="concept-card">
+
+            <strong>Periods</strong>
+
+            <p>
+              There are seven periods. Elements within a period have the
+              same number of occupied principal electron shells.
+            </p>
+
+          </div>
+
+          <div class="concept-card">
+
+            <strong>Groups</strong>
+
+            <p>
+              Elements in the same group often have similar chemical
+              properties because of related valence-electron arrangements.
+            </p>
+
+          </div>
+
+          <div class="periodic-mini" aria-label="Simplified periodic table">
+
+            <span class="element-box highlight">H</span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box highlight">He</span>
+
+            <span class="element-box">Li</span>
+            <span class="element-box">Be</span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box">F</span>
+            <span class="element-box">Ne</span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+
+            <span class="element-box">Na</span>
+            <span class="element-box">Mg</span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+            <span class="element-box">Cl</span>
+            <span class="element-box">Ar</span>
+            <span class="element-box"></span>
+            <span class="element-box"></span>
+
+          </div>
+
+        </section>
+
+
+        <!-- BLOCKS -->
+
+        <section class="lesson-section" id="blocks">
+
+          <h2>3. Blocks of the Periodic Table</h2>
+
+          <p>
+            Elements can also be classified according to the subshell into
+            which their differentiating electron enters.
+          </p>
+
+          <div class="concept-card">
+            <strong>s-block</strong>
+            <p>
+              Includes groups 1 and 2, along with helium by electron
+              configuration.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>p-block</strong>
+            <p>
+              Includes groups 13 through 18.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>d-block</strong>
+            <p>
+              Contains the transition elements.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>f-block</strong>
+            <p>
+              Contains the lanthanides and actinides.
+            </p>
+          </div>
+
+        </section>
+
+
+        <!-- ATOMIC RADIUS -->
+
+        <section class="lesson-section" id="atomic-radius">
+
+          <h2>4. Atomic Radius</h2>
+
+          <p>
+            Atomic radius is a measure of the size of an atom.
+            Its trend is strongly influenced by nuclear charge,
+            electron shells, and shielding.
+          </p>
+
+          <div class="trend-grid">
+
+            <div class="trend-card">
+
+              <span class="trend-direction">→ decreases</span>
+
+              <h3>Across a period</h3>
+
+              <p>
+                Atomic radius generally decreases from left to right because
+                effective nuclear attraction increases.
+              </p>
+
+            </div>
+
+            <div class="trend-card">
+
+              <span class="trend-direction">↓ increases</span>
+
+              <h3>Down a group</h3>
+
+              <p>
+                Atomic radius generally increases because additional electron
+                shells are added.
+              </p>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- IONISATION -->
+
+        <section class="lesson-section" id="ionisation">
+
+          <h2>5. Ionisation Energy</h2>
+
+          <p>
+            Ionisation energy is the energy required to remove an electron
+            from an isolated gaseous atom.
+          </p>
+
+          <div class="trend-grid">
+
+            <div class="trend-card">
+
+              <span class="trend-direction">↑ generally increases</span>
+
+              <h3>Across a period</h3>
+
+              <p>
+                Increasing effective nuclear charge generally makes electrons
+                harder to remove.
+              </p>
+
+            </div>
+
+            <div class="trend-card">
+
+              <span class="trend-direction">↓ generally decreases</span>
+
+              <h3>Down a group</h3>
+
+              <p>
+                Outer electrons become farther from the nucleus and are
+                generally easier to remove.
+              </p>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- ELECTRONEGATIVITY -->
+
+        <section class="lesson-section" id="electronegativity">
+
+          <h2>6. Electronegativity</h2>
+
+          <p>
+            Electronegativity describes the tendency of an atom in a chemical
+            bond to attract shared electrons toward itself.
+          </p>
+
+          <div class="concept-card">
+
+            <strong>General trend</strong>
+
+            <p>
+              Electronegativity generally increases from left to right
+              across a period and decreases down a group.
+            </p>
+
+          </div>
+
+          <p>
+            Fluorine has the highest electronegativity on the commonly used
+            Pauling scale.
+          </p>
+
+        </section>
+
+
+        <!-- ELECTRON AFFINITY -->
+
+        <section class="lesson-section" id="electron-affinity">
+
+          <h2>7. Electron Affinity</h2>
+
+          <p>
+            Electron affinity describes the energy change associated with
+            adding an electron to a gaseous atom.
+          </p>
+
+          <p>
+            Its exact trend contains several exceptions because electron
+            configurations and electron-electron repulsions also influence
+            the energy change.
+          </p>
+
+        </section>
+
+
+        <!-- METALS -->
+
+        <section class="lesson-section" id="metals">
+
+          <h2>8. Metals, Nonmetals and Metalloids</h2>
+
+          <table class="comparison-table">
+
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Metals</th>
+                <th>Nonmetals</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>Electrical conductivity</td>
+                <td>Generally high</td>
+                <td>Generally low</td>
+              </tr>
+
+              <tr>
+                <td>Appearance</td>
+                <td>Often lustrous</td>
+                <td>Often non-lustrous</td>
+              </tr>
+
+              <tr>
+                <td>Malleability</td>
+                <td>Generally malleable</td>
+                <td>Usually brittle when solid</td>
+              </tr>
+
+              <tr>
+                <td>Typical ion formation</td>
+                <td>Often form cations</td>
+                <td>Often form anions or share electrons</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+          <p>
+            <strong>Metalloids</strong> display a mixture of metallic and
+            nonmetallic properties and occur near the boundary between the
+            two broad regions.
+          </p>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="lesson-section" id="summary">
+
+          <h2>Key Ideas</h2>
+
+          <div class="concept-card">
+            <strong>Atomic number controls periodic position.</strong>
+            <p>
+              The modern table is arranged according to increasing atomic
+              number.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Electron configuration explains many trends.</strong>
+            <p>
+              The arrangement of electrons helps explain why elements in
+              particular groups behave similarly.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Periodic trends are patterns, not absolute rules.</strong>
+            <p>
+              General trends are useful for prediction, but individual
+              electron configurations can produce exceptions.
+            </p>
+          </div>
+
+        </section>
+
+      </article>
+
+
+      <!-- ASIDE -->
+
+      <aside class="lesson-aside">
+
+        <div class="aside-card">
+
+          <h2>On this page</h2>
+
+          <a href="#periodic-law">Periodic Law</a>
+          <a href="#organisation">Groups & Periods</a>
+          <a href="#blocks">Periodic Blocks</a>
+          <a href="#atomic-radius">Atomic Radius</a>
+          <a href="#ionisation">Ionisation Energy</a>
+          <a href="#electronegativity">Electronegativity</a>
+          <a href="#electron-affinity">Electron Affinity</a>
+          <a href="#metals">Metals & Nonmetals</a>
+          <a href="#summary">Key Ideas</a>
+
+        </div>
+
+
+        <div class="aside-card">
+
+          <h2>Trend map</h2>
+
+          <p>
+            Atomic radius:
+            <strong>↑ down, ← across</strong>
+          </p>
+
+          <p>
+            Ionisation energy:
+            <strong>↓ down, → across</strong>
+          </p>
+
+          <p>
+            Electronegativity:
+            <strong>↓ down, → across</strong>
+          </p>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+
+    <div class="container">
+
+      <nav class="lesson-bottom" aria-label="Lesson navigation">
+
+        <a href="../index.html">
+          ← Chemistry
+        </a>
+
+        <a href="chemical-bonding.html">
+          Next: Chemical Bonding →
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../../assets/js/main.js"></script>
+
+</body>
+</html>

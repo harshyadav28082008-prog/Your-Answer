@@ -1,0 +1,717 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore how temperature, concentration, and surface area affect the rate of a chemical reaction in this interactive virtual lab.">
+  <title>Reaction Rate Lab | Your Answer</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .lab-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .lab-breadcrumb {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .lab-breadcrumb a {
+      color: var(--color-brand);
+      text-decoration: none;
+    }
+
+    .lab-hero {
+      margin-bottom: 30px;
+    }
+
+    .lab-tag {
+      display: inline-block;
+      color: var(--color-brand);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .lab-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      margin: 0 0 14px;
+    }
+
+    .lab-hero p {
+      max-width: 720px;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .lab-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .lab-panel {
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      border-radius: 18px;
+      padding: 22px;
+      min-width: 0;
+    }
+
+    .lab-panel h2 {
+      font-size: 1.25rem;
+      margin: 0 0 8px;
+    }
+
+    .lab-muted {
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      font-size: 0.93rem;
+    }
+
+    .reaction-scene {
+      position: relative;
+      overflow: hidden;
+      height: 210px;
+      margin: 20px 0;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.08), transparent 35%),
+        var(--color-surface);
+    }
+
+    .beaker {
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      width: min(72%, 310px);
+      height: 145px;
+      border: 3px solid var(--color-text-muted);
+      border-top: 0;
+      border-radius: 0 0 24px 24px;
+      overflow: hidden;
+    }
+
+    .liquid {
+      position: absolute;
+      inset: 30% 0 0;
+      background: rgba(59, 130, 246, 0.17);
+      border-top: 2px solid rgba(59, 130, 246, 0.5);
+      transition: background 0.3s;
+    }
+
+    .particle {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+      transition: left 0.3s, top 0.3s;
+    }
+
+    .particle:nth-child(3n) {
+      background: #f59e0b;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.13);
+    }
+
+    .scene-label {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+    }
+
+    .control-group {
+      margin: 22px 0;
+    }
+
+    .control-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 9px;
+      font-weight: 600;
+    }
+
+    .control-value {
+      color: var(--color-brand);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .control-group input[type="range"] {
+      width: 100%;
+      accent-color: var(--color-brand);
+      cursor: pointer;
+    }
+
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+      margin-top: 4px;
+    }
+
+    .factor-note {
+      color: var(--color-text-muted);
+      font-size: 0.86rem;
+      line-height: 1.5;
+      margin-top: 7px;
+    }
+
+    .result-box {
+      padding: 18px;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      margin-bottom: 18px;
+    }
+
+    .result-number {
+      font-size: 2.3rem;
+      font-weight: 750;
+      color: var(--color-brand);
+      line-height: 1.2;
+      margin: 7px 0;
+    }
+
+    .meter-track {
+      height: 10px;
+      background: var(--color-border);
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 14px 0 8px;
+    }
+
+    .meter-fill {
+      height: 100%;
+      width: 25%;
+      background: var(--color-brand);
+      border-radius: inherit;
+      transition: width 0.3s;
+    }
+
+    .status-text {
+      font-size: 0.88rem;
+      color: var(--color-text-muted);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .lab-button {
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text);
+      padding: 10px 16px;
+      border-radius: 10px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .lab-button.primary {
+      background: var(--color-brand);
+      border-color: var(--color-brand);
+      color: white;
+    }
+
+    .lab-button:focus-visible,
+    .control-group input:focus-visible {
+      outline: 3px solid var(--color-brand);
+      outline-offset: 3px;
+    }
+
+    .observation-box {
+      min-height: 100px;
+      padding: 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      line-height: 1.65;
+      margin-top: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .observation-list {
+      padding-left: 20px;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .lab-bottom {
+      margin-top: 22px;
+    }
+
+    .lab-bottom textarea {
+      display: block;
+      width: 100%;
+      min-height: 110px;
+      padding: 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+
+    .lab-notice {
+      border-left: 4px solid var(--color-brand);
+      padding: 12px 15px;
+      background: var(--color-surface);
+      margin-top: 22px;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    .lab-footer-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: var(--color-brand);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width: 760px) {
+      .lab-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lab-page {
+        padding: 24px 15px 45px;
+      }
+
+      .lab-panel {
+        padding: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="subjects/">Subjects</a>
+        <a href="explore-3d/">3D Explorer</a>
+        <a href="labs/">Virtual Labs</a>
+        <a href="coding/">Coding Studio</a>
+      </nav>
+
+
+      <div class="header-actions">
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <nav
+  class="mobile-nav container"
+  id="mobile-nav"
+  aria-label="Mobile navigation"
+  hidden
+>
+      <a href="subjects/">Subjects</a>
+      <a href="explore-3d/">3D Explorer</a>
+      <a href="labs/">Virtual Labs</a>
+      <a href="coding/">Coding Studio</a>
+      <a href="about/">About</a>
+    </nav>
+  </header>
+
+  <main class="lab-page">
+    <div class="lab-breadcrumb">
+      <a href="../index.html">Home</a> /
+      <a href="index.html">Virtual Labs</a> /
+      Reaction Rate
+    </div>
+
+    <section class="lab-hero">
+      <span class="lab-tag">CHEMISTRY LAB</span>
+      <h1>Reaction Rate</h1>
+      <p>
+        Why do some chemical reactions happen quickly while others take much
+        longer? Change the temperature, concentration, and particle size to
+        investigate how these factors can affect the speed of a reaction.
+      </p>
+    </section>
+
+    <div class="lab-layout">
+      <section class="lab-panel">
+        <h2>Experiment controls</h2>
+        <p class="lab-muted">
+          Adjust one factor at a time to see how the model's reaction rate changes.
+        </p>
+
+        <div class="reaction-scene" aria-label="Illustration of particles in a reaction vessel">
+          <span class="scene-label">Particle model · illustrative</span>
+          <div class="beaker">
+            <div class="liquid" id="liquid"></div>
+            <div id="particles"></div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-heading">
+            <label for="temperature">Temperature</label>
+            <span class="control-value" id="temperatureValue">25 °C</span>
+          </div>
+          <input type="range" id="temperature" min="10" max="80" value="25">
+          <div class="range-labels">
+            <span>10 °C · Cooler</span>
+            <span>80 °C · Hotter</span>
+          </div>
+          <p class="factor-note">
+            Higher temperature generally makes particles move faster, increasing
+            the chance of successful collisions.
+          </p>
+        </div>
+
+        <div class="control-group">
+          <div class="control-heading">
+            <label for="concentration">Concentration</label>
+            <span class="control-value" id="concentrationValue">50%</span>
+          </div>
+          <input type="range" id="concentration" min="10" max="100" value="50" step="10">
+          <div class="range-labels">
+            <span>10% · Dilute</span>
+            <span>100% · Concentrated</span>
+          </div>
+          <p class="factor-note">
+            A higher concentration means more reactant particles in the same
+            volume, usually leading to more collisions.
+          </p>
+        </div>
+
+        <div class="control-group">
+          <div class="control-heading">
+            <label for="surface">Available surface area</label>
+            <span class="control-value" id="surfaceValue">50%</span>
+          </div>
+          <input type="range" id="surface" min="10" max="100" value="50" step="10">
+          <div class="range-labels">
+            <span>10% · Larger pieces</span>
+            <span>100% · Fine particles</span>
+          </div>
+          <p class="factor-note">
+            Breaking a solid into smaller pieces exposes more surface for
+            collisions with the other reactant.
+          </p>
+        </div>
+
+        <div class="button-row">
+          <button class="lab-button primary" id="runButton">Start experiment</button>
+          <button class="lab-button" id="resetButton">Reset</button>
+        </div>
+      </section>
+
+      <aside class="lab-panel">
+        <h2>Live results</h2>
+        <p class="lab-muted">
+          The results show a simplified model, not measurements from a real chemical reaction.
+        </p>
+
+        <div class="result-box" style="margin-top: 20px;">
+          <span class="lab-muted">Relative reaction rate</span>
+          <div class="result-number" id="rateValue">1.0×</div>
+          <div class="meter-track" role="progressbar"
+               aria-label="Relative reaction rate"
+               aria-valuemin="0" aria-valuemax="100"
+               aria-valuenow="25" id="rateMeter">
+            <div class="meter-fill" id="rateFill"></div>
+          </div>
+          <div class="status-text" id="rateDescription">
+            Reference conditions
+          </div>
+        </div>
+
+        <div class="result-box">
+          <span class="lab-muted">Model progress</span>
+          <div class="result-number" id="progressValue">0%</div>
+          <div class="meter-track" role="progressbar"
+               aria-label="Model progress"
+               aria-valuemin="0" aria-valuemax="100"
+               aria-valuenow="0" id="progressMeter">
+            <div class="meter-fill" id="progressFill"></div>
+          </div>
+          <div class="status-text" id="runStatus" aria-live="polite">
+            Ready to start.
+          </div>
+        </div>
+
+        <h2>What to notice</h2>
+        <ul class="observation-list">
+          <li>Higher temperature increases the model rate.</li>
+          <li>Higher concentration increases collision frequency.</li>
+          <li>Greater surface area speeds up many reactions involving solids.</li>
+        </ul>
+
+        <div class="observation-box" id="observation" aria-live="polite">
+          Start with the default settings. Then change one factor at a time and compare the results.
+        </div>
+      </aside>
+    </div>
+
+    <section class="lab-panel lab-bottom">
+      <h2>Record your observations</h2>
+      <p class="lab-muted">
+        Write down your settings, compare the rates, and explain what you think caused the change.
+      </p>
+      <textarea id="notes" placeholder="Example: I kept concentration and surface area constant, then increased the temperature. The model rate increased..."></textarea>
+
+      <div class="button-row">
+        <button class="lab-button primary" id="recordButton">Add current results to notes</button>
+        <button class="lab-button" id="clearNotesButton">Clear notes</button>
+      </div>
+    </section>
+
+    <div class="lab-notice">
+      <strong>Scientific note:</strong> This is a conceptual simulation. The relative
+      rate is calculated using a simplified illustrative formula; it is not a
+      universal law or a prediction for a specific chemical reaction. In real
+      experiments, the effect of temperature depends on the reaction and its
+      activation energy. Never mix unknown chemicals or heat chemicals without
+      appropriate supervision and safety equipment.
+    </div>
+
+    <a class="lab-footer-link" href="index.html">← Back to Virtual Labs</a>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+
+  <script>
+    const temperature = document.getElementById("temperature");
+    const concentration = document.getElementById("concentration");
+    const surface = document.getElementById("surface");
+
+    const temperatureValue = document.getElementById("temperatureValue");
+    const concentrationValue = document.getElementById("concentrationValue");
+    const surfaceValue = document.getElementById("surfaceValue");
+
+    const rateValue = document.getElementById("rateValue");
+    const rateFill = document.getElementById("rateFill");
+    const rateMeter = document.getElementById("rateMeter");
+    const rateDescription = document.getElementById("rateDescription");
+
+    const progressValue = document.getElementById("progressValue");
+    const progressFill = document.getElementById("progressFill");
+    const progressMeter = document.getElementById("progressMeter");
+    const runStatus = document.getElementById("runStatus");
+    const observation = document.getElementById("observation");
+
+    const particles = document.getElementById("particles");
+    const liquid = document.getElementById("liquid");
+    const notes = document.getElementById("notes");
+    const runButton = document.getElementById("runButton");
+
+    let progress = 0;
+    let running = false;
+    let intervalId = null;
+    let lastRate = 1;
+
+    // Create a small illustrative group of particles inside the beaker.
+    function createParticles() {
+      particles.innerHTML = "";
+
+      for (let i = 0; i < 24; i++) {
+        const particle = document.createElement("span");
+        particle.className = "particle";
+        particle.style.left = (8 + Math.random() * 82) + "%";
+        particle.style.top = (35 + Math.random() * 55) + "%";
+        particles.appendChild(particle);
+      }
+    }
+
+    function calculateRate() {
+      const t = Number(temperature.value);
+      const c = Number(concentration.value) / 50;
+      const s = Number(surface.value) / 50;
+
+      // Illustrative relationship, normalized to 1× at 25 °C and 50% settings.
+      const temperatureFactor = Math.exp((t - 25) / 35);
+      const concentrationFactor = c;
+      const surfaceFactor = s;
+
+      return temperatureFactor * concentrationFactor * surfaceFactor;
+    }
+
+    function getRateDescription(rate) {
+      if (rate < 0.6) return "Slower than the reference conditions";
+      if (rate < 1.4) return "Around the reference rate";
+      if (rate < 3) return "Faster than the reference conditions";
+      return "Much faster than the reference conditions";
+    }
+
+    function updateDisplay() {
+      temperatureValue.textContent = temperature.value + " °C";
+      concentrationValue.textContent = concentration.value + "%";
+      surfaceValue.textContent = surface.value + "%";
+
+      const rate = calculateRate();
+      lastRate = rate;
+
+      rateValue.textContent = rate.toFixed(1) + "×";
+      rateDescription.textContent = getRateDescription(rate);
+
+      // Limit only the visual meter, not the displayed rate.
+      const meterWidth = Math.min(100, (rate / 8) * 100);
+      rateFill.style.width = meterWidth + "%";
+      rateMeter.setAttribute("aria-valuenow", meterWidth.toFixed(0));
+
+      progressValue.textContent = Math.round(progress) + "%";
+      progressFill.style.width = progress + "%";
+      progressMeter.setAttribute("aria-valuenow", Math.round(progress));
+
+      liquid.style.background = rate > 2
+        ? "rgba(245, 158, 11, 0.22)"
+        : "rgba(59, 130, 246, 0.17)";
+
+      observation.textContent =
+        "At " + temperature.value + " °C, concentration " +
+        concentration.value + "%, and surface area " + surface.value +
+        "%, the model's relative rate is " + rate.toFixed(2) +
+        "× the reference rate. Change one factor at a time to compare.";
+    }
+
+    function stopExperiment(message) {
+      running = false;
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+
+      runButton.textContent = progress >= 100 ? "Run again" : "Resume experiment";
+      runStatus.textContent = message;
+    }
+
+    function startExperiment() {
+      if (progress >= 100) {
+        progress = 0;
+      }
+
+      if (running) {
+        stopExperiment("Experiment paused at " + Math.round(progress) + "%.");
+        return;
+      }
+
+      running = true;
+      runButton.textContent = "Pause experiment";
+      runStatus.textContent = "Experiment running…";
+
+      intervalId = setInterval(() => {
+        const rate = calculateRate();
+
+        // This is an illustrative progress animation, not a measured reaction yield.
+        progress += Math.max(0.15, Math.min(2.5, rate * 0.3));
+        progress = Math.min(100, progress);
+
+        // Move particles to suggest increasing motion at higher temperatures.
+        const particleList = particles.querySelectorAll(".particle");
+        particleList.forEach((particle) => {
+          const speed = Number(temperature.value) / 80;
+          const left = 5 + Math.random() * 85;
+          const top = 32 + Math.random() * 58;
+          particle.style.left = left + "%";
+          particle.style.top = top + "%";
+          particle.style.transform = "scale(" + (0.8 + speed * 0.7) + ")";
+        });
+
+        updateDisplay();
+
+        if (progress >= 100) {
+          stopExperiment("Model run complete. Reset to compare another trial.");
+          runButton.textContent = "Run again";
+        }
+      }, 500);
+    }
+
+    function resetExperiment() {
+      stopExperiment("Ready to start.");
+      progress = 0;
+
+      temperature.value = 25;
+      concentration.value = 50;
+      surface.value = 50;
+
+      createParticles();
+      updateDisplay();
+
+      runButton.textContent = "Start experiment";
+      runStatus.textContent = "Ready to start.";
+    }
+
+    [temperature, concentration, surface].forEach((control) => {
+      control.addEventListener("input", updateDisplay);
+    });
+
+    runButton.addEventListener("click", startExperiment);
+    document.getElementById("resetButton").addEventListener("click", resetExperiment);
+
+    document.getElementById("recordButton").addEventListener("click", () => {
+      const entry =
+        "Temperature: " + temperature.value + " °C; " +
+        "Concentration: " + concentration.value + "%; " +
+        "Surface area: " + surface.value + "%; " +
+        "Relative rate: " + lastRate.toFixed(2) + "×; " +
+        "Progress: " + Math.round(progress) + "%.\n";
+
+      notes.value += (notes.value.trim() ? "\n" : "") + entry;
+    });
+
+    document.getElementById("clearNotesButton").addEventListener("click", () => {
+      notes.value = "";
+    });
+
+    createParticles();
+    updateDisplay();
+  </script>
+</body>
+</html>

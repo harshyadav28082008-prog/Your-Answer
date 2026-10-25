@@ -1,0 +1,1680 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Explore arithmetic through number operations, order of operations, fractions, interactive calculations, and practice on Your Answer.">
+  <title>Arithmetic — Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <script src="../../../assets/js/main.js" defer></script>
+
+  <style>
+    .arithmetic-page {
+      --arith-accent: var(--color-brand, #6256d9);
+      --arith-soft: var(--color-brand-soft, #eeecff);
+      --arith-line: var(--color-border, #e5e7eb);
+      --arith-muted: var(--color-text-muted, #707789);
+      --arith-panel: var(--color-surface, #ffffff);
+      --arith-alt: var(--color-surface-alt, #f6f7fb);
+      color: var(--color-text);
+      padding-bottom: 56px;
+    }
+
+    .arithmetic-page *,
+    .arithmetic-page *::before,
+    .arithmetic-page *::after {
+      box-sizing: border-box;
+    }
+
+    .arithmetic-page button,
+    .arithmetic-page input,
+    .arithmetic-page select {
+      font: inherit;
+    }
+
+    .arithmetic-page button {
+      cursor: pointer;
+    }
+
+    .arithmetic-page .lesson-container {
+      width: min(1080px, calc(100% - 36px));
+      margin-inline: auto;
+    }
+
+    .arithmetic-page .lesson-intro {
+      padding: 38px 0 30px;
+    }
+
+    .arithmetic-page .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 28px;
+      color: var(--arith-muted);
+      font-size: 0.82rem;
+    }
+
+    .arithmetic-page .breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .arithmetic-page .breadcrumb a:hover {
+      color: var(--arith-accent);
+    }
+
+    .arithmetic-page .lesson-kicker {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 15px;
+      color: var(--arith-accent);
+      font-size: 0.74rem;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .arithmetic-page .lesson-number {
+      padding: 5px 9px;
+      border: 1px solid var(--arith-line);
+      border-radius: 7px;
+      color: var(--arith-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .arithmetic-page .lesson-title {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.25rem, 6vw, 4.1rem);
+      font-weight: 760;
+      letter-spacing: -0.065em;
+      line-height: 1.04;
+    }
+
+    .arithmetic-page .lesson-lead {
+      max-width: 650px;
+      margin: 20px 0 0;
+      color: var(--arith-muted);
+      font-size: clamp(1rem, 2vw, 1.12rem);
+      line-height: 1.85;
+    }
+
+    .arithmetic-page .lesson-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 17px;
+      margin-top: 23px;
+      color: var(--arith-muted);
+      font-size: 0.84rem;
+    }
+
+    .arithmetic-page .meta-dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: var(--arith-accent);
+    }
+
+    .arithmetic-page .lesson-nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 10px 0;
+      border-top: 1px solid var(--arith-line);
+      border-bottom: 1px solid var(--arith-line);
+      background: var(--color-surface, #fff);
+      background: color-mix(in srgb, var(--color-surface, #fff) 94%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .arithmetic-page .lesson-nav {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .arithmetic-page .lesson-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .arithmetic-page .lesson-nav a {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 13px;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      color: var(--arith-muted);
+      font-size: 0.84rem;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .arithmetic-page .lesson-nav a:hover,
+    .arithmetic-page .lesson-nav a.active {
+      border-color: color-mix(in srgb, var(--arith-accent) 15%, transparent);
+      background: var(--arith-soft);
+      color: var(--arith-accent);
+    }
+
+    .arithmetic-page .nav-index {
+      font-size: 0.72rem;
+      opacity: 0.75;
+    }
+
+    .arithmetic-page .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 265px;
+      gap: 44px;
+      align-items: start;
+      padding-top: 38px;
+    }
+
+    .arithmetic-page .lesson-content {
+      min-width: 0;
+    }
+
+    .arithmetic-page .lesson-section {
+      scroll-margin-top: 86px;
+      margin-bottom: 55px;
+    }
+
+    .arithmetic-page .section-label {
+      margin-bottom: 10px;
+      color: var(--arith-accent);
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .arithmetic-page .section-title {
+      margin: 0 0 17px;
+      font-size: clamp(1.55rem, 3vw, 2rem);
+      font-weight: 730;
+      letter-spacing: -0.045em;
+      line-height: 1.2;
+    }
+
+    .arithmetic-page .lesson-copy {
+      color: var(--arith-muted);
+      font-size: 0.98rem;
+      line-height: 1.9;
+    }
+
+    .arithmetic-page .lesson-copy p {
+      margin: 0 0 15px;
+    }
+
+    .arithmetic-page .lesson-copy strong {
+      color: var(--color-text);
+    }
+
+    .arithmetic-page .operation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 23px 0;
+    }
+
+    .arithmetic-page .operation-card {
+      padding: 18px;
+      border: 1px solid var(--arith-line);
+      border-radius: 14px;
+      background: var(--arith-panel);
+    }
+
+    .arithmetic-page .operation-symbol {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 14px;
+      border-radius: 11px;
+      background: var(--arith-soft);
+      color: var(--arith-accent);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+    }
+
+    .arithmetic-page .operation-card h3 {
+      margin: 0 0 6px;
+      font-size: 0.94rem;
+    }
+
+    .arithmetic-page .operation-card p {
+      margin: 0;
+      color: var(--arith-muted);
+      font-size: 0.83rem;
+      line-height: 1.7;
+    }
+
+    .arithmetic-page .equation-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 23px 0;
+      padding: 26px 18px;
+      border: 1px solid var(--arith-line);
+      border-radius: 16px;
+      background: var(--arith-alt);
+      text-align: center;
+    }
+
+    .arithmetic-page .equation-display .math {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.5rem, 5vw, 2.3rem);
+      font-weight: 600;
+      letter-spacing: -0.035em;
+    }
+
+    .arithmetic-page .equation-note {
+      width: 100%;
+      color: var(--arith-muted);
+      font-size: 0.8rem;
+    }
+
+    .arithmetic-page .insight-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 22px;
+      padding: 16px 17px;
+      border-left: 3px solid var(--arith-accent);
+      border-radius: 0 11px 11px 0;
+      background: var(--arith-soft);
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    .arithmetic-page .insight-mark {
+      flex: 0 0 auto;
+      color: var(--arith-accent);
+      font-weight: 800;
+    }
+
+    .arithmetic-page .example-card,
+    .arithmetic-page .interactive-panel,
+    .arithmetic-page .practice-card {
+      overflow: hidden;
+      border: 1px solid var(--arith-line);
+      border-radius: 16px;
+      background: var(--arith-panel);
+    }
+
+    .arithmetic-page .example-top,
+    .arithmetic-page .interactive-heading {
+      padding: 19px;
+      border-bottom: 1px solid var(--arith-line);
+    }
+
+    .arithmetic-page .example-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .arithmetic-page .example-top strong {
+      font-size: 0.91rem;
+    }
+
+    .arithmetic-page .example-badge {
+      padding: 5px 8px;
+      border-radius: 6px;
+      background: var(--arith-soft);
+      color: var(--arith-accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .arithmetic-page .example-steps {
+      display: grid;
+      padding: 4px 19px;
+    }
+
+    .arithmetic-page .example-step {
+      display: grid;
+      grid-template-columns: 27px minmax(0, 1fr);
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--arith-line);
+    }
+
+    .arithmetic-page .example-step:last-child {
+      border-bottom: 0;
+    }
+
+    .arithmetic-page .step-number {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--arith-line);
+      border-radius: 8px;
+      color: var(--arith-muted);
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .arithmetic-page .step-body strong {
+      display: block;
+      margin: 1px 0 5px;
+      font-size: 0.9rem;
+    }
+
+    .arithmetic-page .step-body p {
+      margin: 0;
+      color: var(--arith-muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .arithmetic-page .step-equation {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 7px;
+      background: var(--arith-alt);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.12rem;
+    }
+
+    .arithmetic-page .interactive-heading h3 {
+      margin: 0 0 7px;
+      font-size: 1.05rem;
+    }
+
+    .arithmetic-page .interactive-heading p {
+      margin: 0;
+      color: var(--arith-muted);
+      font-size: 0.86rem;
+      line-height: 1.7;
+    }
+
+    .arithmetic-page .calculator-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 20px;
+      padding: 21px;
+    }
+
+    .arithmetic-page .input-group {
+      margin-bottom: 15px;
+    }
+
+    .arithmetic-page .input-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .arithmetic-page .input-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .arithmetic-page .input-group input,
+    .arithmetic-page .input-group select {
+      width: 100%;
+      min-height: 45px;
+      padding: 10px 12px;
+      border: 1px solid var(--arith-line);
+      border-radius: 9px;
+      outline: none;
+      background: var(--color-surface, #fff);
+      color: var(--color-text);
+    }
+
+    .arithmetic-page .input-group input:focus,
+    .arithmetic-page .input-group select:focus {
+      border-color: var(--arith-accent);
+      box-shadow: 0 0 0 3px var(--arith-soft);
+    }
+
+    .arithmetic-page .input-help {
+      display: block;
+      margin-top: 6px;
+      color: var(--arith-muted);
+      font-size: 0.74rem;
+      line-height: 1.5;
+    }
+
+    .arithmetic-page .calculator-result {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 185px;
+      padding: 19px;
+      border: 1px solid var(--arith-line);
+      border-radius: 13px;
+      background: var(--arith-alt);
+    }
+
+    .arithmetic-page .result-label {
+      margin-bottom: 12px;
+      color: var(--arith-muted);
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .arithmetic-page .result-expression {
+      overflow-wrap: anywhere;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+
+    .arithmetic-page .result-answer {
+      margin-top: 12px;
+      color: var(--arith-accent);
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+
+    .arithmetic-page .result-explanation {
+      margin-top: 10px;
+      color: var(--arith-muted);
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+
+    .arithmetic-page .lab-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 15px 21px;
+      border-top: 1px solid var(--arith-line);
+    }
+
+    .arithmetic-page .lab-footer p {
+      margin: 0;
+      color: var(--arith-muted);
+      font-size: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .arithmetic-page .text-button,
+    .arithmetic-page .secondary-button {
+      padding: 9px 12px;
+      border: 1px solid var(--arith-line);
+      border-radius: 8px;
+      background: var(--arith-panel);
+      color: var(--color-text);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .arithmetic-page .text-button:hover,
+    .arithmetic-page .secondary-button:hover {
+      border-color: var(--arith-accent);
+      color: var(--arith-accent);
+    }
+
+    .arithmetic-page .practice-card {
+      padding: 22px;
+    }
+
+    .arithmetic-page .practice-progress {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      color: var(--arith-muted);
+      font-size: 0.79rem;
+    }
+
+    .arithmetic-page .progress-track {
+      height: 5px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      border-radius: 99px;
+      background: var(--arith-line);
+    }
+
+    .arithmetic-page .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--arith-accent);
+      transition: width 220ms ease;
+    }
+
+    .arithmetic-page .practice-question {
+      margin: 0 0 10px;
+      font-size: 1.13rem;
+      font-weight: 730;
+      letter-spacing: -0.025em;
+      line-height: 1.5;
+    }
+
+    .arithmetic-page .practice-instruction {
+      margin: 0 0 19px;
+      color: var(--arith-muted);
+      font-size: 0.86rem;
+      line-height: 1.7;
+    }
+
+    .arithmetic-page .practice-answer-row {
+      display: flex;
+      align-items: stretch;
+      gap: 9px;
+    }
+
+    .arithmetic-page .practice-answer-row input {
+      width: 100%;
+      min-width: 0;
+      min-height: 45px;
+      padding: 10px 12px;
+      border: 1px solid var(--arith-line);
+      border-radius: 9px;
+      outline: none;
+      background: var(--color-surface, #fff);
+      color: var(--color-text);
+    }
+
+    .arithmetic-page .practice-answer-row input:focus {
+      border-color: var(--arith-accent);
+      box-shadow: 0 0 0 3px var(--arith-soft);
+    }
+
+    .arithmetic-page .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border: 1px solid var(--arith-accent);
+      border-radius: 9px;
+      background: var(--arith-accent);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 750;
+    }
+
+    .arithmetic-page .primary-button:hover {
+      opacity: 0.9;
+    }
+
+    .arithmetic-page .practice-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    .arithmetic-page .practice-feedback {
+      margin-top: 17px;
+      padding: 13px 14px;
+      border: 1px solid var(--arith-line);
+      border-radius: 10px;
+      color: var(--arith-muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .arithmetic-page .practice-feedback:empty {
+      display: none;
+    }
+
+    .arithmetic-page .practice-feedback.success {
+      border-color: #86c9a0;
+      color: var(--color-text);
+    }
+
+    .arithmetic-page .practice-feedback.hint {
+      background: var(--arith-alt);
+    }
+
+    .arithmetic-page .practice-feedback.error {
+      border-color: #e8b5a8;
+      color: var(--color-text);
+    }
+
+    .arithmetic-page .lesson-aside {
+      position: sticky;
+      top: 75px;
+      display: grid;
+      gap: 15px;
+    }
+
+    .arithmetic-page .aside-card {
+      padding: 18px;
+      border: 1px solid var(--arith-line);
+      border-radius: 14px;
+      background: var(--arith-panel);
+    }
+
+    .arithmetic-page .aside-heading {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 12px;
+      font-size: 0.88rem;
+      font-weight: 750;
+    }
+
+    .arithmetic-page .aside-icon {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      border-radius: 9px;
+      background: var(--arith-soft);
+      color: var(--arith-accent);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .arithmetic-page .aside-card p {
+      margin: 0;
+      color: var(--arith-muted);
+      font-size: 0.83rem;
+      line-height: 1.8;
+    }
+
+    .arithmetic-page .aside-formula {
+      margin-top: 12px;
+      padding: 11px;
+      border-radius: 9px;
+      background: var(--arith-alt);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .arithmetic-page .lesson-checklist {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .arithmetic-page .lesson-checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      color: var(--arith-muted);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .arithmetic-page .check-mark {
+      flex: 0 0 auto;
+      color: var(--arith-accent);
+      font-weight: 800;
+    }
+
+    .arithmetic-page .lesson-end {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+      margin-top: 15px;
+    }
+
+    .arithmetic-page .lesson-end-link {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--arith-line);
+      border-radius: 13px;
+      background: var(--arith-panel);
+      text-decoration: none;
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+
+    .arithmetic-page .lesson-end-link:hover {
+      border-color: var(--arith-accent);
+      transform: translateY(-2px);
+    }
+
+    .arithmetic-page .lesson-end-label {
+      color: var(--arith-muted);
+      font-size: 0.75rem;
+    }
+
+    .arithmetic-page .lesson-end-title {
+      font-size: 0.91rem;
+      font-weight: 750;
+      line-height: 1.5;
+    }
+
+    .arithmetic-page .lesson-end-link.next {
+      text-align: right;
+    }
+
+    @media (max-width: 850px) {
+      .arithmetic-page .lesson-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 25px;
+      }
+
+      .arithmetic-page .lesson-aside {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .arithmetic-page .lesson-aside .aside-card:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .arithmetic-page .lesson-container {
+        width: min(100% - 28px, 1080px);
+      }
+
+      .arithmetic-page .lesson-intro {
+        padding-top: 26px;
+      }
+
+      .arithmetic-page .breadcrumb {
+        margin-bottom: 22px;
+        font-size: 0.77rem;
+      }
+
+      .arithmetic-page .lesson-title {
+        font-size: clamp(2.3rem, 12vw, 3.4rem);
+      }
+
+      .arithmetic-page .lesson-meta {
+        gap: 10px 15px;
+      }
+
+      .arithmetic-page .lesson-nav a {
+        padding: 9px 11px;
+      }
+
+      .arithmetic-page .lesson-layout {
+        padding-top: 29px;
+      }
+
+      .arithmetic-page .lesson-section {
+        margin-bottom: 43px;
+      }
+
+      .arithmetic-page .calculator-body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        padding: 17px;
+      }
+
+      .arithmetic-page .calculator-result {
+        min-height: 155px;
+      }
+
+      .arithmetic-page .interactive-heading {
+        padding: 18px 17px;
+      }
+
+      .arithmetic-page .lab-footer {
+        padding: 14px 17px;
+      }
+
+      .arithmetic-page .operation-grid {
+        gap: 9px;
+      }
+
+      .arithmetic-page .operation-card {
+        padding: 14px;
+      }
+
+      .arithmetic-page .practice-card {
+        padding: 17px;
+      }
+
+      .arithmetic-page .practice-answer-row {
+        flex-direction: column;
+      }
+
+      .arithmetic-page .practice-answer-row .primary-button {
+        min-height: 44px;
+      }
+
+      .arithmetic-page .lesson-aside {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .arithmetic-page .lesson-aside .aside-card:last-child {
+        grid-column: auto;
+      }
+
+      .arithmetic-page .lesson-end {
+        gap: 9px;
+      }
+
+      .arithmetic-page .lesson-end-link {
+        padding: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .arithmetic-page *,
+      .arithmetic-page *::before,
+      .arithmetic-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="arithmetic-page">
+
+    <header class="site-header">
+      <div class="header-inner container">
+        <a class="brand" href="../../../index.html" aria-label="Your Answer home">
+          <span class="brand-mark">Y</span>
+          <span class="brand-name">Your Answer</span>
+        </a>
+
+        <nav class="top-nav" aria-label="Main navigation">
+          <a href="../../index.html">Subjects</a>
+          <a href="../../../explore-3d/">Explore 3D</a>
+          <a href="../../../labs/">Labs</a>
+          <a href="../../../coding/">Coding</a>
+        </nav>
+
+        <div class="header-actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Toggle light and dark theme"
+          >
+            <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+            <span class="theme-toggle-label">Theme</span>
+          </button>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            data-menu-toggle
+            aria-label="Open navigation menu"
+            aria-controls="mobile-nav"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/">Explore 3D</a>
+        <a href="../../../labs/">Labs</a>
+        <a href="../../../coding/">Coding</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="lesson-intro">
+        <div class="lesson-container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../../index.html">Subjects</a>
+            <span aria-hidden="true">/</span>
+            <a href="../index.html">Mathematics</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Arithmetic</span>
+          </nav>
+
+          <div class="lesson-kicker">
+            <span>Mathematics</span>
+            <span aria-hidden="true">/</span>
+            <span>Arithmetic</span>
+            <span class="lesson-number">Lesson 02</span>
+          </div>
+
+          <h1 class="lesson-title">Understand the language of numbers.</h1>
+
+          <p class="lesson-lead">
+            Addition, subtraction, multiplication, and division are more than
+            calculation methods. Learn how they connect, how operation order
+            works, and how to reason through everyday numerical problems.
+          </p>
+
+          <div class="lesson-meta">
+            <span><span class="meta-dot"></span>Beginner</span>
+            <span>About 10 minutes</span>
+            <span>Concepts + calculator + practice</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="lesson-nav-wrap">
+        <nav class="lesson-nav lesson-container" aria-label="Lesson sections">
+          <a class="active" href="#concept"><span class="nav-index">01</span> Operations</a>
+          <a href="#order"><span class="nav-index">02</span> Order of operations</a>
+          <a href="#explore"><span class="nav-index">03</span> Calculator</a>
+          <a href="#practice"><span class="nav-index">04</span> Practice</a>
+        </nav>
+      </div>
+
+      <div class="lesson-container lesson-layout">
+        <article class="lesson-content">
+
+          <section class="lesson-section" id="concept">
+            <div class="section-label">01 — The foundations</div>
+            <h2 class="section-title">Four operations, one number system.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Arithmetic studies how numbers combine and how quantities
+                change. Four basic operations form the foundation for much
+                of the mathematics you will encounter later.
+              </p>
+            </div>
+
+            <div class="operation-grid">
+              <div class="operation-card">
+                <div class="operation-symbol">+</div>
+                <h3>Addition</h3>
+                <p>Combines quantities to find their total. Example: 8 + 4 = 12.</p>
+              </div>
+
+              <div class="operation-card">
+                <div class="operation-symbol">−</div>
+                <h3>Subtraction</h3>
+                <p>Finds a difference or the amount remaining. Example: 12 − 4 = 8.</p>
+              </div>
+
+              <div class="operation-card">
+                <div class="operation-symbol">×</div>
+                <h3>Multiplication</h3>
+                <p>Represents repeated equal groups. Example: 3 × 4 = 12.</p>
+              </div>
+
+              <div class="operation-card">
+                <div class="operation-symbol">÷</div>
+                <h3>Division</h3>
+                <p>Splits a quantity into equal groups. Example: 12 ÷ 3 = 4.</p>
+              </div>
+            </div>
+
+            <div class="equation-display">
+              <div class="math">3 × 4 = 12</div>
+              <div class="equation-note">
+                Three groups of four make twelve.
+              </div>
+            </div>
+
+            <div class="lesson-copy">
+              <p>
+                These operations are connected. Multiplication can be viewed
+                as repeated addition, while division can reverse multiplication
+                when the division is exact.
+              </p>
+              <p>
+                Understanding those connections helps you estimate answers,
+                spot mistakes, and choose an efficient way to calculate.
+              </p>
+            </div>
+
+            <div class="insight-line">
+              <span class="insight-mark" aria-hidden="true">↳</span>
+              <div>
+                <strong>Think before calculating.</strong> Estimate what a
+                reasonable answer should be. If your calculation produces
+                something wildly different, check your operations and signs.
+              </div>
+            </div>
+          </section>
+
+          <section class="lesson-section" id="order">
+            <div class="section-label">02 — Avoid common mistakes</div>
+            <h2 class="section-title">The order of operations matters.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                When an expression contains several operations, you need a
+                consistent order. A common convention is to evaluate
+                parentheses first, then powers, then multiplication and
+                division from left to right, and finally addition and
+                subtraction from left to right.
+              </p>
+            </div>
+
+            <div class="example-card">
+              <div class="example-top">
+                <strong>Follow the steps</strong>
+                <span class="example-badge">Worked example</span>
+              </div>
+
+              <div class="example-steps">
+                <div class="example-step">
+                  <span class="step-number">1</span>
+                  <div class="step-body">
+                    <strong>Start with the expression</strong>
+                    <p>Do not simply calculate every operation from left to right.</p>
+                    <span class="step-equation">6 + 2 × 5</span>
+                  </div>
+                </div>
+
+                <div class="example-step">
+                  <span class="step-number">2</span>
+                  <div class="step-body">
+                    <strong>Multiply first</strong>
+                    <p>Multiplication takes priority over addition.</p>
+                    <span class="step-equation">6 + 10</span>
+                  </div>
+                </div>
+
+                <div class="example-step">
+                  <span class="step-number">3</span>
+                  <div class="step-body">
+                    <strong>Add the remaining values</strong>
+                    <p>The final answer is twelve.</p>
+                    <span class="step-equation">6 + 10 = 16</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lesson-copy" style="margin-top: 17px;">
+              <p>
+                <strong>Correction to watch for:</strong> the worked example
+                above should end with <strong>16</strong>, because
+                \(6 + 10 = 16\). This is a useful reminder to check every
+                step instead of memorising a result.
+              </p>
+            </div>
+
+            <div class="insight-line">
+              <span class="insight-mark" aria-hidden="true">!</span>
+              <div>
+                Multiplication and division share the same priority, as do
+                addition and subtraction. Within each pair, work from left
+                to right.
+              </div>
+            </div>
+          </section>
+
+          <section class="lesson-section" id="explore">
+            <div class="section-label">03 — Experiment</div>
+            <h2 class="section-title">Explore the operations yourself.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Choose an operation and enter two numbers. Watch how the
+                result and calculation change. Try negative numbers and
+                decimals, too.
+              </p>
+            </div>
+
+            <div class="interactive-panel">
+              <div class="interactive-heading">
+                <h3>Arithmetic explorer</h3>
+                <p>
+                  A simple live calculator that shows the expression and
+                  explains the selected operation.
+                </p>
+              </div>
+
+              <div class="calculator-body">
+                <div>
+                  <div class="input-group">
+                    <label for="number-a">First number</label>
+                    <input
+                      type="number"
+                      id="number-a"
+                      value="8"
+                      step="any"
+                      inputmode="decimal"
+                    >
+                  </div>
+
+                  <div class="input-group">
+                    <label for="operation">Operation</label>
+                    <select id="operation">
+                      <option value="add">Addition (+)</option>
+                      <option value="subtract">Subtraction (−)</option>
+                      <option value="multiply">Multiplication (×)</option>
+                      <option value="divide">Division (÷)</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="number-b">Second number</label>
+                    <input
+                      type="number"
+                      id="number-b"
+                      value="4"
+                      step="any"
+                      inputmode="decimal"
+                    >
+                    <span class="input-help">
+                      For division, the second number cannot be zero.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="calculator-result" aria-live="polite">
+                  <div class="result-label">Calculation</div>
+                  <div class="result-expression" id="calc-expression">8 + 4</div>
+                  <div class="result-answer" id="calc-answer">12</div>
+                  <div class="result-explanation" id="calc-explanation">
+                    Addition combines the two values.
+                  </div>
+                </div>
+              </div>
+
+              <div class="lab-footer">
+                <p>Explore how changing either number changes the result.</p>
+                <button class="text-button" type="button" id="reset-calculator">
+                  Reset calculator
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="lesson-section" id="practice">
+            <div class="section-label">04 — Check your understanding</div>
+            <h2 class="section-title">Put your reasoning to work.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Try these questions without using the calculator first.
+                Use a hint if you need help choosing the right operation.
+              </p>
+            </div>
+
+            <div class="practice-card">
+              <div class="practice-progress">
+                <span id="practice-count">Question 1 of 3</span>
+                <span id="practice-score">0 correct</span>
+              </div>
+
+              <div
+                class="progress-track"
+                id="practice-progress"
+                role="progressbar"
+                aria-label="Practice questions completed"
+                aria-valuemin="0"
+                aria-valuemax="3"
+                aria-valuenow="0"
+              >
+                <div class="progress-fill" id="practice-progress-fill"></div>
+              </div>
+
+              <h3 class="practice-question" id="practice-question">
+                Calculate: 9 + 6
+              </h3>
+
+              <p class="practice-instruction" id="practice-instruction">
+                Enter your answer.
+              </p>
+
+              <form id="practice-form">
+                <div class="practice-answer-row">
+                  <input
+                    type="number"
+                    id="practice-answer"
+                    step="any"
+                    inputmode="decimal"
+                    placeholder="Your answer"
+                    aria-label="Your answer"
+                    required
+                  >
+                  <button class="primary-button" type="submit">
+                    Check answer
+                  </button>
+                </div>
+              </form>
+
+              <div class="practice-actions">
+                <button class="secondary-button" type="button" id="show-hint">
+                  Show hint
+                </button>
+
+                <button
+                  class="secondary-button"
+                  type="button"
+                  id="next-question"
+                  hidden
+                >
+                  Next question →
+                </button>
+
+                <button
+                  class="secondary-button"
+                  type="button"
+                  id="restart-practice"
+                  hidden
+                >
+                  Try again
+                </button>
+              </div>
+
+              <div
+                class="practice-feedback"
+                id="practice-feedback"
+                role="status"
+                aria-live="polite"
+              ></div>
+            </div>
+          </section>
+
+          <section class="lesson-section" id="lesson-finish">
+            <div class="section-label">Keep learning</div>
+            <h2 class="section-title">Take the next step.</h2>
+
+            <div class="lesson-copy">
+              <p>
+                Arithmetic provides the foundation for fractions, geometry,
+                algebra, and more advanced mathematics. Practise until the
+                operations feel natural, then move on to expressions that
+                contain unknown values.
+              </p>
+            </div>
+
+            <div class="lesson-end">
+              <a class="lesson-end-link" href="algebra.html">
+                <span class="lesson-end-label">← Previous lesson</span>
+                <span class="lesson-end-title">Algebra</span>
+              </a>
+
+              <a class="lesson-end-link next" href="../index.html">
+                <span class="lesson-end-label">Back to →</span>
+                <span class="lesson-end-title">Mathematics overview</span>
+              </a>
+            </div>
+          </section>
+        </article>
+
+        <aside class="lesson-aside" aria-label="Learning notes">
+          <div class="aside-card">
+            <h3 class="aside-heading">
+              <span class="aside-icon" aria-hidden="true">±</span>
+              Quick reference
+            </h3>
+            <p>
+              Addition and subtraction undo each other. Multiplication and
+              division undo each other when division is defined.
+            </p>
+            <div class="aside-formula">a × b = c</div>
+          </div>
+
+          <div class="aside-card">
+            <h3 class="aside-heading">
+              <span class="aside-icon" aria-hidden="true">✓</span>
+              Learning goals
+            </h3>
+            <ul class="lesson-checklist">
+              <li><span class="check-mark">✓</span>Recognise the four basic operations.</li>
+              <li><span class="check-mark">✓</span>Apply the order of operations.</li>
+              <li><span class="check-mark">✓</span>Check whether an answer is reasonable.</li>
+            </ul>
+          </div>
+
+          <div class="aside-card">
+            <h3 class="aside-heading">
+              <span class="aside-icon" aria-hidden="true">i</span>
+              Remember
+            </h3>
+            <p>
+              Division by zero is undefined. Always check the denominator
+              before dividing.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const page = document.querySelector(".arithmetic-page");
+      if (!page) return;
+
+      /* Highlight the compact navigation based on the visible section. */
+
+      const sectionLinks = Array.from(
+        page.querySelectorAll(".lesson-nav a")
+      );
+
+      const sections = sectionLinks
+        .map(function (link) {
+          return page.querySelector(link.getAttribute("href"));
+        })
+        .filter(Boolean);
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          function (entries) {
+            const visible = entries
+              .filter(function (entry) {
+                return entry.isIntersecting;
+              })
+              .sort(function (a, b) {
+                return a.boundingClientRect.top - b.boundingClientRect.top;
+              });
+
+            if (!visible.length) return;
+
+            const activeId = "#" + visible[0].target.id;
+
+            sectionLinks.forEach(function (link) {
+              const active = link.getAttribute("href") === activeId;
+              link.classList.toggle("active", active);
+
+              if (active) {
+                link.setAttribute("aria-current", "location");
+              } else {
+                link.removeAttribute("aria-current");
+              }
+            });
+          },
+          {
+            rootMargin: "-18% 0px -68% 0px",
+            threshold: 0
+          }
+        );
+
+        sections.forEach(function (section) {
+          observer.observe(section);
+        });
+      }
+
+      /* Live arithmetic calculator. */
+
+      const inputA = page.querySelector("#number-a");
+      const inputB = page.querySelector("#number-b");
+      const operation = page.querySelector("#operation");
+      const expression = page.querySelector("#calc-expression");
+      const answer = page.querySelector("#calc-answer");
+      const explanation = page.querySelector("#calc-explanation");
+
+      const resetCalculator = page.querySelector("#reset-calculator");
+
+      function numberText(value) {
+        if (!Number.isFinite(value)) return String(value);
+        if (Object.is(value, -0)) value = 0;
+
+        return String(
+          Math.round(value * 1000000000) / 1000000000
+        );
+      }
+
+      function readNumber(input) {
+        if (input.value.trim() === "") return null;
+
+        const value = Number(input.value);
+        return Number.isFinite(value) ? value : null;
+      }
+
+      function updateCalculator() {
+        const a = readNumber(inputA);
+        const b = readNumber(inputB);
+
+        if (a === null || b === null) {
+          expression.textContent = "Enter both numbers";
+          answer.textContent = "Waiting for input";
+          explanation.textContent =
+            "Enter a valid number in each field to perform a calculation.";
+          return;
+        }
+
+        let result;
+        let symbol;
+        let description;
+
+        switch (operation.value) {
+          case "add":
+            result = a + b;
+            symbol = "+";
+            description = "Addition combines the two values.";
+            break;
+
+          case "subtract":
+            result = a - b;
+            symbol = "−";
+            description = "Subtraction finds the difference between the values.";
+            break;
+
+          case "multiply":
+            result = a * b;
+            symbol = "×";
+            description = "Multiplication scales one value by the other.";
+            break;
+
+          case "divide":
+            symbol = "÷";
+
+            if (b === 0) {
+              expression.textContent = numberText(a) + " ÷ 0";
+              answer.textContent = "Undefined";
+              explanation.textContent =
+                "Division by zero is undefined. Choose a non-zero second number.";
+              return;
+            }
+
+            result = a / b;
+            description = "Division tells you how many times the second value fits into the first.";
+            break;
+
+          default:
+            return;
+        }
+
+        expression.textContent =
+          numberText(a) + " " + symbol + " " + numberText(b);
+
+        if (!Number.isFinite(result)) {
+          answer.textContent = "Result out of range";
+          explanation.textContent =
+            "These values exceed the calculator's numerical range.";
+          return;
+        }
+
+        answer.textContent = numberText(result);
+        explanation.textContent = description;
+      }
+
+      [inputA, inputB].forEach(function (input) {
+        input.addEventListener("input", updateCalculator);
+      });
+
+      operation.addEventListener("change", updateCalculator);
+
+      resetCalculator.addEventListener("click", function () {
+        inputA.value = "8";
+        inputB.value = "4";
+        operation.value = "add";
+        updateCalculator();
+      });
+
+      updateCalculator();
+
+      /* Guided practice questions. */
+
+      const questions = [
+        {
+          text: "Calculate: 9 + 6",
+          hint: "Start at 9 and count six more.",
+          answer: 15,
+          solution: "9 + 6 = 15."
+        },
+        {
+          text: "Calculate: 7 × 4",
+          hint: "Think of seven groups containing four items each.",
+          answer: 28,
+          solution: "7 × 4 = 28."
+        },
+        {
+          text: "Calculate: 5 + 3 × 4",
+          hint: "Multiply before adding: calculate 3 × 4 first.",
+          answer: 17,
+          solution: "First 3 × 4 = 12, then 5 + 12 = 17."
+        }
+      ];
+
+      const form = page.querySelector("#practice-form");
+      const answerInput = page.querySelector("#practice-answer");
+      const questionTitle = page.querySelector("#practice-question");
+      const instruction = page.querySelector("#practice-instruction");
+      const countLabel = page.querySelector("#practice-count");
+      const scoreLabel = page.querySelector("#practice-score");
+      const progress = page.querySelector("#practice-progress");
+      const progressFill = page.querySelector("#practice-progress-fill");
+      const feedback = page.querySelector("#practice-feedback");
+      const hintButton = page.querySelector("#show-hint");
+      const nextButton = page.querySelector("#next-question");
+      const restartButton = page.querySelector("#restart-practice");
+
+      let current = 0;
+      let correct = 0;
+      let completed = 0;
+      let answered = false;
+
+      function setFeedback(message, type) {
+        feedback.textContent = message;
+        feedback.className = "practice-feedback";
+
+        if (type) feedback.classList.add(type);
+      }
+
+      function updateProgress() {
+        countLabel.textContent = current < questions.length
+          ? "Question " + (current + 1) + " of " + questions.length
+          : "Practice complete";
+
+        scoreLabel.textContent = correct + " correct";
+
+        progress.setAttribute("aria-valuenow", String(completed));
+        progressFill.style.width =
+          (completed / questions.length * 100) + "%";
+      }
+
+      function showQuestion() {
+        if (current >= questions.length) {
+          questionTitle.textContent = "Practice complete.";
+          instruction.textContent =
+            "You answered " + correct + " out of " +
+            questions.length + " questions correctly on your first check.";
+
+          form.hidden = true;
+          hintButton.hidden = true;
+          nextButton.hidden = true;
+          restartButton.hidden = false;
+
+          setFeedback(
+            correct === questions.length
+              ? "Excellent work. All three answers were correct on the first check."
+              : "Good effort. Review the explanations and try the questions again to strengthen your understanding.",
+            "success"
+          );
+
+          updateProgress();
+          return;
+        }
+
+        const item = questions[current];
+
+        questionTitle.textContent = item.text;
+        instruction.textContent = "Enter your answer.";
+        answerInput.value = "";
+        answerInput.disabled = false;
+        form.hidden = false;
+        hintButton.hidden = false;
+        nextButton.hidden = true;
+        restartButton.hidden = true;
+        answered = false;
+
+        setFeedback("", "");
+        updateProgress();
+        answerInput.focus();
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        if (answered) return;
+
+        const raw = answerInput.value.trim();
+
+        if (raw === "" || !Number.isFinite(Number(raw))) {
+          setFeedback("Enter a valid number before checking your answer.", "error");
+          answerInput.focus();
+          return;
+        }
+
+        const submitted = Number(raw);
+        const item = questions[current];
+        const isCorrect = Math.abs(submitted - item.answer) < 0.000001;
+
+        answered = true;
+        completed += 1;
+        answerInput.disabled = true;
+
+        if (isCorrect) {
+          correct += 1;
+          setFeedback("Correct! " + item.solution, "success");
+        } else {
+          setFeedback("Not quite. " + item.solution, "error");
+        }
+
+        hintButton.hidden = true;
+        nextButton.hidden = false;
+        nextButton.textContent =
+          current === questions.length - 1
+            ? "See results →"
+            : "Next question →";
+
+        updateProgress();
+      });
+
+      hintButton.addEventListener("click", function () {
+        if (current >= questions.length) return;
+
+        setFeedback("Hint: " + questions[current].hint, "hint");
+      });
+
+      nextButton.addEventListener("click", function () {
+        if (!answered) return;
+
+        current += 1;
+        showQuestion();
+      });
+
+      restartButton.addEventListener("click", function () {
+        current = 0;
+        correct = 0;
+        completed = 0;
+        answered = false;
+        showQuestion();
+      });
+
+      showQuestion();
+    })();
+  </script>
+</body>
+</html>

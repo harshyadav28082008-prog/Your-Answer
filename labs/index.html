@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore interactive virtual science experiments in physics, chemistry, and biology.">
+  <title>Virtual Labs | Your Answer</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .labs-page{max-width:1120px;margin:auto;padding:2rem 1rem 4rem}
+    .labs-hero{padding:2rem 0 2.5rem;max-width:760px}
+    .eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-brand)}
+    .labs-hero h1{font-size:clamp(2.2rem,6vw,3.5rem);line-height:1.12;margin:.6rem 0 1rem}
+    .labs-hero p,.lab-card p{color:var(--color-text-muted);line-height:1.7}
+    .labs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+    .lab-card{border:1px solid var(--color-border);border-radius:18px;background:var(--color-surface);padding:1.2rem;display:flex;flex-direction:column;gap:.75rem;min-height:250px}
+    .lab-icon{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--color-border);border-radius:14px;font-size:1.5rem}
+    .lab-card h2{font-size:1.15rem;margin:0}
+    .lab-card p{font-size:.92rem;margin:0;flex:1}
+    .lab-meta{font-size:.78rem;color:var(--color-text-muted)}
+    .lab-link{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid var(--color-border);border-radius:10px;padding:.65rem .8rem;color:var(--color-text);font-weight:600}
+    .lab-link.available{background:var(--color-brand);color:#fff;border-color:transparent}
+    .lab-link.disabled{opacity:.6;cursor:default}
+    .lab-note{margin-top:2rem;padding:1rem 1.2rem;border:1px solid var(--color-border);border-radius:14px;color:var(--color-text-muted);line-height:1.7}
+    @media(max-width:800px){.labs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:520px){.labs-grid{grid-template-columns:1fr}.lab-card{min-height:0}.labs-page{padding-inline:.8rem}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+        <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+  </header>
+
+  <main class="labs-page">
+    <section class="labs-hero">
+      <div class="eyebrow">Experiment · Observe · Understand</div>
+      <h1>Welcome to Virtual Labs</h1>
+      <p>Science becomes easier to understand when you can experiment with it. Change variables, observe outcomes, and explore the principles behind each result—all in your browser.</p>
+    </section>
+
+    <section aria-labelledby="labsHeading">
+      <h2 id="labsHeading">Explore the experiments</h2>
+      <p class="lab-meta">Virtual Labs · Version 1</p>
+
+      <div class="labs-grid">
+        <article class="lab-card">
+          <div class="lab-icon" aria-hidden="true">⏱</div>
+          <div class="lab-meta">PHYSICS</div>
+          <h2>Simple Pendulum</h2>
+          <p>Investigate how pendulum length and gravitational acceleration affect its time period.</p>
+          <a class="lab-link available" href="simple-pendulum.html">Open experiment →</a>
+        </article>
+
+        <article class="lab-card">
+          <div class="lab-icon" aria-hidden="true">🔎</div>
+          <div class="lab-meta">PHYSICS · OPTICS</div>
+          <h2>Convex Lens</h2>
+          <p>Change object distance and focal length to explore image position, size, and orientation.</p>
+          <a class="lab-link available" href="convex-lens.html">
+  Open experiment →
+          </a>
+        </article>
+
+        <article class="lab-card">
+          <div class="lab-icon" aria-hidden="true">⚡</div>
+          <div class="lab-meta">PHYSICS · ELECTRICITY</div>
+          <h2>Ohm’s Law</h2>
+          <p>Explore the relationship between voltage, current, and resistance in an electric circuit.</p>
+          <a class="lab-link available" href="ohms-law.html">
+  Open experiment →
+          </a>
+        </article>
+
+        <article class="lab-card">
+  <div class="lab-card-content">
+    <span class="lab-status">Physics</span>
+
+    <h3>Projectile Motion</h3>
+
+    <p>
+      Explore how launch speed, angle and gravity affect the
+      trajectory, maximum height and horizontal range of a projectile.
+    </p>
+
+    <a class="lab-link available" href="projectile-motion.html">
+      Open experiment <span aria-hidden="true">→</span>
+    </a>
+  </div>
+        </article>
+        
+<article class="lab-card">
+  <div class="lab-card-content">
+    <span class="lab-status">Physics</span>
+    <h3>Spring–Mass System</h3>
+    <p>
+      Investigate simple harmonic motion by changing mass,
+      spring stiffness and displacement. Explore period,
+      frequency and energy.
+    </p>
+    <a class="lab-link available" href="spring-mass.html">
+      Open experiment <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>
+        
+<article class="lab-card">
+  <div class="lab-card-content">
+    <span class="lab-status">Physics</span>
+    <h3>Hooke’s Law</h3>
+    <p>Explore the relationship between applied force, spring constant, and extension.</p>
+    <a class="lab-link available" href="hookes-law.html">
+      Open experiment <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>
+
+        
+<article class="lab-card">
+  <div class="lab-icon" aria-hidden="true">🔦</div>
+  <div class="lab-meta">PHYSICS</div>
+  <h2>Refraction of Light</h2>
+  <p>Investigate how light bends between materials and discover the conditions for total internal reflection.</p>
+  <a class="lab-link available" href="refraction.html">Open experiment →</a>
+</article>
+
+
+
+
+        
+        <article class="lab-card">
+          <div class="lab-icon" aria-hidden="true">🧪</div>
+          <div class="lab-meta">CHEMISTRY</div>
+          <h2>Acid–Base and pH</h2>
+          <p>Explore the pH scale, indicator colours, and what happens during neutralisation.</p>
+          <a class="lab-link available" href="acid-base-ph.html">Open experiment →</a>
+        </article>
+
+        <article class="lab-card">
+          <div class="lab-icon" aria-hidden="true">♨</div>
+          <div class="lab-meta">CHEMISTRY · KINETICS</div>
+          <h2>Reaction Rate</h2>
+          <p>Investigate how temperature and concentration influence the rate of a model reaction.</p>
+          <a class="lab-link available" href="reaction-rate.html">Open experiment →</a>
+        </article>
+
+        <article class="lab-card">
+          <div class="lab-icon" aria-hidden="true">🌱</div>
+          <div class="lab-meta">BIOLOGY</div>
+          <h2>Photosynthesis</h2>
+          <p>Explore how light intensity and carbon dioxide availability affect a photosynthesis model.</p>
+            <a class="lab-link available" href="photosynthesis.html">Open experiment →</a>
+        </article>
+      </div>
+    </section>
+
+    <aside class="lab-note">
+      <strong>How these labs work</strong>
+      <p>Each experiment will include interactive controls, a visual simulation, relevant equations, and a short explanation of the results. Simulations are educational models and may simplify real laboratory conditions.</p>
+    </aside>
+  </main>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

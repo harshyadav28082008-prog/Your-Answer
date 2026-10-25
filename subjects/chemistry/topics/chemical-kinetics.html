@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn chemical kinetics, reaction rates, rate laws, reaction order, integrated rate equations, half-life and the Arrhenius equation.">
+  <title>Chemical Kinetics | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .lesson {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 42px 20px 72px;
+    }
+
+    .lesson-hero {
+      padding: 34px;
+      border: 1px solid var(--color-border);
+      border-radius: 22px;
+      background: var(--color-surface);
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      line-height: 1.12;
+      margin: 12px 0;
+    }
+
+    .lesson-hero p,
+    .lesson-section p,
+    .lesson-section li {
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .lesson-section {
+      padding: 26px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-section h2 {
+      font-size: 1.55rem;
+      margin: 0 0 14px;
+    }
+
+    .lesson-section h3 {
+      margin: 22px 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .formula {
+      padding: 17px 20px;
+      margin: 18px 0;
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--color-brand);
+      border-radius: 12px;
+      background: var(--color-surface);
+      overflow-wrap: anywhere;
+      line-height: 1.9;
+    }
+
+    .example {
+      padding: 18px 20px;
+      margin: 16px 0;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+    }
+
+    .example strong {
+      color: var(--color-text);
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .concept-card {
+      padding: 18px;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      background: var(--color-surface);
+    }
+
+    .concept-card h3 {
+      margin-top: 0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 18px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 450px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid var(--color-border);
+      line-height: 1.6;
+    }
+
+    th {
+      color: var(--color-text);
+    }
+
+    td {
+      color: var(--color-text-muted);
+    }
+
+    .lesson-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .lesson-nav a {
+      display: inline-block;
+      padding: 12px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .lesson-nav a:hover {
+      border-color: var(--color-brand);
+    }
+
+    @media (max-width: 600px) {
+      .lesson {
+        padding: 24px 15px 52px;
+      }
+
+      .lesson-hero {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">
+        Theme
+      </button>
+
+      <button type="button" data-menu-toggle
+        aria-controls="mobile-nav" aria-expanded="false">
+        Menu
+      </button>
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="lesson">
+    <section class="lesson-hero">
+      <div class="eyebrow">Chemistry · Topic 11</div>
+      <h1>Chemical Kinetics</h1>
+      <p>
+        Why do some reactions finish almost instantly while others take
+        years? Chemical kinetics studies reaction rates, the factors
+        that affect them, and the mechanisms through which reactions occur.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>1. Rate of a Chemical Reaction</h2>
+      <p>
+        Reaction rate describes how quickly the concentration of a
+        reactant or product changes with time.
+      </p>
+
+      <div class="formula">
+        Average rate = −Δ[Reactant] / Δt
+        <br>
+        Average rate = Δ[Product] / Δt
+      </div>
+
+      <p>
+        The negative sign for a reactant accounts for its decreasing
+        concentration. Product concentration generally increases as
+        the reaction proceeds.
+      </p>
+
+      <p>
+        A common unit of reaction rate is mol L⁻¹ s⁻¹. For a general
+        reaction aA + bB → cC + dD, the rate can be written as:
+      </p>
+
+      <div class="formula">
+        Rate = −(1/a) d[A]/dt
+        <br>
+        = −(1/b) d[B]/dt
+        <br>
+        = (1/c) d[C]/dt
+        <br>
+        = (1/d) d[D]/dt
+      </div>
+
+      <p>
+        These expressions describe the same reaction rate after
+        accounting for the stoichiometric coefficients.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>2. Factors Affecting Reaction Rate</h2>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>Concentration</h3>
+          <p>
+            A higher reactant concentration can increase the frequency
+            of effective collisions.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Temperature</h3>
+          <p>
+            Increasing temperature generally increases the fraction of
+            particles energetic enough to react.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Surface area</h3>
+          <p>
+            For reactions involving solids, greater exposed surface area
+            can allow more frequent collisions.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Catalyst</h3>
+          <p>
+            A catalyst provides an alternative reaction pathway with
+            lower activation energy and is regenerated overall.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        Pressure can also affect rates for reactions involving gases,
+        particularly when changing pressure changes the gases'
+        concentrations.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>3. Rate Law and Rate Constant</h2>
+      <p>
+        For a reaction involving reactants A and B, an experimentally
+        determined rate law may take the form:
+      </p>
+
+      <div class="formula">
+        Rate = k[A]ᵐ[B]ⁿ
+      </div>
+
+      <ul>
+        <li>k is the rate constant at a specified temperature.</li>
+        <li>[A] and [B] are reactant concentrations.</li>
+        <li>m and n are experimentally determined reaction orders with respect to A and B.</li>
+      </ul>
+
+      <p>
+        The exponents in a rate law generally cannot be obtained from
+        the balanced chemical equation alone. They must be established
+        experimentally, except for suitable elementary reaction steps.
+      </p>
+
+      <div class="example">
+        <strong>Example</strong>
+        <p>
+          Suppose Rate = k[A]²[B].
+        </p>
+        <ul>
+          <li>Doubling [A], with [B] unchanged, makes the rate four times as large.</li>
+          <li>Doubling [B], with [A] unchanged, doubles the rate.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>4. Order and Molecularity</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Reaction order</th>
+              <th>Molecularity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Meaning</td>
+              <td>Sum of powers in the experimental rate law</td>
+              <td>Number of reacting entities in an elementary step</td>
+            </tr>
+            <tr>
+              <td>How obtained</td>
+              <td>Experiment</td>
+              <td>Mechanism of the elementary step</td>
+            </tr>
+            <tr>
+              <td>Possible values</td>
+              <td>Can be zero, fractional or integer</td>
+              <td>Positive integer for a conventional elementary step</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="formula">
+        Overall order = m + n
+      </div>
+
+      <p>
+        For Rate = k[A]²[B], the overall order is 2 + 1 = 3.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>5. Integrated Rate Equations</h2>
+      <p>
+        Integrated rate equations describe how reactant concentration
+        changes over time for reactions with particular rate laws.
+      </p>
+
+      <h3>Zero-order reaction</h3>
+      <div class="formula">
+        [A]t = [A]₀ − kt
+        <br>
+        t½ = [A]₀ / 2k
+      </div>
+      <p>
+        The rate is independent of reactant concentration. A plot of
+        [A] against time is linear, with slope −k.
+      </p>
+
+      <h3>First-order reaction</h3>
+      <div class="formula">
+        ln([A]₀ / [A]t) = kt
+        <br>
+        k = (2.303/t) log₁₀([A]₀ / [A]t)
+        <br>
+        t½ = 0.693 / k
+      </div>
+      <p>
+        Here, [A]₀ is the initial concentration and [A]t is the
+        concentration at time t. For a first-order reaction, the
+        half-life does not depend on the initial concentration.
+      </p>
+
+      <h3>Second-order reaction</h3>
+      <p>
+        For the simple rate law Rate = k[A]²:
+      </p>
+      <div class="formula">
+        1/[A]t = 1/[A]₀ + kt
+        <br>
+        t½ = 1 / (k[A]₀)
+      </div>
+
+      <p>
+        These equations assume the corresponding rate law applies
+        under the conditions considered.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>6. Half-Life</h2>
+      <p>
+        Half-life is the time required for the concentration of a
+        reactant to decrease to half its initial value.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>Zero order</h3>
+          <div class="formula">t½ = [A]₀ / 2k</div>
+          <p>Depends on the initial concentration.</p>
+        </div>
+
+        <div class="concept-card">
+          <h3>First order</h3>
+          <div class="formula">t½ = 0.693 / k</div>
+          <p>Independent of the initial concentration.</p>
+        </div>
+
+        <div class="concept-card">
+          <h3>Second order</h3>
+          <div class="formula">t½ = 1 / (k[A]₀)</div>
+          <p>For Rate = k[A]², it depends inversely on initial concentration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>7. Collision Theory and Activation Energy</h2>
+      <p>
+        Collision theory suggests that reacting particles must collide
+        with suitable orientation and sufficient energy for a reaction
+        to occur.
+      </p>
+
+      <div class="formula">
+        Effective collision: sufficient energy + suitable orientation
+      </div>
+
+      <p>
+        Activation energy, Ea, is the energy barrier associated with a
+        reaction pathway. A catalyst can provide an alternative pathway
+        with a lower activation energy.
+      </p>
+
+      <p>
+        Raising temperature increases the proportion of particles with
+        enough energy to overcome this barrier.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>8. Arrhenius Equation</h2>
+      <p>
+        The Arrhenius equation describes the relationship between the
+        rate constant and absolute temperature for many reactions.
+      </p>
+
+      <div class="formula">
+        k = Ae⁻ᴱᵃ⁄ᴿᵀ
+        <br>
+        ln k = ln A − Ea/(RT)
+      </div>
+
+      <ul>
+        <li>k is the rate constant.</li>
+        <li>A is the pre-exponential factor.</li>
+        <li>Ea is activation energy.</li>
+        <li>R is the gas constant.</li>
+        <li>T is absolute temperature in kelvin.</li>
+      </ul>
+
+      <p>
+        A plot of ln k against 1/T is linear for a system following
+        the Arrhenius relationship, with slope −Ea/R.
+      </p>
+
+      <div class="formula">
+        ln(k₂/k₁) = (Ea/R)(1/T₁ − 1/T₂)
+      </div>
+
+      <p>
+        This two-temperature form can be used to estimate how the rate
+        constant changes with temperature when the activation energy
+        is known and the Arrhenius model applies.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>9. Reaction Mechanisms</h2>
+      <p>
+        A reaction mechanism is a sequence of elementary steps that
+        describes how a chemical reaction proceeds.
+      </p>
+
+      <ul>
+        <li>An intermediate is formed in one step and consumed in another.</li>
+        <li>The slowest step can limit the overall rate in a simplified mechanism.</li>
+        <li>The rate law must be consistent with experimental observations.</li>
+        <li>A catalyst participates in the mechanism and is regenerated overall.</li>
+      </ul>
+    </section>
+
+    <section class="lesson-section">
+      <h2>10. Quick Revision</h2>
+      <ul>
+        <li>Reaction rate measures concentration change per unit time.</li>
+        <li>Rate law: Rate = k[A]ᵐ[B]ⁿ.</li>
+        <li>Overall order is the sum of the exponents in the rate law.</li>
+        <li>First-order half-life: t½ = 0.693/k.</li>
+        <li>Second-order integrated equation for Rate = k[A]²: 1/[A]t = 1/[A]₀ + kt.</li>
+        <li>Arrhenius equation: k = Ae⁻ᴱᵃ⁄ᴿᵀ.</li>
+        <li>Catalysts provide an alternative pathway with lower activation energy.</li>
+      </ul>
+    </section>
+
+    <nav class="lesson-nav" aria-label="Adjacent chemistry topics">
+      <a href="solutions.html">← Solutions</a>
+      <a href="../index.html">Chemistry Topics →</a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Your Answer · Learn with understanding.</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

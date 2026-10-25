@@ -1,0 +1,772 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn states of matter, gas laws, the ideal gas equation, phase changes, vapour pressure and real gases.">
+  <title>States of Matter | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .chemistry-lesson {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    .lesson-breadcrumb {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    .lesson-breadcrumb a,
+    .lesson-section a {
+      color: var(--color-brand);
+    }
+
+    .lesson-hero {
+      padding: 34px;
+      border: 1px solid var(--color-border);
+      border-radius: 22px;
+      background: var(--color-surface);
+      margin-bottom: 28px;
+    }
+
+    .lesson-number {
+      color: var(--color-brand);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.12;
+      margin: 12px 0;
+    }
+
+    .lesson-hero p,
+    .lesson-section p,
+    .lesson-section li {
+      line-height: 1.75;
+      color: var(--color-text-muted);
+    }
+
+    .lesson-hero p {
+      max-width: 720px;
+      font-size: 1.05rem;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      padding: 26px 0;
+      border-bottom: 1px solid var(--color-border);
+      scroll-margin-top: 24px;
+    }
+
+    .lesson-section:first-child {
+      padding-top: 0;
+    }
+
+    .lesson-section h2 {
+      font-size: 1.55rem;
+      margin: 0 0 14px;
+    }
+
+    .lesson-section h3 {
+      font-size: 1.12rem;
+      margin: 22px 0 8px;
+    }
+
+    .lesson-section ul,
+    .lesson-section ol {
+      padding-left: 22px;
+    }
+
+    .concept-grid,
+    .state-grid,
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .concept-card,
+    .state-card,
+    .formula-card,
+    .lesson-aside-card {
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .concept-card h3,
+    .state-card h3,
+    .formula-card h3 {
+      margin-top: 0;
+    }
+
+    .state-card .state-symbol {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .formula-card .formula {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--color-text);
+      margin: 10px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .formula-card p,
+    .concept-card p,
+    .state-card p,
+    .lesson-aside-card p {
+      margin-bottom: 0;
+      font-size: 0.94rem;
+    }
+
+    .note-box {
+      border-left: 4px solid var(--color-brand);
+      padding: 15px 18px;
+      background: var(--color-surface);
+      border-radius: 0 12px 12px 0;
+      margin: 18px 0;
+    }
+
+    .note-box p {
+      margin: 0;
+    }
+
+    .lesson-aside {
+      position: sticky;
+      top: 20px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .lesson-aside-card h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .lesson-aside-card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .lesson-aside-card li {
+      margin: 9px 0;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .lesson-aside-card a {
+      color: var(--color-brand);
+      text-decoration: none;
+    }
+
+    .lesson-aside-card a:hover {
+      text-decoration: underline;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 0.93rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid var(--color-border);
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .comparison-table th {
+      color: var(--color-text);
+      background: var(--color-surface);
+    }
+
+    .comparison-table td {
+      color: var(--color-text-muted);
+    }
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 28px;
+    }
+
+    .lesson-bottom a {
+      display: inline-block;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      border-color: var(--color-brand);
+    }
+
+    @media (max-width: 800px) {
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        grid-row: 1;
+      }
+
+      .lesson-aside-card.contents-card {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .chemistry-lesson {
+        padding: 22px 15px 44px;
+      }
+
+      .lesson-hero {
+        padding: 24px 20px;
+      }
+
+      .concept-grid,
+      .state-grid,
+      .formula-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-table {
+        font-size: 0.82rem;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">
+        Theme
+      </button>
+
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">
+        Menu
+      </button>
+    </div>
+
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="chemistry-lesson">
+    <div class="lesson-breadcrumb">
+      <a href="../../index.html">Subjects</a> /
+      <a href="../index.html">Chemistry</a> /
+      States of Matter
+    </div>
+
+    <section class="lesson-hero">
+      <div class="lesson-number">Chemistry · Topic 05</div>
+      <h1>States of Matter</h1>
+      <p>
+        Why does ice keep its shape while water flows and steam spreads through
+        a room? Explore how particle arrangement, motion, temperature and
+        pressure determine the physical state of a substance.
+      </p>
+    </section>
+
+    <div class="lesson-layout">
+      <article class="lesson-main">
+
+        <section class="lesson-section" id="matter">
+          <h2>1. What determines the state of matter?</h2>
+          <p>
+            Matter is made of particles that are constantly moving. The state
+            of a substance depends on the balance between the particles'
+            kinetic energy and the attractive forces between them.
+          </p>
+
+          <div class="concept-grid">
+            <div class="concept-card">
+              <h3>Kinetic energy</h3>
+              <p>
+                Energy associated with motion. As temperature increases,
+                the average kinetic energy of particles generally increases.
+              </p>
+            </div>
+            <div class="concept-card">
+              <h3>Intermolecular forces</h3>
+              <p>
+                Attractions between particles. Stronger attractions generally
+                make it harder for particles to separate.
+              </p>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <p>
+              <strong>Core idea:</strong> A change in temperature or pressure
+              can change how particles move and interact, causing a substance
+              to change its state.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="states">
+          <h2>2. The three common states</h2>
+
+          <div class="state-grid">
+            <div class="state-card">
+              <div class="state-symbol" aria-hidden="true">🧊</div>
+              <h3>Solid</h3>
+              <p>
+                Particles are closely packed and usually vibrate around fixed
+                positions. Solids have a definite shape and volume.
+              </p>
+            </div>
+
+            <div class="state-card">
+              <div class="state-symbol" aria-hidden="true">💧</div>
+              <h3>Liquid</h3>
+              <p>
+                Particles remain close together but can move past one another.
+                Liquids have a definite volume but take the shape of their
+                container.
+              </p>
+            </div>
+
+            <div class="state-card">
+              <div class="state-symbol" aria-hidden="true">☁️</div>
+              <h3>Gas</h3>
+              <p>
+                Particles are far apart relative to their size and move freely.
+                Gases expand to fill their containers and are easily compressed.
+              </p>
+            </div>
+
+            <div class="state-card">
+              <div class="state-symbol" aria-hidden="true">⚡</div>
+              <h3>Plasma</h3>
+              <p>
+                Plasma is an ionised state containing charged particles. It
+                occurs in stars, lightning and some specialised lamps.
+              </p>
+            </div>
+          </div>
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Solid</th>
+                <th>Liquid</th>
+                <th>Gas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Shape</td>
+                <td>Definite</td>
+                <td>Takes container's shape</td>
+                <td>Fills container</td>
+              </tr>
+              <tr>
+                <td>Volume</td>
+                <td>Definite</td>
+                <td>Definite</td>
+                <td>Not definite</td>
+              </tr>
+              <tr>
+                <td>Compressibility</td>
+                <td>Very low</td>
+                <td>Low</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>Particle movement</td>
+                <td>Mainly vibration</td>
+                <td>Particles slide past each other</td>
+                <td>Free, rapid movement</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="lesson-section" id="gas-laws">
+          <h2>3. Gas laws</h2>
+          <p>
+            Gas laws describe how pressure, volume and temperature are related
+            for a fixed amount of gas. Unless stated otherwise, temperature in
+            gas-law calculations must be measured in kelvin.
+          </p>
+
+          <div class="formula-grid">
+            <div class="formula-card">
+              <h3>Boyle's law</h3>
+              <div class="formula">P₁V₁ = P₂V₂</div>
+              <p>
+                At constant temperature and amount of gas, pressure is inversely
+                proportional to volume.
+              </p>
+            </div>
+
+            <div class="formula-card">
+              <h3>Charles's law</h3>
+              <div class="formula">V₁/T₁ = V₂/T₂</div>
+              <p>
+                At constant pressure and amount of gas, volume is directly
+                proportional to absolute temperature.
+              </p>
+            </div>
+
+            <div class="formula-card">
+              <h3>Pressure law</h3>
+              <div class="formula">P₁/T₁ = P₂/T₂</div>
+              <p>
+                At constant volume and amount of gas, pressure is directly
+                proportional to absolute temperature.
+              </p>
+            </div>
+
+            <div class="formula-card">
+              <h3>Avogadro's law</h3>
+              <div class="formula">V₁/n₁ = V₂/n₂</div>
+              <p>
+                At constant temperature and pressure, gas volume is directly
+                proportional to the amount of gas in moles.
+              </p>
+            </div>
+          </div>
+
+          <h3>Using the laws correctly</h3>
+          <ul>
+            <li>Convert Celsius to kelvin: <strong>T(K) = t(°C) + 273.15</strong>.</li>
+            <li>Keep pressure and volume units consistent on both sides.</li>
+            <li>Identify which variables remain constant before choosing a law.</li>
+          </ul>
+        </section>
+
+        <section class="lesson-section" id="ideal-gas">
+          <h2>4. The ideal gas equation</h2>
+          <p>
+            Combining the gas laws gives a useful equation relating pressure,
+            volume, temperature and the amount of gas.
+          </p>
+
+          <div class="formula-card">
+            <h3>Ideal gas equation</h3>
+            <div class="formula">PV = nRT</div>
+            <ul>
+              <li><strong>P</strong> = pressure</li>
+              <li><strong>V</strong> = volume</li>
+              <li><strong>n</strong> = amount of gas in moles</li>
+              <li><strong>R</strong> = universal gas constant</li>
+              <li><strong>T</strong> = absolute temperature in kelvin</li>
+            </ul>
+          </div>
+
+          <p>
+            A commonly used value is
+            <strong>R = 8.314 J mol⁻¹ K⁻¹</strong> when pressure is in pascals
+            and volume is in cubic metres. Other values of R can be used with
+            compatible units.
+          </p>
+
+          <div class="note-box">
+            <p>
+              <strong>Remember:</strong> The units must match the chosen value
+              of R. For example, using pressure in pascals and volume in litres
+              without converting units will give an incorrect result.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="kinetic-theory">
+          <h2>5. Kinetic molecular theory</h2>
+          <p>
+            The kinetic molecular theory models gas particles to explain
+            observable gas behaviour. In the ideal model:
+          </p>
+          <ul>
+            <li>Particles are treated as having negligible individual volume compared with the container.</li>
+            <li>Particles move continuously and randomly.</li>
+            <li>Collisions between particles and container walls are elastic.</li>
+            <li>There are no intermolecular attractions or repulsions except during collisions.</li>
+            <li>The average translational kinetic energy depends on absolute temperature.</li>
+          </ul>
+
+          <div class="formula-card">
+            <h3>Average translational kinetic energy</h3>
+            <div class="formula">Ēₖ = 3RT/2</div>
+            <p>
+              This is the average translational kinetic energy per mole of an
+              ideal gas. For one particle, the expression is 3kT/2, where k is
+              Boltzmann's constant.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="phase-changes">
+          <h2>6. Changes of state</h2>
+          <p>
+            A physical change of state alters the arrangement and motion of
+            particles without changing the chemical identity of the substance.
+          </p>
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Change</th>
+                <th>Direction</th>
+                <th>Heat transfer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Melting</td>
+                <td>Solid → Liquid</td>
+                <td>Absorbed</td>
+              </tr>
+              <tr>
+                <td>Freezing</td>
+                <td>Liquid → Solid</td>
+                <td>Released</td>
+              </tr>
+              <tr>
+                <td>Vaporisation</td>
+                <td>Liquid → Gas</td>
+                <td>Absorbed</td>
+              </tr>
+              <tr>
+                <td>Condensation</td>
+                <td>Gas → Liquid</td>
+                <td>Released</td>
+              </tr>
+              <tr>
+                <td>Sublimation</td>
+                <td>Solid → Gas directly</td>
+                <td>Absorbed</td>
+              </tr>
+              <tr>
+                <td>Deposition</td>
+                <td>Gas → Solid directly</td>
+                <td>Released</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Latent heat</h3>
+          <p>
+            During a phase change at a given pressure, energy can be absorbed
+            or released without a temperature change. This energy changes
+            particle interactions rather than increasing average kinetic energy.
+          </p>
+
+          <div class="formula-card">
+            <h3>Heat during a phase change</h3>
+            <div class="formula">q = mL</div>
+            <p>
+              Here, q is heat transferred, m is mass and L is the specific
+              latent heat for the relevant phase change.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="vapour-pressure">
+          <h2>7. Vapour pressure, evaporation and boiling</h2>
+
+          <h3>Evaporation</h3>
+          <p>
+            Evaporation occurs at the surface of a liquid when some particles
+            have enough energy to escape into the gas phase. It can occur below
+            the boiling point.
+          </p>
+
+          <h3>Vapour pressure</h3>
+          <p>
+            In a closed container, vapour pressure is the pressure exerted by
+            vapour when it is in dynamic equilibrium with its liquid at a
+            particular temperature.
+          </p>
+
+          <h3>Boiling point</h3>
+          <p>
+            A liquid boils when its vapour pressure equals the external
+            pressure. Therefore, a liquid's boiling point can change when
+            external pressure changes.
+          </p>
+
+          <div class="note-box">
+            <p>
+              <strong>Example:</strong> Water boils at a lower temperature at
+              high altitude because atmospheric pressure is lower than at sea
+              level.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="real-gases">
+          <h2>8. Ideal gases versus real gases</h2>
+          <p>
+            An ideal gas is a simplified model. Real gas particles have finite
+            volume and experience intermolecular forces, so real gases can
+            deviate from the ideal gas equation.
+          </p>
+
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Ideal gas</th>
+                <th>Real gas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Particle volume is treated as negligible.</td>
+                <td>Particles have finite volume.</td>
+              </tr>
+              <tr>
+                <td>Intermolecular forces are ignored.</td>
+                <td>Intermolecular forces can matter.</td>
+              </tr>
+              <tr>
+                <td>Follows PV = nRT exactly in the model.</td>
+                <td>May deviate from PV = nRT.</td>
+              </tr>
+              <tr>
+                <td>An approximation.</td>
+                <td>Describes actual substances.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            Real gases generally behave more like ideal gases at relatively
+            low pressure and high temperature, when particles are farther apart
+            and intermolecular attractions have less influence.
+          </p>
+
+          <h3>Compressibility factor</h3>
+          <div class="formula-card">
+            <div class="formula">Z = PV / nRT</div>
+            <p>
+              The compressibility factor Z measures deviation from ideal-gas
+              behaviour. For an ideal gas, Z = 1.
+            </p>
+          </div>
+        </section>
+
+        <section class="lesson-section" id="summary">
+          <h2>9. Key ideas to remember</h2>
+          <ul>
+            <li>The physical state depends on particle motion and intermolecular attractions.</li>
+            <li>Solids have a definite shape and volume; liquids have a definite volume; gases fill their containers.</li>
+            <li>Use kelvin in gas-law calculations.</li>
+            <li>The ideal gas equation is PV = nRT.</li>
+            <li>During a phase change, heat transfer does not necessarily change temperature.</li>
+            <li>Boiling occurs when vapour pressure equals external pressure.</li>
+            <li>Real gases deviate from ideal behaviour, especially at high pressure and low temperature.</li>
+          </ul>
+        </section>
+
+        <div class="lesson-bottom">
+          <a href="chemical-bonding.html">← Previous: Chemical Bonding</a>
+          <a href="thermodynamics.html">Next: Thermodynamics →</a>
+        </div>
+      </article>
+
+      <aside class="lesson-aside">
+        <div class="lesson-aside-card contents-card">
+          <h3>On this page</h3>
+          <ul>
+            <li><a href="#matter">What determines the state?</a></li>
+            <li><a href="#states">The three common states</a></li>
+            <li><a href="#gas-laws">Gas laws</a></li>
+            <li><a href="#ideal-gas">Ideal gas equation</a></li>
+            <li><a href="#kinetic-theory">Kinetic theory</a></li>
+            <li><a href="#phase-changes">Changes of state</a></li>
+            <li><a href="#vapour-pressure">Vapour pressure</a></li>
+            <li><a href="#real-gases">Real gases</a></li>
+            <li><a href="#summary">Key ideas</a></li>
+          </ul>
+        </div>
+
+        <div class="lesson-aside-card">
+          <h3>Study tip</h3>
+          <p>
+            Practise identifying which variables remain constant before
+            selecting a gas law. This is often the most important step in
+            solving gas-law numericals.
+          </p>
+        </div>
+
+        <div class="lesson-aside-card">
+          <h3>Chemistry topics</h3>
+          <ul>
+            <li><a href="../index.html">Chemistry overview</a></li>
+            <li><a href="basic-concepts.html">Basic Concepts</a></li>
+            <li><a href="atomic-structure.html">Atomic Structure</a></li>
+            <li><a href="periodicity.html">Periodicity</a></li>
+            <li><a href="chemical-bonding.html">Chemical Bonding</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Learn concepts. Understand connections. Keep asking why.</p>
+      <p><a href="../../../index.html">Your Answer</a> · Chemistry</p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

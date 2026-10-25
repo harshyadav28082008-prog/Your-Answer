@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore projectile motion with an interactive virtual physics experiment.">
+  <title>Projectile Motion Lab | Your Answer</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <style>
+    .lab-page {
+      max-width: 1120px;
+      margin: auto;
+      padding: 1.5rem 1rem 4rem;
+    }
+
+    .intro {
+      max-width: 780px;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .eyebrow {
+      color: var(--color-brand);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .muted {
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    .lab-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .panel {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .panel-head {
+      padding: 1rem 1.1rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .panel-head h2 {
+      margin: 0 0 .3rem;
+      font-size: 1.15rem;
+    }
+
+    .panel-head p {
+      margin: 0;
+      font-size: .85rem;
+    }
+
+    #trajectoryCanvas {
+      display: block;
+      width: 100%;
+      height: 430px;
+      background: #f3f6fb;
+    }
+
+    [data-theme="dark"] #trajectoryCanvas {
+      background: #141d2c;
+    }
+
+    .canvas-caption {
+      padding: .75rem 1rem;
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      font-size: .8rem;
+      line-height: 1.6;
+    }
+
+    .controls {
+      display: grid;
+      gap: 1.15rem;
+      padding: 1.1rem;
+    }
+
+    .control-top {
+      display: flex;
+      justify-content: space-between;
+      gap: .75rem;
+      align-items: center;
+    }
+
+    .control-top label {
+      font-weight: 600;
+    }
+
+    output {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: .65rem;
+      accent-color: var(--color-brand);
+    }
+
+    .range-ends {
+      display: flex;
+      justify-content: space-between;
+      color: var(--color-text-muted);
+      font-size: .75rem;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      padding: 0 1.1rem 1.1rem;
+    }
+
+    .lab-btn {
+      padding: .7rem .9rem;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .lab-btn.primary {
+      border-color: transparent;
+      background: var(--color-brand);
+      color: white;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .65rem;
+      padding: 1rem;
+    }
+
+    .stat {
+      padding: .8rem;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    .stat span {
+      display: block;
+      margin-bottom: .35rem;
+      color: var(--color-text-muted);
+      font-size: .78rem;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.05rem;
+      overflow-wrap: anywhere;
+    }
+
+    .section {
+      margin-top: 1.25rem;
+      padding: 1.2rem;
+    }
+
+    .section h2 {
+      margin: 0 0 .7rem;
+      font-size: 1.2rem;
+    }
+
+    .formula {
+      padding: 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.05rem;
+      line-height: 1.9;
+    }
+
+    .formula p {
+      margin-bottom: 0;
+      font-size: .85rem;
+    }
+
+    .steps {
+      padding-left: 1.3rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .status {
+      color: var(--color-text-muted);
+      font-size: .85rem;
+      line-height: 1.6;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+
+    th,
+    td {
+      padding: .7rem;
+      border-bottom: 1px solid var(--color-border);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      color: var(--color-text-muted);
+      font-size: .78rem;
+    }
+
+    .notice {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-text-muted);
+      font-size: .9rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 760px) {
+      .lab-layout {
+        grid-template-columns: 1fr;
+      }
+
+      #trajectoryCanvas {
+        height: 370px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="header-inner container">
+
+      <a class="brand" href="index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="subjects/">Subjects</a>
+        <a href="explore-3d/">3D Explorer</a>
+        <a href="labs/">Virtual Labs</a>
+        <a href="coding/">Coding Studio</a>
+      </nav>
+
+
+      <div class="header-actions">
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+      </div>
+
+    </div>
+
+    <nav
+  class="mobile-nav container"
+  id="mobile-nav"
+  aria-label="Mobile navigation"
+  hidden
+>
+      <a href="subjects/">Subjects</a>
+      <a href="explore-3d/">3D Explorer</a>
+      <a href="labs/">Virtual Labs</a>
+      <a href="coding/">Coding Studio</a>
+      <a href="about/">About</a>
+    </nav>
+</header>
+
+
+<main class="lab-page">
+
+  <p class="muted">
+    <a href="index.html">Virtual Labs</a> / Projectile Motion
+  </p>
+
+  <section class="intro">
+
+    <div class="eyebrow">Physics · Mechanics</div>
+
+    <h1>Projectile Motion</h1>
+
+    <p class="muted">
+      Launch an object at different speeds and angles and observe its
+      curved trajectory. Explore how gravity affects its flight time,
+      maximum height and horizontal range.
+    </p>
+
+  </section>
+
+
+  <div class="lab-layout">
+
+    <!-- SIMULATION -->
+
+    <section class="panel">
+
+      <div class="panel-head">
+
+        <h2>Projectile trajectory</h2>
+
+        <p class="muted">
+          Press launch to watch the projectile follow its calculated path.
+        </p>
+
+      </div>
+
+      <canvas
+        id="trajectoryCanvas"
+        aria-label="Interactive projectile motion simulation"
+      ></canvas>
+
+      <div class="canvas-caption">
+        Ideal projectile motion with no air resistance.
+        The ground is treated as the launch height.
+      </div>
+
+      <div class="button-row">
+
+        <button
+          class="lab-btn primary"
+          id="launchBtn"
+          type="button"
+        >
+          Launch projectile
+        </button>
+
+        <button
+          class="lab-btn"
+          id="resetBtn"
+          type="button"
+        >
+          Reset
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTROLS -->
+
+    <section class="panel">
+
+      <div class="panel-head">
+
+        <h2>Experiment controls</h2>
+
+        <p class="muted">
+          Change the initial conditions before launching.
+        </p>
+
+      </div>
+
+      <div class="controls">
+
+        <div>
+
+          <div class="control-top">
+
+            <label for="speed">
+              Initial speed
+            </label>
+
+            <output id="speedValue">
+              20 m/s
+            </output>
+
+          </div>
+
+          <input
+            id="speed"
+            type="range"
+            min="5"
+            max="40"
+            step="1"
+            value="20"
+          >
+
+          <div class="range-ends">
+            <span>5 m/s</span>
+            <span>40 m/s</span>
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="control-top">
+
+            <label for="angle">
+              Launch angle
+            </label>
+
+            <output id="angleValue">
+              45°
+            </output>
+
+          </div>
+
+          <input
+            id="angle"
+            type="range"
+            min="5"
+            max="85"
+            step="1"
+            value="45"
+          >
+
+          <div class="range-ends">
+            <span>5°</span>
+            <span>85°</span>
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="control-top">
+
+            <label for="gravity">
+              Gravity
+            </label>
+
+            <output id="gravityValue">
+              9.8 m/s²
+            </output>
+
+          </div>
+
+          <input
+            id="gravity"
+            type="range"
+            min="1.6"
+            max="24.8"
+            step="0.1"
+            value="9.8"
+          >
+
+          <div class="range-ends">
+            <span>1.6 m/s²</span>
+            <span>24.8 m/s²</span>
+          </div>
+
+        </div>
+
+
+        <p
+          class="status"
+          id="status"
+          aria-live="polite"
+        >
+          Ready to launch.
+        </p>
+
+      </div>
+
+
+      <div class="stats">
+
+        <div class="stat">
+          <span>Flight time</span>
+          <strong id="flightTime">2.89 s</strong>
+        </div>
+
+        <div class="stat">
+          <span>Maximum height</span>
+          <strong id="maxHeight">10.20 m</strong>
+        </div>
+
+        <div class="stat">
+          <span>Horizontal range</span>
+          <strong id="range">40.82 m</strong>
+        </div>
+
+        <div class="stat">
+          <span>Horizontal velocity</span>
+          <strong id="horizontalVelocity">14.14 m/s</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- FORMULAS -->
+
+  <section class="panel section">
+
+    <h2>Projectile motion equations</h2>
+
+    <div class="formula">
+
+      <strong>
+        T = 2v sinθ / g
+      </strong>
+
+      <br>
+
+      <strong>
+        H = v² sin²θ / 2g
+      </strong>
+
+      <br>
+
+      <strong>
+        R = v² sin(2θ) / g
+      </strong>
+
+      <p class="muted">
+        T = flight time · H = maximum height · R = horizontal range
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROCEDURE -->
+
+  <section class="panel section">
+
+    <h2>Experiment procedure</h2>
+
+    <ol class="steps">
+
+      <li>
+        Start with a speed of 20 m/s and an angle of 45°.
+      </li>
+
+      <li>
+        Launch the projectile and observe its trajectory.
+      </li>
+
+      <li>
+        Change only the launch angle and compare the range.
+      </li>
+
+      <li>
+        Try different initial speeds.
+      </li>
+
+      <li>
+        Change gravity and observe how the trajectory changes.
+      </li>
+
+      <li>
+        Record several observations and compare the results.
+      </li>
+
+    </ol>
+
+  </section>
+
+
+  <!-- OBSERVATIONS -->
+
+  <section class="panel section">
+
+    <h2>Observation table</h2>
+
+    <p class="muted">
+      Record the current experiment settings and calculated results.
+    </p>
+
+    <div class="button-row" style="padding:1rem 0">
+
+      <button
+        class="lab-btn primary"
+        id="recordBtn"
+        type="button"
+      >
+        Record observation
+      </button>
+
+      <button
+        class="lab-btn"
+        id="clearBtn"
+        type="button"
+      >
+        Clear table
+      </button>
+
+    </div>
+
+    <div style="overflow-x:auto">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>#</th>
+            <th>Speed</th>
+            <th>Angle</th>
+            <th>Gravity</th>
+            <th>Range</th>
+            <th>Height</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="observationBody">
+
+          <tr>
+            <td colspan="6">
+              No observations recorded yet.
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <p
+      class="status"
+      id="tableStatus"
+      aria-live="polite"
+    >
+      You can record up to 20 observations.
+    </p>
+
+  </section>
+
+
+  <div class="notice">
+
+    <strong>Model limitations:</strong>
+
+    This simulation assumes ideal projectile motion. Air resistance,
+    wind, object rotation and changes in gravitational field strength
+    over the trajectory are not included.
+
+  </div>
+
+</main>
+
+
+<script src="../assets/js/main.js"></script>
+
+<script>
+(() => {
+
+  const canvas =
+    document.getElementById("trajectoryCanvas");
+
+  const ctx =
+    canvas.getContext("2d");
+
+
+  const speedInput =
+    document.getElementById("speed");
+
+  const angleInput =
+    document.getElementById("angle");
+
+  const gravityInput =
+    document.getElementById("gravity");
+
+
+  const speedValue =
+    document.getElementById("speedValue");
+
+  const angleValue =
+    document.getElementById("angleValue");
+
+  const gravityValue =
+    document.getElementById("gravityValue");
+
+
+  const flightTime =
+    document.getElementById("flightTime");
+
+  const maxHeight =
+    document.getElementById("maxHeight");
+
+  const rangeOutput =
+    document.getElementById("range");
+
+  const horizontalVelocity =
+    document.getElementById("horizontalVelocity");
+
+
+  const status =
+    document.getElementById("status");
+
+
+  const observationBody =
+    document.getElementById("observationBody");
+
+  const tableStatus =
+    document.getElementById("tableStatus");
+
+
+  let width = 0;
+  let height = 0;
+  let dpr = 1;
+
+
+  let animationId = null;
+  let animationStart = 0;
+  let animationDuration = 0;
+
+  let records = [];
+
+
+  function calculate() {
+
+    const v =
+      Number(speedInput.value);
+
+    const angle =
+      Number(angleInput.value);
+
+    const g =
+      Number(gravityInput.value);
+
+
+    const radians =
+      angle * Math.PI / 180;
+
+
+    const vx =
+      v * Math.cos(radians);
+
+    const vy =
+      v * Math.sin(radians);
+
+
+    const time =
+      (2 * vy) / g;
+
+
+    const heightValue =
+      (vy * vy) / (2 * g);
+
+
+    const rangeValue =
+      vx * time;
+
+
+    return {
+      v,
+      angle,
+      g,
+      vx,
+      vy,
+      time,
+      height: heightValue,
+      range: rangeValue
+    };
+
+  }
+
+
+  function updateValues() {
+
+    const result =
+      calculate();
+
+
+    speedValue.textContent =
+      result.v.toFixed(0) + " m/s";
+
+    angleValue.textContent =
+      result.angle.toFixed(0) + "°";
+
+    gravityValue.textContent =
+      result.g.toFixed(1) + " m/s²";
+
+
+    flightTime.textContent =
+      result.time.toFixed(2) + " s";
+
+    maxHeight.textContent =
+      result.height.toFixed(2) + " m";
+
+    rangeOutput.textContent =
+      result.range.toFixed(2) + " m";
+
+    horizontalVelocity.textContent =
+      result.vx.toFixed(2) + " m/s";
+
+
+    status.textContent =
+      "Ready to launch with a predicted range of " +
+      result.range.toFixed(2) +
+      " m.";
+
+
+    draw();
+
+  }
+
+
+  function resize() {
+
+    const rect =
+      canvas.getBoundingClientRect();
+
+
+    dpr =
+      Math.min(
+        window.devicePixelRatio || 1,
+        2
+      );
+
+
+    width =
+      Math.max(300, rect.width);
+
+    height =
+      Math.max(300, rect.height);
+
+
+    canvas.width =
+      Math.round(width * dpr);
+
+    canvas.height =
+      Math.round(height * dpr);
+
+
+    ctx.setTransform(
+      dpr,
+      0,
+      0,
+      dpr,
+      0,
+      0
+    );
+
+
+    draw();
+
+  }
+
+
+  function drawArrow(
+    x,
+    y,
+    angle,
+    length,
+    label
+  ) {
+
+    const endX =
+      x +
+      Math.cos(angle) * length;
+
+    const endY =
+      y -
+      Math.sin(angle) * length;
+
+
+    ctx.save();
+
+    ctx.strokeStyle =
+      "#6258d9";
+
+    ctx.fillStyle =
+      "#6258d9";
+
+    ctx.lineWidth = 2;
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      x,
+      y
+    );
+
+    ctx.lineTo(
+      endX,
+      endY
+    );
+
+    ctx.stroke();
+
+
+    const head =
+      7;
+
+    const leftAngle =
+      angle + Math.PI * .8;
+
+    const rightAngle =
+      angle - Math.PI * .8;
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      endX,
+      endY
+    );
+
+    ctx.lineTo(
+      endX +
+      Math.cos(leftAngle) * head,
+      endY -
+      Math.sin(leftAngle) * head
+    );
+
+    ctx.lineTo(
+      endX +
+      Math.cos(rightAngle) * head,
+      endY -
+      Math.sin(rightAngle) * head
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    ctx.font =
+      "12px system-ui,sans-serif";
+
+    ctx.textAlign =
+      "center";
+
+    ctx.fillText(
+      label,
+      endX,
+      endY - 12
+    );
+
+
+    ctx.restore();
+
+  }
+
+
+  function draw() {
+
+    if (!width) {
+      return;
+    }
+
+
+    const dark =
+      document.documentElement.dataset.theme === "dark";
+
+
+    const bg =
+      dark ? "#141d2c" : "#f3f6fb";
+
+    const axis =
+      dark ? "#dce6f7" : "#34445b";
+
+    const grid =
+      dark ? "#29364b" : "#dbe1ea";
+
+    const muted =
+      dark ? "#8597b4" : "#8c9ab0";
+
+
+    ctx.clearRect(
+      0,
+      0,
+      width,
+      height
+    );
+
+
+    ctx.fillStyle =
+      bg;
+
+    ctx.fillRect(
+      0,
+      0,
+      width,
+      height
+    );
+
+
+    const result =
+      calculate();
+
+
+    /*
+      Leave room for labels and axes.
+    */
+
+    const left =
+      55;
+
+    const right =
+      25;
+
+    const top =
+      30;
+
+    const bottom =
+      height - 48;
+
+
+    const plotWidth =
+      width - left - right;
+
+    const plotHeight =
+      bottom - top;
+
+
+    /*
+      Determine scale automatically.
+    */
+
+    const maxX =
+      Math.max(
+        result.range * 1.12,
+        10
+      );
+
+    const maxY =
+      Math.max(
+        result.height * 1.2,
+        5
+      );
+
+
+    /*
+      Grid.
+    */
+
+    ctx.strokeStyle =
+      grid;
+
+    ctx.lineWidth = 1;
+
+
+    for (let i = 0; i <= 5; i++) {
+
+      const x =
+        left +
+        (plotWidth / 5) * i;
+
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        x,
+        top
+      );
+
+      ctx.lineTo(
+        x,
+        bottom
+      );
+
+      ctx.stroke();
+
+    }
+
+
+    for (let i = 0; i <= 5; i++) {
+
+      const y =
+        bottom -
+        (plotHeight / 5) * i;
+
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        left,
+        y
+      );
+
+      ctx.lineTo(
+        left + plotWidth,
+        y
+      );
+
+      ctx.stroke();
+
+    }
+
+
+    /*
+      Axes.
+    */
+
+    ctx.strokeStyle =
+      axis;
+
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      left,
+      top
+    );
+
+    ctx.lineTo(
+      left,
+      bottom
+    );
+
+    ctx.lineTo(
+      left + plotWidth,
+      bottom
+    );
+
+    ctx.stroke();
+
+
+    /*
+      Axis labels.
+    */
+
+    ctx.fillStyle =
+      axis;
+
+    ctx.font =
+      "11px system-ui,sans-serif";
+
+    ctx.textAlign =
+      "center";
+
+
+    for (let i = 0; i <= 5; i++) {
+
+      const value =
+        (maxX / 5) * i;
+
+      const x =
+        left +
+        (plotWidth / 5) * i;
+
+
+      ctx.fillText(
+        value.toFixed(0),
+        x,
+        bottom + 20
+      );
+
+    }
+
+
+    ctx.textAlign =
+      "right";
+
+
+    for (let i = 0; i <= 5; i++) {
+
+      const value =
+        (maxY / 5) * i;
+
+      const y =
+        bottom -
+        (plotHeight / 5) * i;
+
+
+      ctx.fillText(
+        value.toFixed(0),
+        left - 8,
+        y + 4
+      );
+
+    }
+
+
+    ctx.textAlign =
+      "center";
+
+    ctx.fillText(
+      "Horizontal distance (m)",
+      left + plotWidth / 2,
+      height - 10
+    );
+
+
+    ctx.save();
+
+    ctx.translate(
+      14,
+      top + plotHeight / 2
+    );
+
+    ctx.rotate(-Math.PI / 2);
+
+    ctx.fillText(
+      "Height (m)",
+      0,
+      0
+    );
+
+    ctx.restore();
+
+
+    /*
+      Ground.
+    */
+
+    ctx.strokeStyle =
+      axis;
+
+    ctx.lineWidth = 3;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      left,
+      bottom
+    );
+
+    ctx.lineTo(
+      left + plotWidth,
+      bottom
+    );
+
+    ctx.stroke();
+
+
+    /*
+      Projectile trajectory.
+    */
+
+    ctx.strokeStyle =
+      "#d14b4b";
+
+    ctx.lineWidth = 2.5;
+
+    ctx.beginPath();
+
+
+    const steps = 160;
+
+
+    for (let i = 0; i <= steps; i++) {
+
+      const t =
+        (result.time / steps) * i;
+
+
+      const xPhysical =
+        result.vx * t;
+
+      const yPhysical =
+        result.vy * t -
+        .5 * result.g * t * t;
+
+
+      const x =
+        left +
+        (xPhysical / maxX) *
+        plotWidth;
+
+
+      const y =
+        bottom -
+        (yPhysical / maxY) *
+        plotHeight;
+
+
+      if (i === 0) {
+
+        ctx.moveTo(
+          x,
+          y
+        );
+
+      } else {
+
+        ctx.lineTo(
+          x,
+          y
+        );
+
+      }
+
+    }
+
+
+    ctx.stroke();
+
+
+    /*
+      Launch angle indicator.
+    */
+
+    drawArrow(
+      left,
+      bottom,
+      result.angle * Math.PI / 180,
+      65,
+      "Initial velocity"
+    );
+
+
+    /*
+      Projectile position during animation.
+    */
+
+    let projectileT = null;
+
+
+    if (animationId !== null) {
+
+      const elapsed =
+        performance.now() -
+        animationStart;
+
+
+      projectileT =
+        Math.min(
+          elapsed / animationDuration,
+          1
+        ) * result.time;
+
+    }
+
+
+    if (projectileT !== null) {
+
+      const xPhysical =
+        result.vx * projectileT;
+
+      const yPhysical =
+        result.vy * projectileT -
+        .5 * result.g *
+        projectileT *
+        projectileT;
+
+
+      const x =
+        left +
+        (xPhysical / maxX) *
+        plotWidth;
+
+
+      const y =
+        bottom -
+        (Math.max(yPhysical, 0) / maxY) *
+        plotHeight;
+
+
+      ctx.fillStyle =
+        "#6258d9";
+
+      ctx.beginPath();
+
+      ctx.arc(
+        x,
+        y,
+        8,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fill();
+
+
+      ctx.fillStyle =
+        muted;
+
+      ctx.font =
+        "11px system-ui,sans-serif";
+
+      ctx.textAlign =
+        "left";
+
+      ctx.fillText(
+        "t = " +
+        projectileT.toFixed(2) +
+        " s",
+        x + 12,
+        y - 12
+      );
+
+    }
+
+
+    /*
+      Landing point.
+    */
+
+    const landingX =
+      left +
+      (result.range / maxX) *
+      plotWidth;
+
+
+    ctx.fillStyle =
+      muted;
+
+    ctx.beginPath();
+
+    ctx.arc(
+      landingX,
+      bottom,
+      4,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    /*
+      Maximum height marker.
+    */
+
+    const peakX =
+      left +
+      (result.range / 2 / maxX) *
+      plotWidth;
+
+
+    const peakY =
+      bottom -
+      (result.height / maxY) *
+      plotHeight;
+
+
+    ctx.strokeStyle =
+      muted;
+
+    ctx.setLineDash([5, 5]);
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      peakX,
+      peakY
+    );
+
+    ctx.lineTo(
+      peakX,
+      bottom
+    );
+
+    ctx.stroke();
+
+    ctx.setLineDash([]);
+
+
+    ctx.fillStyle =
+      muted;
+
+    ctx.textAlign =
+      "center";
+
+    ctx.fillText(
+      "H = " +
+      result.height.toFixed(2) +
+      " m",
+      peakX,
+      peakY - 10
+    );
+
+  }
+
+
+  function launch() {
+
+    if (animationId !== null) {
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    animationStart =
+      performance.now();
+
+    animationDuration =
+      Math.max(
+        1400,
+        calculate().time * 600
+      );
+
+
+    status.textContent =
+      "Projectile launched.";
+
+
+    function animate(now) {
+
+      const progress =
+        Math.min(
+          (now - animationStart) /
+          animationDuration,
+          1
+        );
+
+
+      draw();
+
+
+      if (progress < 1) {
+
+        animationId =
+          requestAnimationFrame(
+            animate
+          );
+
+      } else {
+
+        animationId = null;
+
+        draw();
+
+        status.textContent =
+          "Projectile landed. Range = " +
+          calculate().range.toFixed(2) +
+          " m.";
+
+      }
+
+    }
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+  }
+
+
+  function renderTable() {
+
+    observationBody.replaceChildren();
+
+
+    if (records.length === 0) {
+
+      const row =
+        document.createElement("tr");
+
+      const cell =
+        document.createElement("td");
+
+      cell.colSpan = 6;
+
+      cell.textContent =
+        "No observations recorded yet.";
+
+      row.appendChild(cell);
+
+      observationBody.appendChild(row);
+
+      return;
+
+    }
+
+
+    records.forEach(
+      (record, index) => {
+
+        const row =
+          document.createElement("tr");
+
+
+        const values = [
+
+          index + 1,
+
+          record.v.toFixed(1) + " m/s",
+
+          record.angle.toFixed(0) + "°",
+
+          record.g.toFixed(1) + " m/s²",
+
+          record.range.toFixed(2) + " m",
+
+          record.height.toFixed(2) + " m"
+
+        ];
+
+
+        values.forEach(
+          value => {
+
+            const cell =
+              document.createElement("td");
+
+            cell.textContent =
+              value;
+
+            row.appendChild(cell);
+
+          }
+        );
+
+
+        observationBody.appendChild(row);
+
+      }
+    );
+
+  }
+
+
+  speedInput.addEventListener(
+    "input",
+    updateValues
+  );
+
+  angleInput.addEventListener(
+    "input",
+    updateValues
+  );
+
+  gravityInput.addEventListener(
+    "input",
+    updateValues
+  );
+
+
+  document
+    .getElementById("launchBtn")
+    .addEventListener(
+      "click",
+      launch
+    );
+
+
+  document
+    .getElementById("resetBtn")
+    .addEventListener(
+      "click",
+      () => {
+
+        if (animationId !== null) {
+
+          cancelAnimationFrame(
+            animationId
+          );
+
+          animationId = null;
+
+        }
+
+
+        speedInput.value = 20;
+        angleInput.value = 45;
+        gravityInput.value = 9.8;
+
+        records = [];
+
+        renderTable();
+
+        tableStatus.textContent =
+          "Experiment reset.";
+
+        updateValues();
+
+      }
+    );
+
+
+  document
+    .getElementById("recordBtn")
+    .addEventListener(
+      "click",
+      () => {
+
+        if (records.length >= 20) {
+
+          tableStatus.textContent =
+            "The table is full. Clear it to record more.";
+
+          return;
+
+        }
+
+
+        records.push(
+          calculate()
+        );
+
+
+        renderTable();
+
+        tableStatus.textContent =
+          "Observation " +
+          records.length +
+          " recorded.";
+
+      }
+    );
+
+
+  document
+    .getElementById("clearBtn")
+    .addEventListener(
+      "click",
+      () => {
+
+        records = [];
+
+        renderTable();
+
+        tableStatus.textContent =
+          "Observation table cleared.";
+
+      }
+    );
+
+
+  window.addEventListener(
+    "resize",
+    resize
+  );
+
+
+  new MutationObserver(
+    () => draw()
+  ).observe(
+    document.documentElement,
+    {
+      attributes: true,
+      attributeFilter: ["data-theme"]
+    }
+  );
+
+
+  updateValues();
+  resize();
+  renderTable();
+
+})();
+</script>
+
+</body>
+</html>

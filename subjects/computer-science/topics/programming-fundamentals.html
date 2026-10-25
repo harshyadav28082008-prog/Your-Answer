@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn programming fundamentals including variables, data types, operators, conditions, loops, functions, and debugging.">
+  <title>Programming Fundamentals | Your Answer</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .lesson{max-width:900px;margin:auto;padding-bottom:56px}
+    .lesson-hero{padding:42px 0 30px}
+    .eyebrow{color:var(--color-brand);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .lesson h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;letter-spacing:-.035em;margin:12px 0}
+    .muted{color:var(--color-text-muted);line-height:1.8}
+    .lesson-section{margin:32px 0}
+    .lesson-section h2{font-size:1.5rem;margin-bottom:12px}
+    .lesson-section h3{font-size:1.1rem;margin:22px 0 8px}
+    .lesson-section p,.lesson-section li{line-height:1.8}
+    .lesson-section li{margin:5px 0}
+    .concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .concept-card,.example-card,.check-card,.key-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:15px;padding:19px;margin:15px 0}
+    .concept-card h3{margin-top:0}
+    .lesson table{width:100%;border-collapse:collapse;margin:16px 0}
+    .lesson th,.lesson td{padding:11px;border:1px solid var(--color-border);text-align:left;line-height:1.6}
+    .lesson th{background:var(--color-surface)}
+    .lesson pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;border-radius:12px;background:var(--color-surface);border:1px solid var(--color-border);line-height:1.8}
+    .answer{display:none;margin-top:12px;padding:12px;border-radius:10px;background:var(--color-surface);line-height:1.7}
+    .answer.visible{display:block}
+    .lesson button{cursor:pointer;padding:9px 14px;border-radius:9px;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text)}
+    .lesson-nav{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--color-border);padding-top:22px;margin-top:38px}
+    .lesson-nav a{color:var(--color-brand);text-decoration:none;font-weight:700}
+    @media(max-width:620px){.concept-grid{grid-template-columns:1fr}.lesson th,.lesson td{padding:8px;font-size:.9rem}}
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../../../index.html">Your Answer</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Subjects</a>
+        <a href="../../../explore-3d/index.html">Explore 3D</a>
+        <a href="../../../labs/index.html">Labs</a>
+      </nav>
+      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
+      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+    </div>
+    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
+      <a href="../../../index.html">Home</a>
+      <a href="../../index.html">Subjects</a>
+      <a href="../../../explore-3d/index.html">Explore 3D</a>
+      <a href="../../../labs/index.html">Labs</a>
+    </nav>
+  </header>
+
+  <main class="container lesson">
+    <section class="lesson-hero">
+      <div class="eyebrow">Computer Science · Topic 03</div>
+      <h1>Programming Fundamentals</h1>
+      <p class="muted">
+        Learn how programs store information, make decisions, repeat tasks,
+        organise instructions, and solve problems. The examples use pseudocode
+        rather than a specific programming language.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>1. What is programming?</h2>
+      <p>
+        <strong>Programming</strong> is the process of designing and writing
+        instructions that a computer can execute. A program may perform a
+        calculation, process data, display information, or control a system.
+      </p>
+      <div class="example-card">
+        <h3>Example: Calculate an average</h3>
+        <pre>START
+  INPUT mark1, mark2, mark3
+  average = (mark1 + mark2 + mark3) / 3
+  DISPLAY average
+END</pre>
+        <p class="muted">
+          The program receives three marks, calculates their average, and
+          displays the result.
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>2. Variables and constants</h2>
+      <p>
+        A <strong>variable</strong> is a named place used to hold a value that
+        may change while a program runs. A <strong>constant</strong> represents
+        a value that should remain fixed within the relevant program context.
+      </p>
+      <div class="example-card">
+        <pre>score = 10
+score = score + 5
+DISPLAY score
+
+CONSTANT TAX_RATE = 0.05</pre>
+        <p class="muted">
+          The final score is 15. TAX_RATE is intended to remain fixed.
+          Exact declaration syntax depends on the programming language.
+        </p>
+      </div>
+      <h3>Rules for naming variables</h3>
+      <ul>
+        <li>Choose descriptive names, such as <code>total_price</code>.</li>
+        <li>Follow the naming rules of the language being used.</li>
+        <li>Avoid reserved words used by the language.</li>
+        <li>Use a consistent naming style.</li>
+      </ul>
+    </section>
+
+    <section class="lesson-section">
+      <h2>3. Data types</h2>
+      <p>A data type describes the kind of value a variable can represent and the operations available for it.</p>
+
+      <table>
+        <thead><tr><th>Type</th><th>Example</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td>Integer</td><td>25</td><td>Whole numbers</td></tr>
+          <tr><td>Floating-point number</td><td>3.14</td><td>Approximate real-number values</td></tr>
+          <tr><td>String</td><td>"Hello"</td><td>Text</td></tr>
+          <tr><td>Boolean</td><td>TRUE</td><td>A logical true/false value</td></tr>
+          <tr><td>Character</td><td>'A'</td><td>A single character in languages that provide this type</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">
+        Languages differ: some use static type declarations, while others infer
+        or determine types at runtime. Floating-point arithmetic may introduce
+        small rounding errors.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>4. Operators</h2>
+      <p>Operators perform calculations, comparisons, or logical operations.</p>
+
+      <table>
+        <thead><tr><th>Category</th><th>Operators</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td>Arithmetic</td><td>+, −, ×, ÷</td><td>8 + 2 = 10</td></tr>
+          <tr><td>Remainder</td><td>MOD or %</td><td>10 MOD 3 = 1</td></tr>
+          <tr><td>Comparison</td><td>==, !=, &lt;, &gt;, &lt;=, &gt;=</td><td>8 &gt; 2 is TRUE</td></tr>
+          <tr><td>Logical</td><td>AND, OR, NOT</td><td>TRUE AND FALSE is FALSE</td></tr>
+          <tr><td>Assignment</td><td>= in this pseudocode</td><td>total = 20</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">
+        Operator symbols vary across languages. In many languages, <code>=</code>
+        assigns a value, while <code>==</code> compares two values.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>5. Input and output</h2>
+      <p>
+        <strong>Input</strong> brings information into a program. <strong>Output</strong>
+        communicates a result to the user or another system.
+      </p>
+      <div class="example-card">
+        <pre>START
+  INPUT name
+  DISPLAY "Welcome, " + name
+END</pre>
+        <p class="muted">If the input is "Aman", the output is "Welcome, Aman".</p>
+      </div>
+      <p>
+        Real programs should validate input when necessary. For example, a
+        program expecting a number should handle invalid text appropriately.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>6. Conditional statements</h2>
+      <p>
+        Conditions let a program choose which instructions to execute based on
+        whether a logical expression is true or false.
+      </p>
+      <div class="example-card">
+        <h3>Example: Check an age</h3>
+        <pre>INPUT age
+
+IF age >= 18
+  DISPLAY "Adult"
+ELSE
+  DISPLAY "Under 18"
+END IF</pre>
+        <p class="muted">
+          This example illustrates a simple threshold. Real eligibility rules
+          depend on the specific context and applicable law.
+        </p>
+      </div>
+      <h3>Multiple conditions</h3>
+      <pre>INPUT score
+
+IF score >= 90
+  DISPLAY "Grade A"
+ELSE IF score >= 75
+  DISPLAY "Grade B"
+ELSE IF score >= 50
+  DISPLAY "Grade C"
+ELSE
+  DISPLAY "Needs improvement"
+END IF</pre>
+      <p class="muted">
+        Order matters: the first matching branch is selected. Here, the score
+        ranges are handled from highest to lowest.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>7. Loops</h2>
+      <p>
+        Loops repeat a block of instructions. They are useful for processing
+        lists, repeating calculations, and performing tasks until a condition
+        is met.
+      </p>
+
+      <h3>For loop</h3>
+      <pre>FOR i = 1 TO 5
+  DISPLAY i
+END FOR</pre>
+      <p class="muted">Displays the numbers 1 through 5, assuming the inclusive range shown in this pseudocode.</p>
+
+      <h3>While loop</h3>
+      <pre>count = 1
+
+WHILE count <= 3
+  DISPLAY count
+  count = count + 1
+END WHILE</pre>
+      <p class="muted">
+        The loop stops when count becomes 4. Updating the variable prevents
+        an endless loop in this example.
+      </p>
+
+      <div class="concept-card">
+        <h3>Common loop types</h3>
+        <ul>
+          <li><strong>For:</strong> Often used when iterating over a known range or collection.</li>
+          <li><strong>While:</strong> Repeats while a condition remains true.</li>
+          <li><strong>Do-while:</strong> In languages that support it, checks the condition after the body, so the body runs at least once.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="lesson-section">
+      <h2>8. Functions</h2>
+      <p>
+        A <strong>function</strong> is a reusable block of code that performs a
+        defined task. Functions can accept inputs called parameters and may
+        return a result.
+      </p>
+      <div class="example-card">
+        <pre>FUNCTION square(number)
+  RETURN number * number
+END FUNCTION
+
+result = square(4)
+DISPLAY result</pre>
+        <p class="muted">The function returns 16 when called with 4.</p>
+      </div>
+      <p>Functions help programmers:</p>
+      <ul>
+        <li>Reuse logic instead of repeating code.</li>
+        <li>Break complex problems into smaller tasks.</li>
+        <li>Test and maintain parts of a program independently.</li>
+        <li>Give meaningful names to operations.</li>
+      </ul>
+    </section>
+
+    <section class="lesson-section">
+      <h2>9. Arrays and strings</h2>
+      <p>
+        An <strong>array</strong> or list can store multiple values in an
+        ordered collection. A <strong>string</strong> represents text.
+      </p>
+      <div class="example-card">
+        <pre>numbers = [4, 7, 2, 9]
+total = 0
+
+FOR EACH number IN numbers
+  total = total + number
+END FOR
+
+DISPLAY total</pre>
+        <p class="muted">The output is 22.</p>
+      </div>
+      <p>
+        Indexing conventions vary. Many languages begin array indices at 0,
+        while some educational pseudocode and languages use 1.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>10. Errors and debugging</h2>
+      <p>Programs may fail or produce incorrect results. Three common error categories are:</p>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>Syntax error</h3>
+          <p class="muted">The code violates the language's grammar or rules.</p>
+        </div>
+        <div class="concept-card">
+          <h3>Runtime error</h3>
+          <p class="muted">An error occurs while the program is executing.</p>
+        </div>
+        <div class="concept-card">
+          <h3>Logic error</h3>
+          <p class="muted">The program runs but produces an incorrect result.</p>
+        </div>
+        <div class="concept-card">
+          <h3>Debugging</h3>
+          <p class="muted">Finding, understanding, and correcting defects in a program.</p>
+        </div>
+      </div>
+      <p>
+        A useful debugging process is to reproduce the problem, inspect inputs
+        and intermediate values, identify the cause, make a correction, and
+        test the program again.
+      </p>
+    </section>
+
+    <section class="lesson-section">
+      <h2>11. Quick knowledge check</h2>
+      <p class="muted">Try each question before revealing its answer.</p>
+
+      <div class="check-card">
+        <p><strong>Question 1:</strong> What is the purpose of a variable?</p>
+        <button type="button" data-answer="a1" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a1">It gives a name to a value that a program can store and use.</div>
+      </div>
+
+      <div class="check-card">
+        <p><strong>Question 2:</strong> What does a condition do?</p>
+        <button type="button" data-answer="a2" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a2">It allows a program to select instructions based on whether a logical expression is true or false.</div>
+      </div>
+
+      <div class="check-card">
+        <p><strong>Question 3:</strong> How many times does this loop run: FOR i = 1 TO 4?</p>
+        <button type="button" data-answer="a3" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a3">Four times in the inclusive-range pseudocode used here.</div>
+      </div>
+
+      <div class="check-card">
+        <p><strong>Question 4:</strong> Why are functions useful?</p>
+        <button type="button" data-answer="a4" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a4">They organise logic into reusable units, making programs easier to test, read, and maintain.</div>
+      </div>
+
+      <div class="check-card">
+        <p><strong>Question 5:</strong> A program runs but calculates 2 + 2 as 5. What kind of error is this likely to be?</p>
+        <button type="button" data-answer="a5" aria-expanded="false">Reveal answer</button>
+        <div class="answer" id="a5">A logic error: the program runs but produces the wrong result.</div>
+      </div>
+    </section>
+
+    <div class="key-card">
+      <h2>Key takeaways</h2>
+      <ul>
+        <li>Variables and data types help programs represent information.</li>
+        <li>Operators perform calculations and comparisons.</li>
+        <li>Conditions make decisions; loops repeat instructions.</li>
+        <li>Functions organise reusable blocks of code.</li>
+        <li>Debugging helps identify and correct program errors.</li>
+      </ul>
+    </div>
+
+    <nav class="lesson-nav" aria-label="Topic navigation">
+      <a href="number-systems.html">← Previous: Number Systems</a>
+      <a href="algorithms-flowcharts.html">Next: Algorithms and Flowcharts →</a>
+    </nav>
+  </main>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    document.querySelectorAll("[data-answer]").forEach(function(button) {
+      button.addEventListener("click", function() {
+        const answer = document.getElementById(button.dataset.answer);
+        const visible = answer.classList.toggle("visible");
+        button.setAttribute("aria-expanded", String(visible));
+        button.textContent = visible ? "Hide answer" : "Reveal answer";
+      });
+    });
+  </script>
+</body>
+</html>

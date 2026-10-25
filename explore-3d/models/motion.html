@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motion and Projectile | Your Answer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/main.js" defer></script>
+
+  <style>
+    .motion-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 18px 60px;
+    }
+
+    .motion-page h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin: 10px 0;
+    }
+
+    .motion-intro {
+      color: var(--color-text-muted);
+      max-width: 720px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .motion-back {
+      color: var(--color-brand);
+      text-decoration: none;
+    }
+
+    .motion-back:hover { text-decoration: underline; }
+
+    .motion-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .motion-panel {
+      min-width: 0;
+      padding: 20px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .motion-panel h2 {
+      font-size: 1.2rem;
+      margin: 0 0 16px;
+    }
+
+    .motion-canvas-wrap {
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    #motionCanvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .motion-controls { margin: 20px 0; }
+
+    .motion-controls label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .motion-controls output {
+      color: var(--color-brand);
+      white-space: nowrap;
+    }
+
+    .motion-controls input {
+      display: block;
+      width: 100%;
+      accent-color: var(--color-brand);
+    }
+
+    .motion-controls small {
+      display: block;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+      margin-top: 7px;
+    }
+
+    .motion-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .motion-button {
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .motion-button.primary {
+      background: var(--color-brand);
+      color: white;
+      border-color: var(--color-brand);
+    }
+
+    .motion-button:focus-visible {
+      outline: 2px solid var(--color-brand);
+      outline-offset: 3px;
+    }
+
+    .motion-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .motion-stat {
+      padding: 13px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    .motion-stat span {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--color-text-muted);
+      margin-bottom: 7px;
+    }
+
+    .motion-stat strong {
+      font-size: 1.1rem;
+      overflow-wrap: anywhere;
+    }
+
+    .motion-note {
+      margin-top: 18px;
+      padding: 15px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      line-height: 1.7;
+    }
+
+    .motion-note p { margin: 6px 0 0; }
+
+    .motion-equation {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+
+    @media (max-width: 760px) {
+      .motion-layout { grid-template-columns: 1fr; }
+      .motion-page { padding: 24px 14px 45px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="motion-page">
+
+
+    <header>
+          <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+        <a class="motion-back" href="../index.html">← Back to Explore 3D</a>
+      <h1>Motion and Projectile</h1>
+      <p class="motion-intro">
+        Investigate how launch speed, launch angle, and gravity affect
+        a projectile's path, flight time, maximum height, and horizontal range.
+      </p>
+    </header>
+
+    <div class="motion-layout">
+      <section class="motion-panel">
+        <h2>Projectile simulator</h2>
+
+        <div class="motion-canvas-wrap">
+          <canvas id="motionCanvas" width="800" height="500"
+                  role="img"
+                  aria-label="A graph showing the calculated projectile trajectory, launch point, landing point, and current projectile position.">
+            Your browser does not support canvas.
+          </canvas>
+        </div>
+
+        <div class="motion-actions">
+          <button class="motion-button primary" id="launchButton" type="button">
+            Launch projectile
+          </button>
+          <button class="motion-button" id="resetButton" type="button">
+            Reset
+          </button>
+        </div>
+
+        <div class="motion-note">
+          <strong>Observation</strong>
+          <p id="motionObservation" aria-live="polite">
+            Change the launch angle and compare the resulting trajectory.
+          </p>
+        </div>
+      </section>
+
+      <aside class="motion-panel">
+        <h2>Launch conditions</h2>
+
+        <div class="motion-controls">
+          <label for="speed">
+            Initial speed
+            <output id="speedValue">20 m/s</output>
+          </label>
+          <input id="speed" type="range" min="5" max="40" step="1" value="20">
+          <small>Speed at the instant of launch.</small>
+        </div>
+
+        <div class="motion-controls">
+          <label for="angle">
+            Launch angle
+            <output id="angleValue">45°</output>
+          </label>
+          <input id="angle" type="range" min="10" max="80" step="1" value="45">
+          <small>Angle measured above the horizontal.</small>
+        </div>
+
+        <div class="motion-controls">
+          <label for="gravity">
+            Gravity
+            <output id="gravityValue">9.8 m/s²</output>
+          </label>
+          <input id="gravity" type="range" min="1" max="15" step="0.1" value="9.8">
+          <small>Change gravity to compare different environments.</small>
+        </div>
+
+        <div class="motion-stats">
+          <div class="motion-stat">
+            <span>Flight time</span>
+            <strong id="flightTime">—</strong>
+          </div>
+          <div class="motion-stat">
+            <span>Maximum height</span>
+            <strong id="maxHeight">—</strong>
+          </div>
+          <div class="motion-stat">
+            <span>Horizontal range</span>
+            <strong id="range">—</strong>
+          </div>
+          <div class="motion-stat">
+            <span>Peak time</span>
+            <strong id="peakTime">—</strong>
+          </div>
+        </div>
+
+        <div class="motion-note">
+          <strong>Equations</strong>
+          <div class="motion-equation">T = 2u sin θ / g</div>
+          <div class="motion-equation">H = (u sin θ)² / 2g</div>
+          <div class="motion-equation">R = u² sin 2θ / g</div>
+          <p>
+            These equations assume the projectile lands at its launch height
+            and air resistance is negligible.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById("motionCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const speedInput = document.getElementById("speed");
+      const angleInput = document.getElementById("angle");
+      const gravityInput = document.getElementById("gravity");
+
+      const speedValue = document.getElementById("speedValue");
+      const angleValue = document.getElementById("angleValue");
+      const gravityValue = document.getElementById("gravityValue");
+
+      const flightTimeEl = document.getElementById("flightTime");
+      const maxHeightEl = document.getElementById("maxHeight");
+      const rangeEl = document.getElementById("range");
+      const peakTimeEl = document.getElementById("peakTime");
+      const observation = document.getElementById("motionObservation");
+
+      const launchButton = document.getElementById("launchButton");
+      const resetButton = document.getElementById("resetButton");
+
+      let animationId = null;
+      let running = false;
+      let elapsed = 0;
+      let previousTimestamp = 0;
+
+      const brandColor = () =>
+        getComputedStyle(document.documentElement)
+          .getPropertyValue("--color-brand").trim() || "#3478f6";
+
+      function getPhysics() {
+        const u = Number(speedInput.value);
+        const angleDegrees = Number(angleInput.value);
+        const g = Number(gravityInput.value);
+        const angle = angleDegrees * Math.PI / 180;
+
+        const ux = u * Math.cos(angle);
+        const uy = u * Math.sin(angle);
+        const time = 2 * uy / g;
+        const height = uy * uy / (2 * g);
+        const distance = ux * time;
+        const peakTime = uy / g;
+
+        return {
+          u, angleDegrees, g, ux, uy,
+          time, height, distance, peakTime
+        };
+      }
+
+      function updateStats() {
+        const p = getPhysics();
+
+        speedValue.textContent = p.u + " m/s";
+        angleValue.textContent = p.angleDegrees + "°";
+        gravityValue.textContent = p.g.toFixed(1) + " m/s²";
+
+        flightTimeEl.textContent = p.time.toFixed(2) + " s";
+        maxHeightEl.textContent = p.height.toFixed(2) + " m";
+        rangeEl.textContent = p.distance.toFixed(2) + " m";
+        peakTimeEl.textContent = p.peakTime.toFixed(2) + " s";
+
+        if (p.angleDegrees === 45) {
+          observation.textContent =
+            "For a fixed launch speed and equal launch and landing heights, 45° gives the maximum horizontal range in this ideal model.";
+        } else if (p.angleDegrees > 45) {
+          observation.textContent =
+            "The steeper launch sends more of the initial velocity upward, increasing height but reducing horizontal range compared with 45° at the same speed.";
+        } else {
+          observation.textContent =
+            "This lower launch angle gives more initial velocity to the horizontal direction and less to the vertical direction.";
+        }
+
+        drawScene();
+      }
+
+      function drawScene(projectile = null) {
+        const w = canvas.width;
+        const h = canvas.height;
+        const p = getPhysics();
+        const color = brandColor();
+
+        ctx.clearRect(0, 0, w, h);
+
+        const left = 65;
+        const right = 30;
+        const top = 35;
+        const bottom = 60;
+        const plotW = w - left - right;
+        const plotH = h - top - bottom;
+
+        const maxX = Math.max(p.distance * 1.12, 10);
+        const maxY = Math.max(p.height * 1.25, 5);
+
+        const sx = x => left + (x / maxX) * plotW;
+        const sy = y => h - bottom - (y / maxY) * plotH;
+
+        // Grid and labels.
+        ctx.strokeStyle = "rgba(128,128,128,0.18)";
+        ctx.lineWidth = 1;
+        ctx.fillStyle = "rgba(128,128,128,0.95)";
+        ctx.font = "13px sans-serif";
+
+        for (let i = 0; i <= 5; i++) {
+          const x = maxX * i / 5;
+          const y = maxY * i / 5;
+
+          ctx.beginPath();
+          ctx.moveTo(sx(x), top);
+          ctx.lineTo(sx(x), h - bottom);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.moveTo(left, sy(y));
+          ctx.lineTo(w - right, sy(y));
+          ctx.stroke();
+
+          ctx.fillText(x.toFixed(1), sx(x) - 10, h - bottom + 22);
+          if (i > 0) {
+            ctx.fillText(y.toFixed(1), 8, sy(y) + 4);
+          }
+        }
+
+        // Axes.
+        ctx.strokeStyle = "rgba(128,128,128,0.9)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(left, top);
+        ctx.lineTo(left, h - bottom);
+        ctx.lineTo(w - right, h - bottom);
+        ctx.stroke();
+
+        ctx.fillStyle = "rgba(128,128,128,1)";
+        ctx.fillText("Horizontal distance (m)", w / 2 - 65, h - 15);
+        ctx.save();
+        ctx.translate(18, h / 2 + 50);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText("Height (m)", 0, 0);
+        ctx.restore();
+
+        // Ideal parabolic trajectory.
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+
+        const steps = 150;
+        for (let i = 0; i <= steps; i++) {
+          const t = p.time * i / steps;
+          const x = p.ux * t;
+          const y = Math.max(0, p.uy * t - 0.5 * p.g * t * t);
+
+          if (i === 0) ctx.moveTo(sx(x), sy(y));
+          else ctx.lineTo(sx(x), sy(y));
+        }
+        ctx.stroke();
+
+        // Peak marker.
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(sx(p.distance / 2), sy(p.height), 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.font = "bold 13px sans-serif";
+        ctx.fillText("Maximum height", Math.min(sx(p.distance / 2) + 8, w - 145),
+          Math.max(sy(p.height) - 10, top + 12));
+
+        // Launch point.
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(sx(0), sy(0), 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Animated projectile.
+        if (projectile) {
+          const t = Math.min(projectile.t, p.time);
+          const x = p.ux * t;
+          const y = Math.max(0, p.uy * t - 0.5 * p.g * t * t);
+
+          ctx.fillStyle = "#e76f51";
+          ctx.beginPath();
+          ctx.arc(sx(x), sy(y), 8, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.strokeStyle = "#e76f51";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(sx(x), sy(y));
+          ctx.lineTo(sx(x) - p.ux * 0.18, sy(y) + p.uy * 0.18);
+          ctx.stroke();
+        }
+      }
+
+      function stopAnimation() {
+        running = false;
+        if (animationId !== null) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        }
+        launchButton.textContent = "Launch projectile";
+      }
+
+      function animate(timestamp) {
+        if (!running) return;
+
+        if (previousTimestamp) {
+          elapsed += Math.min((timestamp - previousTimestamp) / 1000, 0.04);
+        }
+        previousTimestamp = timestamp;
+
+        const p = getPhysics();
+        drawScene({ t: elapsed * 1.5 });
+
+        if (elapsed * 1.5 >= p.time) {
+          stopAnimation();
+          drawScene({ t: p.time });
+          return;
+        }
+
+        animationId = requestAnimationFrame(animate);
+      }
+
+      function launch() {
+        stopAnimation();
+        elapsed = 0;
+        previousTimestamp = 0;
+        running = true;
+        launchButton.textContent = "Projectile in motion…";
+        animationId = requestAnimationFrame(animate);
+      }
+
+      [speedInput, angleInput, gravityInput].forEach(input => {
+        input.addEventListener("input", () => {
+          stopAnimation();
+          elapsed = 0;
+          updateStats();
+        });
+      });
+
+      launchButton.addEventListener("click", launch);
+
+      resetButton.addEventListener("click", () => {
+        stopAnimation();
+        speedInput.value = 20;
+        angleInput.value = 45;
+        gravityInput.value = 9.8;
+        elapsed = 0;
+        previousTimestamp = 0;
+        updateStats();
+      });
+
+      updateStats();
+    })();
+  </script>
+</body>
+</html>

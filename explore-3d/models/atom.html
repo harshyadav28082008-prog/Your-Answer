@@ -1,0 +1,626 @@
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atomic Structure | Your Answer</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <script src="../../assets/js/main.js" defer></script>
+
+  <style>
+    .atom-page {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 18px 60px;
+    }
+
+    .atom-page h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin: 12px 0;
+    }
+
+    .atom-intro {
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      max-width: 720px;
+      margin-bottom: 28px;
+    }
+
+    .atom-back {
+      color: var(--color-brand);
+      text-decoration: none;
+    }
+
+    .atom-back:hover { text-decoration: underline; }
+
+    .atom-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .atom-panel {
+      min-width: 0;
+      padding: 20px;
+      border: 1px solid var(--color-border);
+      border-radius: 18px;
+      background: var(--color-surface);
+    }
+
+    .atom-panel h2 {
+      font-size: 1.2rem;
+      margin: 0 0 16px;
+    }
+
+    .atom-canvas-wrap {
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    #atomCanvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .atom-controls { margin: 20px 0; }
+
+    .atom-controls label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .atom-controls select,
+    .atom-controls input[type="range"] {
+      width: 100%;
+    }
+
+    .atom-controls select {
+      padding: 11px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+    }
+
+    .atom-controls input[type="range"] {
+      accent-color: var(--color-brand);
+    }
+
+    .atom-controls output {
+      color: var(--color-brand);
+      font-weight: 600;
+    }
+
+    .atom-controls small {
+      display: block;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+      margin-top: 7px;
+    }
+
+    .atom-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .atom-button {
+      padding: 10px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .atom-button.primary {
+      background: var(--color-brand);
+      color: white;
+      border-color: var(--color-brand);
+    }
+
+    .atom-button:focus-visible {
+      outline: 2px solid var(--color-brand);
+      outline-offset: 3px;
+    }
+
+    .atom-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .atom-stat {
+      padding: 13px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    .atom-stat span {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--color-text-muted);
+      margin-bottom: 7px;
+    }
+
+    .atom-stat strong {
+      font-size: 1.15rem;
+      overflow-wrap: anywhere;
+    }
+
+    .atom-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 14px;
+      color: var(--color-text-muted);
+      font-size: 0.88rem;
+    }
+
+    .atom-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+
+    .atom-note {
+      margin-top: 18px;
+      padding: 15px;
+      border-left: 4px solid var(--color-brand);
+      border-radius: 8px;
+      line-height: 1.7;
+    }
+
+    .atom-note p { margin: 6px 0 0; }
+
+    .atom-shell-list {
+      margin-top: 16px;
+      padding: 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+    }
+
+    .atom-shell-list p { margin: 7px 0; }
+
+    @media (max-width: 760px) {
+      .atom-layout { grid-template-columns: 1fr; }
+      .atom-page { padding: 24px 14px 45px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="atom-page">
+    <header>
+          <div class="header-inner container">
+
+      <a class="brand" href="../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Subjects</a>
+        <a href="../explore-3d/">3D Explorer</a>
+        <a href="../labs/">Virtual Labs</a>
+        <a href="../coding/">Coding Studio</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="index.html" aria-current="page">Subjects</a>
+      <a href="../explore-3d/">3D Explorer</a>
+      <a href="../labs/">Virtual Labs</a>
+      <a href="../coding/">Coding Studio</a>
+      <a href="../about/">About</a>
+    </nav>
+      
+      <a class="atom-back" href="../index.html">← Back to Explore 3D</a>
+      <h1>Atomic Structure</h1>
+      <p class="atom-intro">
+        Explore simplified atomic models. Select an element to inspect its
+        nucleus, electron arrangement, atomic number, and mass number.
+      </p>
+    </header>
+
+    <div class="atom-layout">
+      <section class="atom-panel">
+        <h2>Atom visualizer</h2>
+
+        <div class="atom-canvas-wrap">
+          <canvas id="atomCanvas" width="700" height="600"
+                  role="img"
+                  aria-label="Simplified atomic model showing a nucleus and electron shells.">
+            Your browser does not support canvas.
+          </canvas>
+        </div>
+
+        <div class="atom-legend">
+          <span><i class="atom-dot" style="background:#e76f51"></i>Proton</span>
+          <span><i class="atom-dot" style="background:#718096"></i>Neutron</span>
+          <span><i class="atom-dot" style="background:#3478f6"></i>Electron</span>
+        </div>
+
+        <div class="atom-actions">
+          <button class="atom-button primary" id="motionButton" type="button">
+            Pause electrons
+          </button>
+          <button class="atom-button" id="resetButton" type="button">
+            Reset view
+          </button>
+        </div>
+
+        <div class="atom-note">
+          <strong>Model limitation</strong>
+          <p>
+            Electron shells are drawn as circles to make atomic structure easier
+            to study. Real electrons do not travel along these fixed circular
+            paths; quantum mechanics describes their probable locations using
+            orbitals.
+          </p>
+        </div>
+      </section>
+
+      <aside class="atom-panel">
+        <h2>Element explorer</h2>
+
+        <div class="atom-controls">
+          <label for="elementSelect">Choose an element</label>
+          <select id="elementSelect">
+            <option value="H">Hydrogen (H)</option>
+            <option value="He">Helium (He)</option>
+            <option value="Li">Lithium (Li)</option>
+            <option value="C">Carbon (C)</option>
+            <option value="N">Nitrogen (N)</option>
+            <option value="O">Oxygen (O)</option>
+            <option value="Ne">Neon (Ne)</option>
+            <option value="Na">Sodium (Na)</option>
+            <option value="Mg">Magnesium (Mg)</option>
+            <option value="Al">Aluminium (Al)</option>
+            <option value="Si">Silicon (Si)</option>
+            <option value="Cl">Chlorine (Cl)</option>
+            <option value="Ar">Argon (Ar)</option>
+            <option value="Ca">Calcium (Ca)</option>
+          </select>
+          <small>
+            This explorer uses a common isotope for each listed element.
+          </small>
+        </div>
+
+        <div class="atom-controls">
+          <label for="electronSpeed">
+            Electron animation speed
+            <output id="speedValue">1×</output>
+          </label>
+          <input id="electronSpeed" type="range"
+                 min="0" max="3" step="0.5" value="1">
+          <small>Adjust the speed of the illustrative electron animation.</small>
+        </div>
+
+        <div class="atom-stats">
+          <div class="atom-stat">
+            <span>Atomic number</span>
+            <strong id="atomicNumber">1</strong>
+          </div>
+          <div class="atom-stat">
+            <span>Mass number</span>
+            <strong id="massNumber">1</strong>
+          </div>
+          <div class="atom-stat">
+            <span>Protons</span>
+            <strong id="protonCount">1</strong>
+          </div>
+          <div class="atom-stat">
+            <span>Neutrons</span>
+            <strong id="neutronCount">0</strong>
+          </div>
+          <div class="atom-stat">
+            <span>Electrons</span>
+            <strong id="electronCount">1</strong>
+          </div>
+          <div class="atom-stat">
+            <span>Net charge</span>
+            <strong id="netCharge">0</strong>
+          </div>
+        </div>
+
+        <div class="atom-shell-list">
+          <strong>Electron arrangement by shell</strong>
+          <p id="shellArrangement">1</p>
+          <p id="electronDistribution"></p>
+        </div>
+
+        <div class="atom-note">
+          <strong>Remember</strong>
+          <p>
+            Atomic number = number of protons. For a neutral atom, the number
+            of electrons equals the number of protons.
+          </p>
+          <p>
+            Mass number = number of protons + number of neutrons.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const canvas = document.getElementById("atomCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const elementSelect = document.getElementById("elementSelect");
+      const speedInput = document.getElementById("electronSpeed");
+      const speedValue = document.getElementById("speedValue");
+      const motionButton = document.getElementById("motionButton");
+      const resetButton = document.getElementById("resetButton");
+
+      const elements = {
+        H:  { name: "Hydrogen",   symbol: "H",  z: 1,  mass: 1,  shells: [1] },
+        He: { name: "Helium",     symbol: "He", z: 2,  mass: 4,  shells: [2] },
+        Li: { name: "Lithium",    symbol: "Li", z: 3,  mass: 7,  shells: [2, 1] },
+        C:  { name: "Carbon",     symbol: "C",  z: 6,  mass: 12, shells: [2, 4] },
+        N:  { name: "Nitrogen",   symbol: "N",  z: 7,  mass: 14, shells: [2, 5] },
+        O:  { name: "Oxygen",     symbol: "O",  z: 8,  mass: 16, shells: [2, 6] },
+        Ne: { name: "Neon",       symbol: "Ne", z: 10, mass: 20, shells: [2, 8] },
+        Na: { name: "Sodium",     symbol: "Na", z: 11, mass: 23, shells: [2, 8, 1] },
+        Mg: { name: "Magnesium",  symbol: "Mg", z: 12, mass: 24, shells: [2, 8, 2] },
+        Al: { name: "Aluminium",  symbol: "Al", z: 13, mass: 27, shells: [2, 8, 3] },
+        Si: { name: "Silicon",    symbol: "Si", z: 14, mass: 28, shells: [2, 8, 4] },
+        Cl: { name: "Chlorine",   symbol: "Cl", z: 17, mass: 35, shells: [2, 8, 7] },
+        Ar: { name: "Argon",      symbol: "Ar", z: 18, mass: 40, shells: [2, 8, 8] },
+        Ca: { name: "Calcium",    symbol: "Ca", z: 20, mass: 40, shells: [2, 8, 8, 2] }
+      };
+
+      let running = true;
+      let lastTimestamp = 0;
+      let frameId = null;
+      let angles = [];
+
+      const colors = {
+        proton: "#e76f51",
+        neutron: "#718096",
+        electron: "#3478f6"
+      };
+
+      function currentElement() {
+        return elements[elementSelect.value] || elements.H;
+      }
+
+      function setupAngles() {
+        const el = currentElement();
+        angles = el.shells.map((_, i) => i * 0.65);
+      }
+
+      function updateStats() {
+        const el = currentElement();
+        const neutrons = el.mass - el.z;
+
+        document.getElementById("atomicNumber").textContent = el.z;
+        document.getElementById("massNumber").textContent = el.mass;
+        document.getElementById("protonCount").textContent = el.z;
+        document.getElementById("neutronCount").textContent = neutrons;
+        document.getElementById("electronCount").textContent = el.z;
+        document.getElementById("netCharge").textContent = "0";
+        document.getElementById("shellArrangement").textContent =
+          el.shells.join(", ");
+        document.getElementById("electronDistribution").textContent =
+          "Total electrons: " + el.shells.reduce((sum, n) => sum + n, 0);
+
+        speedValue.textContent = Number(speedInput.value).toFixed(1) + "×";
+      }
+
+      function drawNucleus(el, cx, cy, scale) {
+        const particles = [];
+        const protonCount = el.z;
+        const neutronCount = el.mass - el.z;
+        const total = protonCount + neutronCount;
+        const radius = Math.min(11, Math.max(5, 42 / Math.sqrt(total)));
+
+        for (let i = 0; i < protonCount; i++) {
+          particles.push({ type: "proton", color: colors.proton });
+        }
+
+        for (let i = 0; i < neutronCount; i++) {
+          particles.push({ type: "neutron", color: colors.neutron });
+        }
+
+        // Deterministic packed arrangement for the illustration.
+        const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
+        particles.forEach((particle, i) => {
+          const distance = i === 0 ? 0 : radius * 1.65 * Math.sqrt(i);
+          const angle = i * goldenAngle;
+          const x = cx + Math.cos(angle) * distance * scale;
+          const y = cy + Math.sin(angle) * distance * scale;
+
+          ctx.beginPath();
+          ctx.arc(x, y, radius * scale, 0, Math.PI * 2);
+          ctx.fillStyle = particle.color;
+          ctx.fill();
+
+          ctx.strokeStyle = "rgba(255,255,255,0.7)";
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        });
+      }
+
+      function drawAtom() {
+        const el = currentElement();
+        const w = canvas.width;
+        const h = canvas.height;
+        const cx = w / 2;
+        const cy = h / 2 + 5;
+
+        ctx.clearRect(0, 0, w, h);
+
+        // Shell spacing scales to fit all selected elements.
+        const maxShells = el.shells.length;
+        const maxRadius = Math.min(w * 0.39, h * 0.39);
+        const spacing = maxRadius / maxShells;
+
+        // Shell paths.
+        el.shells.forEach((count, i) => {
+          const radius = spacing * (i + 1);
+
+          ctx.beginPath();
+          ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+          ctx.strokeStyle = "rgba(128,128,128,0.55)";
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+
+          ctx.fillStyle = "rgba(128,128,128,0.9)";
+          ctx.font = "13px sans-serif";
+          ctx.fillText("Shell " + (i + 1), cx + radius - 25, cy - 8);
+        });
+
+        // Electrons on each shell.
+        el.shells.forEach((count, shellIndex) => {
+          const radius = spacing * (shellIndex + 1);
+          const startAngle = angles[shellIndex] || 0;
+
+          for (let i = 0; i < count; i++) {
+            const angle = startAngle + (2 * Math.PI * i / count);
+            const x = cx + radius * Math.cos(angle);
+            const y = cy + radius * Math.sin(angle);
+
+            ctx.beginPath();
+            ctx.arc(x, y, 7, 0, Math.PI * 2);
+            ctx.fillStyle = colors.electron;
+            ctx.fill();
+
+            ctx.strokeStyle = "rgba(255,255,255,0.9)";
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          }
+        });
+
+        // Nucleus.
+        drawNucleus(el, cx, cy, Math.min(1, maxRadius / 200));
+
+        ctx.fillStyle = "rgba(128,128,128,0.95)";
+        ctx.font = "bold 16px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(el.name + " (" + el.symbol + ")", cx, 28);
+        ctx.textAlign = "start";
+      }
+
+      function animate(timestamp) {
+        if (!running) return;
+
+        if (lastTimestamp) {
+          const delta = Math.min((timestamp - lastTimestamp) / 1000, 0.04);
+          const speed = Number(speedInput.value);
+
+          angles = angles.map((angle, i) =>
+            angle + delta * speed * (i % 2 === 0 ? 0.8 : -0.6)
+          );
+        }
+
+        lastTimestamp = timestamp;
+        drawAtom();
+        frameId = requestAnimationFrame(animate);
+      }
+
+      function stopAnimation() {
+        running = false;
+
+        if (frameId !== null) {
+          cancelAnimationFrame(frameId);
+          frameId = null;
+        }
+
+        motionButton.textContent = "Resume electrons";
+      }
+
+      function startAnimation() {
+        if (running) return;
+
+        running = true;
+        lastTimestamp = 0;
+        motionButton.textContent = "Pause electrons";
+        frameId = requestAnimationFrame(animate);
+      }
+
+      elementSelect.addEventListener("change", () => {
+        setupAngles();
+        updateStats();
+        drawAtom();
+      });
+
+      speedInput.addEventListener("input", updateStats);
+
+      motionButton.addEventListener("click", () => {
+        if (running) stopAnimation();
+        else startAnimation();
+      });
+
+      resetButton.addEventListener("click", () => {
+        elementSelect.value = "H";
+        speedInput.value = 1;
+        setupAngles();
+        updateStats();
+        drawAtom();
+      });
+
+      setupAngles();
+      updateStats();
+      drawAtom();
+
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        frameId = requestAnimationFrame(animate);
+      } else {
+        running = false;
+        motionButton.textContent = "Resume electrons";
+      }
+    })();
+  </script>
+</body>
+</html>
