@@ -163,25 +163,78 @@
       }
     }
   </style>
+  
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X6B09RNT07"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-X6B09RNT07');
+</script>
+
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner container">
-      <a class="brand" href="../../../index.html">Your Answer</a>
+
+      <a class="brand" href="../../../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
       <nav class="top-nav" aria-label="Main navigation">
-        <a href="../../../index.html">Home</a>
-        <a href="../../index.html">Subjects</a>
-        <a href="../../../explore-3d/index.html">Explore 3D</a>
-        <a href="../../../labs/index.html">Labs</a>
+        <a href="../../index.html" aria-current="page">Subjects</a>
+        <a href="../../../explore-3d/">3D Explorer</a>
+        <a href="../../../labs/">Virtual Labs</a>
+        <a href="../../../coding/">Coding Studio</a>
+        <a href="../../../search.html">Search</a>
       </nav>
-      <button type="button" data-theme-toggle aria-label="Toggle colour theme">Theme</button>
-      <button type="button" data-menu-toggle aria-controls="mobile-nav" aria-expanded="false">Menu</button>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
     </div>
-    <nav id="mobile-nav" hidden aria-label="Mobile navigation">
-      <a href="../../../index.html">Home</a>
-      <a href="../../index.html">Subjects</a>
-      <a href="../../../explore-3d/index.html">Explore 3D</a>
-      <a href="../../../labs/index.html">Labs</a>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="../../index.html" aria-current="page">Subjects</a>
+      <a href="../../../explore-3d/">3D Explorer</a>
+      <a href="../../../labs/">Virtual Labs</a>
+      <a href="../../../coding/">Coding Studio</a>
+      <a href="../../../about/">About</a>
+      <a href="../../../search.html">Search</a>
     </nav>
   </header>
 
