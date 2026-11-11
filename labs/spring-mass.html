@@ -362,8 +362,13 @@
     ctx.fillText("m = " + v.m.toFixed(1) + " kg", x + massSize / 2 + 12, massY + 4);
     ctx.fillText("x = " + (displacement / 360).toFixed(3) + " m", 15, height - 18);
 
-    function animateSpring() {   if (!running) return;   drawSpring();   requestAnimationFrame(animateSpring); }
-  }
+}
+
+function animateSpring() {
+  if (!running) return;
+  drawSpring();
+  requestAnimationFrame(animateSpring);
+}
 
   function drawEnergy() {
     if (!ewidth || !eheight) return;
@@ -490,6 +495,7 @@
     renderTable();
     $("tableStatus").textContent = "Experiment reset.";
     updateLabels();
+    requestAnimationFrame(animateSpring);
   });
 
   $("recordBtn").addEventListener("click", () => {
