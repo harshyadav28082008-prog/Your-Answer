@@ -845,11 +845,22 @@ document.getElementById("surface-area-value").textContent =
     surfaceArea.toFixed(2) + " u²";
 
 draw();
-      
+}
+      shapeButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    currentShape = button.dataset.shape;
 
-          updateProperties();
-      }
-      });
+    shapeButtons.forEach(item => {
+      item.setAttribute(
+        "aria-pressed",
+        String(item === button)
+      );
+    });
+
+    updateProperties();
+  });
+});
+    
 
       sizeControl.addEventListener("input", updateProperties);
       heightControl.addEventListener("input", updateProperties);
