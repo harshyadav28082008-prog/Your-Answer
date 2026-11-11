@@ -303,10 +303,10 @@
       </a>
 
       <nav class="top-nav" aria-label="Main navigation">
-        <a href="../subjects/index.html">Subjects</a>
+        <a href="../../subjects/index.html">Subjects</a>
         <a href="../index.html">3D Explorer</a>
-        <a href="../labs/html">Virtual Labs</a>
-        <a href="../coding/html">Coding Studio</a>
+        <a href="../../labs/html">Virtual Labs</a>
+        <a href="../../coding/html">Coding Studio</a>
         <a href="../../search.html">Search</a>
       </nav>
 
@@ -344,10 +344,10 @@
       aria-label="Mobile navigation"
       hidden
     >
-      <a href="../subjects/index.html">Subjects</a>
+      <a href="../../subjects/index.html">Subjects</a>
       <a href="../index.html">3D Explorer</a>
-      <a href="../labs/index.html">Virtual Labs</a>
-      <a href="../coding/index.html">Coding Studio</a>
+      <a href="../../labs/index.html">Virtual Labs</a>
+      <a href="../../coding/index.html">Coding Studio</a>
       <a href="../../search.html">Search</a>
     </nav>
   </header>
@@ -456,6 +456,10 @@
         <div class="property">
           <span>Volume</span>
           <strong id="volume-value">27</strong>
+        </div>
+        <div class="property">
+  <span>Surface area</span>
+  <strong id="surface-area-value">54.00 u²</strong>
         </div>
       </div>
     </section>
@@ -791,6 +795,14 @@
         heightValue.textContent = depth + " units";
 
         const info = shapes[currentShape];
+        const usesHeight =
+  currentShape === "cylinder" || currentShape === "cone";
+
+heightControl.disabled = !usesHeight;
+
+heightControl.closest(".control-group")
+  .querySelector("label").textContent =
+    usesHeight ? "Height" : "Height / depth (not used)";
 
         viewerTitle.textContent = info.name;
         learningTitle.textContent = "Understanding a " + info.name.toLowerCase();
@@ -816,6 +828,22 @@
         volumeValue.textContent = volume.toFixed(2) + " u³";
         draw();
       }
+      const radius = size / 2;
+let surfaceArea;
+
+if (currentShape === "cube") {
+  surfaceArea = 6 * size ** 2;
+} else if (currentShape === "sphere") {
+  surfaceArea = 4 * Math.PI * radius ** 2;
+} else if (currentShape === "cylinder") {
+  surfaceArea = 2 * Math.PI * radius * (radius + depth);
+} else {
+  const slantHeight = Math.sqrt(radius ** 2 + depth ** 2);
+  surfaceArea = Math.PI * radius * (radius + slantHeight);
+}
+
+document.getElementById("surface-area-value").textContent =
+  surfaceArea.toFixed(2) + " u²";
 
       shapeButtons.forEach(button => {
         button.addEventListener("click", () => {

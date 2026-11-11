@@ -59,10 +59,10 @@
       </a>
 
       <nav class="top-nav" aria-label="Main navigation">
-        <a href="../subjects/index.html">Subjects</a>
+        <a href="../../subjects/index.html">Subjects</a>
         <a href="../index.html">3D Explorer</a>
-        <a href="../labs/index.html">Virtual Labs</a>
-        <a href="../coding/index.html">Coding Studio</a>
+        <a href="../../labs/index.html">Virtual Labs</a>
+        <a href="../../coding/index.html">Coding Studio</a>
         <a href="../../search.html">Search</a>
       </nav>
 
@@ -100,10 +100,10 @@
       aria-label="Mobile navigation"
       hidden
     >
-      <a href="../subjects/index.html">Subjects</a>
+      <a href="../../subjects/index.html">Subjects</a>
       <a href="../index.html">3D Explorer</a>
-      <a href="../labs/index.html">Virtual Labs</a>
-      <a href="../coding/index.html">Coding Studio</a>
+      <a href="../../labs/index.html">Virtual Labs</a>
+      <a href="../../coding/index.html">Coding Studio</a>
       <a href="../../search.html">Search</a>
     </nav>
   </header>
@@ -211,8 +211,14 @@
       const f = Number(focalRange.value);
       if(system==='planeMirror') return {u,v:-u,m:1,real:false,orientation:'Upright',description:'The image is virtual, upright, and the same size as the object. It appears the same distance behind the mirror as the object is in front.'};
       if(system==='concaveLens') {
-        const v = 1/(1/(-f)-1/u);
-        return {u,v,m:v/u,real:false,orientation:'Upright',description:'The diverging lens forms a virtual, upright, reduced image on the object side.'};
+  const v = 1/(1/(-f)-1/u);
+  const m = -v/u;
+  return {
+    u, v, m,
+    real: false,
+    orientation: 'Upright',
+    description: 'The diverging lens forms a virtual, upright, reduced image on the object side.'
+  };
       }
       const v = 1/(1/f-1/u);
       const m = -v/u;
