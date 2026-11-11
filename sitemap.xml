@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url><loc>https://your-answer.pages.dev/</loc></url>
+  <url><loc>https://your-answer.pages.dev/about/</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/mathematics/</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/physics/</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/</loc></url>
+
+  <url><loc>https://your-answer.pages.dev/subjects/mathematics/topics/arithmetic.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/mathematics/topics/algebra.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/mathematics/topics/geometry.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/mathematics/topics/calculus.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/mathematics/topics/probability.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/mathematics/topics/statistics.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/mathematics/topics/formula-sheet.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/mathematics/topics/advanced.html</loc></url>
+
+  <url><loc>https://your-answer.pages.dev/subjects/physics/topics/mechanics.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/physics/topics/gravitation.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/physics/topics/matter-fluids.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/physics/topics/thermal-physics.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/physics/topics/waves.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/physics/topics/electricity.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/physics/topics/magnetism.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/physics/topics/optics.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/physics/topics/modern-physics.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/physics/topics/formula-sheet.html</loc></url>
+
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/basic-concepts.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/atomic-structure.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/periodicity.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/chemical-bonding.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/states-of-matter.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/thermodynamics.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/chemical-equilibrium.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/chemical-kinetics.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/solutions.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/acids-bases.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/redox-electrochemistry.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/organic-foundations.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/chemistry/topics/formula-sheet.html</loc></url>
+
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/introduction.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/number-systems.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/programming-fundamentals.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/algorithms-flowcharts.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/data-structures.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/databases-sql.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/operating-systems.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/computer-networks.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/cybersecurity.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/ai-fundamentals.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/subjects/computer-science/topics/reference-sheet.html</loc></url>
+
+  <url><loc>https://your-answer.pages.dev/explore-3d/</loc></url>
+  <url><loc>https://your-answer.pages.dev/explore-3d/models/geometry.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/explore-3d/models/vectors.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/explore-3d/models/waves.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/explore-3d/models/motion.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/explore-3d/models/atom.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/explore-3d/models/molecules.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/explore-3d/models/solar-system.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/explore-3d/models/optics.html</loc></url>
+
+  <url><loc>https://your-answer.pages.dev/labs/</loc></url>
+  <url><loc>https://your-answer.pages.dev/labs/acid-base-ph.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/labs/convex-lens.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/labs/hookes-law.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/labs/ohms-law.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/labs/photosynthesis.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/labs/projectile-motion.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/labs/reaction-rate.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/labs/refraction.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/labs/simple-pendulum.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/labs/spring-mass.html</loc></url>
+
+  <url><loc>https://your-answer.pages.dev/coding/</loc></url>
+  <url><loc>https://your-answer.pages.dev/search.html</loc></url>
+  <url><loc>https://your-answer.pages.dev/privacy-policy/</loc></url>
+  <url><loc>https://your-answer.pages.dev/terms-of-use/</loc></url>
+
+</urlset>
