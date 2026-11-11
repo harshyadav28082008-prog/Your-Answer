@@ -305,8 +305,8 @@
       <nav class="top-nav" aria-label="Main navigation">
         <a href="../../subjects/index.html">Subjects</a>
         <a href="../index.html">3D Explorer</a>
-        <a href="../../labs/html">Virtual Labs</a>
-        <a href="../../coding/html">Coding Studio</a>
+        <a href="../../labs/index.html">Virtual Labs</a>
+        <a href="../../coding/index.html">Coding Studio</a>
         <a href="../../search.html">Search</a>
       </nav>
 
@@ -821,43 +821,34 @@ heightControl.closest(".control-group")
           volume = (4 / 3) * Math.PI * (size / 2) ** 3;
         } else if (currentShape === "cylinder") {
           volume = Math.PI * (size / 2) ** 2 * depth;
-        } else {
-          volume = Math.PI * (size / 2) ** 2 * depth / 3;
-        }
+         } else {
+    volume = Math.PI * (size / 2) ** 2 * depth / 3;
+}
 
-        volumeValue.textContent = volume.toFixed(2) + " u³";
-        draw();
-      }
-      const radius = size / 2;
+volumeValue.textContent = volume.toFixed(2) + " u³";
+
+const radius = size / 2;
 let surfaceArea;
 
 if (currentShape === "cube") {
-  surfaceArea = 6 * size ** 2;
+    surfaceArea = 6 * size ** 2;
 } else if (currentShape === "sphere") {
-  surfaceArea = 4 * Math.PI * radius ** 2;
+    surfaceArea = 4 * Math.PI * radius ** 2;
 } else if (currentShape === "cylinder") {
-  surfaceArea = 2 * Math.PI * radius * (radius + depth);
+    surfaceArea = 2 * Math.PI * radius * (radius + depth);
 } else {
-  const slantHeight = Math.sqrt(radius ** 2 + depth ** 2);
-  surfaceArea = Math.PI * radius * (radius + slantHeight);
+    const slantHeight = Math.sqrt(radius ** 2 + depth ** 2);
+    surfaceArea = Math.PI * radius * (radius + slantHeight);
 }
 
 document.getElementById("surface-area-value").textContent =
-  surfaceArea.toFixed(2) + " u²";
+    surfaceArea.toFixed(2) + " u²";
 
-      shapeButtons.forEach(button => {
-        button.addEventListener("click", () => {
-          currentShape = button.dataset.shape;
-
-          shapeButtons.forEach(item => {
-            item.setAttribute(
-              "aria-pressed",
-              String(item === button)
-            );
-          });
+draw();
+      
 
           updateProperties();
-        });
+      }
       });
 
       sizeControl.addEventListener("input", updateProperties);
