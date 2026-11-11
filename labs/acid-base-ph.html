@@ -118,7 +118,13 @@
       <a href="index.html" class="muted">← All Virtual Labs</a>
       <p class="muted" style="margin:18px 0 0">CHEMISTRY · ACIDS AND BASES</p>
       <h1>Acid–Base and pH</h1>
-      <p class="muted">Explore the pH scale, observe indicator colours, and investigate how acids and bases neutralise one another.</p>
+      <p class="note muted">
+  Add acid and base to a model mixture. This simulation assumes
+  a 0.1 mol/L strong monoprotic acid and a 0.1 mol/L strong
+  monoprotic base at about 25°C. It calculates the approximate
+  pH from the excess acid or base after neutralisation. This
+  is an idealised model, not a laboratory-grade pH calculator.
+      </p>
     </div>
 
     <div class="lab-grid">
@@ -337,19 +343,28 @@
       surface.setAttribute('d', `M70 ${top} Q110 ${top-6} 150 ${top} T230 ${top}`);
 
       let state, color, approximatePH;
-      if (difference > 0) {
-        state = 'Acidic';
-        color = '#dc4c64';
-        approximatePH = Math.max(0, 7 - Math.min(7, difference / Math.max(total, 1) * 14));
-      } else if (difference < 0) {
-        state = 'Alkaline';
-        color = '#3b82c4';
-        approximatePH = Math.min(14, 7 + Math.min(7, -difference / Math.max(total, 1) * 14));
-      } else {
-        state = 'Neutralised';
-        color = '#16a34a';
-        approximatePH = 7;
-      }
+
+const concentration = 0.1; // mol/L
+
+if (difference > 0) {
+  state = 'Acidic';
+  color = '#dc4c64';
+
+  const excessH = concentration * difference / total;
+  approximatePH = -Math.log10(excessH);
+
+} else if (difference < 0) {
+  state = 'Alkaline';
+  color = '#3b82c4';
+
+  const excessOH = concentration * (-difference) / total;
+  approximatePH = 14 + Math.log10(excessOH);
+
+} else {
+  state = 'Neutralised';
+  color = '#16a34a';
+  approximatePH = 7;
+}
 
       if (total === 0) {
         state = 'No solution added';

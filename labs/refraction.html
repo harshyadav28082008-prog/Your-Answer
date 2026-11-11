@@ -312,7 +312,7 @@
         status.textContent = 'Total internal reflection: the light remains in the first medium.';
         document.getElementById('reflectedRay').setAttribute('opacity', '1');
       } else {
-        const refractedEnd = polarPoint(cx, cy, length, theta2);
+        const refractedEnd = {   x: cx + length * Math.sin(theta2 * Math.PI / 180),   y: cy + length * Math.cos(theta2 * Math.PI / 180) };
         refractedRay.setAttribute(
           'd', `M ${cx} ${cy} L ${refractedEnd.x} ${refractedEnd.y}`
         );

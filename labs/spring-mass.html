@@ -362,7 +362,7 @@
     ctx.fillText("m = " + v.m.toFixed(1) + " kg", x + massSize / 2 + 12, massY + 4);
     ctx.fillText("x = " + (displacement / 360).toFixed(3) + " m", 15, height - 18);
 
-    if (running) requestAnimationFrame(drawSpring);
+    function animateSpring() {   if (!running) return;   drawSpring();   requestAnimationFrame(animateSpring); }
   }
 
   function drawEnergy() {
@@ -473,7 +473,7 @@
       running = true;
       $("playBtn").textContent = "Pause";
       $("status").textContent = "Oscillation running.";
-      requestAnimationFrame(drawSpring);
+      requestAnimationFrame(animateSpring);
     }
     drawSpring();
   });
@@ -518,8 +518,9 @@
   });
 
   resize();
-  updateLabels();
-  renderTable();
+updateLabels();
+renderTable();
+requestAnimationFrame(animateSpring);
 })();
 </script>
 </body>
