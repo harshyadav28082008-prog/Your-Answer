@@ -513,6 +513,169 @@ button.addEventListener("click", () => {
 
 </section>
 
+    <section class="learning-guide" aria-labelledby="learning-guide-title">
+
+  <div class="help-card">
+    <h2 id="learning-guide-title">Understand your first program</h2>
+    <p>
+      The starter example uses three languages together. Each has a
+      different responsibility, but they work as one small web page.
+    </p>
+  </div>
+
+  <div class="help-card">
+    <h2>1. HTML — Build the structure</h2>
+    <p>
+      HTML defines the elements that appear on the page. In the starter
+      example, the heading, paragraphs and button are HTML elements.
+    </p>
+
+    <pre><code>&lt;h1 id="title"&gt;Hello, world!&lt;/h1&gt;
+&lt;p&gt;Welcome to the playground.&lt;/p&gt;
+&lt;button id="change-button"&gt;Click me&lt;/button&gt;</code></pre>
+
+    <p><strong>Understand this:</strong></p>
+    <ul>
+      <li><code>&lt;h1&gt;</code> creates a main heading.</li>
+      <li><code>&lt;p&gt;</code> creates a paragraph.</li>
+      <li><code>&lt;button&gt;</code> creates a clickable button.</li>
+      <li><code>id</code> gives an element a unique identifier that JavaScript can find.</li>
+    </ul>
+  </div>
+
+  <div class="help-card">
+    <h2>2. CSS — Change the appearance</h2>
+    <p>
+      CSS controls how HTML elements look. It can change colours,
+      spacing, sizes, borders and page layout.
+    </p>
+
+    <pre><code>h1 {
+  color: purple;
+}
+
+button {
+  background: purple;
+  color: white;
+  padding: 10px 16px;
+}</code></pre>
+
+    <p>
+      Here, the heading becomes purple, while the button receives a
+      purple background and white text.
+    </p>
+    <p>
+      A CSS rule has a selector, followed by properties and their values.
+      For example, <code>color: purple;</code> sets the text colour.
+    </p>
+  </div>
+
+  <div class="help-card">
+    <h2>3. JavaScript — Add behaviour</h2>
+    <p>
+      JavaScript allows a page to respond to actions. In this example,
+      it waits for someone to click the button.
+    </p>
+
+    <pre><code>const button = document.querySelector("#change-button");
+
+button.addEventListener("click", () => {
+  document.querySelector("#title").textContent = "You did it!";
+});</code></pre>
+
+    <p><strong>What happens here?</strong></p>
+    <ul>
+      <li><code>document.querySelector()</code> finds an HTML element.</li>
+      <li><code>const</code> stores a reference to that element.</li>
+      <li><code>addEventListener()</code> waits for a particular event.</li>
+      <li><code>"click"</code> specifies that the event is a button click.</li>
+      <li><code>textContent</code> changes the text displayed inside an element.</li>
+    </ul>
+  </div>
+
+  <div class="help-card">
+    <h2>4. How the three languages work together</h2>
+    <ol>
+      <li>HTML creates the heading and button.</li>
+      <li>CSS gives those elements their appearance.</li>
+      <li>JavaScript finds the button and waits for a click.</li>
+      <li>When clicked, JavaScript changes the heading text.</li>
+    </ol>
+    <p>
+      Pressing <strong>Run code</strong> updates the preview. Clicking
+      the button inside the preview then triggers the JavaScript event.
+    </p>
+  </div>
+
+  <div class="help-card">
+    <h2>Guided experiments</h2>
+    <p>
+      Try these experiments in order. Change the code yourself, run it,
+      and observe what happens.
+    </p>
+
+    <h3>Experiment 1 — Change the heading</h3>
+    <ol>
+      <li>Open the HTML editor.</li>
+      <li>Find <code>Hello, world!</code>.</li>
+      <li>Replace it with your own heading.</li>
+      <li>Press Run code.</li>
+    </ol>
+    <p><strong>Observe:</strong> The heading changes, but the page structure remains the same.</p>
+
+    <h3>Experiment 2 — Change the design</h3>
+    <ol>
+      <li>Open the CSS editor.</li>
+      <li>Find the <code>h1</code> rule.</li>
+      <li>Change its <code>color</code> value.</li>
+      <li>Run the code again.</li>
+    </ol>
+    <p><strong>Observe:</strong> The heading's appearance changes without changing its HTML text.</p>
+
+    <h3>Experiment 3 — Change the button's behaviour</h3>
+    <ol>
+      <li>Open the JavaScript editor.</li>
+      <li>Find the line that changes the heading's <code>textContent</code>.</li>
+      <li>Replace the message with a sentence of your choice.</li>
+      <li>Run the code and click the button in the preview.</li>
+    </ol>
+    <p><strong>Observe:</strong> The heading changes only after the button is clicked.</p>
+
+    <h3>Experiment 4 — Inspect the console</h3>
+    <ol>
+      <li>Open the JavaScript editor.</li>
+      <li>Add <code>console.log("My first experiment!");</code> inside the click event.</li>
+      <li>Run the code and click the button.</li>
+      <li>Look at the Console panel.</li>
+    </ol>
+    <p><strong>Observe:</strong> JavaScript can display messages in the console without adding them to the web page.</p>
+  </div>
+
+  <div class="help-card">
+    <h2>Challenge — Create your own button interaction</h2>
+    <p>
+      Now try making a small change without following the exact example.
+    </p>
+    <ul>
+      <li>Change the heading to a title of your choice.</li>
+      <li>Give the button a different background colour.</li>
+      <li>Make clicking the button display the message
+        <strong>Experiment complete!</strong></li>
+      <li>Print a confirmation message in the console.</li>
+    </ul>
+    <p>
+      <strong>Success criteria:</strong> The page displays your heading,
+      the button has your chosen colour, clicking it changes the message,
+      and the console shows your confirmation.
+    </p>
+    <p>
+      If you change an element's ID in HTML, remember to update the
+      corresponding JavaScript selector too.
+    </p>
+  </div>
+
+    </section>
+
   
     <footer class="playground-footer">
       <p>Your Answer · Coding Playground V1</p>
