@@ -481,9 +481,8 @@ function animateSpring() {
       requestAnimationFrame(animateSpring);
     }
     drawSpring();
-  });
-
   $("resetBtn").addEventListener("click", () => {
+    const wasRunning = running;
     massInput.value = 0.5;
     stiffnessInput.value = 20;
     amplitudeInput.value = 0.15;
@@ -495,7 +494,9 @@ function animateSpring() {
     renderTable();
     $("tableStatus").textContent = "Experiment reset.";
     updateLabels();
+    if (!wasRunning) {
     requestAnimationFrame(animateSpring);
+    }
   });
 
   $("recordBtn").addEventListener("click", () => {
