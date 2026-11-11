@@ -55,9 +55,9 @@
 
   const quotes = [
     {
-      text: "The important thing is to never stop questioning.",
-      author: "Albert Einstein"
-    },
+  text: "A question becomes a discovery when you test what you think you know.",
+  author: "Your Answer"
+},
     {
       text: "Somewhere, something incredible is waiting to be known.",
       author: "Carl Sagan"
