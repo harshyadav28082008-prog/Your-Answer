@@ -1,0 +1,1691 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Learn the foundations of organic chemistry, including carbon bonding, functional groups, IUPAC nomenclature, isomerism, and organic reactions."
+  >
+
+  <title>Organic Chemistry Foundations | Your Answer</title>
+
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+
+  <style>
+    .chemistry-lesson {
+      padding-bottom: 70px;
+    }
+
+    .lesson-hero {
+      padding: 58px 0 45px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .lesson-eyebrow {
+      margin: 0 0 14px;
+      color: var(--chemistry-accent, #8b5cf6);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .lesson-hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      line-height: 1;
+      letter-spacing: -.065em;
+    }
+
+    .lesson-intro {
+      max-width: 730px;
+      margin: 20px 0 0;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      gap: 35px;
+      align-items: start;
+      padding-top: 42px;
+    }
+
+    .lesson-main {
+      min-width: 0;
+    }
+
+    .lesson-section {
+      margin-bottom: 42px;
+      scroll-margin-top: 80px;
+    }
+
+    .lesson-section h2 {
+      margin: 0 0 15px;
+      font-size: clamp(1.55rem, 4vw, 2.1rem);
+      letter-spacing: -.045em;
+    }
+
+    .lesson-section h3 {
+      margin: 26px 0 9px;
+      font-size: 1.15rem;
+    }
+
+    .lesson-section p,
+    .lesson-section li {
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    .lesson-section ul,
+    .lesson-section ol {
+      padding-left: 22px;
+    }
+
+    .concept-card {
+      margin: 18px 0;
+      padding: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .concept-card strong {
+      color: var(--color-text);
+    }
+
+    .formula-card {
+      margin: 18px 0;
+      padding: 20px;
+      overflow-x: auto;
+      background: var(--chemistry-accent-soft, rgba(139, 92, 246, .08));
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .formula-label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--chemistry-accent, #8b5cf6);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .formula {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.3rem;
+      line-height: 1.7;
+      white-space: nowrap;
+    }
+
+    .example-box {
+      margin: 20px 0;
+      padding: 21px;
+      border-left: 3px solid var(--chemistry-accent, #8b5cf6);
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-right: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      border-radius: 0 14px 14px 0;
+    }
+
+    .example-box h3 {
+      margin-top: 0;
+    }
+
+    .example-box p {
+      margin-bottom: 8px;
+    }
+
+    .lesson-aside {
+      position: sticky;
+      top: 75px;
+    }
+
+    .aside-card {
+      padding: 19px;
+      margin-bottom: 14px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 15px;
+    }
+
+    .aside-card h2 {
+      margin: 0 0 12px;
+      font-size: .95rem;
+    }
+
+    .aside-card a {
+      display: block;
+      padding: 6px 0;
+      color: var(--color-text-muted);
+      font-size: .86rem;
+      text-decoration: none;
+    }
+
+    .aside-card a:hover {
+      color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    .symbol-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    .symbol-table th,
+    .symbol-table td {
+      padding: 11px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .symbol-table th {
+      color: var(--color-text);
+      font-size: .82rem;
+    }
+
+    .symbol-table td {
+      color: var(--color-text-muted);
+      font-size: .86rem;
+    }
+
+    .quiz-option {
+      display: block;
+      padding: 12px 14px;
+      margin: 9px 0;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      cursor: pointer;
+      color: var(--color-text-muted);
+    }
+
+    .quiz-option:hover {
+      border-color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    .quiz-option input {
+      margin-right: 9px;
+    }
+
+    .quiz-question {
+      margin: 22px 0;
+    }
+
+    .quiz-question p {
+      color: var(--color-text);
+      font-weight: 650;
+    }
+
+    .quiz-feedback {
+      margin-top: 18px;
+      padding: 15px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      line-height: 1.7;
+    }
+
+    .quiz-feedback:empty {
+      display: none;
+    }
+
+    .quiz-button {
+      padding: 12px 20px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--chemistry-accent, #8b5cf6);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .lesson-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 20px;
+      padding-top: 25px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-bottom a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .lesson-bottom a:hover {
+      color: var(--chemistry-accent, #8b5cf6);
+    }
+
+    @media (max-width: 800px) {
+      .lesson-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-aside {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .aside-card {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .lesson-hero {
+        padding-top: 35px;
+      }
+
+      .lesson-aside {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-bottom {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X6B09RNT07"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X6B09RNT07');
+  </script>
+
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="site-header">
+    <div class="header-inner container">
+
+      <a class="brand" href="../../../index.html" aria-label="Your Answer home">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+
+        <span class="brand-copy">
+          <strong>Your Answer</strong>
+          <small>Explore. Understand. Create.</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="../../index.html" aria-current="page">Subjects</a>
+        <a href="../../../explore-3d/">3D Explorer</a>
+        <a href="../../../labs/">Virtual Labs</a>
+        <a href="../../../coding/">Coding Studio</a>
+        <a href="../../../search.html">Search</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <button
+          class="icon-button"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">◐</span>
+          <span data-theme-label>Theme</span>
+        </button>
+
+        <button
+          class="icon-button menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span aria-hidden="true">☰</span>
+          <span>Menu</span>
+        </button>
+
+      </div>
+
+    </div>
+
+    <nav
+      class="mobile-nav container"
+      id="mobile-nav"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <a href="../../index.html" aria-current="page">Subjects</a>
+      <a href="../../../explore-3d/">3D Explorer</a>
+      <a href="../../../labs/">Virtual Labs</a>
+      <a href="../../../coding/">Coding Studio</a>
+      <a href="../../../about/">About</a>
+      <a href="../../../search.html">Search</a>
+    </nav>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="chemistry-lesson">
+
+    <section class="lesson-hero">
+      <div class="container">
+
+        <p class="lesson-eyebrow">
+          Chemistry / 10
+        </p>
+
+        <h1>Organic Chemistry Foundations</h1>
+
+        <p class="lesson-intro">
+          Carbon forms an extraordinary variety of compounds,
+          from simple gases to complex biological molecules.
+          Organic chemistry studies their structures, properties,
+          preparation, and reactions. This lesson introduces
+          the fundamental ideas needed to understand that
+          remarkable chemical diversity.
+        </p>
+
+      </div>
+    </section>
+
+
+    <div class="container lesson-layout">
+
+      <article class="lesson-main">
+
+        <!-- INTRODUCTION -->
+
+        <section class="lesson-section" id="introduction">
+
+          <h2>1. What Is Organic Chemistry?</h2>
+
+          <p>
+            Organic chemistry is the branch of chemistry concerned
+            primarily with carbon compounds. It studies their
+            structures, physical and chemical properties,
+            preparation, and transformations.
+          </p>
+
+          <p>
+            Most organic compounds contain carbon and hydrogen.
+            Many also contain oxygen, nitrogen, sulfur, phosphorus,
+            or halogens.
+          </p>
+
+          <div class="concept-card">
+            <strong>Important distinction</strong>
+
+            <p>
+              Not every carbon-containing compound is classified
+              as organic. Carbon dioxide, carbon monoxide,
+              carbonates, bicarbonates, and some other simple
+              carbon compounds are traditionally studied in
+              inorganic chemistry.
+            </p>
+          </div>
+
+          <h3>Why is carbon so important?</h3>
+
+          <p>
+            Carbon can form stable bonds with itself and with
+            many other elements. This allows it to produce
+            chains, branches, rings, and complex three-dimensional
+            structures.
+          </p>
+
+        </section>
+
+
+        <!-- CARBON BONDING -->
+
+        <section class="lesson-section" id="carbon-bonding">
+
+          <h2>2. Unique Nature of Carbon</h2>
+
+          <h3>2.1 Tetravalency</h3>
+
+          <p>
+            Carbon has atomic number 6 and electronic configuration
+            1s² 2s² 2p². It has four valence electrons and commonly
+            forms four covalent bonds to complete its octet.
+          </p>
+
+          <div class="formula-card">
+            <span class="formula-label">Carbon electronic configuration</span>
+            <p class="formula">1s² 2s² 2p²</p>
+          </div>
+
+          <p>
+            This ability to form four covalent bonds is called
+            <strong>tetravalency</strong>.
+          </p>
+
+          <div class="example-box">
+            <h3>Example: Methane</h3>
+
+            <p>
+              Methane (CH₄) contains one carbon atom bonded
+              to four hydrogen atoms.
+            </p>
+
+            <div class="formula-card">
+              <p class="formula">
+                CH₄
+              </p>
+            </div>
+
+            <p>
+              Each C–H bond is a shared pair of electrons.
+              Carbon has four bonds in total.
+            </p>
+          </div>
+
+          <h3>2.2 Catenation</h3>
+
+          <p>
+            Catenation is the ability of an element to form
+            covalent bonds with atoms of the same element,
+            producing chains or rings.
+          </p>
+
+          <p>
+            Carbon exhibits extensive catenation because
+            carbon-carbon covalent bonds are sufficiently
+            stable to form a large variety of structures.
+          </p>
+
+          <div class="concept-card">
+            <strong>Common carbon skeletons</strong>
+
+            <p>
+              Straight chains: CH₃–CH₂–CH₂–CH₃
+            </p>
+
+            <p>
+              Branched chains: (CH₃)₃CH
+            </p>
+
+            <p>
+              Rings: cyclohexane (C₆H₁₂)
+            </p>
+          </div>
+
+          <h3>2.3 Multiple bonding</h3>
+
+          <p>
+            Carbon can form single, double, and triple bonds
+            with other carbon atoms.
+          </p>
+
+          <div class="concept-card">
+            <strong>Single bond</strong>
+            <p>Ethane: CH₃–CH₃</p>
+            <p>One shared electron pair.</p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Double bond</strong>
+            <p>Ethene: CH₂=CH₂</p>
+            <p>Two shared electron pairs.</p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Triple bond</strong>
+            <p>Ethyne: HC≡CH</p>
+            <p>Three shared electron pairs.</p>
+          </div>
+
+        </section>
+
+
+        <!-- HYBRIDISATION -->
+
+        <section class="lesson-section" id="hybridisation">
+
+          <h2>3. Hybridisation and Molecular Geometry</h2>
+
+          <p>
+            Hybridisation is a model in which atomic orbitals
+            combine to form new equivalent hybrid orbitals.
+            It helps explain the bonding and geometry of
+            many organic molecules.
+          </p>
+
+          <h3>3.1 sp³ hybridisation</h3>
+
+          <p>
+            One s orbital and three p orbitals combine to form
+            four sp³ hybrid orbitals.
+          </p>
+
+          <div class="formula-card">
+            <span class="formula-label">Geometry</span>
+            <p class="formula">
+              Tetrahedral · 109.5°
+            </p>
+          </div>
+
+          <p>
+            Example: methane (CH₄). Its carbon atom forms
+            four sigma bonds.
+          </p>
+
+          <h3>3.2 sp² hybridisation</h3>
+
+          <p>
+            One s orbital and two p orbitals combine to form
+            three sp² hybrid orbitals. One unhybridised p orbital
+            remains.
+          </p>
+
+          <div class="formula-card">
+            <span class="formula-label">Geometry</span>
+            <p class="formula">
+              Trigonal planar · 120°
+            </p>
+          </div>
+
+          <p>
+            Example: ethene (C₂H₄). The remaining p orbitals
+            overlap sideways to form a pi bond.
+          </p>
+
+          <h3>3.3 sp hybridisation</h3>
+
+          <p>
+            One s orbital and one p orbital combine to form
+            two sp hybrid orbitals. Two unhybridised p orbitals
+            remain.
+          </p>
+
+          <div class="formula-card">
+            <span class="formula-label">Geometry</span>
+            <p class="formula">
+              Linear · 180°
+            </p>
+          </div>
+
+          <p>
+            Example: ethyne (C₂H₂), which contains one sigma
+            bond and two pi bonds between its carbon atoms.
+          </p>
+
+          <table class="symbol-table">
+            <tr>
+              <th>Hybridisation</th>
+              <th>Geometry</th>
+              <th>Angle</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td>sp³</td>
+              <td>Tetrahedral</td>
+              <td>109.5°</td>
+              <td>CH₄</td>
+            </tr>
+            <tr>
+              <td>sp²</td>
+              <td>Trigonal planar</td>
+              <td>120°</td>
+              <td>C₂H₄</td>
+            </tr>
+            <tr>
+              <td>sp</td>
+              <td>Linear</td>
+              <td>180°</td>
+              <td>C₂H₂</td>
+            </tr>
+          </table>
+
+        </section>
+
+
+        <!-- CLASSIFICATION -->
+
+        <section class="lesson-section" id="classification">
+
+          <h2>4. Classification of Organic Compounds</h2>
+
+          <p>
+            Organic compounds can be classified according
+            to the arrangement of their carbon atoms and
+            the functional groups they contain.
+          </p>
+
+          <h3>4.1 Acyclic or open-chain compounds</h3>
+
+          <p>
+            These compounds contain carbon atoms arranged
+            in open chains. The chains may be straight or branched.
+          </p>
+
+          <div class="example-box">
+            <h3>Examples</h3>
+            <p>Butane: CH₃–CH₂–CH₂–CH₃</p>
+            <p>Isobutane: (CH₃)₃CH</p>
+          </div>
+
+          <h3>4.2 Cyclic compounds</h3>
+
+          <p>
+            These compounds contain atoms connected in
+            closed rings.
+          </p>
+
+          <div class="concept-card">
+            <strong>Homocyclic compounds</strong>
+            <p>
+              The ring consists only of carbon atoms.
+              Examples include cyclopropane and benzene.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Heterocyclic compounds</strong>
+            <p>
+              The ring contains carbon and at least one
+              other element, such as nitrogen, oxygen,
+              or sulfur. Examples include pyridine and furan.
+            </p>
+          </div>
+
+          <h3>4.3 Saturated and unsaturated compounds</h3>
+
+          <p>
+            Saturated compounds contain only carbon-carbon
+            single bonds in their carbon skeleton.
+          </p>
+
+          <p>
+            Unsaturated compounds contain at least one
+            carbon-carbon double or triple bond.
+          </p>
+
+          <div class="concept-card">
+            <strong>Alkanes</strong>
+            <p>Contain carbon-carbon single bonds.</p>
+            <p>Example: Ethane (C₂H₆).</p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Alkenes</strong>
+            <p>Contain at least one carbon-carbon double bond.</p>
+            <p>Example: Ethene (C₂H₄).</p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Alkynes</strong>
+            <p>Contain at least one carbon-carbon triple bond.</p>
+            <p>Example: Ethyne (C₂H₂).</p>
+          </div>
+
+        </section>
+
+
+        <!-- REPRESENTATION -->
+
+        <section class="lesson-section" id="representation">
+
+          <h2>5. Representing Organic Compounds</h2>
+
+          <p>
+            Organic compounds can be represented in several
+            ways. Each representation highlights different
+            structural information.
+          </p>
+
+          <h3>5.1 Molecular formula</h3>
+
+          <p>
+            A molecular formula tells us the number of atoms
+            of each element in one molecule.
+          </p>
+
+          <div class="example-box">
+            <h3>Example</h3>
+            <p>
+              Ethanol: C₂H₆O
+            </p>
+          </div>
+
+          <h3>5.2 Condensed structural formula</h3>
+
+          <p>
+            This representation shows how atoms or groups
+            are arranged without drawing every bond.
+          </p>
+
+          <div class="example-box">
+            <h3>Example</h3>
+            <p>
+              Ethanol: CH₃CH₂OH
+            </p>
+          </div>
+
+          <h3>5.3 Expanded structural formula</h3>
+
+          <p>
+            This representation shows the bonds between
+            individual atoms more explicitly.
+          </p>
+
+          <p>
+            It is useful when examining connectivity,
+            valency, and functional groups.
+          </p>
+
+          <h3>5.4 Skeletal formula</h3>
+
+          <p>
+            In skeletal representations, carbon atoms are
+            usually implied at line ends and corners.
+            Hydrogen atoms attached to carbon are omitted
+            and understood from carbon's usual valency.
+          </p>
+
+          <div class="concept-card">
+            <strong>Remember</strong>
+            <p>
+              The molecular formula alone may not identify
+              a unique compound. Different structures can
+              share the same molecular formula.
+            </p>
+          </div>
+
+        </section>
+
+
+        <!-- FUNCTIONAL GROUPS -->
+
+        <section class="lesson-section" id="functional-groups">
+
+          <h2>6. Functional Groups</h2>
+
+          <p>
+            A functional group is an atom or group of atoms
+            that gives an organic compound characteristic
+            chemical properties and reactions.
+          </p>
+
+          <p>
+            Functional groups help us classify organic
+            compounds and understand their chemical behaviour.
+          </p>
+
+          <table class="symbol-table">
+            <tr>
+              <th>Class</th>
+              <th>Functional group</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td>Alcohol</td>
+              <td>–OH</td>
+              <td>Ethanol</td>
+            </tr>
+            <tr>
+              <td>Aldehyde</td>
+              <td>–CHO</td>
+              <td>Ethanal</td>
+            </tr>
+            <tr>
+              <td>Ketone</td>
+              <td>&gt;C=O</td>
+              <td>Propanone</td>
+            </tr>
+            <tr>
+              <td>Carboxylic acid</td>
+              <td>–COOH</td>
+              <td>Ethanoic acid</td>
+            </tr>
+            <tr>
+              <td>Ether</td>
+              <td>–O–</td>
+              <td>Dimethyl ether</td>
+            </tr>
+            <tr>
+              <td>Amine</td>
+              <td>–NH₂</td>
+              <td>Methylamine</td>
+            </tr>
+            <tr>
+              <td>Amide</td>
+              <td>–CONH₂</td>
+              <td>Ethanamide</td>
+            </tr>
+            <tr>
+              <td>Haloalkane</td>
+              <td>–X</td>
+              <td>Chloroethane</td>
+            </tr>
+            <tr>
+              <td>Nitrile</td>
+              <td>–C≡N</td>
+              <td>Ethanenitrile</td>
+            </tr>
+          </table>
+
+          <p>
+            Here, X represents a halogen such as fluorine,
+            chlorine, bromine, or iodine.
+          </p>
+
+        </section>
+
+
+        <!-- HOMOLOGOUS SERIES -->
+
+        <section class="lesson-section" id="homologous-series">
+
+          <h2>7. Homologous Series</h2>
+
+          <p>
+            A homologous series is a family of organic compounds
+            with the same functional group and general formula,
+            in which successive members differ by one
+            –CH₂– unit.
+          </p>
+
+          <div class="formula-card">
+            <span class="formula-label">Difference between successive members</span>
+            <p class="formula">
+              –CH₂– = 14 u
+            </p>
+          </div>
+
+          <p>
+            Members of a homologous series generally show
+            similar chemical properties. Their physical
+            properties usually change gradually with
+            increasing molecular size.
+          </p>
+
+          <h3>Example: Alkane series</h3>
+
+          <table class="symbol-table">
+            <tr>
+              <th>Name</th>
+              <th>Formula</th>
+            </tr>
+            <tr>
+              <td>Methane</td>
+              <td>CH₄</td>
+            </tr>
+            <tr>
+              <td>Ethane</td>
+              <td>C₂H₆</td>
+            </tr>
+            <tr>
+              <td>Propane</td>
+              <td>C₃H₈</td>
+            </tr>
+            <tr>
+              <td>Butane</td>
+              <td>C₄H₁₀</td>
+            </tr>
+            <tr>
+              <td>Pentane</td>
+              <td>C₅H₁₂</td>
+            </tr>
+          </table>
+
+          <div class="formula-card">
+            <span class="formula-label">General formula of open-chain alkanes</span>
+            <p class="formula">
+              C<sub>n</sub>H<sub>2n+2</sub>
+            </p>
+          </div>
+
+        </section>
+
+
+        <!-- NOMENCLATURE -->
+
+        <section class="lesson-section" id="nomenclature">
+
+          <h2>8. Basic IUPAC Nomenclature</h2>
+
+          <p>
+            IUPAC nomenclature provides a systematic method
+            of naming chemical compounds so that their
+            structures can be identified consistently.
+          </p>
+
+          <h3>8.1 Root words</h3>
+
+          <p>
+            The root word indicates the number of carbon
+            atoms in the selected parent chain.
+          </p>
+
+          <table class="symbol-table">
+            <tr>
+              <th>Carbon atoms</th>
+              <th>Root</th>
+            </tr>
+            <tr><td>1</td><td>Meth-</td></tr>
+            <tr><td>2</td><td>Eth-</td></tr>
+            <tr><td>3</td><td>Prop-</td></tr>
+            <tr><td>4</td><td>But-</td></tr>
+            <tr><td>5</td><td>Pent-</td></tr>
+            <tr><td>6</td><td>Hex-</td></tr>
+            <tr><td>7</td><td>Hept-</td></tr>
+            <tr><td>8</td><td>Oct-</td></tr>
+            <tr><td>9</td><td>Non-</td></tr>
+            <tr><td>10</td><td>Dec-</td></tr>
+          </table>
+
+          <h3>8.2 Primary suffixes</h3>
+
+          <table class="symbol-table">
+            <tr>
+              <th>Bond type</th>
+              <th>Suffix</th>
+            </tr>
+            <tr>
+              <td>Single</td>
+              <td>-ane</td>
+            </tr>
+            <tr>
+              <td>Double</td>
+              <td>-ene</td>
+            </tr>
+            <tr>
+              <td>Triple</td>
+              <td>-yne</td>
+            </tr>
+          </table>
+
+          <h3>8.3 A basic naming procedure</h3>
+
+          <ol>
+            <li>Identify the principal characteristic functional group.</li>
+            <li>Select the parent chain containing that group and the maximum appropriate number of multiple bonds.</li>
+            <li>Number the parent chain according to IUPAC priority rules.</li>
+            <li>Identify substituents and their positions.</li>
+            <li>Arrange prefixes alphabetically where required.</li>
+            <li>Use the appropriate suffix and assemble the complete name.</li>
+          </ol>
+
+          <div class="example-box">
+            <h3>Example 1: CH₃–CH₂–CH₃</h3>
+
+            <p>
+              The longest chain contains three carbon atoms.
+            </p>
+
+            <p>
+              All carbon-carbon bonds are single bonds.
+            </p>
+
+            <p>
+              Root = Prop-
+            </p>
+
+            <p>
+              Suffix = -ane
+            </p>
+
+            <p>
+              <strong>IUPAC name: Propane</strong>
+            </p>
+          </div>
+
+          <div class="example-box">
+            <h3>Example 2: CH₃–CH=CH₂</h3>
+
+            <p>
+              The parent chain contains three carbon atoms
+              and one double bond.
+            </p>
+
+            <p>
+              The double bond receives the lowest possible
+              locant, which is 1.
+            </p>
+
+            <p>
+              <strong>IUPAC name: Prop-1-ene</strong>
+            </p>
+          </div>
+
+          <div class="example-box">
+            <h3>Example 3: CH₃–CH₂–OH</h3>
+
+            <p>
+              The compound contains two carbon atoms and
+              an alcohol functional group.
+            </p>
+
+            <p>
+              Root = Eth-
+            </p>
+
+            <p>
+              Functional group suffix = -ol
+            </p>
+
+            <p>
+              <strong>IUPAC name: Ethanol</strong>
+            </p>
+          </div>
+
+        </section>
+
+
+        <!-- ISOMERISM -->
+
+        <section class="lesson-section" id="isomerism">
+
+          <h2>9. Isomerism</h2>
+
+          <p>
+            Isomers are compounds that have the same molecular
+            formula but differ in the arrangement of their
+            atoms or in their spatial arrangement.
+          </p>
+
+          <p>
+            Isomerism is important because different structures
+            can have different physical, chemical, and
+            biological properties.
+          </p>
+
+          <h3>9.1 Structural isomerism</h3>
+
+          <p>
+            Structural isomers have the same molecular formula
+            but different connectivity between atoms.
+          </p>
+
+          <div class="concept-card">
+            <strong>Chain isomerism</strong>
+            <p>
+              Different arrangements of the carbon skeleton.
+            </p>
+            <p>
+              Example: Butane and 2-methylpropane.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Position isomerism</strong>
+            <p>
+              The same functional group or multiple bond
+              occurs at different positions.
+            </p>
+            <p>
+              Example: Propan-1-ol and propan-2-ol.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Functional group isomerism</strong>
+            <p>
+              Compounds have the same molecular formula
+              but different functional groups.
+            </p>
+            <p>
+              Example: Ethanol and dimethyl ether (C₂H₆O).
+            </p>
+          </div>
+
+          <h3>9.2 Stereoisomerism</h3>
+
+          <p>
+            Stereoisomers have the same connectivity but
+            differ in the spatial arrangement of atoms.
+          </p>
+
+          <div class="concept-card">
+            <strong>Geometrical isomerism</strong>
+            <p>
+              Arises when restricted rotation, commonly
+              around a carbon-carbon double bond, produces
+              different spatial arrangements.
+            </p>
+            <p>
+              Example: cis-but-2-ene and trans-but-2-ene.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Optical isomerism</strong>
+            <p>
+              Often arises when a molecule is chiral,
+              meaning it is not superimposable on its
+              mirror image.
+            </p>
+            <p>
+              Such molecules can exist as enantiomers,
+              which rotate plane-polarised light in
+              opposite directions.
+            </p>
+          </div>
+
+        </section>
+
+
+        <!-- REACTIONS -->
+
+        <section class="lesson-section" id="reactions">
+
+          <h2>10. Fundamental Organic Reactions</h2>
+
+          <p>
+            Organic reactions involve changes in chemical
+            bonds and the arrangement of atoms. They can
+            be classified according to the type of
+            transformation taking place.
+          </p>
+
+          <h3>10.1 Substitution reaction</h3>
+
+          <p>
+            An atom or group in a molecule is replaced
+            by another atom or group.
+          </p>
+
+          <div class="example-box">
+            <h3>Example</h3>
+            <p>
+              CH₄ + Cl₂ → CH₃Cl + HCl
+            </p>
+            <p>
+              This reaction takes place under suitable
+              photochemical conditions.
+            </p>
+          </div>
+
+          <h3>10.2 Addition reaction</h3>
+
+          <p>
+            Atoms or groups are added across a multiple bond,
+            reducing its bond order.
+          </p>
+
+          <div class="example-box">
+            <h3>Example: Hydrogenation</h3>
+            <p>
+              CH₂=CH₂ + H₂ → CH₃–CH₃
+            </p>
+            <p>
+              The reaction occurs in the presence of a
+              suitable catalyst, such as nickel, under
+              appropriate conditions.
+            </p>
+          </div>
+
+          <h3>10.3 Elimination reaction</h3>
+
+          <p>
+            Atoms or groups are removed from a molecule,
+            often resulting in the formation of a
+            multiple bond.
+          </p>
+
+          <div class="example-box">
+            <h3>Example</h3>
+            <p>
+              CH₃CH₂OH → CH₂=CH₂ + H₂O
+            </p>
+            <p>
+              Ethanol can undergo dehydration under
+              suitable conditions to form ethene.
+            </p>
+          </div>
+
+          <h3>10.4 Oxidation and reduction</h3>
+
+          <p>
+            In organic chemistry, oxidation often involves
+            an increase in bonds to oxygen or a decrease
+            in bonds to hydrogen. Reduction generally
+            involves the opposite changes.
+          </p>
+
+          <div class="concept-card">
+            <strong>Example: Oxidation of a primary alcohol</strong>
+            <p>
+              A primary alcohol can be oxidised to an
+              aldehyde and, under suitable conditions,
+              further to a carboxylic acid.
+            </p>
+          </div>
+
+        </section>
+
+
+        <!-- ELECTRONIC EFFECTS -->
+
+        <section class="lesson-section" id="electronic-effects">
+
+          <h2>11. Introduction to Electronic Effects</h2>
+
+          <p>
+            The distribution of electrons within an organic
+            molecule influences its stability, reactivity,
+            acidity, and basicity.
+          </p>
+
+          <h3>11.1 Inductive effect</h3>
+
+          <p>
+            The inductive effect is the permanent displacement
+            of sigma-bond electron density due to differences
+            in electronegativity between bonded atoms.
+          </p>
+
+          <p>
+            Electron-withdrawing groups show a negative
+            inductive effect (−I), while electron-releasing
+            groups show a positive inductive effect (+I).
+          </p>
+
+          <h3>11.2 Resonance effect</h3>
+
+          <p>
+            Resonance describes electron delocalisation
+            across a system of overlapping p orbitals.
+            A molecule may be represented by multiple
+            contributing structures, while its actual
+            electronic structure is a resonance hybrid.
+          </p>
+
+          <div class="concept-card">
+            <strong>Example: Benzene</strong>
+            <p>
+              Benzene has six delocalised pi electrons
+              spread over its six-membered carbon ring.
+              This delocalisation contributes to its
+              unusual stability.
+            </p>
+          </div>
+
+          <h3>11.3 Hyperconjugation</h3>
+
+          <p>
+            Hyperconjugation is the delocalisation of
+            electrons from a sigma bond into an adjacent
+            suitable orbital or pi system.
+          </p>
+
+          <p>
+            It can influence the stability of carbocations,
+            radicals, and substituted alkenes.
+          </p>
+
+          <h3>11.4 Electromeric effect</h3>
+
+          <p>
+            The electromeric effect is a temporary,
+            complete transfer of pi electrons in a
+            multiple bond under the influence of an
+            attacking reagent.
+          </p>
+
+        </section>
+
+
+        <!-- SUMMARY -->
+
+        <section class="lesson-section" id="summary">
+
+          <h2>Key Ideas</h2>
+
+          <div class="concept-card">
+            <strong>Carbon's versatility</strong>
+            <p>
+              Tetravalency, catenation, and multiple bonding
+              allow carbon to form an enormous variety
+              of compounds.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Functional groups</strong>
+            <p>
+              Functional groups help determine the
+              characteristic reactions of organic compounds.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>IUPAC nomenclature</strong>
+            <p>
+              Systematic naming allows organic structures
+              to be identified clearly and consistently.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Isomerism</strong>
+            <p>
+              The same molecular formula can correspond
+              to different structures and spatial arrangements.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <strong>Organic reactions</strong>
+            <p>
+              Substitution, addition, elimination, oxidation,
+              and reduction describe important types of
+              chemical transformations.
+            </p>
+          </div>
+
+        </section>
+
+
+        <!-- KNOWLEDGE CHECK -->
+
+        <section class="lesson-section" id="knowledge-check">
+
+          <h2>Test Your Understanding</h2>
+
+          <p>
+            Answer these questions to check your understanding
+            of the fundamental ideas introduced in this lesson.
+          </p>
+
+          <form id="organic-quiz">
+
+            <div class="quiz-question">
+              <p>1. Which property allows carbon to form long chains with itself?</p>
+
+              <label class="quiz-option">
+                <input type="radio" name="q1" value="a">
+                Tetravalency
+              </label>
+
+              <label class="quiz-option">
+                <input type="radio" name="q1" value="b">
+                Catenation
+              </label>
+
+              <label class="quiz-option">
+                <input type="radio" name="q1" value="c">
+                Ionisation
+              </label>
+            </div>
+
+            <div class="quiz-question">
+              <p>2. What is the hybridisation of carbon in methane?</p>
+
+              <label class="quiz-option">
+                <input type="radio" name="q2" value="a">
+                sp
+              </label>
+
+              <label class="quiz-option">
+                <input type="radio" name="q2" value="b">
+                sp²
+              </label>
+
+              <label class="quiz-option">
+                <input type="radio" name="q2" value="c">
+                sp³
+              </label>
+            </div>
+
+            <div class="quiz-question">
+              <p>3. Which functional group is present in alcohols?</p>
+
+              <label class="quiz-option">
+                <input type="radio" name="q3" value="a">
+                –COOH
+              </label>
+
+              <label class="quiz-option">
+                <input type="radio" name="q3" value="b">
+                –OH
+              </label>
+
+              <label class="quiz-option">
+                <input type="radio" name="q3" value="c">
+                –CHO
+              </label>
+            </div>
+
+            <div class="quiz-question">
+              <p>4. What is the general formula of an open-chain alkane?</p>
+
+              <label class="quiz-option">
+                <input type="radio" name="q4" value="a">
+                CₙH₂ₙ₊₂
+              </label>
+
+              <label class="quiz-option">
+                <input type="radio" name="q4" value="b">
+                CₙH₂ₙ
+              </label>
+
+              <label class="quiz-option">
+                <input type="radio" name="q4" value="c">
+                CₙH₂ₙ₋₂
+              </label>
+            </div>
+
+            <div class="quiz-question">
+              <p>5. Which pair represents functional group isomers?</p>
+
+              <label class="quiz-option">
+                <input type="radio" name="q5" value="a">
+                Butane and 2-methylpropane
+              </label>
+
+              <label class="quiz-option">
+                <input type="radio" name="q5" value="b">
+                Ethanol and dimethyl ether
+              </label>
+
+              <label class="quiz-option">
+                <input type="radio" name="q5" value="c">
+                Ethene and ethyne
+              </label>
+            </div>
+
+            <button class="quiz-button" type="submit">
+              Check Answers
+            </button>
+
+            <div
+              class="quiz-feedback"
+              id="quiz-feedback"
+              role="status"
+              aria-live="polite"
+            ></div>
+
+          </form>
+
+        </section>
+
+      </article>
+
+
+      <!-- ASIDE -->
+
+      <aside class="lesson-aside">
+
+        <div class="aside-card">
+
+          <h2>On this page</h2>
+
+          <a href="#introduction">Introduction</a>
+          <a href="#carbon-bonding">Carbon Bonding</a>
+          <a href="#hybridisation">Hybridisation</a>
+          <a href="#classification">Classification</a>
+          <a href="#representation">Representations</a>
+          <a href="#functional-groups">Functional Groups</a>
+          <a href="#homologous-series">Homologous Series</a>
+          <a href="#nomenclature">IUPAC Nomenclature</a>
+          <a href="#isomerism">Isomerism</a>
+          <a href="#reactions">Organic Reactions</a>
+          <a href="#electronic-effects">Electronic Effects</a>
+          <a href="#summary">Key Ideas</a>
+          <a href="#knowledge-check">Knowledge Check</a>
+
+        </div>
+
+        <div class="aside-card">
+
+          <h2>Important formulas</h2>
+
+          <table class="symbol-table">
+
+            <tr>
+              <th>Compound</th>
+              <th>Formula</th>
+            </tr>
+
+            <tr>
+              <td>Alkanes</td>
+              <td>CₙH₂ₙ₊₂</td>
+            </tr>
+
+            <tr>
+              <td>Alkenes</td>
+              <td>CₙH₂ₙ</td>
+            </tr>
+
+            <tr>
+              <td>Alkynes</td>
+              <td>CₙH₂ₙ₋₂</td>
+            </tr>
+
+            <tr>
+              <td>sp³ angle</td>
+              <td>109.5°</td>
+            </tr>
+
+            <tr>
+              <td>sp² angle</td>
+              <td>120°</td>
+            </tr>
+
+            <tr>
+              <td>sp angle</td>
+              <td>180°</td>
+            </tr>
+
+          </table>
+
+          <p style="font-size:.78rem;color:var(--color-text-muted);">
+            The alkene and alkyne formulas apply to
+            acyclic compounds containing one double or
+            one triple bond, respectively.
+          </p>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+
+    <div class="container">
+
+      <nav class="lesson-bottom" aria-label="Lesson navigation">
+
+        <a href="../index.html">
+          ← Chemistry
+        </a>
+
+        <a href="acids-bases.html">
+          Next: Acids &amp; Bases →
+        </a>
+
+      </nav>
+
+    </div>
+
+  </main>
+
+
+  <script src="../../../assets/js/main.js"></script>
+
+  <script>
+    document.getElementById("organic-quiz").addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const answers = {
+        q1: "b",
+        q2: "c",
+        q3: "b",
+        q4: "a",
+        q5: "b"
+      };
+
+      const explanations = {
+        q1: "Catenation is the ability of an element to bond with itself.",
+        q2: "Methane has four equivalent sp³ hybrid orbitals around carbon.",
+        q3: "Alcohols contain the hydroxyl functional group (–OH).",
+        q4: "Open-chain alkanes have the general formula CₙH₂ₙ₊₂.",
+        q5: "Ethanol and dimethyl ether both have molecular formula C₂H₆O but different functional groups."
+      };
+
+      let score = 0;
+      let unanswered = 0;
+      let feedback = "";
+
+      for (const question in answers) {
+
+        const selected = document.querySelector(
+          'input[name="' + question + '"]:checked'
+        );
+
+        if (!selected) {
+          unanswered++;
+          continue;
+        }
+
+        if (selected.value === answers[question]) {
+          score++;
+          feedback += "<p>✓ " + explanations[question] + "</p>";
+        } else {
+          feedback += "<p>✗ " + explanations[question] + "</p>";
+        }
+      }
+
+      const result = document.getElementById("quiz-feedback");
+
+      if (unanswered > 0) {
+        result.innerHTML =
+          "<strong>Please answer all five questions.</strong> You have " +
+          unanswered + " unanswered question(s).";
+        return;
+      }
+
+      result.innerHTML =
+        "<strong>Your score: " + score + " / 5</strong>" +
+        "<p>" +
+        (score === 5
+          ? "Excellent! You understand these foundations well."
+          : score >= 3
+            ? "Good effort! Review the explanations below to strengthen your understanding."
+            : "Keep learning! Revisit the lesson and try again.") +
+        "</p>" +
+        feedback;
+
+    });
+  </script>
+
+</body>
+</html>
